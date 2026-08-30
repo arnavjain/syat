@@ -1,0 +1,24 @@
+# Overnight delivery state
+
+## What is deliberately real
+
+- The app routes, content contracts, data checks, and Convex schema.
+- 100 RSS metadata signals from the most recent seven-day window.
+- 100 static Timeless questions.
+- Source links, review labels, cost ceiling, and media rights records.
+
+## What must not be misrepresented
+
+- RSS signals are not Syāt-published stories.
+- Teaching fixtures are fictional and visibly labelled.
+- There are no rights-cleared external images or live social embeds yet.
+- Google login and passkey registration remain disabled until stable credentials and URL are supplied.
+- Studio is a read-only design/queue preview until editor roles are enforced.
+- Automated route, type, lint, build, and content checks have run. This environment did not provide a browser for screenshot or device-width inspection, so visual review still needs that final human/browser pass.
+
+## Next safe work
+
+1. Verify Google callback and stable Vercel hostname.
+2. Add an editor-role claim and protect write mutations and Studio.
+3. Trial a source dossier through the strict draft parser; have an editor check it.
+4. Promote only rights-verified media candidates into public assets.

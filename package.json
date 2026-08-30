@@ -1,0 +1,46 @@
+{
+  "name": "syat",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A reading-first perspective product for news and enduring ideas.",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "content:check": "tsx scripts/check-content.ts",
+    "content:collect-news": "tsx scripts/collect-rss-intake.ts",
+    "content:smoke-ai": "node --env-file=.env.local --import tsx scripts/smoke-openrouter.ts"
+  },
+  "dependencies": {
+    "@better-auth/core": "^1.6.22",
+    "@better-auth/passkey": "^1.6.22",
+    "@better-auth/utils": "^0.4.2",
+    "@convex-dev/auth": "0.0.95",
+    "@convex-dev/better-auth": "^0.12.5",
+    "better-auth": "^1.6.22",
+    "convex": "1.45.0",
+    "next": "16.3.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.1",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.1",
+    "eslint": "9.39.1",
+    "eslint-config-next": "16.3.3",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}
