@@ -1,0 +1,19 @@
+# Local secrets and provider state
+.env
+.env.*
+!.env.example
+.vercel/
+.convex/
+
+# JavaScript build output
+node_modules/
+.next/
+out/
+coverage/
+
+# Local agent/process scratch data
+.superpowers/
+.worktrees/
+
+# Operating-system files
+.DS_Store
