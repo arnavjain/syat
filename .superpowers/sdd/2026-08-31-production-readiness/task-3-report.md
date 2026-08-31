@@ -74,3 +74,61 @@ Tests  6 passed (6)
 ## Concerns
 
 - I ran HTTP-rendered smoke checks, not an interactive browser session. The controls are native links/buttons with visible focus rules, but browser-level keyboard traversal has not been automated.
+
+## Review blocker fix — guarded `localStorage` property access
+
+The original guide passed `window.localStorage` as an argument. In restricted browsers, evaluating that property can throw before the existing guarded storage helpers receive it. `getSafeBrowserStorage()` now catches that property read and returns `undefined`; the existing helpers already treat that value as a non-blocking storage failure.
+
+Blocker code commit: `2d6f80aa8ca3e5b54adb8438b9f59b8c44d2b79e`
+
+### RED
+
+Command:
+
+```text
+npm test -- src/components/guided-onboarding.test.ts
+```
+
+Output:
+
+```text
+Test Files  1 failed (1)
+Tests  1 failed (1)
+
+FAIL  src/components/guided-onboarding.test.ts > guided onboarding storage > stays available when reading the localStorage property throws
+TypeError: getSafeBrowserStorage is not a function
+```
+
+### GREEN
+
+Command:
+
+```text
+npm test -- src/components/guided-onboarding.test.ts src/lib/onboarding.test.ts
+```
+
+Output:
+
+```text
+Test Files  2 passed (2)
+Tests  4 passed (4)
+```
+
+### Checks
+
+```text
+npm run typecheck
+> tsc --noEmit
+
+npm run lint
+> eslint .
+
+npm run build
+> next build
+✓ Compiled successfully
+✓ Generating static pages using 9 workers (112/112)
+
+git diff --check
+```
+
+All commands above exited with status 0.
