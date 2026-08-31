@@ -15,3 +15,9 @@ The private preview may contain fixtures, licensed test media, and clearly label
 - The owner has authorised a protected, share-with-selected-people review deployment of the current work. This is not a public launch and does not waive source, rights, editorial, community, notification, Hindi, Jain-review, or publication approvals.
 - Deploy only a clean, independently reviewed commit. Keep `noindex`, the private-preview label, and Vercel access protection on. Do not add public source signals, real generated drafts, or external media as part of this review deployment.
 - Before sharing, record the deployment URL and its access protection, then run a fresh production smoke check. A person must still decide who receives the link.
+
+## Current protected review build
+
+- Preview: `https://syat-9y4jewph5-jdso.vercel.app`
+- Verified on 2026-08-31: Vercel reports the preview as ready. An unauthenticated request redirects to Vercel SSO and responds with `X-Robots-Tag: noindex`.
+- The shared build contains only the current private-preview product. It does not make RSS signals, real AI drafts, external media, or community features public.
