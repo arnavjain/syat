@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL } from "./openrouter-story-client";
+import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL, type GenerationReservationRequest } from "./openrouter-story-client";
 
-function acceptedReservation({ attempt, estimatedPaise }: { attempt: number; estimatedPaise: number }) {
+function acceptedReservation({ attempt, estimatedPaise }: GenerationReservationRequest) {
   return Promise.resolve({
     reservationId: `reservation-${attempt}`,
     reservationPaise: estimatedPaise,
@@ -254,6 +254,50 @@ describe("createStoryDraft", () => {
 
     expect(events).toEqual(["reserve", "acknowledged", "fetch"]);
     expect(result.reservations[0]).toMatchObject({ reservationId: "durable-reservation" });
+  });
+
+  it("rejects a replayed retry receipt before a second paid fetch", async () => {
+    const maximum = estimateMaximumStoryDraftCostInrPaise();
+    const fetchImpl = vi.fn().mockRejectedValueOnce(new Error("temporary network failure"));
+    const reserveAttempt = vi.fn().mockResolvedValue({
+      reservationId: "first-receipt",
+      reservationPaise: maximum,
+      authoritativeTotalPaise: maximum,
+      budgetStatus: "allowed" as const
+    });
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt,
+      maxAttempts: 2
+    })).rejects.toThrow(/replayed reservation/i);
+
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(reserveAttempt).toHaveBeenCalledTimes(2);
+    expect(reserveAttempt.mock.calls[1][0].previousReservationIds).toEqual(["first-receipt"]);
+  });
+
+  it("allows one retry when it receives a distinct second receipt", async () => {
+    const fetchImpl = vi.fn()
+      .mockRejectedValueOnce(new Error("temporary network failure"))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ choices: [{ message: { content: modelContent } }] }), { status: 200 }));
+    const reserveAttempt = vi.fn(acceptedReservation);
+
+    const result = await createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt,
+      maxAttempts: 2
+    });
+
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+    expect(result.reservations.map((reservation) => reservation.reservationId)).toEqual(["reservation-1", "reservation-2"]);
+    expect(reserveAttempt.mock.calls[1][0].previousReservationIds).toEqual(["reservation-1"]);
   });
 
   it("includes the first reservation before refusing a retry that would cross the cap", async () => {

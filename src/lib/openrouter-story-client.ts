@@ -197,6 +197,10 @@ export async function createStoryDraft({
       throw new Error("Shared reservation acknowledgement was unavailable or malformed; no paid request was made.");
     }
 
+    if (reservationRequest.previousReservationIds.includes(acknowledgement.reservationId)) {
+      throw new Error("Shared reservation acknowledgement used a replayed reservation receipt; no paid request was made.");
+    }
+
     if (
       acknowledgement.reservationPaise !== maximumEstimatePaise ||
       acknowledgement.authoritativeTotalPaise < acknowledgement.reservationPaise ||
