@@ -1,0 +1,15 @@
+# Never upload local secrets or private state.
+.env
+.env.*
+.syat-private/
+.vercel/
+
+# Owner-supplied design references and local review artefacts. Large, and not build inputs.
+references/
+.playwright-mcp/
+.review-screens/
+.worktrees/
+
+# Planning and agent notes are not needed to build or serve the site.
+.superpowers/
+docs/superpowers/
