@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getHomeContent, getHomeModeHref } from "./home-content";
+import { getHomeContent, getHomeModeHref, isCurrentHomeDestination } from "./home-content";
 
 describe("getHomeContent", () => {
   it("opens in News with a current-story reading path", () => {
@@ -19,24 +19,22 @@ describe("getHomeContent", () => {
     expect(home.feature.kicker).toContain("Timeless");
   });
 
-  it("keeps every internal home link on a page contract that exists today", () => {
+  it("backs every internal home link with a current static route or matching fixture", () => {
     const internalHomeLinks = (["news", "timeless"] as const).flatMap((mode) => {
       const home = getHomeContent(mode);
       return [home.feature.cta.href, ...home.sections.flatMap((section) => section.items.filter((item) => item.type !== "internet").map((item) => item.href))];
     });
 
-    expect(internalHomeLinks).toEqual([
-      "/en/news/street-plan-daily-realities",
-      "/en/timeless/how-cities-move",
-      "/en/explore",
-      "/en/explore",
-      "/en/explore",
-      "/en/explore"
-    ]);
+    expect(internalHomeLinks.every(isCurrentHomeDestination)).toBe(true);
+    expect(isCurrentHomeDestination("/en/explore")).toBe(true);
+    expect(isCurrentHomeDestination("/en/news/not-a-fixture")).toBe(false);
+    expect(isCurrentHomeDestination("/en/timeless/not-a-fixture")).toBe(false);
   });
 
   it("uses stable route paths for the editorial modes", () => {
-    expect(getHomeModeHref("news")).toBe("/");
-    expect(getHomeModeHref("timeless")).toBe("/en/timeless");
+    const modePaths = [getHomeModeHref("news"), getHomeModeHref("timeless")];
+
+    expect(modePaths).toEqual(["/", "/en/timeless"]);
+    expect(modePaths.every(isCurrentHomeDestination)).toBe(true);
   });
 });

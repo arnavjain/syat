@@ -1,4 +1,5 @@
 import { formatSignalDate, previewNewsSignals } from "./news-signals";
+import { getPreviewStory } from "./preview-content";
 
 export type HomeMode = "news" | "timeless";
 
@@ -6,6 +7,8 @@ const homeModeHrefs: Record<HomeMode, "/" | "/en/timeless"> = {
   news: "/",
   timeless: "/en/timeless"
 };
+
+const staticHomeDestinations = new Set(["/", "/en/timeless", "/en/explore"]);
 
 export type StoryTeaser = {
   title: string;
@@ -124,4 +127,14 @@ export function getHomeContent(mode: HomeMode): HomeContent {
 
 export function getHomeModeHref(mode: HomeMode) {
   return homeModeHrefs[mode];
+}
+
+export function isCurrentHomeDestination(href: string) {
+  if (staticHomeDestinations.has(href)) return true;
+
+  const match = href.match(/^\/en\/(news|timeless)\/([^/]+)$/);
+  if (!match) return false;
+
+  const [, mode, slug] = match;
+  return getPreviewStory(slug)?.mode === mode;
 }
