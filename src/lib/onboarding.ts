@@ -7,20 +7,28 @@ export type OnboardingStep = {
   eyebrow: string;
   title: string;
   description: string;
+  practice?: {
+    title: string;
+    steps: readonly string[];
+  };
 };
 
 export const onboardingSteps: readonly OnboardingStep[] = [
   {
     id: "welcome",
     eyebrow: "A slower way to read",
-    title: "Syāt helps you hold more than one truth-shaped thing at once.",
-    description: "A report, a person’s experience, and an open question can all matter. They are not the same kind of knowledge."
+    title: "Syāt helps you read one subject from more than one honest starting point.",
+    description: "A documented statement, a person’s experience, and an open question can all matter. They are not the same kind of knowledge."
   },
   {
     id: "sources-and-viewpoints",
     eyebrow: "Sources and viewpoints",
     title: "See what a source supports, then notice who is looking.",
-    description: "A source trail shows where a statement comes from. Viewpoints name the values and limits that shape what a person can see."
+    description: "Try this with the fictional street-plan fixture: identify a documented statement, open its source note, then read one different viewpoint.",
+    practice: {
+      title: "A one-minute practice",
+      steps: ["Identify a documented statement.", "Open its source note.", "Read a different viewpoint."]
+    }
   },
   {
     id: "news-and-timeless",

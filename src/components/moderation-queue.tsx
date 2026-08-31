@@ -47,6 +47,15 @@ function readBrowserRecords() {
   }
 }
 
+function writeBrowserRecords(records: Record<string, ModerationRecord>) {
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(records));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
@@ -70,7 +79,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   }, []);
 
   useEffect(() => {
-    if (isHydrated) window.localStorage.setItem(storageKey, JSON.stringify(records));
+    if (isHydrated) writeBrowserRecords(records);
   }, [isHydrated, records]);
 
   function changeRecord(id: string, change: Partial<ModerationRecord>) {
@@ -92,7 +101,11 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   }
 
   function resetBrowserQueue() {
-    window.localStorage.removeItem(storageKey);
+    try {
+      window.localStorage.removeItem(storageKey);
+    } catch {
+      // The on-screen state can still reset when a browser blocks storage.
+    }
     setRecords({});
     setFilter("all");
     setSelectedId(sources[0]?.id ?? "");

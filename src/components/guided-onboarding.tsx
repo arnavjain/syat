@@ -53,6 +53,12 @@ export function GuidedOnboarding() {
       <p className="micro-copy">{step.eyebrow}</p>
       <h1 id="guided-onboarding-title">{hasFinishedBefore ? "A useful place to begin again." : step.title}</h1>
       <p className="page-lede">{hasFinishedBefore ? "You have already seen the guide. Return to the teaching story whenever you want to practise the method." : step.description}</p>
+      {!hasFinishedBefore && step.practice && <aside className="onboarding-practice" aria-labelledby="onboarding-practice-title">
+        <p className="micro-copy">Try the method</p>
+        <h2 id="onboarding-practice-title">{step.practice.title}</h2>
+        <ol>{step.practice.steps.map((instruction, index) => <li key={instruction}>{index === 0 ? <Link href={`${teachingStoryPath}#evidence`}>{instruction}</Link> : index === 1 ? <Link href="/en/fixtures/nadi-nagar-policy-note">{instruction}</Link> : <Link href={`${teachingStoryPath}#perspectives`}>{instruction}</Link>}</li>)}</ol>
+        <p>These links open a clearly labelled fictional teaching example. They do not send your writing anywhere.</p>
+      </aside>}
       {hasFinishedBefore ? <div className="page-actions"><Link className="primary-action" href={teachingStoryPath}>Open the teaching story <span aria-hidden="true">↗</span></Link><button className="text-button" type="button" onClick={() => { setHasFinishedBefore(false); setStepIndex(0); }}>Take the guide again</button></div> : <div className="page-actions guided-actions">
         <Link className="text-action" href={teachingStoryPath} onClick={finishGuide}>Skip to the teaching story</Link>
         {isLastStep ? <Link className="primary-action" href={teachingStoryPath} onClick={finishGuide}>Read the teaching story <span aria-hidden="true">↗</span></Link> : <button className="primary-action" type="button" onClick={() => setStepIndex((index) => index + 1)}>Next <span aria-hidden="true">→</span></button>}

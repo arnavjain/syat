@@ -1,6 +1,6 @@
 import { SiteChrome } from "@/components/site-chrome";
 import { ModerationQueue } from "@/components/moderation-queue";
-import { isSensitiveNewsSignal, latestNewsSignals, newsSignalMetadata } from "@/lib/news-signals";
+import { isSensitiveNewsSignal, isSignalSnapshotCurrent, latestNewsSignals, newsSignalMetadata } from "@/lib/news-signals";
 import { publisherRegistry } from "@/lib/publisher-registry";
 
 const reviewRows = [
@@ -13,6 +13,10 @@ const reviewRows = [
 ] as const;
 
 export default function StudioPage() {
+  const publisherCounts = [...latestNewsSignals.reduce((counts, signal) => counts.set(signal.publisher, (counts.get(signal.publisher) ?? 0) + 1), new Map<string, number>()).entries()].sort(([first], [second]) => first.localeCompare(second));
+  const currentPublishers = new Set(publisherCounts.map(([publisher]) => publisher));
+  const acquisitionGaps = publisherRegistry.filter((publisher) => !currentPublishers.has(publisher.name));
+  const snapshotIsCurrent = isSignalSnapshotCurrent(newsSignalMetadata);
   const moderationSources = latestNewsSignals.map((signal) => ({
     id: signal.id,
     title: signal.title,
@@ -29,7 +33,7 @@ export default function StudioPage() {
         <p className="micro-copy">Private Review Studio · read-only preview</p>
         <h1>See what is ready, and what is not.</h1>
         <p className="page-lede">This is a review terminal, not a public dashboard. It has no write controls until Google sign-in and editor roles are verified.</p>
-        <p className="studio-timestamp">Latest India-first source intake: {new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }).format(new Date(newsSignalMetadata.generatedAt))} UTC · {newsSignalMetadata.windowDays}-day window</p>
+        <p className="studio-timestamp">Last good India-first source intake: {new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }).format(new Date(newsSignalMetadata.generatedAt))} UTC · {newsSignalMetadata.windowDays}-day window · {snapshotIsCurrent ? "within its declared freshness window" : "stale — kept only for private review, not current public use"}</p>
         <div className="studio-summary">
           <div><strong>₹1,400</strong><span>monthly AI ceiling</span></div>
           <div><strong>0</strong><span>publicly generated stories</span></div>
@@ -41,11 +45,16 @@ export default function StudioPage() {
         </div>
         <section className="publisher-balance" aria-labelledby="publisher-balance-title">
           <div>
-            <p className="micro-copy">Publisher diversity record</p>
-            <h2 id="publisher-balance-title">Many sources, no political scorecard.</h2>
-            <p>Syāt records the kind of source and how it enters the queue. It does not assign publishers a left, right, or centre label; each story still needs its own evidence check.</p>
+            <p className="micro-copy">Actual source distribution</p>
+            <h2 id="publisher-balance-title">Current queue: {latestNewsSignals.length} signals from {publisherCounts.length} publishers.</h2>
+            <p>This queue is concentrated. These are the records actually collected, not a claim of balance or a political scorecard. Each story still needs its own evidence check.</p>
           </div>
-          <ul>{publisherRegistry.map((publisher) => <li key={publisher.id}><p>{publisher.kind} · {publisher.intake}</p><h3>{publisher.name}</h3><span>{publisher.note}</span></li>)}</ul>
+          <div>
+            <h3>Current queue by publisher</h3>
+            <ul>{publisherCounts.map(([publisher, count]) => <li key={publisher}><p>Collected source signals</p><h3>{publisher}</h3><span>{count} of {latestNewsSignals.length} records</span></li>)}</ul>
+            <h3>Publishers we still need in a future intake</h3>
+            <ul>{acquisitionGaps.map((publisher) => <li key={publisher.id}><p>{publisher.kind} · {publisher.intake}</p><h3>{publisher.name}</h3><span>{publisher.note}</span></li>)}</ul>
+          </div>
         </section>
         <ModerationQueue sources={moderationSources} />
         <section className="studio-gates">

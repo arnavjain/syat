@@ -17,6 +17,12 @@ describe("RSS intake", () => {
     expect(items).toEqual([expect.objectContaining({ title: "A careful headline", url: "https://example.test/story", publisher: "Example News", editorialScope: "india_first", sourceClass: "newsroom_rss", status: "needs_editorial_review", rights: "link_only" })]);
   });
 
+  it("decodes numeric and named HTML entities in visible RSS metadata without changing its publisher", () => {
+    const items = parseRssItems(`<?xml version="1.0"?><rss><channel><item><title>Editors &#8216;ask&#8217;: tea &amp; coffee</title><link>https://example.test/entities</link><pubDate>Sun, 30 Aug 2026 08:00:00 GMT</pubDate></item></channel></rss>`, feed, new Date("2026-08-31T12:00:00Z"));
+
+    expect(items).toEqual([expect.objectContaining({ title: "Editors ‘ask’: tea & coffee", publisher: "Example News" })]);
+  });
+
   it("drops old or undated entries before a seven-day review queue is written", () => {
     const items = [
       { title: "New", url: "https://example.test/new", publishedAt: "2026-08-30T08:00:00.000Z" },

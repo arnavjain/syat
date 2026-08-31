@@ -22,10 +22,16 @@ export type NewsIntakeItem = {
   note: string;
 };
 
-function decodeHtml(value: string) {
+export function decodeHtmlEntities(value: string) {
+  const numericEntity = /&#(x[0-9a-f]+|\d+);/gi;
   return value
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
     .replace(/<[^>]*>/g, " ")
+    .replace(numericEntity, (_entity, value: string) => {
+      const codePoint = value.toLowerCase().startsWith("x") ? Number.parseInt(value.slice(1), 16) : Number.parseInt(value, 10);
+      if (!Number.isSafeInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) return _entity;
+      return String.fromCodePoint(codePoint);
+    })
     .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
@@ -37,7 +43,7 @@ function decodeHtml(value: string) {
 
 function field(item: string, name: string) {
   const match = item.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)</${name}>`, "i"));
-  return match ? decodeHtml(match[1]) : "";
+  return match ? decodeHtmlEntities(match[1]) : "";
 }
 
 function makeId(url: string) {

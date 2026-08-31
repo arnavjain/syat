@@ -9,6 +9,55 @@ export type PreviewSource = {
   use: string;
 };
 
+export type FixtureDocument = {
+  slug: string;
+  title: string;
+  purpose: string;
+  cannotEstablish: string;
+  reportingBoundary: string;
+  sections: ReadonlyArray<{ heading: string; text: string }>;
+};
+
+export const fixtureDocuments: readonly FixtureDocument[] = [
+  {
+    slug: "nadi-nagar-policy-note",
+    title: "Fictional Nadi Nagar street plan: sample policy note",
+    purpose: "A made-up policy note used to teach the difference between a published rule and its real-world effects.",
+    cannotEstablish: "It cannot establish whether the rule was implemented, who benefited, who was harmed, or what happened in any real city.",
+    reportingBoundary: "This is not reporting. Nadi Nagar, its council, and this policy note are fictional teaching material.",
+    sections: [
+      { heading: "Sample rule", text: "The fictional council reserves part of Bazaar Road for buses, walking space, and short delivery windows during the day." },
+      { heading: "What a reader can ask next", text: "A reader would need records, observation, and affected people’s own evidence before making any claim about access, work, or safety." }
+    ]
+  },
+  {
+    slug: "everyday-route-notes",
+    title: "Fictional everyday-route notes: sample standpoint prompts",
+    purpose: "Made-up prompts that help a reader notice how timing, access, care, deliveries, and work can shape a journey.",
+    cannotEstablish: "They cannot stand in for testimony, surveys, interviews, or evidence about any real commuter, worker, disabled person, or caregiver.",
+    reportingBoundary: "This is not reporting. The people, routes, and experiences named here are fictional teaching prompts.",
+    sections: [
+      { heading: "Sample prompt", text: "A fictional commuter needs one dependable, affordable trip at the start of a shift." },
+      { heading: "Reading boundary", text: "The prompt raises a question about a route; it does not claim to speak for everyone who travels, works, or gives care." }
+    ]
+  },
+  {
+    slug: "question-across-contexts",
+    title: "Method fixture: a question across contexts",
+    purpose: "A made-up method note for keeping a public-space question open across places and periods.",
+    cannotEstablish: "It cannot describe a particular city, historical record, transit system, or resident’s experience.",
+    reportingBoundary: "This is not reporting. It is fictional teaching material, not an archive, dataset, or field account.",
+    sections: [
+      { heading: "Method prompt", text: "Ask which measures would show whether access improved for people with the least flexibility in one named place and period." },
+      { heading: "Reading boundary", text: "A broad question is not a substitute for a source pack, a historical record, or lived evidence." }
+    ]
+  }
+] as const;
+
+export function getFixtureDocument(slug: string) {
+  return fixtureDocuments.find((document) => document.slug === slug);
+}
+
 export type PreviewStory = {
   slug: string;
   mode: "news" | "timeless";
@@ -145,8 +194,8 @@ export const previewStories: readonly PreviewStory[] = [
     ],
     contextBridge: { targetSlug: "street-vending", question: "What makes a public street workable for the people who use it?", connection: "This fictional plan changes a street for a day. The Timeless question asks how public space, work, access, and care keep shaping one another across places." },
     sources: [
-      { id: "fixture-policy", publisher: "Syāt teaching desk", title: "Fictional Nadi Nagar street plan: sample policy note", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows the example plan’s stated terms." },
-      { id: "fixture-experience", publisher: "Syāt teaching desk", title: "Fictional everyday-route notes: sample standpoint prompts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows why experience is framed as experience, not proof for everyone." }
+      { id: "fixture-policy", publisher: "Syāt teaching desk", title: "Fictional Nadi Nagar street plan: sample policy note", url: "/en/fixtures/nadi-nagar-policy-note", publishedLabel: "Fictional teaching document", use: "Shows the example plan’s stated terms." },
+      { id: "fixture-experience", publisher: "Syāt teaching desk", title: "Fictional everyday-route notes: sample standpoint prompts", url: "/en/fixtures/everyday-route-notes", publishedLabel: "Fictional teaching document", use: "Shows why experience is framed as experience, not proof for everyone." }
     ],
     actions: { sourceTrailTarget: "source-trail", reframe: { claim: "How does a street plan change daily life for people with different room to adjust?" }, relatedTimelessTopicSlug: "street-vending" }
   },
@@ -181,7 +230,7 @@ export const previewStories: readonly PreviewStory[] = [
       { id: "fixture-unknown-city", kind: "unknown_unverified", label: "A city not yet specified", association: "No institution is named because the fixture does not describe a real place or authority.", sourceId: "fixture-method" }
     ],
     contextBridge: { targetSlug: "street-vending", question: "What makes a public street workable for the people who use it?", connection: "The recurring question stays open across places. The topic gives one practical way to keep following work, access, and public space without claiming that every city is the same." },
-    sources: [{ id: "fixture-method", publisher: "Syāt teaching desk", title: "Method fixture: a question across contexts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Explains the scope of this non-reporting fixture." }],
+    sources: [{ id: "fixture-method", publisher: "Syāt teaching desk", title: "Method fixture: a question across contexts", url: "/en/fixtures/question-across-contexts", publishedLabel: "Fictional teaching document", use: "Explains the scope of this non-reporting fixture." }],
     actions: { sourceTrailTarget: "source-trail", reframe: { topic: "street-vending" }, relatedTimelessTopicSlug: "street-vending" }
   }
 ] as const;

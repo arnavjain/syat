@@ -32,6 +32,16 @@ describe("preview editorial content", () => {
       }
       expect(getTimelessTopic(story.actions.relatedTimelessTopicSlug)).toBeDefined();
       expect(story.contextBridge?.targetSlug).toBe(story.actions.relatedTimelessTopicSlug);
+      story.sources.forEach((source) => expect(source.url).toMatch(/^\/en\/fixtures\/[a-z0-9-]+$/));
+    }
+  });
+
+  it("provides a labelled fictional teaching document for every source card", () => {
+    for (const story of previewStories) {
+      for (const source of story.sources) {
+        expect(source.title).not.toHaveLength(0);
+        expect(source.publishedLabel).toBe("Fictional teaching document");
+      }
     }
   });
 

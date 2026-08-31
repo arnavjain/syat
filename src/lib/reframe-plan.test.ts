@@ -10,7 +10,7 @@ describe("reframe plan", () => {
   });
 
   it("routes supplied text into a local, consent-first review flow", () => {
-    const plan = makeReframePlan("A short claim from a post", "text");
+    const plan = makeReframePlan("A short claim from a post");
 
     expect(plan.state).toBe("ready_for_review");
     expect(plan.steps.map((step) => step.id)).toEqual(["extract", "separate", "trace", "question"]);
@@ -18,17 +18,33 @@ describe("reframe plan", () => {
   });
 
   it("names the supplied subject in the reading plan", () => {
-    const plan = makeReframePlan("What does an archive leave out?", "text");
+    const plan = makeReframePlan("What does an archive leave out?");
 
     expect(plan.state).toBe("ready_for_review");
     expect(plan.steps[0]?.description).toContain("What does an archive leave out?");
   });
 
   it("creates meaningfully different plans for different supplied subjects", () => {
-    const archivePlan = makeReframePlan("What does an archive leave out?", "text");
-    const waterPlan = makeReframePlan("Who gets water first?", "text");
+    const archivePlan = makeReframePlan("What does an archive leave out?");
+    const waterPlan = makeReframePlan("Who gets water first?");
 
     expect(archivePlan.steps.map((step) => step.description)).not.toEqual(waterPlan.steps.map((step) => step.description));
+  });
+
+  it("re-classifies edited input and makes editable evidence, interpretation, and unresolved slots", () => {
+    const claimPlan = makeReframePlan("The bus lane reduced commute times.") as unknown as { inputKind?: string; statements?: string[]; slots?: Array<{ id: string; editable: boolean }> };
+    const questionPlan = makeReframePlan("Did the bus lane reduce commute times?") as unknown as { inputKind?: string; statements?: string[]; slots?: Array<{ id: string; editable: boolean }> };
+    const passagePlan = makeReframePlan("The bus lane opened. Shopkeepers asked for a delivery window.") as unknown as { inputKind?: string; statements?: string[]; slots?: Array<{ id: string; editable: boolean }> };
+
+    expect(claimPlan.inputKind).toBe("claim");
+    expect(questionPlan.inputKind).toBe("question");
+    expect(passagePlan.inputKind).toBe("passage");
+    expect(passagePlan.statements).toEqual(["The bus lane opened.", "Shopkeepers asked for a delivery window."]);
+    expect(claimPlan.slots).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "documented", editable: true }),
+      expect.objectContaining({ id: "interpretation", editable: true }),
+      expect.objectContaining({ id: "unresolved", editable: true }),
+    ]));
   });
 
   it("normalizes and bounds already-decoded query text", () => {

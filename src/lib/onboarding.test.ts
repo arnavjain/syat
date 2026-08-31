@@ -28,6 +28,15 @@ describe("guided onboarding", () => {
     ]);
   });
 
+  it("gives a first-time reader one concrete fixture practice instead of an abstract promise", () => {
+    const practice = onboardingSteps.find((step) => step.id === "sources-and-viewpoints");
+
+    expect(onboardingSteps[0]?.title).not.toMatch(/truth-shaped thing/i);
+    expect(practice?.description).toMatch(/identify a documented statement/i);
+    expect(practice?.description).toMatch(/open its source note/i);
+    expect(practice?.description).toMatch(/different viewpoint/i);
+  });
+
   it("writes and recognises only the current versioned completion marker", () => {
     const storage = makeStorage();
 

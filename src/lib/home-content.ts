@@ -1,4 +1,3 @@
-import { formatSignalDate, previewNewsSignals } from "./news-signals";
 import { getPreviewStory } from "./preview-content";
 
 export type HomeMode = "news" | "timeless";
@@ -13,7 +12,7 @@ export type StoryTeaser = {
   dek: string;
   href: string;
   label: string;
-  type: "story" | "subject" | "internet";
+  type: "story" | "subject" | "internet" | "workspace";
 };
 
 export type HomeContent = {
@@ -41,26 +40,26 @@ const newsContent: HomeContent = {
   },
   sections: [
     {
-      title: "India, last seven days: source signals",
-      intro: "One hundred dated India-first RSS records are in the review queue. These links open the original publishers; they are not Syāt stories.",
-      items: previewNewsSignals.slice(0, 2).map((signal) => ({
-        title: signal.title,
-        dek: `India source signal from ${signal.publisher}. It remains link-only until a source trail and editorial draft are reviewed.`,
-        href: signal.url,
-        label: `${signal.publisher} · ${formatSignalDate(signal.publishedAt)}`,
-        type: "internet" as const
-      }))
+      title: "Source desk preview",
+      intro: "One hundred dated India-first RSS records stay in the private review queue. A publisher headline is a source signal, not a Syāt story.",
+      items: [{
+        title: "Open the private source desk",
+        dek: "Review source signals with their original publisher links. Nothing in this queue is public reporting or an automatic home teaser.",
+        href: "/en/studio",
+        label: "Private Review Studio",
+        type: "workspace"
+      }]
     },
     {
-      title: "More India signals, waiting for context",
-      intro: "A current headline can point somewhere important, but a headline alone is not enough to publish a perspective story.",
-      items: previewNewsSignals.slice(2, 4).map((signal) => ({
-        title: signal.title,
-        dek: `Original source: ${signal.publisher}. Open its link; Syāt has not made claims about it.`,
-        href: signal.url,
-        label: `${signal.publisher} · ${formatSignalDate(signal.publishedAt)}`,
-        type: "internet" as const
-      }))
+      title: "One reading method, used carefully",
+      intro: "Until a human editor approves a real source pack, the fictional teaching fixture is the honest place to practise the product.",
+      items: [{
+        title: "Follow a fictional source trail",
+        dek: "Open the policy note, see what it can establish, and compare a standpoint without treating the example as reporting.",
+        href: "/en/news/street-plan-daily-realities",
+        label: "Teaching fixture",
+        type: "story"
+      }]
     }
   ]
 };
@@ -128,6 +127,7 @@ export function getHomeModeHref(mode: HomeMode) {
 }
 
 export function isCurrentFixtureDestination(href: string) {
+  if (href === "/en/studio") return true;
   const match = href.match(/^\/en\/(news|timeless)\/([^/]+)$/);
   if (!match) return false;
 
