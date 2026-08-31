@@ -117,6 +117,65 @@
 - [ ] Run focused tests, typecheck, lint, and build.
 - [ ] Commit the slice.
 
+### Task 4B: Restore Syāt's Reframe-led design identity
+
+**Files:**
+- Modify: `src/components/site-chrome.tsx`
+- Modify: `src/components/home-view.tsx`
+- Create: `src/components/syat-frame.tsx`
+- Create: `src/components/direction-signature.tsx`
+- Modify: `src/app/preview/design/[direction]/page.tsx`
+- Modify: `src/lib/design-direction.ts`
+- Modify: `src/app/layout.tsx`
+- Modify: `src/app/globals.css`
+- Modify: `src/lib/home-content.ts`
+- Modify: `package.json`
+- Modify: `package-lock.json`
+- Test: `src/components/syat-frame.test.ts`
+- Test: `src/lib/design-direction.test.ts`
+
+**Interfaces:**
+- Produces: a static-first `SyatFrame` with a small client island for switching a fixed subject between approved fixture viewpoints, a `Whole View` reset, and a truthful statement-detail action.
+- Produces: a compact HTML `GET` Bring form that routes an entered question to the existing Reframe claim contract; `Bring` is the primary navigation label and Reframe remains the quiet action inside the flow.
+- Produces: three preview directions whose above-the-fold signature modules are visibly different and accurately described, while sharing one product shell, content, routes, and interaction meanings.
+
+- [ ] Add failing tests proving Bring uses the existing claim query contract, the fixed subject changes visible viewpoint with a Whole View reset, and all named directions render an honest signature module.
+- [ ] Run focused tests and confirm the failures are missing behavior.
+- [ ] Replace the permanent Reframe navigation label with Bring without changing the accepted `/en/reframe` route.
+- [ ] Add a compact Bring action and visible first Syāt Frame to the home viewport without claiming URL fetch or file upload.
+- [ ] Add the static server fallback and the isolated accessible viewpoint-switching client island; do not use the former circular orbit as the primary perspective control.
+- [ ] Add real direction signatures above the fold: change spine for Annotated Evidence, rounded framed subject for Warm Commons, and a rights-complete authored fixture/credit tray for Signal Garden.
+- [ ] Restore four narrow open-font roles based on the original Reframe reference: rare display declaration, editorial serif, interface sans, and source/evidence mono. Verify package licences before use and retain an honest Devanagari fallback.
+- [ ] Review 1440x900 and 390x844 screenshots for all directions, home Bring, and the Syāt Frame. Confirm variants can be distinguished without their review labels.
+- [ ] Run focused tests, full suite, typecheck, lint, build, and diff check.
+- [ ] Commit the slice.
+
+### Task 4C: Build the distinctive reading and feed modules
+
+**Files:**
+- Create: `src/components/statement-basis-sheet.tsx`
+- Create: `src/components/context-bridge.tsx`
+- Create: `src/components/editorial-feed.tsx`
+- Modify: `src/components/story-page.tsx`
+- Modify: `src/components/home-view.tsx`
+- Modify: `src/lib/preview-content.ts`
+- Modify: `src/app/globals.css`
+- Test: `src/lib/preview-content.test.ts`
+- Test: `src/components/statement-basis-sheet.test.ts`
+
+**Interfaces:**
+- Produces: a keyboard-accessible Tap for basis sheet backed by exact fixture claim, basis, source scope, and limitation data; a visual News-to-Timeless Context Bridge; and feed modules with distinct editorial jobs rather than a repeated teaser card grid.
+
+- [ ] Add failing tests for a valid statement-basis record, Context Bridge target, distinct feed-module contracts, and rights-complete authored media fixture metadata.
+- [ ] Run focused tests and confirm failure.
+- [ ] Add one isolated dialog/sheet client island with native semantics and a static evidence fallback.
+- [ ] Make related Timeless material a clearly connected Context Bridge, not a generic fifth action card.
+- [ ] Replace repeated home teaser-grid mapping with four small modules: lead/change strip, standard story row, Context Bridge, and media/framing trail. Keep mobile reading order clear.
+- [ ] Add an authored preview media fixture with creator, source, rights basis, review status, and non-publishable status; do not import unreviewed external media.
+- [ ] Add a compact sticky story rail that has a static fallback and touch-safe anchors; only add active-section client behavior if the browser implementation stays small and accessible.
+- [ ] Run browser review for home/story desktop/mobile, normal and reduced-motion states, then full checks.
+- [ ] Commit the slice.
+
 ### Task 5: Safe, measurable India-first intake
 
 **Files:**
