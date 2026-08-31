@@ -24,3 +24,5 @@ Syāt can use AI to prepare a source-linked draft. It cannot use AI to publish a
 ## Where it is stored
 
 `draftReviews` records the contract version, automatic checks, findings, any editor note, and the final human decision. It links to the generation job and, once one exists, the story record.
+
+Until Google sign-in, editor roles, and Convex are connected, Review Studio has a private browser-only queue. It saves a reviewer’s hold, reject, source-pack-ready choice, and note in that browser alone. Those choices never approve or publish a story and are intentionally not shared with other reviewers.

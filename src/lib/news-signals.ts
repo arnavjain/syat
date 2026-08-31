@@ -36,9 +36,13 @@ export const latestNewsSignals: readonly NewsSignal[] = document.items;
 
 const previewSensitiveTerms = /\b(assault|attack|death|dead|dies|died|killed|killing|murder|rape|raped|suicide|terror|violence|war)\b/i;
 
+export function isSensitiveNewsSignal(signal: Pick<NewsSignal, "title">) {
+  return previewSensitiveTerms.test(signal.title);
+}
+
 // A sensitive event remains in the private review queue. It does not become a
 // casual home-page teaser before an editor has decided how it should be framed.
-export const previewNewsSignals = latestNewsSignals.filter((signal) => !previewSensitiveTerms.test(signal.title));
+export const previewNewsSignals = latestNewsSignals.filter((signal) => !isSensitiveNewsSignal(signal));
 
 export function formatSignalDate(date: string) {
   return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(date));

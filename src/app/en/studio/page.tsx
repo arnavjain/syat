@@ -1,5 +1,6 @@
 import { SiteChrome } from "@/components/site-chrome";
-import { formatSignalDate, latestNewsSignals, newsSignalMetadata } from "@/lib/news-signals";
+import { ModerationQueue } from "@/components/moderation-queue";
+import { isSensitiveNewsSignal, latestNewsSignals, newsSignalMetadata } from "@/lib/news-signals";
 import { publisherRegistry } from "@/lib/publisher-registry";
 
 const reviewRows = [
@@ -12,7 +13,15 @@ const reviewRows = [
 ] as const;
 
 export default function StudioPage() {
-  const sourceQueue = latestNewsSignals.slice(0, 12);
+  const moderationSources = latestNewsSignals.map((signal) => ({
+    id: signal.id,
+    title: signal.title,
+    publisher: signal.publisher,
+    url: signal.url,
+    publishedAt: signal.publishedAt,
+    sourceClass: signal.sourceClass,
+    isSensitive: isSensitiveNewsSignal(signal)
+  }));
 
   return (
     <SiteChrome active="studio">
@@ -38,16 +47,7 @@ export default function StudioPage() {
           </div>
           <ul>{publisherRegistry.map((publisher) => <li key={publisher.id}><p>{publisher.kind} · {publisher.intake}</p><h3>{publisher.name}</h3><span>{publisher.note}</span></li>)}</ul>
         </section>
-        <section className="source-queue" aria-labelledby="source-queue-title">
-          <div>
-            <p className="micro-copy">Source queue · first 12 of {newsSignalMetadata.itemCount}</p>
-            <h2 id="source-queue-title">India-first signals waiting for a source pack.</h2>
-            <p>These are external links, not Syāt stories. Each needs primary material, claim review, context, and a rights decision before a draft can move forward.</p>
-          </div>
-          <ol>
-            {sourceQueue.map((signal) => <li key={signal.id}><p>{signal.sourceClass === "official_public_record" ? "Official record" : "Newsroom RSS"} · {signal.publisher} · {formatSignalDate(signal.publishedAt)}</p><h3><a href={signal.url} rel="noreferrer" target="_blank">{signal.title} <span aria-hidden="true">↗</span></a></h3><span>Needs source pack · link-only</span></li>)}
-          </ol>
-        </section>
+        <ModerationQueue sources={moderationSources} />
         <section className="studio-gates">
           <h2>Before any publishing switch appears</h2>
           <ul><li>Editor approves every factual sentence and source connection.</li><li>Rights reviewer clears each external visual or keeps it link-only.</li><li>English and Hindi editions are reviewed separately.</li><li>Google sign-in and an editor role protect real write actions.</li></ul>

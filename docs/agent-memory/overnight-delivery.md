@@ -14,7 +14,7 @@
 - Teaching fixtures are fictional and visibly labelled.
 - There are no rights-cleared external images or live social embeds yet.
 - Google login and passkey registration remain disabled until stable credentials and URL are supplied.
-- Studio is a read-only design/queue preview until editor roles are enforced.
+- Studio has an interactive moderation queue, but its decisions and notes stay in the current browser until editor roles and the shared Convex connection are enforced.
 - Vercel Authentication protects both the private preview and the unaliased staging deployment. The temporary default production alias was removed and now returns 404; no custom domain has been attached.
 - Automated route, type, lint, build, and content checks have run. This environment did not provide a browser for screenshot or device-width inspection, so visual review still needs that final human/browser pass.
 - A live OpenRouter smoke draft has passed the strict parser and automatic review. It was fictional, source-bound, review-only, and not stored as a story. The automatic gate blocks unverified direct quotes and repeated claims; it warns about thin evidence, media rights, missing dates, and missing India context.
