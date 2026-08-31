@@ -5,6 +5,7 @@ import {
   ONBOARDING_VERSION,
   isOnboardingComplete,
   markOnboardingComplete,
+  onboardingActionHref,
   onboardingSteps,
 } from "./onboarding";
 
@@ -19,22 +20,51 @@ function makeStorage(initialValue: string | null = null) {
 }
 
 describe("guided onboarding", () => {
-  it("keeps the four reading lessons in their intended order", () => {
+  it("walks the reader through the real actions in the order the product uses them", () => {
     expect(onboardingSteps.map((step) => step.id)).toEqual([
-      "welcome",
-      "sources-and-viewpoints",
-      "news-and-timeless",
-      "save-and-reframe",
+      "reading-layers",
+      "statement-basis",
+      "saving",
+      "context-bridge",
+      "reframe",
     ]);
   });
 
-  it("gives a first-time reader one concrete fixture practice instead of an abstract promise", () => {
-    const practice = onboardingSteps.find((step) => step.id === "sources-and-viewpoints");
+  it("gives every step one concrete action rather than an abstract promise", () => {
+    for (const step of onboardingSteps) {
+      expect(step.action.label.length).toBeGreaterThan(0);
+      expect(step.action.note.length).toBeGreaterThan(0);
+      expect(onboardingActionHref(step.action, "/en/news/example")).toMatch(/^\/en\//u);
+    }
 
-    expect(onboardingSteps[0]?.title).not.toMatch(/truth-shaped thing/i);
-    expect(practice?.description).toMatch(/identify a documented statement/i);
-    expect(practice?.description).toMatch(/open its source note/i);
-    expect(practice?.description).toMatch(/different viewpoint/i);
+    // The first step must name all three reading layers, wherever it says them.
+    const firstStep = `${onboardingSteps[0].title} ${onboardingSteps[0].description}`;
+    for (const layer of [/documented/i, /interpreted/i, /unresolved/i]) expect(firstStep).toMatch(layer);
+  });
+
+  it("points story actions at the supplied reading example instead of a hardcoded slug", () => {
+    const layers = onboardingSteps[0];
+    const saving = onboardingSteps.find((step) => step.id === "saving")!;
+
+    expect(onboardingActionHref(layers.action, "/en/news/delhi-water-review")).toBe("/en/news/delhi-water-review#evidence");
+    expect(onboardingActionHref(saving.action, "/en/news/delhi-water-review")).toBe("/en/saved");
+  });
+
+  it("says sign-in is unavailable and never implies a working account", () => {
+    const saving = onboardingSteps.find((step) => step.id === "saving")!;
+    const everyWord = onboardingSteps.map((step) => `${step.title} ${step.description} ${step.action.note}`).join(" ");
+
+    expect(saving.description).toMatch(/not available/i);
+    expect(saving.title).toMatch(/this device only/i);
+    expect(everyWord).not.toMatch(/sign in to sync|your account|signed in|connect your google/i);
+  });
+
+  it("marks Reframe optional so it never reads as the main way to use Syāt", () => {
+    const reframe = onboardingSteps.find((step) => step.id === "reframe")!;
+
+    expect(reframe.optional).toBe(true);
+    expect(reframe).toBe(onboardingSteps.at(-1));
+    expect(onboardingSteps.filter((step) => step.optional).length).toBe(1);
   });
 
   it("writes and recognises only the current versioned completion marker", () => {

@@ -1,48 +1,92 @@
-export const ONBOARDING_VERSION = 1;
+export const ONBOARDING_VERSION = 2;
 export const ONBOARDING_STORAGE_KEY = `syat:onboarding:v${ONBOARDING_VERSION}:completed`;
 const completionValue = `complete:v${ONBOARDING_VERSION}`;
 
+export type OnboardingStepId =
+  | "reading-layers"
+  | "statement-basis"
+  | "saving"
+  | "context-bridge"
+  | "reframe";
+
+/** Where a step's real action goes. `story` targets the lead reading example. */
+export type OnboardingAction = {
+  label: string;
+  target: { kind: "story"; fragment?: string } | { kind: "route"; href: string };
+  note: string;
+};
+
 export type OnboardingStep = {
-  id: "welcome" | "sources-and-viewpoints" | "news-and-timeless" | "save-and-reframe";
+  id: OnboardingStepId;
   eyebrow: string;
   title: string;
   description: string;
-  practice?: {
-    title: string;
-    steps: readonly string[];
-  };
+  action: OnboardingAction;
+  optional?: boolean;
 };
 
 export const onboardingSteps: readonly OnboardingStep[] = [
   {
-    id: "welcome",
-    eyebrow: "A slower way to read",
-    title: "Syāt helps you read one subject from more than one honest starting point.",
-    description: "A documented statement, a person’s experience, and an open question can all matter. They are not the same kind of knowledge."
-  },
-  {
-    id: "sources-and-viewpoints",
-    eyebrow: "Sources and viewpoints",
-    title: "See what a source supports, then notice who is looking.",
-    description: "Try this with the fictional street-plan fixture: identify a documented statement, open its source note, then read one different viewpoint.",
-    practice: {
-      title: "A one-minute practice",
-      steps: ["Identify a documented statement.", "Open its source note.", "Read a different viewpoint."]
+    id: "reading-layers",
+    eyebrow: "The three layers",
+    title: "Every Syāt story separates what is documented, what is interpreted, and what is unresolved.",
+    description: "A record can establish that something was announced. It usually cannot establish how the announcement landed. Syāt keeps those apart instead of blending them into one confident voice.",
+    action: {
+      label: "See the three layers in a story",
+      target: { kind: "story", fragment: "#evidence" },
+      note: "Each statement is tagged documented, interpreted or unresolved, and coloured to match."
     }
   },
   {
-    id: "news-and-timeless",
-    eyebrow: "Two reading rooms",
-    title: "News follows a moment. Timeless keeps a question open.",
-    description: "Use News for a current event. Use Timeless for a recurring public question that needs patience across places and time."
+    id: "statement-basis",
+    eyebrow: "Check the basis",
+    title: "Open any statement to see the evidence behind it and the limit on it.",
+    description: "A source identifier names material you can inspect. It is not a badge that proves a claim. Opening the basis shows the source scope and what the record cannot settle.",
+    action: {
+      label: "Open a statement's basis",
+      target: { kind: "story", fragment: "#source-trail" },
+      note: "The source trail lists each record, what it supports, and how far it reaches."
+    }
   },
   {
-    id: "save-and-reframe",
-    eyebrow: "Return when ready",
-    title: "Save a question for later, or Reframe a claim more carefully.",
-    description: "A shelf needs sign-in before it can remember anything. Reframe makes a local reading plan and does not send your text away."
+    id: "saving",
+    eyebrow: "Saving, honestly",
+    title: "Saving keeps a story on this device only.",
+    description: "There is no account yet. Google sign-in is not available in this preview, so a saved story cannot follow you to another device or browser, and clearing site data clears your shelf.",
+    action: {
+      label: "Look at the shelf",
+      target: { kind: "route", href: "/en/saved" },
+      note: "When sign-in arrives it will be described plainly before anything syncs."
+    }
+  },
+  {
+    id: "context-bridge",
+    eyebrow: "Follow the larger question",
+    title: "The Context Bridge moves you from one event to the question underneath it.",
+    description: "News follows a moment. Timeless keeps a public question open across places and years. The bridge is the deliberate step between them.",
+    action: {
+      label: "Cross into a Timeless question",
+      target: { kind: "story", fragment: "#context-bridge-title" },
+      note: "Each story names one Timeless topic it genuinely connects to."
+    }
+  },
+  {
+    id: "reframe",
+    eyebrow: "Optional",
+    title: "Reframe is there when you want to read something more carefully yourself.",
+    description: "It builds a local reading plan from a claim or question you bring. Nothing you type is sent anywhere, and it is a quiet tool rather than the main way to use Syāt.",
+    action: {
+      label: "Try Reframe",
+      target: { kind: "route", href: "/en/reframe" },
+      note: "You can finish the guide without opening it."
+    },
+    optional: true
   }
 ];
+
+export function onboardingActionHref(action: OnboardingAction, storyPath: string): string {
+  return action.target.kind === "route" ? action.target.href : `${storyPath}${action.target.fragment ?? ""}`;
+}
 
 type BrowserStorage = Pick<Storage, "getItem" | "setItem">;
 
