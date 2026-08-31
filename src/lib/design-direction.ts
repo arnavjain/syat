@@ -5,6 +5,8 @@ export type DesignDirection = {
   label: string;
   className: string;
   description: string;
+  signature: "change-spine" | "subject-frame" | "credit-tray";
+  signatureLabel: string;
 };
 
 const directions: Record<DesignDirectionId, DesignDirection> = {
@@ -12,19 +14,25 @@ const directions: Record<DesignDirectionId, DesignDirection> = {
     id: "annotated-evidence",
     label: "Annotated Evidence",
     className: "direction-evidence",
-    description: "Sharper evidence markers, open corners, and a clear change spine."
+    description: "A visible change spine and open evidence lines for document-heavy stories.",
+    signature: "change-spine",
+    signatureLabel: "Change spine"
   },
   "warm-commons": {
     id: "warm-commons",
     label: "Warm Commons",
     className: "direction-warm",
-    description: "Rounded, colourful editorial surfaces for slower, more comfortable reading."
+    description: "A rounded subject frame and comfortable grouping around the same evidence.",
+    signature: "subject-frame",
+    signatureLabel: "Rounded subject frame"
   },
   "signal-garden": {
     id: "signal-garden",
     label: "Signal Garden",
     className: "direction-garden",
-    description: "A media-forward composition with visible source trails and layered context."
+    description: "An authored media fixture with its complete credit and review state attached.",
+    signature: "credit-tray",
+    signatureLabel: "Authored media fixture"
   }
 };
 
@@ -52,4 +60,12 @@ export function getViewpointPositionClass(index: number, count: number): string 
   }
 
   return `viewpoint-position viewpoint-position--${count}-${index + 1}`;
+}
+
+const syatFrameViewIds = ["whole", "commuter", "vendor", "access", "care"] as const;
+
+export function selectSyatFrameView(current: string, requested: string): string {
+  if (syatFrameViewIds.includes(requested as (typeof syatFrameViewIds)[number])) return requested;
+  if (syatFrameViewIds.includes(current as (typeof syatFrameViewIds)[number])) return current;
+  return "whole";
 }

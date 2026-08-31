@@ -25,6 +25,21 @@ describe("getDesignDirection", () => {
     ]);
   });
 
+  it("defines one honest above-fold signature contract per direction", () => {
+    expect(getDesignDirection("annotated-evidence")).toMatchObject({
+      signature: "change-spine",
+      signatureLabel: "Change spine",
+    });
+    expect(getDesignDirection("warm-commons")).toMatchObject({
+      signature: "subject-frame",
+      signatureLabel: "Rounded subject frame",
+    });
+    expect(getDesignDirection("signal-garden")).toMatchObject({
+      signature: "credit-tray",
+      signatureLabel: "Authored media fixture",
+    });
+  });
+
   it("assigns a deterministic unique position class to every supported viewpoint", () => {
     for (let count = 2; count <= 8; count += 1) {
       const positions = Array.from({ length: count }, (_, index) => getViewpointPositionClass(index, count));
