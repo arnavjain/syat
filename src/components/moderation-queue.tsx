@@ -101,7 +101,7 @@ export function normalisePrivateReviewRecord(record: ModerationRecord, checklist
   return record;
 }
 
-export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
+export function ModerationQueue({ sources, browserFallbackEnabled }: { sources: ModerationSource[]; browserFallbackEnabled: boolean }) {
   const [records, setRecords] = useState<Record<string, ModerationRecord>>({});
   const [checklists, setChecklists] = useState<Record<string, SourcePackChecklist>>({});
   const [isHydrated, setIsHydrated] = useState(false);
@@ -114,13 +114,14 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   const summary = getReviewSummary(items);
 
   useEffect(() => {
+    if (!browserFallbackEnabled) return;
     const frame = window.requestAnimationFrame(() => {
       setRecords(readBrowserRecords());
       setChecklists(readBrowserChecklists());
       setIsHydrated(true);
     });
     return () => window.cancelAnimationFrame(frame);
-  }, []);
+  }, [browserFallbackEnabled]);
 
   useEffect(() => {
     if (isHydrated) writeBrowserRecords(records);
@@ -131,6 +132,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   }, [checklists, isHydrated]);
 
   function changeRecord(id: string, change: Partial<ModerationRecord>) {
+    if (!browserFallbackEnabled) return;
     setRecords((current) => ({
       ...current,
       [id]: {
@@ -149,6 +151,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   }
 
   function changeChecklist(id: string, change: Partial<SourcePackChecklist>) {
+    if (!browserFallbackEnabled) return;
     setChecklists((current) => ({
       ...current,
       [id]: { ...(current[id] ?? emptyChecklist), ...change }
@@ -156,6 +159,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   }
 
   function resetBrowserQueue() {
+    if (!browserFallbackEnabled) return;
     try {
       window.localStorage.removeItem(storageKey);
       window.localStorage.removeItem(checklistStorageKey);
@@ -174,7 +178,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
         <div>
           <p className="micro-copy">Moderation queue · {sources.length} source signals</p>
           <h2 id="moderation-queue-title">Review a source before it becomes a story.</h2>
-          <p>Choose one signal, read its original link, and leave a decision for the next editorial step. There is no approval or publish action here.</p>
+          <p>Choose one signal, read its original link, and leave a research step for the next editor. This does not decide a story, quote, or media asset.</p>
         </div>
         <div className="moderation-counts" aria-label="Current moderation counts">
           <span><b>{summary.needs_source_pack}</b> waiting</span>
@@ -183,7 +187,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
         </div>
       </div>
 
-      <p className="browser-only-note">Changes save in this browser only. They move to the shared review database after editor sign-in and Convex are connected.</p>
+      <p className="browser-only-note">{browserFallbackEnabled ? "Browser-only private review: changes save in this browser only. They are not shared, authenticated, or a publishing decision." : "Shared editor access is not available in this environment. This queue stays read-only until verified sign-in and connected storage are available."}</p>
 
       <div className="moderation-workbench">
         <section className="moderation-list" aria-label="Source signals to moderate">
@@ -213,23 +217,23 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
           <fieldset className="source-pack-checklist">
             <legend>Before marking a source pack ready</legend>
             <p>These are private review checks, not publication approval.</p>
-            <label><input type="checkbox" checked={(checklists[selected.id] ?? emptyChecklist).openedOriginalLink} onChange={(event) => changeChecklist(selected.id, { openedOriginalLink: event.target.checked })} /> I opened the original link.</label>
-            <label><input type="checkbox" checked={(checklists[selected.id] ?? emptyChecklist).keptLinkOnly} onChange={(event) => changeChecklist(selected.id, { keptLinkOnly: event.target.checked })} /> I kept this signal link-only.</label>
-            <label><input type="checkbox" checked={(checklists[selected.id] ?? emptyChecklist).namedNextNeed} onChange={(event) => changeChecklist(selected.id, { namedNextNeed: event.target.checked })} /> I named the next source or context need in the private note.</label>
+            <label><input type="checkbox" disabled={!browserFallbackEnabled} checked={(checklists[selected.id] ?? emptyChecklist).openedOriginalLink} onChange={(event) => changeChecklist(selected.id, { openedOriginalLink: event.target.checked })} /> I opened the original link.</label>
+            <label><input type="checkbox" disabled={!browserFallbackEnabled} checked={(checklists[selected.id] ?? emptyChecklist).keptLinkOnly} onChange={(event) => changeChecklist(selected.id, { keptLinkOnly: event.target.checked })} /> I kept this signal link-only.</label>
+            <label><input type="checkbox" disabled={!browserFallbackEnabled} checked={(checklists[selected.id] ?? emptyChecklist).namedNextNeed} onChange={(event) => changeChecklist(selected.id, { namedNextNeed: event.target.checked })} /> I named the next source or context need in the private note.</label>
           </fieldset>
           <fieldset className="decision-actions">
             <legend>Choose the next review step</legend>
-            <button type="button" className={selected.decision === "needs_source_pack" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "needs_source_pack" })}>Keep in source queue</button>
-            <button type="button" className={selected.decision === "held" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "held" })}>Hold for context</button>
-            <button type="button" className={selected.decision === "source_pack_ready" ? "active" : ""} disabled={!isSourcePackChecklistComplete(checklists[selected.id] ?? emptyChecklist) || !selected.note.trim()} onClick={() => changeRecord(selected.id, { decision: "source_pack_ready" })}>Source pack ready</button>
-            <button type="button" className={`reject ${selected.decision === "rejected" ? "active" : ""}`} onClick={() => changeRecord(selected.id, { decision: "rejected" })}>Reject from queue</button>
+            <button type="button" disabled={!browserFallbackEnabled} className={selected.decision === "needs_source_pack" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "needs_source_pack" })}>Keep in source queue</button>
+            <button type="button" disabled={!browserFallbackEnabled} className={selected.decision === "held" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "held" })}>Hold for context</button>
+            <button type="button" className={selected.decision === "source_pack_ready" ? "active" : ""} disabled={!browserFallbackEnabled || !isSourcePackChecklistComplete(checklists[selected.id] ?? emptyChecklist) || !selected.note.trim()} onClick={() => changeRecord(selected.id, { decision: "source_pack_ready" })}>Source pack ready</button>
+            <button type="button" disabled={!browserFallbackEnabled} className={`reject ${selected.decision === "rejected" ? "active" : ""}`} onClick={() => changeRecord(selected.id, { decision: "rejected" })}>Reject from queue</button>
           </fieldset>
-          <label className="moderation-note"><span>Private review note</span><textarea value={selected.note} onChange={(event) => changeRecord(selected.id, { note: event.target.value })} placeholder="What evidence or context should the next editor look for?" rows={4} /></label>
-          <p className="docket-boundary">“Source pack ready” means the next research step may begin. It does not approve a story, quote, image, or publication.</p>
+          <label className="moderation-note"><span>Private review note</span><textarea disabled={!browserFallbackEnabled} value={selected.note} onChange={(event) => changeRecord(selected.id, { note: event.target.value })} placeholder="What evidence or context should the next editor look for?" rows={4} /></label>
+          <p className="docket-boundary">“Source pack ready” means the next research step may begin. It does not decide a story, quote, or image.</p>
         </aside> : null}
       </div>
 
-      <button type="button" className="reset-browser-queue" onClick={resetBrowserQueue}>Reset decisions saved in this browser</button>
+      {browserFallbackEnabled ? <button type="button" className="reset-browser-queue" onClick={resetBrowserQueue}>Reset decisions saved in this browser</button> : null}
     </section>
   );
 }

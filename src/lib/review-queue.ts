@@ -20,6 +20,61 @@ export type ModerationItem = ModerationSource & ModerationRecord & {
   publicationAllowed: false;
 };
 
+export type ReviewDecisionEvent = {
+  targetId: string;
+  decision: ModerationDecision;
+  note: string;
+  checklist: {
+    openedOriginalLink: boolean;
+    keptLinkOnly: boolean;
+    namedNextNeed: boolean;
+  };
+  occurredAt: string;
+  publicationAllowed: false;
+};
+
+export type ReviewDecisionInput = Omit<ReviewDecisionEvent, "publicationAllowed" | "decision"> & {
+  decision: ModerationDecision | string;
+};
+
+const allowedDecisions = new Set<ModerationDecision>(["needs_source_pack", "held", "rejected", "source_pack_ready"]);
+
+function hasCompleteChecklist(checklist: ReviewDecisionEvent["checklist"]) {
+  return checklist.openedOriginalLink && checklist.keptLinkOnly && checklist.namedNextNeed;
+}
+
+export function applyReviewDecision(input: ReviewDecisionInput): { ok: true; event: ReviewDecisionEvent } | { ok: false; reason: string } {
+  if (!allowedDecisions.has(input.decision as ModerationDecision)) return { ok: false, reason: "unsupported editorial decision" };
+  if (input.decision === "source_pack_ready" && (!hasCompleteChecklist(input.checklist) || !input.note.trim())) {
+    return { ok: false, reason: "source-pack-ready requires a complete checklist and next-step note" };
+  }
+
+  return {
+    ok: true,
+    event: {
+      targetId: input.targetId,
+      decision: input.decision as ModerationDecision,
+      note: input.note,
+      checklist: input.checklist,
+      occurredAt: input.occurredAt,
+      publicationAllowed: false
+    }
+  };
+}
+
+export function projectReviewEvents(targetId: string, events: readonly ReviewDecisionEvent[]): ModerationRecord & { publicationAllowed: false } {
+  const latest = events.filter((event) => event.targetId === targetId).sort((first, second) => second.occurredAt.localeCompare(first.occurredAt))[0];
+  if (!latest) return { ...defaultRecord, publicationAllowed: false };
+  const invalidReady = latest.decision === "source_pack_ready" && (!hasCompleteChecklist(latest.checklist) || !latest.note.trim());
+
+  return {
+    decision: invalidReady ? "needs_source_pack" : latest.decision,
+    note: latest.note,
+    updatedAt: latest.occurredAt,
+    publicationAllowed: false
+  };
+}
+
 export type ReviewFilter = "all" | ModerationDecision | "sensitive";
 
 const defaultRecord: ModerationRecord = {

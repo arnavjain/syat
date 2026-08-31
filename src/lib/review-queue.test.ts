@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { filterReviewItems, getReviewSummary, mergeReviewRecords, type ModerationRecord, type ModerationSource } from "./review-queue";
+import { applyReviewDecision, filterReviewItems, getReviewSummary, mergeReviewRecords, projectReviewEvents, type ModerationRecord, type ModerationSource } from "./review-queue";
 
 const sources: ModerationSource[] = [
   { id: "signal-a", title: "A source signal", publisher: "Newsroom A", url: "https://example.invalid/a", publishedAt: "2026-08-31T08:00:00.000Z", sourceClass: "newsroom_rss" },
@@ -33,5 +33,58 @@ describe("review queue state", () => {
     });
 
     expect(items[0].publicationAllowed).toBe(false);
+  });
+
+  it("accepts only private source-research steps and never creates approval or publication state", () => {
+    const held = applyReviewDecision({
+      targetId: "signal-a",
+      decision: "held",
+      note: "Find the original order before research continues.",
+      checklist: { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false },
+      occurredAt: "2026-08-31T10:00:00.000Z"
+    });
+    const rejected = applyReviewDecision({
+      targetId: "signal-a",
+      decision: "rejected",
+      note: "Not useful for this private research queue.",
+      checklist: { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false },
+      occurredAt: "2026-08-31T10:01:00.000Z"
+    });
+    const unsupported = applyReviewDecision({
+      targetId: "signal-a",
+      decision: "published" as never,
+      note: "Attempting an unsupported state.",
+      checklist: { openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: true },
+      occurredAt: "2026-08-31T10:02:00.000Z"
+    });
+
+    expect(held.ok).toBe(true);
+    expect(rejected.ok).toBe(true);
+    expect(unsupported).toEqual({ ok: false, reason: "unsupported editorial decision" });
+    expect(held.ok && held.event.publicationAllowed).toBe(false);
+    expect(rejected.ok && rejected.event.publicationAllowed).toBe(false);
+  });
+
+  it("rejects an incomplete source-pack-ready event and projects an invalid stored ready event back to needs-source-pack", () => {
+    const incomplete = applyReviewDecision({
+      targetId: "signal-a",
+      decision: "source_pack_ready",
+      note: "",
+      checklist: { openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: false },
+      occurredAt: "2026-08-31T10:00:00.000Z"
+    });
+
+    expect(incomplete).toEqual({ ok: false, reason: "source-pack-ready requires a complete checklist and next-step note" });
+
+    const projected = projectReviewEvents("signal-a", [{
+      targetId: "signal-a",
+      decision: "source_pack_ready",
+      note: "   ",
+      checklist: { openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: true },
+      occurredAt: "2026-08-31T10:00:00.000Z",
+      publicationAllowed: false
+    }]);
+
+    expect(projected).toMatchObject({ decision: "needs_source_pack", publicationAllowed: false });
   });
 });

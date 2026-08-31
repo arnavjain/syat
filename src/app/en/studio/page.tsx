@@ -1,8 +1,13 @@
-import { SiteChrome } from "@/components/site-chrome";
 import { ModerationQueue } from "@/components/moderation-queue";
+import { editorAllowListFromServer, hasSharedEditorialConfiguration, resolveEditorAccess, studioEnvironmentFromServer } from "@/lib/editor-access";
 import { maximumSignalsPerPublisher } from "@/lib/news-intake";
 import { isSensitiveNewsSignal, isSignalSnapshotCurrent, latestNewsSignals, newsSignalMetadata } from "@/lib/news-signals";
 import { publisherRegistry } from "@/lib/publisher-registry";
+
+// This private route reads only server configuration. Keeping it dynamic lets a
+// protected Vercel preview use the explicitly labelled browser-only fallback,
+// while a production deployment still fails closed.
+export const dynamic = "force-dynamic";
 
 const reviewRows = [
   ["India-first source intake", String(newsSignalMetadata.itemCount), "Waiting for source and claim review", "source metadata only"],
@@ -14,6 +19,11 @@ const reviewRows = [
 ] as const;
 
 export default function StudioPage() {
+  const access = resolveEditorAccess({
+    environment: studioEnvironmentFromServer(),
+    sharedStorageAvailable: hasSharedEditorialConfiguration(),
+    editorAllowList: editorAllowListFromServer()
+  });
   const publisherCounts = [...latestNewsSignals.reduce((counts, signal) => counts.set(signal.publisher, (counts.get(signal.publisher) ?? 0) + 1), new Map<string, number>()).entries()].sort(([first], [second]) => first.localeCompare(second));
   const currentPublishers = new Set(publisherCounts.map(([publisher]) => publisher));
   const acquisitionGaps = publisherRegistry.filter((publisher) => !currentPublishers.has(publisher.name));
@@ -29,18 +39,18 @@ export default function StudioPage() {
   }));
 
   return (
-    <SiteChrome active="studio">
+    <main id="studio-main">
       <section className="studio-page">
-        <p className="micro-copy">Private Review Studio · read-only preview</p>
+        <p className="micro-copy">Private Review Studio · {access.label}</p>
         <h1>See what is ready, and what is not.</h1>
-        <p className="page-lede">This is a review terminal, not a public dashboard. It has no write controls until Google sign-in and editor roles are verified.</p>
+        <p className="page-lede">This is a private review terminal, not a public dashboard. {access.reason}</p>
         <p className="studio-timestamp">Last good India-first source intake: {new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }).format(new Date(newsSignalMetadata.generatedAt))} UTC · {newsSignalMetadata.windowDays}-day window · {snapshotIsCurrent ? "within its declared freshness window" : "stale — kept only for private review, not current public use"}</p>
         <div className="studio-summary">
           <div><strong>₹1,400</strong><span>monthly AI ceiling</span></div>
           <div><strong>0</strong><span>publicly generated stories</span></div>
           <div><strong>0</strong><span>rights-cleared external media files</span></div>
         </div>
-        <ModerationQueue sources={moderationSources} />
+        <ModerationQueue sources={moderationSources} browserFallbackEnabled={access.canWriteBrowserReview} />
         <div className="review-table" role="table" aria-label="Content and publication queue">
           <div className="review-row review-heading" role="row"><span role="columnheader">Queue</span><span role="columnheader">Count</span><span role="columnheader">State</span><span role="columnheader">Guardrail</span></div>
           {reviewRows.map(([queue, count, state, guardrail]) => <div className="review-row" role="row" key={queue}><strong role="cell">{queue}</strong><span role="cell">{count}</span><span role="cell">{state}</span><span role="cell">{guardrail}</span></div>)}
@@ -59,10 +69,10 @@ export default function StudioPage() {
           </div>
         </section>
         <section className="studio-gates">
-          <h2>Before any publishing switch appears</h2>
+          <h2>Before public release can be considered</h2>
           <ul><li>Editor approves every factual sentence and source connection.</li><li>Rights reviewer clears each external visual or keeps it link-only.</li><li>English and Hindi editions are reviewed separately.</li><li>Google sign-in and an editor role protect real write actions.</li></ul>
         </section>
       </section>
-    </SiteChrome>
+    </main>
   );
 }
