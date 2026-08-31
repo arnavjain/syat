@@ -18,9 +18,9 @@ The private preview may contain fixtures, licensed test media, and clearly label
 
 ## Current protected review build
 
-- Preview: `https://syat-9y4jewph5-jdso.vercel.app`
-- Verified on 2026-08-31: Vercel reports the preview as ready. An unauthenticated request redirects to Vercel SSO and responds with `X-Robots-Tag: noindex`.
-- The shared build contains only the current private-preview product. It does not make RSS signals, real AI drafts, external media, or community features public.
+- Preview: `https://syat-jj92ot0b9-jdso.vercel.app`
+- Verified on 2026-08-31 after final independent review: Vercel reports the preview as ready. An unauthenticated request redirects to Vercel SSO and responds with `X-Robots-Tag: noindex`.
+- The shared build contains only the current private-preview product. It does not make RSS signals, real AI drafts, external media, or community features public. The Review Studio is read-only until Google and Convex are deliberately connected.
 
 ## Morning handoff: what friends may review
 
