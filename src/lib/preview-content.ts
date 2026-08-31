@@ -1,3 +1,5 @@
+import { getTimelessTopic } from "./timeless-topics";
+
 export type PreviewSource = {
   id: string;
   publisher: string;
@@ -25,10 +27,22 @@ export type PreviewStory = {
   sources: PreviewSource[];
   actions: {
     sourceTrailTarget: "source-trail";
-    reframe: { topic?: string; claim?: string };
+    reframe: ReframeAction;
     relatedTimelessTopicSlug: string;
   };
 };
+
+export type ReframeAction = { topic: string; claim?: never } | { topic?: never; claim: string };
+
+export function isValidReframeAction(action: { topic?: string; claim?: string }): action is ReframeAction {
+  const hasTopic = typeof action.topic === "string";
+  const hasClaim = typeof action.claim === "string";
+  if (hasTopic === hasClaim) return false;
+
+  if (hasTopic && action.topic) return Boolean(getTimelessTopic(action.topic));
+  if (hasClaim && action.claim) return action.claim.trim().length > 0 && action.claim.length <= 320;
+  return false;
+}
 
 export const previewStories: readonly PreviewStory[] = [
   {
@@ -103,4 +117,8 @@ export const previewStories: readonly PreviewStory[] = [
 
 export function getPreviewStory(slug: string) {
   return previewStories.find((story) => story.slug === slug);
+}
+
+export function getPreviewStoryStaticParams(mode: PreviewStory["mode"]): Array<{ slug: string }> {
+  return previewStories.filter((story) => story.mode === mode).map(({ slug }) => ({ slug }));
 }

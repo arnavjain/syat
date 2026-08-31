@@ -1,15 +1,20 @@
 import Link from "next/link";
 
-import type { DesignDirection } from "@/lib/design-direction";
+import { designDirections, getViewpointPositionClass, type DesignDirection } from "@/lib/design-direction";
 import { getHomeContent, getHomeModeHref, type HomeMode } from "@/lib/home-content";
 
 import { SiteChrome } from "./site-chrome";
 
-export function HomeView({ mode, direction }: { mode: HomeMode; direction: DesignDirection }) {
+export function HomeView({ mode, direction, isDesignReview = false }: { mode: HomeMode; direction: DesignDirection; isDesignReview?: boolean }) {
   const content = getHomeContent(mode);
 
   return (
     <SiteChrome active={mode === "news" ? "home" : "explore"} className={direction.className}>
+      {isDesignReview && <aside className="design-review-note" aria-label="Private design review">
+        <p className="micro-copy">Private design review</p>
+        <p><strong>{direction.label}</strong> · {direction.description}</p>
+        <div>{designDirections.map((option) => <Link className={option.id === direction.id ? "design-review-link is-selected" : "design-review-link"} href={`/preview/design/${option.id}`} key={option.id}>{option.label}</Link>)}</div>
+      </aside>}
       <section className="home-intro" aria-labelledby="home-title">
         <div>
           <p className="micro-copy">A different way to follow what matters</p>
@@ -58,10 +63,7 @@ export function HomeView({ mode, direction }: { mode: HomeMode; direction: Desig
             <circle className="map-point four" cx="187" cy="292" r="9" />
             <path className="corner-mark" d="M22 89V20h70M468 20h70v69M22 323v69h70M468 392h70v-69" />
           </svg>
-          <div className="frame-label label-one">Bus commuter</div>
-          <div className="frame-label label-two">School caregiver</div>
-          <div className="frame-label label-three">Street vendor</div>
-          <div className="frame-label label-four">Wheelchair user</div>
+          {content.feature.perspectives.map((perspective, index) => <div className={`frame-label ${getViewpointPositionClass(index, content.feature.perspectives.length)}`} key={perspective}>{perspective}</div>)}
           <figcaption id="frame-caption">One fictional street plan, four starting points. Open the story to see what each view uses and may miss.</figcaption>
         </figure>
       </section>
@@ -72,9 +74,10 @@ export function HomeView({ mode, direction }: { mode: HomeMode; direction: Desig
         <div><span className="legend-mark unresolved" /><strong>Unresolved</strong><p>What still needs better evidence.</p></div>
       </section>
 
-      {content.sections.map((section) => (
-        <section className="editorial-section" key={section.title} aria-labelledby={section.title}>
-          <div className="section-heading"><h2 id={section.title}>{section.title}</h2><p>{section.intro}</p></div>
+      {content.sections.map((section, index) => {
+        const sectionId = `editorial-section-${index + 1}`;
+        return <section className="editorial-section" key={section.title} aria-labelledby={sectionId}>
+          <div className="section-heading"><h2 id={sectionId}>{section.title}</h2><p>{section.intro}</p></div>
           <div className="teaser-grid">
             {section.items.map((item) => (
               <article className="story-teaser" key={`${item.href}-${item.title}`}>
@@ -85,8 +88,8 @@ export function HomeView({ mode, direction }: { mode: HomeMode; direction: Desig
               </article>
             ))}
           </div>
-        </section>
-      ))}
+        </section>;
+      })}
 
       <section className="source-note" aria-labelledby="source-note-title">
         <div><p className="micro-copy">A source is more than a link</p><h2 id="source-note-title">Every published story will show who said what, when, and how far the evidence reaches.</h2></div>

@@ -7,6 +7,14 @@ import { isOnboardingComplete, markOnboardingComplete, onboardingSteps } from "@
 
 const teachingStoryPath = "/en/news/street-plan-daily-realities";
 
+export function getOnboardingProgressLabel(hasFinishedBefore: boolean, stepIndex: number, stepCount: number): string {
+  return hasFinishedBefore ? "Guide completed" : `Step ${stepIndex + 1} of ${stepCount}`;
+}
+
+export function getOnboardingStepAriaCurrent(index: number, stepIndex: number, hasFinishedBefore: boolean): "step" | undefined {
+  return !hasFinishedBefore && index === stepIndex ? "step" : undefined;
+}
+
 export function getSafeBrowserStorage(): Storage | undefined {
   if (typeof window === "undefined") return undefined;
 
@@ -36,11 +44,11 @@ export function GuidedOnboarding() {
 
   return (
     <section className="guided-page" aria-labelledby="guided-onboarding-title">
-      <div className="guided-progress" aria-label={`Step ${stepIndex + 1} of ${onboardingSteps.length}`}>
-        <p className="micro-copy">First-time guide · step {stepIndex + 1} of {onboardingSteps.length}</p>
-        <ol>
-          {onboardingSteps.map((item, index) => <li className={index <= stepIndex ? "is-current" : undefined} key={item.id}><span className="sr-only">{index === stepIndex ? "Current: " : ""}</span>{index + 1}</li>)}
-        </ol>
+      <div className="guided-progress" aria-label={getOnboardingProgressLabel(hasFinishedBefore, stepIndex, onboardingSteps.length)}>
+        <p className="micro-copy">{hasFinishedBefore ? "Guide completed" : `First-time guide · step ${stepIndex + 1} of ${onboardingSteps.length}`}</p>
+        {!hasFinishedBefore && <ol>
+          {onboardingSteps.map((item, index) => <li aria-current={getOnboardingStepAriaCurrent(index, stepIndex, hasFinishedBefore)} className={index <= stepIndex ? "is-current" : undefined} key={item.id}><span className="sr-only">{index === stepIndex ? "Current: " : ""}</span>{index + 1}</li>)}
+        </ol>}
       </div>
       <p className="micro-copy">{step.eyebrow}</p>
       <h1 id="guided-onboarding-title">{hasFinishedBefore ? "A useful place to begin again." : step.title}</h1>

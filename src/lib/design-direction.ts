@@ -37,3 +37,19 @@ export function getDesignDirection(candidate: string | undefined): DesignDirecti
 }
 
 export const designDirections = Object.values(directions);
+
+export function isDesignDirection(candidate: string): candidate is DesignDirectionId {
+  return candidate in directions;
+}
+
+export function getDesignDirectionStaticParams(): Array<{ direction: DesignDirectionId }> {
+  return designDirections.map(({ id }) => ({ direction: id }));
+}
+
+export function getViewpointPositionClass(index: number, count: number): string {
+  if (count < 2 || count > 8 || index < 0 || index >= count) {
+    return "viewpoint-position viewpoint-position--fallback";
+  }
+
+  return `viewpoint-position viewpoint-position--${count}-${index + 1}`;
+}
