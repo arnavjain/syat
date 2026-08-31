@@ -26,7 +26,7 @@ export const readerStatementSchema = z.discriminatedUnion("type", [
   statementBaseSchema.extend({ type: z.literal("interpreted"), limits: z.string().min(12).max(300) }).strict(),
   statementBaseSchema.extend({ type: z.literal("experienced"), limits: z.string().min(12).max(300) }).strict(),
   statementBaseSchema.extend({ type: z.literal("valued"), limits: z.string().min(12).max(300) }).strict(),
-  statementBaseSchema.extend({ type: z.literal("unresolved"), evidenceNeed: z.string().min(12).max(300) }).strict()
+  statementBaseSchema.extend({ type: z.literal("unresolved"), limits: z.string().min(12).max(300) }).strict()
 ]);
 
 const readerSectionMarkerSchema = z.object({ id: readerIdSchema, title: z.string().min(4).max(100) }).strict();
@@ -107,6 +107,7 @@ export const readerMediaRightsProofSchema = z.discriminatedUnion("kind", [
 
 export const readerMediaSchema = z.object({
   id: readerIdSchema,
+  planId: readerIdSchema.optional(),
   kind: z.enum(["photo", "illustration", "chart", "video", "audio", "embed"]),
   label: z.string().min(3).max(160),
   alt: z.string().min(12).max(320),

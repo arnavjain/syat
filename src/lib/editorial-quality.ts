@@ -38,6 +38,7 @@ const genericOpening = /^(?:in a (?:significant|major|landmark|notable) (?:devel
 const hypeTerms = /\b(?:groundbreaking|game[ -]?changer|historic milestone|revolutionary|transformative leap|unprecedented success|sweeping victory|massive boost)\b/i;
 const modalOrAbstract = new Set(["may", "might", "could", "would", "possibly", "potentially", "impact", "development", "initiative", "stakeholder", "landscape", "significant", "various"]);
 const causalTerms = /\b(?:because|therefore|thus|hence|caused?|causing|led to|resulted in|driven by)\b/i;
+const attributedCausalClaim = /(?:^|[.!?]\s+)[^.!?]{1,140}\b(?:says?|said|states?|stated|attributes?|attributed)\b[^.!?]{0,180}\b(?:because|therefore|thus|hence|caused?|causing|led to|resulted in|driven by)\b/i;
 const concreteTerms = new Set(["road", "lane", "bus", "train", "school", "hospital", "court", "river", "village", "city", "district", "ministry", "office", "record", "report", "route", "street", "market", "worker", "farmer", "student", "household", "rupee", "kilometre", "hectare", "station"]);
 
 function words(text: string): string[] {
@@ -144,7 +145,7 @@ export function reviewEditorialQuality(story: GeneratedStoryV2, corpus: readonly
     const linkedStatements = story.statements.filter((statement) => paragraph.claimIds.includes(statement.id));
     const causalBasisPresent = linkedStatements.some((statement) => statement.basis === "direct_record" || statement.basis === "reported_observation");
     const attributedOfficialReason = linkedStatements.some((statement) => statement.basis === "official_claim")
-      && /\b(?:ministry|government|authority|department|record|statement|official)\b[^.!?]{0,100}\b(?:says?|said|states?|stated|attributes?|attributed)\b[^.!?]{0,140}\b(?:because|therefore|thus|hence|caused?|causing|led to|resulted in|driven by)\b/i.test(factualCausalText);
+      && attributedCausalClaim.test(factualCausalText);
     if (!causalBasisPresent && !attributedOfficialReason) addUnique(blockers, { code: "unsupported-causal-language", message: "Causal wording appears without a direct-record basis or clear attribution as an official claim.", relatedId: paragraph.id });
   }
 

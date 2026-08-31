@@ -75,7 +75,7 @@ function makeValidReaderStory() {
         text: "The note alone cannot establish how the trial will affect every routine.",
         sourceIds: ["ward-note"],
         sourceScope: "The supplied note describes a plan but contains no measured outcome.",
-        evidenceNeed: "Independent access checks and reporting from people who use the street."
+        limits: "The note contains no independent access checks or affected-person reporting."
       }
     ],
     timeline: [
@@ -230,7 +230,7 @@ describe("readerStorySchema", () => {
     const parsed = readerStorySchema.parse(makeValidReaderStory());
 
     expect(parsed.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
-    expect(parsed.statements[2]).toMatchObject({ basis: "evidence_gap", evidenceNeed: expect.any(String) });
+    expect(parsed.statements[2]).toMatchObject({ basis: "evidence_gap", limits: "The note contains no independent access checks or affected-person reporting." });
     expect(parsed.body[0]).toMatchObject({ section: { id: "what-changes", title: "What changes on Bazaar Road" } });
     expect(parsed.perspectives[0].rationale).toContain("bus-priority lane");
     expect(parsed.authoredVisual).toMatchObject({ mediaId: "street-trial-diagram", kind: "process", claimIds: ["claim-start", "claim-unknown"] });

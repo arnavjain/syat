@@ -37,23 +37,31 @@ function approvedMediaForPlans(draft: GeneratedStoryV2, approvedMedia: ApprovedM
   if (!authoredMedia) {
     throw new Error("An approved media record for the Syāt-authored visual is required before promotion.");
   }
+  const usedMediaIds = new Set([authoredMedia.id]);
+  const matchedExternalMedia: ApprovedMedia[] = [];
   for (const plan of draft.mediaPlan) {
     if (plan.rightsRequirement === "explicit_licence") throw new Error(`The ${plan.kind} media plan needs an exact representable explicit licence before promotion.`);
-    const approved = parsedMedia.some((media) =>
+    const approved = parsedMedia.find((media) =>
       media.creator !== "Syāt visual desk"
+      && !usedMediaIds.has(media.id)
+      && media.planId === plan.id
       && media.kind === plan.kind
+      && media.alt === plan.alt
+      && media.claimIds.length === plan.claimIds.length
+      && plan.claimIds.every((claimId) => media.claimIds.includes(claimId))
       && media.sourceIds.length === plan.sourceIds.length
       && plan.sourceIds.every((sourceId) => media.sourceIds.includes(sourceId))
       && media.rightsBasis === plan.rightsRequirement
     );
     if (!approved) throw new Error(`The ${plan.kind} media plan has no matching approved media rights record.`);
+    usedMediaIds.add(approved.id);
+    matchedExternalMedia.push(approved);
   }
-  return { media: parsedMedia, authoredMedia };
+  return { media: [authoredMedia, ...matchedExternalMedia], authoredMedia };
 }
 
 function mapStatement(statement: GeneratedStoryV2["statements"][number]): ReaderStory["statements"][number] {
   const base = { id: statement.id, type: statement.type, basis: statement.basis, text: statement.text, sourceIds: statement.sourceIds, sourceScope: statement.sourceScope };
-  if (statement.type === "unresolved") return { ...base, type: "unresolved", evidenceNeed: statement.limits };
   return { ...base, type: statement.type, limits: statement.limits };
 }
 

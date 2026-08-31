@@ -162,6 +162,23 @@ describe("syat.story-draft.v2", () => {
     expect(parseGeneratedStoryV2(draft, [genericSource]).contractVersion).toBe("syat.story-draft.v2");
   });
 
+  it("allows a routine official entity and event phrase in a story title", () => {
+    const routinePhrase = "Union Minister of State for Railways reviews station redevelopment";
+    const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: `${routinePhrase} at a scheduled meeting on 1 September 2026.` };
+    const draft = makeDraft();
+    draft.story.title = routinePhrase;
+
+    expect(parseGeneratedStoryV2(draft, [officialSource]).story.title).toBe(routinePhrase);
+  });
+
+  it("rejects repeated stable media-plan IDs", () => {
+    const draft = makeDraft();
+    const plan = { id: "bazaar-road-photo", kind: "photo" as const, placement: "hero" as const, purpose: "Show the physical road layout described by the source record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by" as const, claimIds: ["trial-date"], sourceIds: ["pib-road-note"] };
+    draft.mediaPlan = [plan, { ...plan }];
+
+    expect(() => parseGeneratedStoryV2(draft, sourceDossier)).toThrow(/repeated/i);
+  });
+
   it("rejects more body paragraphs than the ReaderStory contract can hold", () => {
     const draft = makeDraft();
     draft.bodySections = Array.from({ length: 5 }, (_, sectionIndex) => ({

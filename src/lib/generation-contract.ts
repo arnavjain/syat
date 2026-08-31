@@ -86,11 +86,13 @@ const authoredVisualSchema = z.object({
 }).strict();
 
 const mediaPlanSchema = z.object({
+  id: idSchema,
   kind: z.enum(["photo", "illustration", "chart", "video", "audio", "embed"]),
   placement: z.enum(["hero", "inline", "source_trail", "embed"]),
   purpose: z.string().trim().min(12).max(320),
   alt: z.string().trim().min(12).max(240),
   rightsRequirement: z.enum(["owned", "public_domain", "cc0", "cc_by", "cc_by_sa", "government_open_data", "official_embed", "commercial_license", "explicit_licence"]),
+  claimIds: claimIdsSchema,
   sourceIds: sourceIdsSchema
 }).strict();
 
@@ -153,6 +155,7 @@ export const generatedStoryV2ResponseSchema = generatedStoryV2Shape.superRefine(
   assertUniqueIds(ctx, draft.perspectives, ["perspectives"]);
   assertUniqueIds(ctx, draft.people, ["people"]);
   assertUniqueIds(ctx, draft.unresolved, ["unresolved"]);
+  assertUniqueIds(ctx, draft.mediaPlan, ["mediaPlan"]);
   if (new Set(draft.sourceIds).size !== draft.sourceIds.length) addReferenceIssue(ctx, ["sourceIds"], "Draft source IDs must be unique.");
 
   const claimIds = new Set(draft.statements.map((statement) => statement.id));
@@ -190,6 +193,10 @@ export const generatedStoryV2ResponseSchema = generatedStoryV2Shape.superRefine(
     if (!claimIds.has(claimId)) addReferenceIssue(ctx, ["authoredVisual", "claimIds"], `Authored visual references unknown claim ${claimId}.`);
   }
   checkClaimSupport(draft.authoredVisual.claimIds, draft.authoredVisual.sourceIds, ["authoredVisual"]);
+  for (const [index, media] of draft.mediaPlan.entries()) {
+    for (const claimId of media.claimIds) if (!claimIds.has(claimId)) addReferenceIssue(ctx, ["mediaPlan", index, "claimIds"], `Media plan references unknown claim ${claimId}.`);
+    checkClaimSupport(media.claimIds, media.sourceIds, ["mediaPlan", index]);
+  }
   if (!getTimelessTopic(draft.contextBridge.topicSlug)) {
     addReferenceIssue(ctx, ["contextBridge", "topicSlug"], `Timeless topic ${draft.contextBridge.topicSlug} is not in the approved catalogue.`);
   }
@@ -229,9 +236,7 @@ function textTokens(text: string) {
   return text.toLocaleLowerCase("en-IN").normalize("NFKC").match(/[\p{L}\p{N}]+/gu) ?? [];
 }
 
-const genericOfficialTokens = new Set(["a", "an", "and", "announced", "authority", "by", "for", "from", "government", "india", "indian", "ministry", "new", "of", "official", "policy", "programme", "public", "record", "scheme", "said", "says", "statement", "the", "to", "transport"]);
-
-function distinctiveSharedRun(text: string, evidenceText: string, size = 7) {
+function sharedRun(text: string, evidenceText: string, size: number) {
   const visible = textTokens(text);
   const evidence = textTokens(evidenceText);
   if (visible.length < size || evidence.length < size) return false;
@@ -239,20 +244,25 @@ function distinctiveSharedRun(text: string, evidenceText: string, size = 7) {
   for (let index = 0; index <= evidence.length - size; index += 1) evidenceRuns.add(evidence.slice(index, index + size).join(" "));
   for (let index = 0; index <= visible.length - size; index += 1) {
     const run = visible.slice(index, index + size);
-    if (evidenceRuns.has(run.join(" ")) && run.filter((token) => !genericOfficialTokens.has(token)).length >= 4) return true;
+    if (evidenceRuns.has(run.join(" "))) return true;
   }
   return false;
 }
 
-type VisibleDraftField = { id: string; text: string; sourceIds: string[] };
+type VisibleDraftField = { id: string; text: string; sourceIds: string[]; compactLabel?: true };
+
+function isEntityLedLabel(text: string) {
+  const tokens = text.normalize("NFKC").match(/[\p{L}\p{M}]+/gu)?.slice(0, 8) ?? [];
+  return tokens.filter((token) => /^\p{Lu}/u.test(token)).length >= 3;
+}
 
 function visibleDraftFields(draft: GeneratedStoryV2): VisibleDraftField[] {
   const sectionFields = draft.bodySections.flatMap((section) => [
-    { id: `section:${section.id}`, text: section.title, sourceIds: [...new Set(section.paragraphs.flatMap((paragraph) => paragraph.sourceIds))] },
+    { id: `section:${section.id}`, text: section.title, sourceIds: [...new Set(section.paragraphs.flatMap((paragraph) => paragraph.sourceIds))], compactLabel: true as const },
     ...section.paragraphs.map((paragraph) => ({ id: `paragraph:${paragraph.id}`, text: paragraph.text, sourceIds: paragraph.sourceIds }))
   ]);
   return [
-    { id: "story:title", text: draft.story.title, sourceIds: draft.sourceIds },
+    { id: "story:title", text: draft.story.title, sourceIds: draft.sourceIds, compactLabel: true },
     { id: "story:dek", text: draft.story.dek, sourceIds: draft.sourceIds },
     ...sectionFields,
     ...draft.timeline.map((entry) => ({ id: `timeline:${entry.id}`, text: entry.text, sourceIds: entry.sourceIds })),
@@ -277,7 +287,8 @@ export function findCloseCopyMatches(draft: GeneratedStoryV2, sourceDossier: Sou
   const sourceById = new Map(sourceDossier.map((source) => [source.id, source]));
   return visibleDraftFields(draft).flatMap((field) => field.sourceIds.flatMap((sourceId) => {
     const source = sourceById.get(sourceId);
-    return source && distinctiveSharedRun(field.text, source.evidenceText) ? [{ fieldId: field.id, sourceId }] : [];
+    const runSize = field.compactLabel && isEntityLedLabel(field.text) ? 10 : 7;
+    return source && sharedRun(field.text, source.evidenceText, runSize) ? [{ fieldId: field.id, sourceId }] : [];
   }));
 }
 

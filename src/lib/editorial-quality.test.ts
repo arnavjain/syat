@@ -112,4 +112,17 @@ describe("reviewEditorialQuality", () => {
     expect(reviewEditorialQuality(attributed, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(false);
     expect(reviewEditorialQuality(asserted, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(true);
   });
+
+  it.each([
+    "RBI said it changed the rule because regulated banks reported a settlement problem.",
+    "SEBI stated that it issued the direction because the filing record was incomplete.",
+    "The Supreme Court said it ordered a fresh hearing because the earlier notice was incomplete.",
+    "The Central Pollution Control Board said it revised the schedule because monitoring records arrived late.",
+    "Mumbai Metropolitan Region Development Authority stated it changed the route because utility work blocked the earlier alignment."
+  ])("allows an attributed official reason from any linked official actor: %s", (sentence) => {
+    const story = makeStory();
+    story.bodySections[0].paragraphs[0].text = `${sentence} This remains the institution's stated reason rather than an independently established cause.`;
+
+    expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(false);
+  });
 });

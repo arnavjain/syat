@@ -48,7 +48,7 @@ function makeDraft(withExternalMedia = false) {
     unresolved: [{ id: "route-effects", question: "How do travel time and street access change during the trial?", whatWouldHelp: "Comparable route data, road observations and conversations with affected people.", sourceIds: ["pib-city-note"] }],
     contextBridge: { topicSlug: "local-decision", question: "How should a local decision be made?", connection: "The trial links a public decision to experiences that still need direct reporting." },
     authoredVisual: { kind: "process", title: "From plan to measured outcome", description: "The visual separates the announcement, road observation and later assessment.", limitation: "It does not present an outcome that the source pack cannot establish.", claimIds: ["planned-trial", "outcome-open"], sourceIds: ["pib-city-note"] },
-    mediaPlan: withExternalMedia ? [{ kind: "photo", placement: "hero", purpose: "Show the road layout before the trial.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by", sourceIds: ["pib-city-note"] }] : [],
+    mediaPlan: withExternalMedia ? [{ id: "bazaar-road-photo", kind: "photo", placement: "hero", purpose: "Show the road layout before the trial.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] }] : [],
     modelNotes: ["Independent road observation remains necessary."]
   }, [source]);
 }
@@ -74,6 +74,20 @@ const approvedVisual: ReaderStory["media"][number] = {
   limitation: "The visual does not establish whether the trial occurred or produced a result.", claimIds: ["planned-trial", "outcome-open"], sourceIds: ["pib-city-note"]
 };
 
+const approvedPhoto = {
+  ...approvedVisual,
+  id: "approved-bazaar-road-photo",
+  planId: "bazaar-road-photo",
+  kind: "photo" as const,
+  label: "Bazaar Road before the trial",
+  alt: "Bazaar Road before the planned bus-priority trial.",
+  caption: "An approved external photo requested for the Bazaar Road story.",
+  creator: "Independent photographer",
+  creditLine: "Independent photographer, CC BY",
+  rightsBasis: "cc_by" as const,
+  claimIds: ["planned-trial"]
+};
+
 describe("promoteGeneratedStory", () => {
   it("promotes only reviewed input into the strict private-preview ReaderStory contract", () => {
     const story = promoteGeneratedStory({ draft: makeDraft(), draftReview, qualityReview, sourcePack, approvedMedia: [approvedVisual] });
@@ -85,6 +99,8 @@ describe("promoteGeneratedStory", () => {
     expect(story.generation.inputHash).toMatch(/^[a-f0-9]{64}$/);
     expect(story.media).toEqual([approvedVisual]);
     expect(story.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
+    expect(story.statements[1]).toMatchObject({ basis: "evidence_gap", limits: "No independent observation or affected-person account is supplied." });
+    expect(story.statements[1]).not.toHaveProperty("evidenceNeed");
     expect(story.perspectives[0].rationale).toContain("bus route");
     expect(story.body[0]).toMatchObject({ section: { id: "announcement", title: "The announced change" } });
     expect(story.authoredVisual).toMatchObject({ mediaId: approvedVisual.id, kind: "process", claimIds: ["planned-trial", "outcome-open"] });
@@ -96,8 +112,38 @@ describe("promoteGeneratedStory", () => {
 
   it("does not treat the authored visual approval as clearance for a separate external media plan", () => {
     const draft = makeDraft();
-    draft.mediaPlan.push({ kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "cc_by", sourceIds: ["pib-city-note"] });
+    draft.mediaPlan.push({ id: "external-travel-chart", kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "cc_by", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] });
     expect(() => promoteGeneratedStory({ draft, draftReview: { ...draftReview, checks: { ...draftReview.checks, mediaRights: "human_review_required" } }, qualityReview, sourcePack, approvedMedia: [approvedVisual] })).toThrow(/approved media/i);
+  });
+
+  it("consumes an approved external media record only once", () => {
+    const draft = makeDraft(true);
+    draft.mediaPlan.push({ ...draft.mediaPlan[0], id: "second-bazaar-road-photo" });
+
+    expect(() => promoteGeneratedStory({ draft, draftReview, qualityReview, sourcePack, approvedMedia: [approvedVisual, approvedPhoto] })).toThrow(/approved media/i);
+  });
+
+  it("returns only the exact planned media and the separately bound authored visual", () => {
+    const draft = makeDraft(true);
+    const unplannedPhoto = { ...approvedPhoto, id: "unplanned-photo", planId: "unplanned-photo" };
+
+    const story = promoteGeneratedStory({ draft, draftReview, qualityReview, sourcePack, approvedMedia: [approvedVisual, approvedPhoto, unplannedPhoto] });
+
+    expect(story.media.map((media) => media.id)).toEqual([approvedVisual.id, approvedPhoto.id]);
+  });
+
+  it("rejects external approvals that differ from the plan identity or exact fields", () => {
+    const draft = makeDraft(true);
+    const mismatches = [
+      { ...approvedPhoto, planId: "another-photo-plan" },
+      { ...approvedPhoto, alt: "A different approved caption that does not match the requested alternative text." },
+      { ...approvedPhoto, claimIds: ["outcome-open"] },
+      { ...approvedPhoto, rightsBasis: "owned" as const }
+    ];
+
+    for (const media of mismatches) {
+      expect(() => promoteGeneratedStory({ draft, draftReview, qualityReview, sourcePack, approvedMedia: [approvedVisual, media] })).toThrow(/approved media/i);
+    }
   });
 
   it("requires the approved Syāt visual to name the exact authored-visual claims", () => {
@@ -108,7 +154,7 @@ describe("promoteGeneratedStory", () => {
 
   it("never treats explicit_licence as a wildcard for an owned external asset", () => {
     const draft = makeDraft();
-    draft.mediaPlan.push({ kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "explicit_licence", sourceIds: ["pib-city-note"] });
+    draft.mediaPlan.push({ id: "external-licensed-chart", kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "explicit_licence", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] });
     const externalOwned = { ...approvedVisual, id: "external-owned-chart", creator: "Outside chart desk", label: "External travel-time chart" };
 
     expect(() => promoteGeneratedStory({ draft, draftReview: { ...draftReview, checks: { ...draftReview.checks, mediaRights: "human_review_required" } }, qualityReview, sourcePack, approvedMedia: [approvedVisual, externalOwned] })).toThrow(/explicit licence|approved media/i);

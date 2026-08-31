@@ -54,7 +54,7 @@ describe("reviewGeneratedDraft", () => {
 
   it("requires human rights review when the model proposes external media", () => {
     const draft = makeDraft();
-    draft.mediaPlan.push({ kind: "photo", placement: "hero", purpose: "Show the physical road layout described by the record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "explicit_licence", sourceIds: ["official-note"] });
+    draft.mediaPlan.push({ id: "bazaar-road-photo", kind: "photo", placement: "hero", purpose: "Show the physical road layout described by the record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "explicit_licence", claimIds: ["start-date"], sourceIds: ["official-note"] });
     const result = reviewGeneratedDraft(draft, dossier, { indiaConnection: draft.story.indiaConnection });
     expect(result.checks.mediaRights).toBe("human_review_required");
     expect(result.findings).toContainEqual(expect.objectContaining({ code: "media-rights-review-needed" }));
