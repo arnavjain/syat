@@ -7,7 +7,7 @@ const dossier: SourceDossierRecord[] = [{
   id: "official-note", publisherId: "pib", publisher: "Press Information Bureau", title: "Bazaar Road trial note",
   url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2000002", sourceKind: "official_statement",
   publishedAt: "2026-08-28T06:00:00.000Z", accessedAt: "2026-08-31T06:00:00.000Z",
-  evidenceText: "The note says a bus-priority trial starts on Bazaar Road on 1 September.", linkAllowed: true,
+  evidenceText: "The note says a bus-priority trial starts on Bazaar Road on 1 September 2026.", linkAllowed: true,
   modelInputAllowed: true, mediaReuseAllowed: false, rightsBasis: "government_reproduction_policy",
   policyUrl: "https://www.pib.gov.in/Content/102_2_Copyright-Policy.aspx?lang=1&reg=3",
   reviewedAt: "2026-08-31T06:00:00.000Z", creditLine: "Source: Press Information Bureau"
@@ -15,14 +15,14 @@ const dossier: SourceDossierRecord[] = [{
 
 function makeDraft(): GeneratedStoryV2 {
   return parseGeneratedStoryV2({
-    contractVersion: "syat.story-draft.v2", language: "en-IN", editorialStatus: "needs_editorial_review", format: "news_brief",
-    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a start date", dek: "The official note names 1 September, but the effects on road users have not yet been measured.", theme: "Cities and public life", indiaConnection: "The planned transport change concerns a municipal road in India.", eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, reframe: { kind: "question", value: "What evidence would show how the road change affects different users?" } },
+    contractVersion: "syat.story-draft.v2", sourcePackId: "bazaar-road-trial", sourceIds: ["official-note"], language: "en-IN", editorialStatus: "needs_editorial_review", format: "news_brief",
+    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a start date", dek: "The official note names 1 September, but the effects on road users have not yet been measured.", theme: "Cities and public life", indiaConnection: "The planned transport change concerns a municipal road in India.", eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, eventTimeEvidence: { claimIds: ["start-date"], sourceIds: ["official-note"] }, reframe: { kind: "question", value: "What evidence would show how the road change affects different users?" } },
     bodySections: [
       { id: "change", title: "The planned change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, the official note says.", claimIds: ["start-date"], sourceIds: ["official-note"] }] },
       { id: "record", title: "What the record supports", paragraphs: [{ id: "scope", text: "The note establishes the announced date and location, not whether the trial will begin as planned.", claimIds: ["start-date"], sourceIds: ["official-note"] }] },
       { id: "gap", title: "Evidence still needed", paragraphs: [{ id: "unknown", text: "Travel-time records and observations would be needed to understand the effect on bus riders and traders.", claimIds: ["effects-open"], sourceIds: ["official-note"] }] }
     ],
-    timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The note gives this as the planned start date.", sourceIds: ["official-note"] }],
+    timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The note gives this as the planned start date.", claimIds: ["start-date"], sourceIds: ["official-note"] }],
     statements: [
       { id: "start-date", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["official-note"], sourceScope: "The statement is limited to the date announced in the official note.", limits: "It does not confirm later implementation or effects." },
       { id: "effects-open", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users remain unknown.", sourceIds: ["official-note"], sourceScope: "The supplied record does not contain outcome measurements.", limits: "No independent observation is present in this source pack." }
@@ -58,5 +58,17 @@ describe("reviewGeneratedDraft", () => {
     const result = reviewGeneratedDraft(draft, dossier, { indiaConnection: draft.story.indiaConnection });
     expect(result.checks.mediaRights).toBe("human_review_required");
     expect(result.findings).toContainEqual(expect.objectContaining({ code: "media-rights-review-needed" }));
+  });
+
+  it("blocks close copying instead of claiming the direct-quote check passed", () => {
+    const draft = makeDraft();
+    const copiedDossier: SourceDossierRecord[] = [{ ...dossier[0], evidenceText: "The authority will close the eastern lane each morning while scheduled buses pass the market and return after ten o'clock on 1 September 2026." }];
+    draft.bodySections[0].paragraphs[0].text = copiedDossier[0].evidenceText;
+
+    const result = reviewGeneratedDraft(draft, copiedDossier, { indiaConnection: draft.story.indiaConnection });
+
+    expect(result.status).toBe("blocked");
+    expect(result.checks.directQuotes).toBe("blocked");
+    expect(result.findings).toContainEqual(expect.objectContaining({ code: "close-copying", severity: "blocker" }));
   });
 });

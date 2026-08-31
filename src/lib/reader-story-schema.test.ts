@@ -18,6 +18,7 @@ function makeValidReaderStory() {
     theme: "Cities and public life",
     indiaConnection: "The local street trial concerns public transport and market access in an Indian city.",
     eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" },
+    eventTimeEvidence: { claimIds: ["claim-start"], sourceIds: ["ward-note"] },
     collectedAt: "2026-08-31T08:00:00.000Z",
     generatedAt: "2026-08-31T09:00:00.000Z",
     updatedAt: "2026-08-31T10:00:00.000Z",
@@ -27,6 +28,7 @@ function makeValidReaderStory() {
         id: "opening",
         kind: "paragraph",
         text: "The municipal note says the trial starts on 1 September and changes one Bazaar Road lane.",
+        section: { id: "what-changes", title: "What changes on Bazaar Road" },
         claimIds: ["claim-start"],
         sourceIds: ["ward-note"]
       },
@@ -34,6 +36,7 @@ function makeValidReaderStory() {
         id: "change",
         kind: "paragraph",
         text: "The note describes a bus-priority lane and a walking route along the market edge.",
+        section: { id: "what-record-shows", title: "What the record shows" },
         claimIds: ["claim-change"],
         sourceIds: ["ward-note"]
       },
@@ -41,6 +44,7 @@ function makeValidReaderStory() {
         id: "question",
         kind: "paragraph",
         text: "Whether the trial works for different daily routines remains a question for later evidence.",
+        section: { id: "what-remains-open", title: "What remains open" },
         claimIds: ["claim-unknown"],
         sourceIds: ["ward-note"]
       }
@@ -49,21 +53,29 @@ function makeValidReaderStory() {
       {
         id: "claim-start",
         type: "documented",
+        basis: "official_claim",
         text: "The municipal note names 1 September 2026 as the street trial's start date.",
-        sourceIds: ["ward-note"]
+        sourceIds: ["ward-note"],
+        sourceScope: "This reports the planned date stated in the municipal note.",
+        limits: "It does not confirm that implementation happened on that date."
       },
       {
         id: "claim-change",
         type: "documented",
+        basis: "official_claim",
         text: "The municipal note describes a bus-priority lane and a walking route.",
-        sourceIds: ["ward-note"]
+        sourceIds: ["ward-note"],
+        sourceScope: "This records the lane and walking route described by the municipal note.",
+        limits: "It does not establish how either change worked on the ground."
       },
       {
         id: "claim-unknown",
         type: "unresolved",
+        basis: "evidence_gap",
         text: "The note alone cannot establish how the trial will affect every routine.",
         sourceIds: ["ward-note"],
-        whatWouldHelp: "Independent access checks and reporting from people who use the street."
+        sourceScope: "The supplied note describes a plan but contains no measured outcome.",
+        evidenceNeed: "Independent access checks and reporting from people who use the street."
       }
     ],
     timeline: [
@@ -71,6 +83,7 @@ function makeValidReaderStory() {
         id: "notice-published",
         time: { kind: "exact_date", value: "2026-08-28", label: "28 August 2026" },
         text: "The municipal corporation published the street trial note.",
+        claimIds: ["claim-start"],
         sourceIds: ["ward-note"]
       }
     ],
@@ -78,6 +91,7 @@ function makeValidReaderStory() {
       {
         id: "commuter",
         label: "Daily commuter",
+        rationale: "The note describes a bus-priority lane that directly concerns this journey.",
         sees: "A possible change to a regular bus journey.",
         values: "Predictable, affordable travel.",
         uses: "The published note and a regular travel routine.",
@@ -128,8 +142,8 @@ function makeValidReaderStory() {
     media: [
       {
         id: "street-trial-diagram",
-        kind: "illustration",
-        label: "Bazaar Road trial diagram",
+        kind: "chart",
+        label: "Bazaar Road trial evidence path",
         alt: "A diagram of the bus-priority lane and walking route in the proposed trial.",
         caption: "A Syāt visual based on the municipal trial note.",
         creator: "Syāt visual desk",
@@ -144,9 +158,19 @@ function makeValidReaderStory() {
           note: "The Syāt visual desk recorded ownership of this authored illustration."
         },
         limitation: "It shows the announced layout, not whether the trial works in practice.",
+        claimIds: ["claim-start", "claim-unknown"],
         sourceIds: ["ward-note"]
       }
     ],
+    authoredVisual: {
+      mediaId: "street-trial-diagram",
+      kind: "process",
+      title: "Bazaar Road trial evidence path",
+      description: "A source-led view separates the announcement, road observation and later assessment.",
+      limitation: "The visual does not show whether the trial worked in practice.",
+      claimIds: ["claim-start", "claim-unknown"],
+      sourceIds: ["ward-note"]
+    },
     relatedCoverage: [
       {
         id: "independent-coverage",
@@ -202,11 +226,45 @@ describe("readerStorySchema", () => {
     expect(readerStorySchema.parse(story).sources[0].rightsBasis).toBe("government_reproduction_policy");
   });
 
+  it("preserves evidence meaning, section structure, perspective rationale, and authored visual structure", () => {
+    const parsed = readerStorySchema.parse(makeValidReaderStory());
+
+    expect(parsed.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
+    expect(parsed.statements[2]).toMatchObject({ basis: "evidence_gap", evidenceNeed: expect.any(String) });
+    expect(parsed.body[0]).toMatchObject({ section: { id: "what-changes", title: "What changes on Bazaar Road" } });
+    expect(parsed.perspectives[0].rationale).toContain("bus-priority lane");
+    expect(parsed.authoredVisual).toMatchObject({ mediaId: "street-trial-diagram", kind: "process", claimIds: ["claim-start", "claim-unknown"] });
+  });
+
+  it("rejects an authored visual whose approved media record names different claims", () => {
+    const story = makeValidReaderStory();
+    story.media[0].claimIds = ["claim-start"];
+
+    expect(() => readerStorySchema.parse(story)).toThrow(/same claims/i);
+  });
+
   it("rejects an unknown claim or source reference", () => {
     const story = makeValidReaderStory();
     story.body[0].sourceIds = ["missing-source"];
 
     expect(() => readerStorySchema.parse(story)).toThrow(/missing-source/);
+  });
+
+  it("rejects a block, timeline, or event time whose source does not support its claim", () => {
+    const unrelatedSource = { ...makeValidReaderStory().sources[0], id: "unrelated-note", title: "Unrelated municipal record" };
+    const block = makeValidReaderStory();
+    block.sources.push(unrelatedSource);
+    block.body[0].sourceIds = ["unrelated-note"];
+    const timeline = makeValidReaderStory();
+    timeline.sources.push(unrelatedSource);
+    timeline.timeline[0].sourceIds = ["unrelated-note"];
+    const event = makeValidReaderStory();
+    event.sources.push(unrelatedSource);
+    event.eventTimeEvidence.sourceIds = ["unrelated-note"];
+
+    expect(() => readerStorySchema.parse(block)).toThrow(/support/i);
+    expect(() => readerStorySchema.parse(timeline)).toThrow(/support/i);
+    expect(() => readerStorySchema.parse(event)).toThrow(/support/i);
   });
 
   it("rejects an unknown Timeless topic and duplicate record IDs", () => {

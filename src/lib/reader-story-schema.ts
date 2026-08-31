@@ -4,6 +4,8 @@ import { getTimelessTopic } from "./timeless-topics";
 
 const readerIdSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(80);
 const sourceIdListSchema = z.array(readerIdSchema).min(1).max(12);
+const claimIdListSchema = z.array(readerIdSchema).min(1).max(16);
+const statementBasisSchema = z.enum(["direct_record", "official_claim", "reported_observation", "interpretation", "missing_voice", "evidence_gap"]);
 
 export const readerTimeSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("exact_date"), value: z.iso.date(), label: z.string().min(3).max(80) }).strict(),
@@ -14,30 +16,35 @@ export const readerTimeSchema = z.discriminatedUnion("kind", [
 const statementBaseSchema = z.object({
   id: readerIdSchema,
   text: z.string().min(12).max(500),
-  sourceIds: sourceIdListSchema
+  sourceIds: sourceIdListSchema,
+  basis: statementBasisSchema,
+  sourceScope: z.string().min(12).max(300)
 });
 
 export const readerStatementSchema = z.discriminatedUnion("type", [
-  statementBaseSchema.extend({ type: z.literal("documented") }).strict(),
-  statementBaseSchema.extend({ type: z.literal("interpreted"), scope: z.string().min(12).max(300), limitation: z.string().min(12).max(300) }).strict(),
-  statementBaseSchema.extend({ type: z.literal("experienced"), scope: z.string().min(12).max(300), limitation: z.string().min(12).max(300) }).strict(),
-  statementBaseSchema.extend({ type: z.literal("valued"), scope: z.string().min(12).max(300), limitation: z.string().min(12).max(300) }).strict(),
-  statementBaseSchema.extend({ type: z.literal("unresolved"), whatWouldHelp: z.string().min(12).max(300) }).strict()
+  statementBaseSchema.extend({ type: z.literal("documented"), limits: z.string().min(12).max(300) }).strict(),
+  statementBaseSchema.extend({ type: z.literal("interpreted"), limits: z.string().min(12).max(300) }).strict(),
+  statementBaseSchema.extend({ type: z.literal("experienced"), limits: z.string().min(12).max(300) }).strict(),
+  statementBaseSchema.extend({ type: z.literal("valued"), limits: z.string().min(12).max(300) }).strict(),
+  statementBaseSchema.extend({ type: z.literal("unresolved"), evidenceNeed: z.string().min(12).max(300) }).strict()
 ]);
+
+const readerSectionMarkerSchema = z.object({ id: readerIdSchema, title: z.string().min(4).max(100) }).strict();
 
 export const readerContentBlockSchema = z.discriminatedUnion("kind", [
   z.object({
     id: readerIdSchema,
     kind: z.literal("paragraph"),
     text: z.string().min(12).max(1600),
-    claimIds: sourceIdListSchema,
+    section: readerSectionMarkerSchema.optional(),
+    claimIds: claimIdListSchema,
     sourceIds: sourceIdListSchema
   }).strict(),
   z.object({
     id: readerIdSchema,
     kind: z.literal("media"),
     mediaId: readerIdSchema,
-    claimIds: sourceIdListSchema,
+    claimIds: claimIdListSchema,
     sourceIds: sourceIdListSchema
   }).strict()
 ]);
@@ -46,12 +53,14 @@ export const readerTimelineEntrySchema = z.object({
   id: readerIdSchema,
   time: readerTimeSchema,
   text: z.string().min(12).max(500),
+  claimIds: claimIdListSchema,
   sourceIds: sourceIdListSchema
 }).strict();
 
 export const readerPerspectiveSchema = z.object({
   id: readerIdSchema,
   label: z.string().min(2).max(90),
+  rationale: z.string().min(12).max(320),
   sees: z.string().min(12).max(320),
   values: z.string().min(12).max(320),
   uses: z.string().min(12).max(320),
@@ -110,8 +119,21 @@ export const readerMediaSchema = z.object({
   reviewedAt: z.iso.datetime(),
   rightsProof: readerMediaRightsProofSchema,
   limitation: z.string().min(12).max(320),
+  claimIds: claimIdListSchema,
   sourceIds: sourceIdListSchema
 }).strict();
+
+export const readerAuthoredVisualSchema = z.object({
+  mediaId: readerIdSchema,
+  kind: z.enum(["timeline", "process", "relationship_map", "source_role_map", "number_stack", "comparison"]),
+  title: z.string().min(4).max(120),
+  description: z.string().min(20).max(500),
+  limitation: z.string().min(12).max(320),
+  claimIds: claimIdListSchema,
+  sourceIds: sourceIdListSchema
+}).strict();
+
+const readerEvidencePathSchema = z.object({ claimIds: claimIdListSchema, sourceIds: sourceIdListSchema }).strict();
 
 export const linkOnlySourceSchema = z.object({
   id: readerIdSchema,
@@ -186,6 +208,7 @@ function assertUniqueIds(ctx: z.RefinementCtx, values: Array<{ id: string }>, re
 export function assertReaderReferences(story: z.infer<typeof readerStorySchemaShape>, ctx: z.RefinementCtx) {
   const sourceIds = new Set(story.sources.map((source) => source.id));
   const claimIds = new Set(story.statements.map((statement) => statement.id));
+  const claimsById = new Map(story.statements.map((statement) => [statement.id, statement]));
   const mediaIds = new Set(story.media.map((media) => media.id));
 
   assertUniqueIds(ctx, story.body, "Content block", ["body"]);
@@ -204,12 +227,29 @@ export function assertReaderReferences(story: z.infer<typeof readerStorySchemaSh
     }
   };
 
+  const checkClaimSupport = (referencedClaimIds: readonly string[], referencedSourceIds: readonly string[], path: PropertyKey[]) => {
+    const usedSources = new Set<string>();
+    for (const claimId of referencedClaimIds) {
+      const claim = claimsById.get(claimId);
+      if (!claim) continue;
+      const supportingSources = claim.sourceIds.filter((sourceId) => referencedSourceIds.includes(sourceId));
+      if (supportingSources.length === 0) {
+        ctx.addIssue({ code: "custom", message: `The cited sources do not support claim ${claimId}.`, path });
+      }
+      supportingSources.forEach((sourceId) => usedSources.add(sourceId));
+    }
+    for (const sourceId of referencedSourceIds) {
+      if (!usedSources.has(sourceId)) ctx.addIssue({ code: "custom", message: `Source ${sourceId} does not support any cited claim.`, path });
+    }
+  };
+
   for (const [index, block] of story.body.entries()) {
     if (block.kind === "paragraph" || block.kind === "media") {
       checkSources(block.sourceIds, ["body", index, "sourceIds"]);
       for (const claimId of block.claimIds) {
         if (!claimIds.has(claimId)) addUnknownReferenceIssue(ctx, ["body", index, "claimIds"], "Claim", claimId);
       }
+      checkClaimSupport(block.claimIds, block.sourceIds, ["body", index]);
     }
 
     if (block.kind === "media" && !mediaIds.has(block.mediaId)) {
@@ -218,11 +258,40 @@ export function assertReaderReferences(story: z.infer<typeof readerStorySchemaSh
   }
 
   for (const [index, statement] of story.statements.entries()) checkSources(statement.sourceIds, ["statements", index, "sourceIds"]);
-  for (const [index, entry] of story.timeline.entries()) checkSources(entry.sourceIds, ["timeline", index, "sourceIds"]);
+  for (const [index, entry] of story.timeline.entries()) {
+    checkSources(entry.sourceIds, ["timeline", index, "sourceIds"]);
+    for (const claimId of entry.claimIds) if (!claimIds.has(claimId)) addUnknownReferenceIssue(ctx, ["timeline", index, "claimIds"], "Claim", claimId);
+    checkClaimSupport(entry.claimIds, entry.sourceIds, ["timeline", index]);
+  }
   for (const [index, perspective] of story.perspectives.entries()) checkSources(perspective.sourceIds, ["perspectives", index, "sourceIds"]);
   for (const [index, person] of story.people.entries()) checkSources(person.sourceIds, ["people", index, "sourceIds"]);
   for (const [index, question] of story.unresolved.entries()) checkSources(question.sourceIds, ["unresolved", index, "sourceIds"]);
-  for (const [index, media] of story.media.entries()) checkSources(media.sourceIds, ["media", index, "sourceIds"]);
+  for (const [index, media] of story.media.entries()) {
+    checkSources(media.sourceIds, ["media", index, "sourceIds"]);
+    for (const claimId of media.claimIds) if (!claimIds.has(claimId)) addUnknownReferenceIssue(ctx, ["media", index, "claimIds"], "Claim", claimId);
+    checkClaimSupport(media.claimIds, media.sourceIds, ["media", index]);
+  }
+
+  checkSources(story.eventTimeEvidence.sourceIds, ["eventTimeEvidence", "sourceIds"]);
+  for (const claimId of story.eventTimeEvidence.claimIds) if (!claimIds.has(claimId)) addUnknownReferenceIssue(ctx, ["eventTimeEvidence", "claimIds"], "Claim", claimId);
+  checkClaimSupport(story.eventTimeEvidence.claimIds, story.eventTimeEvidence.sourceIds, ["eventTimeEvidence"]);
+
+  checkSources(story.authoredVisual.sourceIds, ["authoredVisual", "sourceIds"]);
+  for (const claimId of story.authoredVisual.claimIds) if (!claimIds.has(claimId)) addUnknownReferenceIssue(ctx, ["authoredVisual", "claimIds"], "Claim", claimId);
+  checkClaimSupport(story.authoredVisual.claimIds, story.authoredVisual.sourceIds, ["authoredVisual"]);
+  const authoredMedia = story.media.find((media) => media.id === story.authoredVisual.mediaId);
+  if (!authoredMedia) {
+    addUnknownReferenceIssue(ctx, ["authoredVisual", "mediaId"], "Media", story.authoredVisual.mediaId);
+  } else {
+    const expectedKind = story.authoredVisual.kind === "relationship_map" ? "illustration" : "chart";
+    if (authoredMedia.creator !== "Syāt visual desk" || authoredMedia.label !== story.authoredVisual.title || authoredMedia.kind !== expectedKind) {
+      ctx.addIssue({ code: "custom", message: "The authored visual does not match its approved Syāt media record.", path: ["authoredVisual"] });
+    }
+    const sameSources = authoredMedia.sourceIds.length === story.authoredVisual.sourceIds.length && authoredMedia.sourceIds.every((sourceId) => story.authoredVisual.sourceIds.includes(sourceId));
+    if (!sameSources) ctx.addIssue({ code: "custom", message: "The authored visual and approved media record must use the same sources.", path: ["authoredVisual", "sourceIds"] });
+    const sameClaims = authoredMedia.claimIds.length === story.authoredVisual.claimIds.length && authoredMedia.claimIds.every((claimId) => story.authoredVisual.claimIds.includes(claimId));
+    if (!sameClaims) ctx.addIssue({ code: "custom", message: "The authored visual and approved media record must use the same claims.", path: ["authoredVisual", "claimIds"] });
+  }
 
   if (!getTimelessTopic(story.contextBridge.topicSlug)) {
     addUnknownReferenceIssue(ctx, ["contextBridge", "topicSlug"], "Timeless topic", story.contextBridge.topicSlug);
@@ -244,6 +313,7 @@ const readerStorySchemaShape = z.object({
   theme: z.string().min(2).max(120),
   indiaConnection: z.string().min(12).max(500),
   eventTime: readerTimeSchema,
+  eventTimeEvidence: readerEvidencePathSchema,
   collectedAt: z.iso.datetime(),
   generatedAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),
@@ -257,6 +327,7 @@ const readerStorySchemaShape = z.object({
   contextBridge: readerContextBridgeSchema,
   sources: z.array(readerSourceSchema).min(1).max(12),
   media: z.array(readerMediaSchema).max(12),
+  authoredVisual: readerAuthoredVisualSchema,
   relatedCoverage: z.array(linkOnlySourceSchema).max(12),
   reframe: readerReframeSchema,
   generation: readerGenerationSchema,

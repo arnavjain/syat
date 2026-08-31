@@ -18,7 +18,7 @@ const sourceDossier: SourceDossierRecord[] = [
     sourceKind: "official_statement",
     publishedAt: "2026-08-28T06:00:00.000Z",
     accessedAt: "2026-08-31T06:00:00.000Z",
-    evidenceText: "The transport ministry record says a bus-priority trial starts on 1 September on Bazaar Road in Nadi Nagar.",
+    evidenceText: "The transport ministry record says a bus-priority trial starts on 1 September 2026 on Bazaar Road in Nadi Nagar.",
     linkAllowed: true,
     modelInputAllowed: true,
     mediaReuseAllowed: false,
@@ -32,6 +32,8 @@ const sourceDossier: SourceDossierRecord[] = [
 function makeDraft(overrides: Partial<GeneratedStoryV2> = {}): GeneratedStoryV2 {
   return {
     contractVersion: "syat.story-draft.v2",
+    sourcePackId: "bazaar-road-bus-trial",
+    sourceIds: ["pib-road-note"],
     language: "en-IN",
     editorialStatus: "needs_editorial_review",
     format: "explainer",
@@ -42,6 +44,7 @@ function makeDraft(overrides: Partial<GeneratedStoryV2> = {}): GeneratedStoryV2 
       theme: "Cities and public life",
       indiaConnection: "The transport trial concerns an Indian municipal road and the people who use it.",
       eventTime: { kind: "exact_date", value: "2026-09-01", label: "From 1 September 2026" },
+      eventTimeEvidence: { claimIds: ["trial-date"], sourceIds: ["pib-road-note"] },
       reframe: { kind: "question", value: "What would show whether the bus-priority trial works for different road users?" }
     },
     bodySections: [
@@ -49,7 +52,7 @@ function makeDraft(overrides: Partial<GeneratedStoryV2> = {}): GeneratedStoryV2 
       { id: "what-is-known", title: "What the note establishes", paragraphs: [{ id: "record-scope", text: "The record identifies the road and planned start date but does not report measured effects from the trial.", claimIds: ["trial-date"], sourceIds: ["pib-road-note"] }] },
       { id: "what-remains", title: "What remains unanswered", paragraphs: [{ id: "evidence-gap", text: "Travel-time data and access checks would be needed to assess how the change works for bus riders, traders and walkers.", claimIds: ["outcome-unknown"], sourceIds: ["pib-road-note"] }] }
     ],
-    timeline: [{ id: "trial-begins", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The official note says the bus-priority trial is due to begin.", sourceIds: ["pib-road-note"] }],
+    timeline: [{ id: "trial-begins", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The official note says the bus-priority trial is due to begin.", claimIds: ["trial-date"], sourceIds: ["pib-road-note"] }],
     statements: [
       { id: "trial-date", type: "documented", basis: "official_claim", text: "The ministry note says the trial is due to begin on 1 September.", sourceIds: ["pib-road-note"], sourceScope: "This records what the ministry note says about the planned start date.", limits: "It does not establish that the trial began as planned or produced any result." },
       { id: "outcome-unknown", type: "unresolved", basis: "evidence_gap", text: "The effect of the trial on different road users is not yet established.", sourceIds: ["pib-road-note"], sourceScope: "The supplied official note describes the plan but contains no measured outcome data.", limits: "No independent observation or affected-person account is included in the source pack." }
@@ -68,9 +71,9 @@ function makeDraft(overrides: Partial<GeneratedStoryV2> = {}): GeneratedStoryV2 
 describe("syat.story-draft.v2", () => {
   it("supports exact, period, and unknown timeline time without invented dates", () => {
     const draft = makeDraft({ timeline: [
-      { id: "exact", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The trial is due to begin on the date named in the note.", sourceIds: ["pib-road-note"] },
-      { id: "period", time: { kind: "period", value: "September 2026", label: "During September 2026" }, text: "Observation can take place during the trial period.", sourceIds: ["pib-road-note"] },
-      { id: "unknown", time: { kind: "unknown", label: "Outcome date not yet known" }, text: "The date for publishing measured outcomes is not stated.", sourceIds: ["pib-road-note"] }
+      { id: "exact", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The trial is due to begin on the date named in the note.", claimIds: ["trial-date"], sourceIds: ["pib-road-note"] },
+      { id: "period", time: { kind: "period", value: "September 2026", label: "During September 2026" }, text: "Observation can take place during the trial period.", claimIds: ["trial-date"], sourceIds: ["pib-road-note"] },
+      { id: "unknown", time: { kind: "unknown", label: "Outcome date not yet known" }, text: "The date for publishing measured outcomes is not stated.", claimIds: ["outcome-unknown"], sourceIds: ["pib-road-note"] }
     ] });
 
     expect(parseGeneratedStoryV2Json(JSON.stringify(draft), sourceDossier).timeline.map((entry) => entry.time.kind)).toEqual(["exact_date", "period", "unknown"]);
@@ -93,6 +96,34 @@ describe("syat.story-draft.v2", () => {
     expect(() => parseGeneratedStoryV2(unknownTopic, sourceDossier)).toThrow(/Timeless topic/i);
   });
 
+  it("rejects a block or timeline source that does not support its cited claim", () => {
+    const unrelated: SourceDossierRecord = { ...sourceDossier[0], id: "unrelated-note", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2000009", title: "Unrelated official note" };
+    const block = makeDraft({ sourceIds: ["pib-road-note", "unrelated-note"] });
+    block.bodySections[0].paragraphs[0].sourceIds = ["unrelated-note"];
+    const timeline = makeDraft({ sourceIds: ["pib-road-note", "unrelated-note"] });
+    timeline.timeline[0].sourceIds = ["unrelated-note"];
+
+    expect(() => parseGeneratedStoryV2(block, [...sourceDossier, unrelated])).toThrow(/support/i);
+    expect(() => parseGeneratedStoryV2(timeline, [...sourceDossier, unrelated])).toThrow(/support/i);
+  });
+
+  it("rejects an exact or period date that is absent from its cited evidence", () => {
+    const draft = makeDraft();
+    draft.story.eventTime = { kind: "exact_date", value: "2027-01-12", label: "12 January 2027" };
+    draft.timeline[0].time = { kind: "period", value: "January 2027", label: "During January 2027" };
+
+    expect(() => parseGeneratedStoryV2(draft, sourceDossier)).toThrow(/date|time.*evidence/i);
+  });
+
+  it("binds the response to the requested job and exact source pack", () => {
+    const draft = makeDraft();
+    const expected = { sourcePackId: "bazaar-road-bus-trial", language: "en-IN" as const, mode: "news" as const, format: "news_brief" as const, indiaConnection: draft.story.indiaConnection };
+
+    expect(() => parseGeneratedStoryV2(draft, sourceDossier, expected)).toThrow(/format/i);
+    expect(() => parseGeneratedStoryV2({ ...draft, sourcePackId: "another-pack" }, sourceDossier, { ...expected, format: "explainer" })).toThrow(/source pack/i);
+    expect(() => parseGeneratedStoryV2({ ...draft, sourceIds: ["different-source"] }, sourceDossier, { ...expected, format: "explainer" })).toThrow(/exact source/i);
+  });
+
   it("rejects publishable fields and any source that lacks model-input permission", () => {
     const publishable = { ...makeDraft(), publicationAllowed: true };
     const linkOnlySource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "", modelInputAllowed: false, rightsBasis: "link_only" };
@@ -102,11 +133,33 @@ describe("syat.story-draft.v2", () => {
 
   it("rejects a paragraph that closely copies reusable source wording", () => {
     const copiedText = "The transport ministry record says the bus-priority trial starts on 1 September on Bazaar Road and assigns one lane to scheduled city buses during the morning period.";
-    const copiedSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: copiedText };
+    const copiedSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: `The record names 1 September 2026. ${copiedText}` };
     const draft = makeDraft();
     draft.bodySections[0].paragraphs[0].text = copiedText;
 
     expect(() => parseGeneratedStoryV2(draft, [copiedSource])).toThrow(/closely cop(?:y|ies)/i);
+  });
+
+  it("rejects a copied 20-word sentence hidden inside a longer source and short verbatim visible copy", () => {
+    const copiedSentence = "The authority will close the eastern lane each morning while scheduled buses pass the market and return after ten o'clock.";
+    const longEvidence = `The record names 1 September 2026. ${"Background details about the municipal transport record and its stated administrative process. ".repeat(14)} ${copiedSentence} ${"Further record material describes later monitoring and internal reporting steps. ".repeat(8)}`;
+    const longSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: longEvidence };
+    const longCopy = makeDraft();
+    longCopy.bodySections[0].paragraphs[0].text = `Bazaar Road has a planned trial. ${copiedSentence} This sentence is followed by separate Syāt explanation about evidence limits and unanswered questions for commuters.`;
+    const shortCopy = makeDraft();
+    shortCopy.story.title = "Authority closes eastern lane while scheduled buses pass market";
+    const shortSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "On 1 September 2026, Authority closes eastern lane while scheduled buses pass market during the morning period." };
+
+    expect(() => parseGeneratedStoryV2(longCopy, [longSource])).toThrow(/closely cop(?:y|ies)/i);
+    expect(() => parseGeneratedStoryV2(shortCopy, [shortSource])).toThrow(/closely cop(?:y|ies)/i);
+  });
+
+  it("allows ordinary official terminology that does not reproduce a distinctive sentence", () => {
+    const genericSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "The Ministry of Transport announced a new public transport policy after its scheduled meeting in New Delhi on 1 September 2026." };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "The Ministry of Transport announced a public transport policy. The supplied record does not establish its effect on Bazaar Road users.";
+
+    expect(parseGeneratedStoryV2(draft, [genericSource]).contractVersion).toBe("syat.story-draft.v2");
   });
 
   it("rejects more body paragraphs than the ReaderStory contract can hold", () => {
@@ -126,7 +179,7 @@ describe("syat.story-draft.v2", () => {
   });
 
   it("builds a JSON-only prompt from reusable source-pack records and names the language rules", () => {
-    const prompt = buildStoryDraftV2Prompt({ language: "en-IN", mode: "news", format: "explainer", editorialBrief: "Explain the documented change and the evidence still needed.", indiaConnection: "This concerns a public transport trial on an Indian municipal road.", sourceRoles: [{ sourceId: "pib-road-note", role: "official account of the planned change" }], missingVoices: ["Independent observation", "People who use and work beside the road"], sourceDossier });
+    const prompt = buildStoryDraftV2Prompt({ sourcePackId: "bazaar-road-bus-trial", language: "en-IN", mode: "news", format: "explainer", editorialBrief: "Explain the documented change and the evidence still needed.", indiaConnection: "This concerns a public transport trial on an Indian municipal road.", sourceRoles: [{ sourceId: "pib-road-note", role: "official account of the planned change" }], missingVoices: ["Independent observation", "People who use and work beside the road"], sourceDossier });
     expect(prompt).toContain("do not use remembered facts");
     expect(prompt).toContain("Do not quote or closely copy source wording");
     expect(prompt).toContain("In a significant development");

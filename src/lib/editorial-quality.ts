@@ -143,7 +143,9 @@ export function reviewEditorialQuality(story: GeneratedStoryV2, corpus: readonly
     if (!causalTerms.test(factualCausalText)) continue;
     const linkedStatements = story.statements.filter((statement) => paragraph.claimIds.includes(statement.id));
     const causalBasisPresent = linkedStatements.some((statement) => statement.basis === "direct_record" || statement.basis === "reported_observation");
-    if (!causalBasisPresent) addUnique(blockers, { code: "unsupported-causal-language", message: "Causal wording appears without a direct-record or reported-observation basis.", relatedId: paragraph.id });
+    const attributedOfficialReason = linkedStatements.some((statement) => statement.basis === "official_claim")
+      && /\b(?:ministry|government|authority|department|record|statement|official)\b[^.!?]{0,100}\b(?:says?|said|states?|stated|attributes?|attributed)\b[^.!?]{0,140}\b(?:because|therefore|thus|hence|caused?|causing|led to|resulted in|driven by)\b/i.test(factualCausalText);
+    if (!causalBasisPresent && !attributedOfficialReason) addUnique(blockers, { code: "unsupported-causal-language", message: "Causal wording appears without a direct-record basis or clear attribution as an official claim.", relatedId: paragraph.id });
   }
 
   const hasNumber = /\b\d[\d,.]*\b/.test(bodyText);
@@ -153,7 +155,7 @@ export function reviewEditorialQuality(story: GeneratedStoryV2, corpus: readonly
   if (!hasNumber && !hasConcreteTerm && !hasNamedDetail) addUnique(blockers, { code: "missing-concrete-language", message: "The body lacks a specific place, institution, object, number or other concrete detail." });
 
   if (!/\b(?:india|indian|bharat)\b/i.test(story.story.indiaConnection)) addUnique(blockers, { code: "missing-india-connection", message: "The India connection is not explicit enough for this preview batch." });
-  if (bodyWords.length < 170 || bodyWords.length > 1_300) addUnique(blockers, { code: "article-word-count", message: `The article body has ${bodyWords.length} words; the preview range is 170 to 1,300.` });
+  if (bodyWords.length < 350 || bodyWords.length > 800) addUnique(blockers, { code: "article-word-count", message: `The article body has ${bodyWords.length} words; the approved preview range is 350 to 800.` });
   if (!hasTraceability(story)) addUnique(blockers, { code: "schema-traceability", message: "At least one paragraph, statement or visual cannot be traced to known claims and sources." });
 
   const languageDeductions = Number(blockers.some((item) => ["generic-opening", "hype-language", "title-dek-overlap"].includes(item.code))) + Number(warnings.some((item) => ["repeated-opening", "sentence-length-monotony", "excessive-modal-language"].includes(item.code)));

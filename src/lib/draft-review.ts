@@ -1,10 +1,11 @@
-import type { GeneratedStoryV2, SourceDossierRecord } from "./generation-contract";
+import { findCloseCopyMatches, type GeneratedStoryV2, type SourceDossierRecord } from "./generation-contract";
 
 export type { GeneratedStoryV2 as GeneratedStory } from "./generation-contract";
 
 export type DraftReviewFinding = {
   code:
     | "single-publisher-evidence"
+    | "close-copying"
     | "repeated-claim"
     | "media-rights-review-needed"
     | "source-date-missing"
@@ -20,7 +21,7 @@ export type DraftReview = {
   publicationAllowed: false;
   checks: {
     sourceReferences: "passed";
-    directQuotes: "passed";
+    directQuotes: "passed" | "blocked";
     repeatedClaims: "passed" | "blocked";
     publisherDiversity: "limited" | "multiple_publishers";
     mediaRights: "not_requested" | "human_review_required";
@@ -37,6 +38,10 @@ function normalise(text: string) {
 
 export function reviewGeneratedDraft(draft: GeneratedStoryV2, sourceDossier: SourceDossierRecord[], context: ReviewContext): DraftReview {
   const findings: DraftReviewFinding[] = [];
+  const copyMatches = findCloseCopyMatches(draft, sourceDossier);
+  for (const match of copyMatches) {
+    findings.push({ code: "close-copying", severity: "blocker", relatedId: match.fieldId, message: `Visible field ${match.fieldId} closely copies source wording from ${match.sourceId}.` });
+  }
   const claimTexts = new Set<string>();
   for (const statement of draft.statements) {
     const key = normalise(statement.text);
@@ -71,7 +76,7 @@ export function reviewGeneratedDraft(draft: GeneratedStoryV2, sourceDossier: Sou
     publicationAllowed: false,
     checks: {
       sourceReferences: "passed",
-      directQuotes: "passed",
+      directQuotes: copyMatches.length === 0 ? "passed" : "blocked",
       repeatedClaims: findings.some((finding) => finding.code === "repeated-claim") ? "blocked" : "passed",
       publisherDiversity: publisherCount < 2 ? "limited" : "multiple_publishers",
       mediaRights: draft.mediaPlan.length === 0 ? "not_requested" : "human_review_required",

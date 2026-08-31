@@ -280,7 +280,13 @@ export async function createStoryDraft({
     throw new Error("OpenRouter returned an invalid or missing usage cost; the reservation cannot be reconciled safely.");
   }
 
-  const draft = parseGeneratedStoryV2Json(content, input.sourceDossier);
+  const draft = parseGeneratedStoryV2Json(content, input.sourceDossier, {
+    sourcePackId: input.sourcePackId,
+    language: input.language,
+    mode: input.mode,
+    format: input.format,
+    indiaConnection: input.indiaConnection
+  });
   return {
     draft,
     review: reviewGeneratedDraft(draft, input.sourceDossier, { indiaConnection: input.indiaConnection }),

@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import type { GeneratedStoryV2 } from "./generation-contract";
 import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL, type GenerationReservationRequest } from "./openrouter-story-client";
 
 function acceptedReservation({ attempt, estimatedPaise }: GenerationReservationRequest) {
@@ -12,6 +13,7 @@ function acceptedReservation({ attempt, estimatedPaise }: GenerationReservationR
 }
 
 const input = {
+  sourcePackId: "nadi-nagar-road-trial",
   language: "en-IN" as const,
   mode: "news" as const,
   format: "news_brief" as const,
@@ -26,7 +28,7 @@ const input = {
       publisher: "Nadi Nagar Municipal Corporation",
       title: "Bazaar Road walking and bus-priority trial note",
       url: "https://example.invalid/nadi-nagar-order",
-      evidenceText: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road.",
+      evidenceText: "The trial starts on 1 September 2026 and opens one bus-priority lane on Bazaar Road.",
       publishedAt: "2026-08-28T06:00:00.000Z",
       accessedAt: "2026-08-31T06:00:00.000Z",
       sourceKind: "official_statement" as const,
@@ -41,8 +43,10 @@ const input = {
   ]
 };
 
-const modelContent = JSON.stringify({
+const modelDraft: GeneratedStoryV2 = {
   contractVersion: "syat.story-draft.v2",
+  sourcePackId: "nadi-nagar-road-trial",
+  sourceIds: ["ward-note"],
   language: "en-IN",
   editorialStatus: "needs_editorial_review",
   format: "news_brief",
@@ -53,6 +57,7 @@ const modelContent = JSON.stringify({
     theme: "Cities and public life",
     indiaConnection: input.indiaConnection,
     eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" },
+    eventTimeEvidence: { claimIds: ["claim-start-date"], sourceIds: ["ward-note"] },
     reframe: { kind: "question", value: "What evidence would show how the street trial works for different road users?" }
   },
   bodySections: [
@@ -60,7 +65,7 @@ const modelContent = JSON.stringify({
     { id: "scope", title: "What the note supports", paragraphs: [{ id: "source-scope", text: "The note identifies a planned date and lane change but supplies no measured result from the road.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }] },
     { id: "unknowns", title: "Evidence still needed", paragraphs: [{ id: "evidence-needed", text: "Travel-time records and direct observations would help assess how the trial affects riders, walkers and traders.", claimIds: ["claim-outcomes-open"], sourceIds: ["ward-note"] }] }
   ],
-  timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The municipal note gives this as the planned start date.", sourceIds: ["ward-note"] }],
+  timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The municipal note gives this as the planned start date.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }],
   statements: [
     { id: "claim-start-date", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["ward-note"], sourceScope: "This reports the date and change described in the municipal note.", limits: "It does not confirm implementation or a measured outcome." },
     { id: "claim-outcomes-open", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users are not established.", sourceIds: ["ward-note"], sourceScope: "The note contains no travel-time record or direct observation.", limits: "The source pack contains no affected-person account." }
@@ -72,7 +77,8 @@ const modelContent = JSON.stringify({
   authoredVisual: { kind: "process", title: "From announcement to assessment", description: "The visual separates the announced plan, road observation and later outcome assessment.", limitation: "It does not claim an outcome that the note cannot establish.", claimIds: ["claim-start-date", "claim-outcomes-open"], sourceIds: ["ward-note"] },
   mediaPlan: [],
   modelNotes: ["Verify local impact reporting before publication."]
-});
+};
+const modelContent = JSON.stringify(modelDraft);
 
 describe("createStoryDraft", () => {
   it("uses the fixed model, strict schema, and source parser before returning a review draft", async () => {
@@ -103,6 +109,22 @@ describe("createStoryDraft", () => {
     expect(result.usage.completionTokens).toBe(200);
     expect(result.reservedMaximumPaise).toBeGreaterThan(0);
     expect(result.actualCostUsd).toBe(0.000042);
+  });
+
+  it("rejects provider output that changes the requested language, mode, format, India connection, or source pack", async () => {
+    const cases = [
+      { label: "language", change: (draft: GeneratedStoryV2): GeneratedStoryV2 => ({ ...draft, language: "hi-IN" }) },
+      { label: "mode", change: (draft: GeneratedStoryV2): GeneratedStoryV2 => ({ ...draft, story: { ...draft.story, mode: "timeless" } }) },
+      { label: "format", change: (draft: GeneratedStoryV2): GeneratedStoryV2 => ({ ...draft, format: "timeline" }) },
+      { label: "India connection", change: (draft: GeneratedStoryV2): GeneratedStoryV2 => ({ ...draft, story: { ...draft.story, indiaConnection: "A different context supplied by the model." } }) },
+      { label: "source pack", change: (draft: GeneratedStoryV2): GeneratedStoryV2 => ({ ...draft, sourcePackId: "another-pack" }) }
+    ];
+
+    for (const testCase of cases) {
+      const changed = testCase.change(structuredClone(modelDraft));
+      const fetchImpl = vi.fn().mockResolvedValue(new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(changed) } }], usage: { cost: 0.00004 } }), { status: 200 }));
+      await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn(acceptedReservation) })).rejects.toThrow(new RegExp(testCase.label, "i"));
+    }
   });
 
   it("refuses to make a paid request without an API key", async () => {
