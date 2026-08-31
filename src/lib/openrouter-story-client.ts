@@ -3,15 +3,26 @@ import { z } from "zod";
 import {
   buildStoryDraftV2Prompt,
   buildStoryDraftProviderJsonSchema,
+  generatedStoryV2ResponseSchema,
+  parseGeneratedStoryV2,
   parseGeneratedStoryV2Json,
   validateApprovedSourceDossier,
   type GeneratedStoryV2,
   type StoryDraftV2PromptInput
 } from "./generation-contract";
+import { applyRepairPatch, buildRepairPrompt, collectRepairTargets, type RepairTarget } from "./draft-repair";
 import { reviewGeneratedDraft, type DraftReview } from "./draft-review";
 import { authoriseGenerationBudget, type GenerationBudgetDecision } from "./generation-budget";
 
+/**
+ * Rewrites the flagged visible fields of a draft that reused source wording. The caller owns
+ * the paid call and its own durable reservation, and must return the parsed JSON patch only.
+ * The raw provider response must never be returned, logged or written to disk.
+ */
+export type RepairCloseCopy = (request: { targets: readonly RepairTarget[]; prompt: string }) => Promise<unknown>;
+
 export const OPENROUTER_STORY_MODEL = "deepseek/deepseek-v4-flash-0731";
+export const STORY_DRAFT_TEMPERATURE = 0.5;
 const STORY_DRAFT_MAX_TOKENS = 6000;
 export const MAX_STORY_DRAFT_EDITORIAL_BRIEF_UTF8_BYTES = 4_000;
 export const MAX_STORY_DRAFT_INDIA_CONNECTION_UTF8_BYTES = 2_000;
@@ -128,7 +139,8 @@ export async function createStoryDraft({
   budget,
   reserveAttempt,
   maxAttempts,
-  promptBuilder = buildStoryDraftV2Prompt
+  promptBuilder = buildStoryDraftV2Prompt,
+  repairCloseCopy
 }: {
   apiKey: string;
   input: StoryDraftInput;
@@ -137,6 +149,7 @@ export async function createStoryDraft({
   reserveAttempt: ReserveStoryAttempt;
   maxAttempts?: number;
   promptBuilder?: typeof buildStoryDraftV2Prompt;
+  repairCloseCopy?: RepairCloseCopy;
 }): Promise<StoryDraftResult> {
   if (!apiKey) {
     throw new Error("OPENROUTER_API_KEY is required to generate a story draft.");
@@ -280,14 +293,33 @@ export async function createStoryDraft({
     throw new Error("OpenRouter returned an invalid or missing usage cost; the reservation cannot be reconciled safely.");
   }
 
-  const draft = parseGeneratedStoryV2Json(content, input.sourceDossier, {
+  const expectedBinding = {
     sourcePackId: input.sourcePackId,
     language: input.language,
     mode: input.mode,
     format: input.format,
     indiaConnection: input.indiaConnection,
     selectedExactTime: input.selectedExactTime ?? null
-  });
+  };
+
+  let draft: GeneratedStoryV2;
+  try {
+    draft = parseGeneratedStoryV2Json(content, input.sourceDossier, expectedBinding);
+  } catch (parseError) {
+    // The only point where the provider body is still in memory. A close-copy failure is a
+    // wording fault and can be repaired here; a structural fault cannot, and pretending
+    // otherwise would be a way to launder a broken draft past the parser.
+    if (!repairCloseCopy) throw parseError;
+
+    const structural = generatedStoryV2ResponseSchema.parse(JSON.parse(content));
+    const targets = collectRepairTargets(structural, input.sourceDossier);
+    if (targets.length === 0) throw parseError;
+
+    const patch = await repairCloseCopy({ targets, prompt: buildRepairPrompt(targets) });
+    // Full re-parse, so the seven-token guard, time grounding and dossier binding all run
+    // again on the rewritten text. A repair that still copies is still rejected.
+    draft = parseGeneratedStoryV2(applyRepairPatch(structural, patch, targets), input.sourceDossier, expectedBinding);
+  }
   return {
     draft,
     review: reviewGeneratedDraft(draft, input.sourceDossier, { indiaConnection: input.indiaConnection }),
@@ -296,5 +328,74 @@ export async function createStoryDraft({
     reservedMaximumPaise: maximumEstimatePaise,
     actualCostUsd,
     reservations
+  };
+}
+
+export const MAX_REPAIR_RESPONSE_UTF8_BYTES = 12_000;
+
+/**
+ * One narrow rewrite call. Deliberately not a loop: a single bounded attempt, its own
+ * reservation handled by the caller, and no provider text returned beyond the parsed patch.
+ */
+export async function requestCloseCopyRepair({
+  apiKey,
+  prompt,
+  fetchImpl = fetch,
+  budget
+}: {
+  apiKey: string;
+  prompt: string;
+  fetchImpl?: FetchLike;
+  budget: { spentPaise: number; reservedPaise: number };
+}): Promise<{ patch: unknown; actualCostUsd: number; promptTokens: number; completionTokens: number }> {
+  if (!apiKey) throw new Error("OPENROUTER_API_KEY is required to repair a story draft.");
+
+  const decision = authoriseGenerationBudget({
+    spentPaise: budget.spentPaise,
+    reservedPaise: budget.reservedPaise,
+    estimatedPaise: estimateMaximumStoryDraftCostInrPaise()
+  });
+  if (decision.status === "refused") throw new Error(budgetRefusalMessage(decision));
+
+  const response = await fetchImpl("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    signal: AbortSignal.timeout(STORY_DRAFT_TIMEOUT_MS),
+    body: JSON.stringify({
+      model: OPENROUTER_STORY_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      // A rewrite needs more variation than the draft call, or it reaches for the same words.
+      temperature: 0.6,
+      max_tokens: 2_000,
+      stream: false,
+      reasoning: { effort: "none", exclude: true },
+      provider: { require_parameters: true, sort: "throughput", data_collection: "deny", max_price: { prompt: 0.1, completion: 0.2 } },
+      response_format: { type: "json_object" }
+    })
+  });
+
+  const payload = (await response.json()) as OpenRouterPayload;
+  if (!response.ok) throw new Error(`OpenRouter repair failed: ${payload.error?.message ?? response.statusText}`);
+
+  const choice = payload.choices?.[0];
+  if (choice?.finish_reason === "length") throw new Error("OpenRouter cut the repair short before it could be parsed.");
+
+  const content = choice?.message?.content;
+  if (typeof content !== "string") throw new Error("OpenRouter returned no repair content.");
+  if (Buffer.byteLength(content, "utf8") > MAX_REPAIR_RESPONSE_UTF8_BYTES) throw new Error("OpenRouter repair response was larger than a field rewrite should ever be.");
+
+  const actualCostUsd = payload.usage?.cost;
+  if (typeof actualCostUsd !== "number" || !Number.isFinite(actualCostUsd) || actualCostUsd < 0) {
+    throw new Error("OpenRouter returned an invalid or missing repair cost; the reservation cannot be reconciled safely.");
+  }
+
+  const fenced = /^\s*```(?:json)?\s*([\s\S]*?)\s*```\s*$/.exec(content);
+
+  // The raw body stops here. Only the parsed patch leaves this function.
+  return {
+    patch: JSON.parse(fenced ? fenced[1] : content),
+    actualCostUsd,
+    promptTokens: payload.usage?.prompt_tokens ?? 0,
+    completionTokens: payload.usage?.completion_tokens ?? 0
   };
 }

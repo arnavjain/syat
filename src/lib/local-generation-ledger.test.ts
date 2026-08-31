@@ -322,7 +322,7 @@ describe("preview wave transaction", () => {
       let metadataCalls = 0;
       let providerCalls = 0;
       await expect(runPreviewBatch(
-        { pilot: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => {
             metadataCalls += 1;
@@ -341,7 +341,7 @@ describe("preview wave transaction", () => {
       expect(findCloseCopyMatches(draft, sourcePack.sources)).toEqual([]);
       expect(reviewEditorialQuality(draft, []).blockers).toEqual([]);
       const report = await runPreviewBatch(
-        { pilot: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 }),
           createDraft: async ({ reserveAttempt }) => {
@@ -356,29 +356,30 @@ describe("preview wave transaction", () => {
       expect(index.items).toHaveLength(1);
       const savedStory = JSON.parse(await readFile(join(directory, "data/stories/news/district-water-review.json"), "utf8"));
       expect(savedStory).toMatchObject({ publicationAllowed: false, disclosure: "AI-assisted private preview" });
-      const durableInputHash = report.items[0].inputHash;
+      const durableInputHash = report!.items[0].inputHash;
       const ledgerFile = JSON.parse(await readFile(join(directory, ".syat-private/generation-ledger.json"), "utf8"));
       expect(savedStory.generation.inputHash).toBe(durableInputHash);
       expect(ledgerFile.attempts[0].inputHash).toBe(durableInputHash);
       expect(await readdir(join(directory, ".syat-private/generated-drafts"))).toContain(`${durableInputHash}.json`);
-      expect(report.items[0].outputHash).not.toBe(durableInputHash);
+      expect(report!.items[0].outputHash).not.toBe(durableInputHash);
 
       const resumed = await runPreviewBatch(
-        { pilot: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 }),
           createDraft: async () => { throw new Error("A completed input must not call the provider again."); }
         }
       );
-      expect(resumed.items).toMatchObject([{ slug: "district-water-review", reused: true }]);
+      expect(resumed!.items).toMatchObject([{ slug: "district-water-review", reused: true }]);
 
       const failingPack = { ...structuredClone(sourcePack), id: "district-water-review-two", title: "A second district water record enters review" };
       const failingDraft = structuredClone(draft);
       failingDraft.sourcePackId = failingPack.id;
       failingDraft.bodySections = failingDraft.bodySections.map((section) => ({ ...section, paragraphs: [section.paragraphs[0]] }));
       await writeFile(join(directory, "data/source-packs/approved-preview.json"), JSON.stringify([failingPack]), "utf8");
-      await expect(runPreviewBatch(
-        { pilot: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+      const previousExitCode = process.exitCode;
+      const blockedRun = await runPreviewBatch(
+        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 }),
           createDraft: async ({ reserveAttempt }) => {
@@ -386,7 +387,10 @@ describe("preview wave transaction", () => {
             return { draft: failingDraft, review: reviewGeneratedDraft(failingDraft, failingPack.sources, { indiaConnection: failingPack.indiaConnection }), usage: { promptTokens: 100, completionTokens: 200 }, reservedMaximumPaise: 20, actualCostUsd: 0.001, reservations: [] };
           }
         }
-      )).rejects.toThrow(/article-word-count/);
+      );
+      expect(blockedRun).toBeUndefined();
+      expect(process.exitCode).toBe(2);
+      process.exitCode = previousExitCode;
       expect(JSON.parse(await readFile(join(directory, "data/stories/news/index.json"), "utf8")).items).toHaveLength(1);
       await expect(readFile(join(directory, "data/stories/news/district-water-review-two.json"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
     } finally {

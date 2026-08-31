@@ -252,6 +252,37 @@ function textTokens(text: string) {
   return text.toLocaleLowerCase("en-IN").normalize("NFKC").replace(/([\p{L}])['’]s\b/giu, "$1s").match(/[\p{L}\p{N}]+/gu) ?? [];
 }
 
+const nameConnectors = new Set(["and", "of", "for", "the", "in", "on", "to", "a", "an"]);
+
+/**
+ * A run that is simply a proper name as the source writes it: a statute, scheme, institution
+ * or place. "Mahatma Gandhi National Rural Employment Guarantee Act" is seven tokens, and a
+ * story about that Act has to name it. Paraphrasing a statutory name would make the story
+ * wrong, so matching one is not evidence of copied analysis.
+ *
+ * This narrows the guard's precision, it does not lower its bar. Copying anything beyond a
+ * name still trips the neighbouring windows, which is asserted in the tests.
+ */
+function runIsProperName(run: readonly string[], evidenceText: string): boolean {
+  const significant = run.filter((token) => !nameConnectors.has(token));
+  if (significant.length < 3) return false;
+  // A name is a noun phrase. A copied headline is Title Case too, so capitalisation alone is
+  // not enough: "Minister Kavita Rao Opens ..." must still be caught, and it carries a verb.
+  if (run.some((token) => isHeadlineActionVerb(token))) return false;
+
+  const originalTokens = evidenceText.normalize("NFKC").replace(/([\p{L}])['’]s\b/giu, "$1s").match(/[\p{L}\p{M}]+/gu) ?? [];
+  const lowered = originalTokens.map((token) => token.toLocaleLowerCase("en-IN"));
+
+  for (let index = 0; index <= lowered.length - run.length; index += 1) {
+    if (run.some((token, offset) => lowered[index + offset] !== token)) continue;
+    const span = originalTokens.slice(index, index + run.length);
+    const significantSpan = span.filter((token) => !nameConnectors.has(token.toLocaleLowerCase("en-IN")));
+    const capitalised = significantSpan.filter((token) => /^\p{Lu}/u.test(token)).length;
+    if (significantSpan.length > 0 && capitalised === significantSpan.length) return true;
+  }
+  return false;
+}
+
 function sharedRun(text: string, evidenceText: string, size: number) {
   const visible = textTokens(text);
   const evidence = textTokens(evidenceText);
@@ -261,9 +292,9 @@ function sharedRun(text: string, evidenceText: string, size: number) {
   for (let index = 0; index <= visible.length - size; index += 1) {
     const run = visible.slice(index, index + size);
     const normalisedRun = run.join(" ");
-    if (evidenceRuns.has(normalisedRun)) {
-      return { tokenCount: size, matchHash: createHash("sha256").update(normalisedRun).digest("hex") };
-    }
+    if (!evidenceRuns.has(normalisedRun)) continue;
+    if (runIsProperName(run, evidenceText)) continue;
+    return { tokenCount: size, matchHash: createHash("sha256").update(normalisedRun).digest("hex"), sharedText: normalisedRun };
   }
   return null;
 }
@@ -318,21 +349,41 @@ function visibleDraftFields(draft: GeneratedStoryV2): VisibleDraftField[] {
       { id: `unresolved:${question.id}:question`, text: question.question, sourceIds: question.sourceIds },
       { id: `unresolved:${question.id}:need`, text: question.whatWouldHelp, sourceIds: question.sourceIds }
     ]),
-    { id: "context-bridge", text: `${draft.contextBridge.question} ${draft.contextBridge.connection}`, sourceIds: draft.sourceIds },
-    { id: "authored-visual", text: `${draft.authoredVisual.title} ${draft.authoredVisual.description} ${draft.authoredVisual.limitation}`, sourceIds: draft.authoredVisual.sourceIds },
+    { id: "context-bridge:question", text: draft.contextBridge.question, sourceIds: draft.sourceIds },
+    { id: "context-bridge:connection", text: draft.contextBridge.connection, sourceIds: draft.sourceIds },
+    { id: "authored-visual:title", text: draft.authoredVisual.title, sourceIds: draft.authoredVisual.sourceIds },
+    { id: "authored-visual:description", text: draft.authoredVisual.description, sourceIds: draft.authoredVisual.sourceIds },
+    { id: "authored-visual:limitation", text: draft.authoredVisual.limitation, sourceIds: draft.authoredVisual.sourceIds },
     { id: "reframe", text: draft.story.reframe.value, sourceIds: draft.sourceIds }
   ];
 }
 
-export function findCloseCopyMatches(draft: GeneratedStoryV2, sourceDossier: SourceDossierRecord[]) {
+function closeCopyMatches(draft: GeneratedStoryV2, sourceDossier: SourceDossierRecord[]) {
   const sourceById = new Map(sourceDossier.map((source) => [source.id, source]));
   return visibleDraftFields(draft).flatMap((field) => field.sourceIds.flatMap((sourceId) => {
     const source = sourceById.get(sourceId);
     const visibleText = field.compactLabel ? withoutOpeningEntityOrOffice(field.text) : field.text;
     const runSize = field.compactLabel ? 6 : 7;
     const match = source ? sharedRun(visibleText, source.evidenceText, runSize) : null;
-    return match ? [{ fieldId: field.id, sourceId, ...match }] : [];
+    return match ? [{ fieldId: field.id, sourceId, currentText: field.text, ...match }] : [];
   }));
+}
+
+/**
+ * The reportable form. Carries only a truncated hash of the overlap, so a finding can be
+ * logged or written to a report without ever recording the wording itself.
+ */
+export function findCloseCopyMatches(draft: GeneratedStoryV2, sourceDossier: SourceDossierRecord[]) {
+  return closeCopyMatches(draft, sourceDossier).map(({ fieldId, sourceId, tokenCount, matchHash }) => ({ fieldId, sourceId, tokenCount, matchHash }));
+}
+
+/**
+ * The repair form. Includes the overlapping wording and the field's current text so a narrow
+ * rewrite request can name exactly what to avoid. For building one in-memory prompt only:
+ * never log it, never write it to disk, never return it to a caller that might.
+ */
+export function findCloseCopySpansForRepair(draft: GeneratedStoryV2, sourceDossier: SourceDossierRecord[]) {
+  return closeCopyMatches(draft, sourceDossier);
 }
 
 function normaliseBindingText(text: string) {
@@ -418,7 +469,9 @@ export type SelectedExactTime = {
   label: string;
 };
 
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.6";
+// v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
+// input hash, so a pipeline change gives every pack a fresh identity to attempt.
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v3.0";
 
 type JsonObject = Record<string, unknown>;
 

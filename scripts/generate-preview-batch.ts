@@ -9,7 +9,7 @@ import { reviewGeneratedDraft } from "../src/lib/draft-review";
 import { reviewEditorialQuality } from "../src/lib/editorial-quality";
 import { generatedStoryV2ResponseSchema, parseGeneratedStoryV2, STORY_DRAFT_PROMPT_VERSION, type GeneratedStoryV2, type StoryDraftV2PromptInput } from "../src/lib/generation-contract";
 import { LocalGenerationLedger, type LedgerReceipt } from "../src/lib/local-generation-ledger";
-import { createStoryDraft, OPENROUTER_STORY_MODEL, type GenerationReservationRequest, type ReserveStoryAttempt, type StoryDraftResult } from "../src/lib/openrouter-story-client";
+import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL, requestCloseCopyRepair, STORY_DRAFT_TEMPERATURE, type GenerationReservationRequest, type RepairCloseCopy, type ReserveStoryAttempt, type StoryDraftResult } from "../src/lib/openrouter-story-client";
 import { assertSourcePackPromotionCompatible, promoteGeneratedStory } from "../src/lib/promote-generated-story";
 import { readerStoryIndexItemSchema, readerStorySchema, type ReaderStory } from "../src/lib/reader-story-schema";
 import { sourcePackSchema, validatePreviewSourcePack, type SourcePack } from "../src/lib/source-pack";
@@ -133,6 +133,7 @@ export function validateOpenRouterModelMetadata(value: unknown) {
 
 const batchArgumentsSchema = z.object({
   pilot: z.boolean(),
+  dryRun: z.boolean(),
   start: z.number().int().nonnegative(),
   count: z.number().int().positive().max(10),
   sourcePackPath: z.string().min(1),
@@ -148,10 +149,11 @@ function readArgumentValue(args: string[], index: number, label: string) {
 }
 
 export function parseBatchArguments(args: string[]): BatchArguments {
-  const parsed: BatchArguments = { pilot: false, start: 0, count: 10, sourcePackPath: DEFAULT_SOURCE_PACK_PATH, ledgerPath: DEFAULT_LEDGER_PATH };
+  const parsed: BatchArguments = { pilot: false, dryRun: false, start: 0, count: 10, sourcePackPath: DEFAULT_SOURCE_PACK_PATH, ledgerPath: DEFAULT_LEDGER_PATH };
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
     if (argument === "--pilot") parsed.pilot = true;
+    else if (argument === "--dry-run") parsed.dryRun = true;
     else if (argument === "--start") parsed.start = Number(readArgumentValue(args, index++, "--start"));
     else if (argument === "--count") parsed.count = Number(readArgumentValue(args, index++, "--count"));
     else if (argument === "--source-packs") parsed.sourcePackPath = readArgumentValue(args, index++, "--source-packs");
@@ -209,8 +211,16 @@ const waveReportSchema = z.object({
   }).strict()).min(1).max(10)
 }).strict();
 
+/**
+ * A repair is a separate paid attempt with its own durable identity, so an identical repair
+ * can never be charged twice and it is never mistaken for a retry of the draft itself.
+ */
+function repairInputHash(draftInputHash: string, fieldIds: readonly string[]) {
+  return createHash("sha256").update(JSON.stringify({ model: OPENROUTER_STORY_MODEL, promptVersion: PROMPT_VERSION, repairOf: draftInputHash, fields: [...fieldIds].sort() })).digest("hex");
+}
+
 function stableInputHash(input: StoryDraftV2PromptInput) {
-  return createHash("sha256").update(JSON.stringify({ model: OPENROUTER_STORY_MODEL, promptVersion: PROMPT_VERSION, input })).digest("hex");
+  return createHash("sha256").update(JSON.stringify({ model: OPENROUTER_STORY_MODEL, promptVersion: PROMPT_VERSION, temperature: STORY_DRAFT_TEMPERATURE, input })).digest("hex");
 }
 
 function outputHash(draft: GeneratedStoryV2) {
@@ -247,12 +257,12 @@ function draftInputFor(pack: SourcePack, position: number): StoryDraftV2PromptIn
 }
 
 function authoredVisualApproval(draft: GeneratedStoryV2, reviewedAt: string): ReaderStory["media"][number] {
-  const mediaId = `authored-${draft.sourcePackId}-${draft.authoredVisual.kind}`;
+  const mediaId = `authored-${draft.sourcePackId}-${draft.authoredVisual.kind}`.replaceAll("_", "-");
   return {
     id: mediaId,
     kind: draft.authoredVisual.kind === "relationship_map" ? "illustration" : "chart",
     label: draft.authoredVisual.title,
-    alt: `${draft.authoredVisual.title}. ${draft.authoredVisual.description}`,
+    alt: `${draft.authoredVisual.title}. ${draft.authoredVisual.description}`.slice(0, 320),
     caption: draft.authoredVisual.description,
     creator: "Syāt visual desk",
     creditLine: "Visual: Syāt visual desk; based only on the credited source records.",
@@ -342,6 +352,26 @@ async function fetchModelMetadata(fetchImpl: typeof fetch) {
   return validateOpenRouterModelMetadata(await response.json());
 }
 
+const fatalBatchError = [
+  /\bbudget\b/i,
+  /\breserv(?:ation|ed|e)\b/i,
+  /generation ledger|ledger lock|exclusive lock/i,
+  /previously failed permanently/i,
+  /exceed the 100-story/i,
+  /contains duplicate IDs/i,
+  /was produced from different input/i,
+  /model metadata/i,
+  /OPENROUTER_API_KEY/,
+  /no paid request was made/i
+];
+
+function isFatalBatchError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return fatalBatchError.some((pattern) => pattern.test(message));
+}
+
+type BlockedPack = { sourcePackId: string; reason: string };
+
 function paise(value: number) {
   return `₹${(value / 100).toFixed(2)}`;
 }
@@ -353,14 +383,14 @@ export async function runPreviewBatch(
   const fetchImpl = dependencies.fetchImpl ?? fetch;
   const createDraft = dependencies.createDraft ?? createStoryDraft;
   const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set in the private environment; no paid request was made.");
+  if (!apiKey && !options.dryRun) throw new Error("OPENROUTER_API_KEY is not set in the private environment; no paid request was made.");
   const sourcePacks = sourcePackFileSchema.parse(await readJson(resolve(options.sourcePackPath))).map(validatePreviewSourcePack);
   const selected = sourcePacks.slice(options.start, options.start + options.count);
   if (selected.length !== options.count) throw new Error(`Requested ${options.count} source packs from ${options.start}, but only ${selected.length} are available; no paid request was made.`);
   if (new Set(selected.map((pack) => pack.id)).size !== selected.length) throw new Error("The requested source-pack wave contains duplicate IDs; no paid request was made.");
   if (selected.some((pack) => `authored-${pack.id}-relationship_map`.length > 80)) throw new Error("A source-pack ID is too long for the reviewed authored-visual record; no paid request was made.");
   selected.forEach(assertSourcePackPromotionCompatible);
-  await fetchModelMetadata(fetchImpl);
+  if (!options.dryRun) await fetchModelMetadata(fetchImpl);
 
   const ledger = new LocalGenerationLedger(resolve(options.ledgerPath));
   const month = currentIndiaMonth();
@@ -380,16 +410,35 @@ export async function runPreviewBatch(
     const staged: Array<{ nextPath: string; finalPath: string }> = [];
     const stories: ReaderStory[] = [];
     const reportItems: z.infer<typeof waveReportSchema>["items"] = [];
+    const blocked: BlockedPack[] = [];
     let waveSpentPaise = 0;
     let reportNext: string | undefined;
     let indexNext: string | undefined;
 
     try {
       for (const [offset, pack] of selected.entries()) {
+       try {
         const input = draftInputFor(pack, options.start + offset);
         const inputHash = stableInputHash(input);
         const cachePath = join(cacheDirectory, `${inputHash}.json`);
         const prior = await ledger.getByInputHash(inputHash);
+
+        // The free lane. Re-scores drafts already paid for, so every checker change can be
+        // evaluated against real output without a provider call or a reservation.
+        if (options.dryRun) {
+          if (!prior || prior.state !== "completed") {
+            blocked.push({ sourcePackId: pack.id, reason: "no cached draft to re-score" });
+            continue;
+          }
+          const cachedDraft = await loadCachedDraft(cachePath, pack, input);
+          const cachedReview = reviewGeneratedDraft(cachedDraft, pack.sources, { indiaConnection: pack.indiaConnection });
+          const cachedQuality = reviewEditorialQuality(cachedDraft, corpus.filter((cached) => cached.inputHash !== inputHash).map((cached) => cached.draft));
+          const codes = [...cachedReview.findings.filter((finding) => finding.severity === "blocker").map((finding) => finding.code), ...cachedQuality.blockers.map((finding) => finding.code)];
+          const lowScores = Object.entries(cachedQuality.scores).filter(([, value]) => value < 4).map(([name]) => name);
+          console.log(`${pack.id}: ${codes.length === 0 && lowScores.length === 0 ? "would pass" : "would block"}${codes.length > 0 ? ` (${codes.join(", ")})` : ""}${lowScores.length > 0 ? ` [low: ${lowScores.join(", ")}]` : ""} · voice ${cachedQuality.scores.humanVoice}/5 · warnings ${cachedQuality.warnings.map((warning) => warning.code).join(", ") || "none"}`);
+          continue;
+        }
+
         const budget = await ledger.summary(month);
         const paid = await runPaidGeneration({
           ledger,
@@ -398,13 +447,53 @@ export async function runPreviewBatch(
           jobCommittedPaise: options.pilot ? budget.spentPaise + budget.reservedPaise : waveSpentPaise,
           ...(options.pilot ? { jobCapPaise: PILOT_CAP_PAISE } : {}),
           generate: async (reserveAttempt) => {
+            // At most one repair per pack per run, with its own reservation. Never a loop.
+            let repairsUsed = 0;
+            const repairCloseCopy: RepairCloseCopy = async ({ targets, prompt }) => {
+              if (repairsUsed > 0) throw new Error(`Story ${pack.id} already used its one close-copy repair.`);
+              repairsUsed += 1;
+
+              const hash = repairInputHash(inputHash, targets.map((target) => target.fieldId));
+              const priorRepair = await ledger.getByInputHash(hash);
+              if (priorRepair) throw new Error(`This exact repair was already attempted for ${pack.id}; change the draft before paying for it again.`);
+
+              const repairBudget = await ledger.summary(month);
+              const receipt = await ledger.reserve({
+                inputHash: hash,
+                estimatedPaise: estimateMaximumStoryDraftCostInrPaise(),
+                attempt: 1,
+                month,
+                retryReason: "new_input",
+                jobCommittedPaise: repairBudget.spentPaise + repairBudget.reservedPaise,
+                ...(options.pilot ? { jobCapPaise: PILOT_CAP_PAISE } : {})
+              });
+
+              try {
+                const repair = await requestCloseCopyRepair({
+                  apiKey: apiKey!,
+                  prompt,
+                  fetchImpl,
+                  budget: { spentPaise: repairBudget.spentPaise, reservedPaise: repairBudget.reservedPaise }
+                });
+                await ledger.complete(receipt, { actualCostUsd: repair.actualCostUsd, promptTokens: repair.promptTokens, completionTokens: repair.completionTokens, outputHash: createHash("sha256").update(JSON.stringify(repair.patch)).digest("hex") });
+                console.log(`  repaired ${targets.length} field(s) on ${pack.id}: ${targets.map((target) => target.fieldId).join(", ")}`);
+                return repair.patch;
+              } catch (error) {
+                await ledger.fail(receipt, "generation_failed");
+                throw error;
+              }
+            };
+
             const result: StoryDraftResult = await createDraft({
-              apiKey,
+              // Unreachable without a key: the guard above only relaxes for --dry-run,
+              // which returns before any paid path.
+              apiKey: apiKey!,
               input,
               fetchImpl,
               budget: { spentPaise: budget.spentPaise, reservedPaise: budget.reservedPaise },
               reserveAttempt: ((request: GenerationReservationRequest) => reserveAttempt(request)) as ReserveStoryAttempt,
-              maxAttempts: prior ? 1 : 2
+              maxAttempts: prior ? 1 : 2,
+              repairCloseCopy
             });
             const hash = outputHash(result.draft);
             await atomicWriteJson(cachePath, result.draft, (value) => generatedStoryV2ResponseSchema.parse(value));
@@ -467,6 +556,30 @@ export async function runPreviewBatch(
         });
         const totals = await ledger.summary(month);
         console.log(`${offset + 1}/${options.count} passed · reserved ${paise(totals.reservedPaise)} · actual ${paise(totals.actualProviderPaise)}`);
+       } catch (error) {
+        // A budget, ledger or index fault must stop everything. A pack failing its own
+        // evidence or language gate must not hide what the other packs would have shown.
+        if (isFatalBatchError(error)) throw error;
+        const reason = error instanceof Error ? error.message : String(error);
+        blocked.push({ sourcePackId: pack.id, reason });
+        console.error(`${offset + 1}/${options.count} blocked · ${pack.id} · ${reason}`);
+       }
+      }
+
+      if (options.dryRun) {
+        console.log(`Dry run complete. ${blocked.length > 0 ? `${blocked.length} pack(s) had no cached draft.` : "Every pack had a cached draft."} No provider call and no reservation were made.`);
+        return;
+      }
+
+      if (blocked.length > 0) {
+        console.error("");
+        console.error(`${reportItems.length} of ${selected.length} packs passed. Nothing was staged or activated, because a wave activates only when every pack passes.`);
+        for (const item of blocked) console.error(`  blocked ${item.sourcePackId}: ${item.reason}`);
+        for (const item of reportItems) console.error(`  passed  ${item.sourcePackId}: voice ${item.scores.humanVoice}/5, warnings ${item.warnings.join(", ") || "none"}`);
+        const totals = await ledger.summary(month);
+        console.error(`Spend after this run: actual ${paise(totals.actualProviderPaise)}, reserved ${paise(totals.reservedPaise)}.`);
+        process.exitCode = 2;
+        return;
       }
 
       const newCards = stories.filter((story) => !existingBySlug.has(story.slug)).map((story, index) => readerStoryIndexItemSchema.parse({

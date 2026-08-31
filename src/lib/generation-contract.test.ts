@@ -325,7 +325,7 @@ describe("syat.story-draft.v2", () => {
     expect(prompt).toContain("In a significant development");
     expect(prompt).toContain("syat.story-draft.v2");
     expect(prompt).toContain("modelInputAllowed");
-    expect(prompt).toContain("Prompt version: syat.story-draft.v2.6");
+    expect(prompt).toContain("Prompt version: syat.story-draft.v3.0");
     expect(prompt).toContain("Write the title and dek with fresh sentence structure");
     expect(prompt).toContain("do not reuse any six-token source span in the title or any seven-token source span in the dek");
     expect(prompt).toContain("Exact proper names and necessary technical labels may repeat");
@@ -335,5 +335,34 @@ describe("syat.story-draft.v2", () => {
     expect(prompt).toContain("local-decision");
     expect(prompt).not.toContain("customs-time-release-study");
     expect(prompt).not.toContain("publicationAllowed\": true");
+  });
+});
+
+describe("close-copy guard precision", () => {
+  it("lets a story name the statute it is about", () => {
+    // "Mahatma Gandhi National Rural Employment Guarantee Act" is seven tokens. A story about
+    // that Act must name it, and paraphrasing a statutory name would make the story wrong.
+    const statute = "The audit examined the Mahatma Gandhi National Rural Employment Guarantee Act in the district and found gaps.";
+    const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: statute };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "Auditors looked at how the Mahatma Gandhi National Rural Employment Guarantee Act was run locally, and they recorded shortfalls in the paperwork that the district office keeps.";
+
+    expect(findCloseCopyMatches(draft, [officialSource])).toEqual([]);
+  });
+
+  it("still catches copied prose that merely contains a name", () => {
+    const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "The audit examined the Mahatma Gandhi National Rural Employment Guarantee Act and found that muster rolls were not maintained in the prescribed manner." };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "The audit found that muster rolls were not maintained in the prescribed manner, which the district has not explained.";
+
+    expect(findCloseCopyMatches(draft, [officialSource]).length).toBeGreaterThan(0);
+  });
+
+  it("does not treat lowercase institutional prose as a name", () => {
+    const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "The report contains compliance audit paragraphs and three general paragraphs on the department." };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "It sets out compliance audit paragraphs and three general paragraphs, and it names the department each one concerns.";
+
+    expect(findCloseCopyMatches(draft, [officialSource]).length).toBeGreaterThan(0);
   });
 });
