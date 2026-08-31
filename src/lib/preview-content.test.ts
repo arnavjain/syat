@@ -65,6 +65,10 @@ describe("preview editorial content", () => {
       expect(story.media.rightsBasis).not.toHaveLength(0);
       expect(story.media.reviewStatus).toBe("fixture metadata complete");
       expect(story.media.publicationStatus).toBe("not publishable");
+      expect(story.media.subjectTitle).not.toHaveLength(0);
+      expect(story.media.mapAriaLabel).not.toHaveLength(0);
+      expect(story.media.mapLabels).toHaveLength(4);
+      expect(story.media.mapCenter).not.toHaveLength(0);
       story.perspectives.forEach((view) => {
         expect(view.startingPoint).not.toHaveLength(0);
         expect(view.boundary).toMatch(/starting standpoint/i);

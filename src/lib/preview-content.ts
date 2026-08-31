@@ -37,6 +37,10 @@ export type PreviewStory = {
 export type PreviewMedia = {
   kind: "authored_diagram";
   label: string;
+  subjectTitle: string;
+  mapAriaLabel: string;
+  mapLabels: [string, string, string, string];
+  mapCenter: string;
   creator: string;
   source: string;
   rightsBasis: string;
@@ -106,6 +110,10 @@ export const previewStories: readonly PreviewStory[] = [
     media: {
       kind: "authored_diagram",
       label: "Perspective map: bus corridor, market edge, school gate, and clinic approach",
+      subjectTitle: "A street rule is a starting point. Daily life is the question.",
+      mapAriaLabel: "A conceptual teaching map of bus corridor, market edge, school gate, and clinic approach",
+      mapLabels: ["Bus corridor", "Market edge", "School gate", "Clinic approach"],
+      mapCenter: "One street rule",
       creator: "Syāt teaching desk",
       source: "Authored for this fictional Nadi Nagar teaching fixture",
       rightsBasis: "Syāt-authored fixture; no external asset or person depicted",
@@ -153,7 +161,7 @@ export const previewStories: readonly PreviewStory[] = [
     updatedLabel: "Fixture revised 31 August 2026",
     whatChanged: "The question returns whenever an Indian city changes how a street, fare, or public time is shared. The answer cannot be reduced to traffic alone.",
     whyItMatters: "A timeless subject helps readers carry a question across Indian places and eras without pretending every situation is the same.",
-    media: { kind: "authored_diagram", label: "A four-route question map", creator: "Syāt teaching desk", source: "Authored for this Indian-context teaching fixture", rightsBasis: "Syāt-authored fixture; no external asset or real place depicted", reviewStatus: "fixture metadata complete", publicationStatus: "not publishable", limitation: "A conceptual aid, not a transit map or dataset." },
+    media: { kind: "authored_diagram", label: "A four-route question map", subjectTitle: "A journey is more than a route. It is a question of time, access, and care.", mapAriaLabel: "A conceptual teaching map of past choices, daily chains, shared space, and open measures", mapLabels: ["Past choices", "Shared space", "Daily chains", "Open measures"], mapCenter: "One recurring question", creator: "Syāt teaching desk", source: "Authored for this Indian-context teaching fixture", rightsBasis: "Syāt-authored fixture; no external asset or real place depicted", reviewStatus: "fixture metadata complete", publicationStatus: "not publishable", limitation: "A conceptual aid, not a transit map or dataset." },
     timeline: [
       { order: 1, eventType: "Recurring question", time: { kind: "period", label: "Across different periods" }, text: "This fixture keeps open how cities reorganise movement around tools, rules, and public expectations.", sourceIds: ["fixture-method"], uncertainty: "It makes no claim about a particular city or historical record." },
       { order: 2, eventType: "Outcome to check", time: { kind: "unknown", label: "Time not yet known" }, text: "A specific place and period would be needed to ask whether access improved for people with the least flexibility.", sourceIds: ["fixture-method"], uncertainty: "This is an open research question, not a dateable event." }

@@ -29,8 +29,8 @@ export function StoryPage({ story }: { story: PreviewStory }) {
       </nav>
 
       <section className="story-media" aria-labelledby="story-media-title">
-        <div className="media-subject"><p className="micro-copy">Fixed subject</p><h2 id="story-media-title">A street rule is a starting point. Daily life is the question.</h2><p>{story.media.label}</p></div>
-        <div className="media-reading-map" aria-label="A conceptual teaching map of bus corridor, market edge, school gate, and clinic approach"><span>Bus corridor</span><span>Market edge</span><span>School gate</span><span>Clinic approach</span><b>One street rule</b></div>
+        <div className="media-subject"><p className="micro-copy">Fixed subject</p><h2 id="story-media-title">{story.media.subjectTitle}</h2><p>{story.media.label}</p></div>
+        <div className="media-reading-map" aria-label={story.media.mapAriaLabel}>{story.media.mapLabels.map((label) => <span key={label}>{label}</span>)}<b>{story.media.mapCenter}</b></div>
         <dl className="media-metadata"><div><dt>Creator</dt><dd>{story.media.creator}</dd></div><div><dt>Source</dt><dd>{story.media.source}</dd></div><div><dt>Rights basis</dt><dd>{story.media.rightsBasis}</dd></div><div><dt>Review</dt><dd>{story.media.reviewStatus}</dd></div><div><dt>Publication</dt><dd>{story.media.publicationStatus}</dd></div></dl>
         <p className="visual-limitation">Limit: {story.media.limitation}</p>
       </section>
