@@ -67,6 +67,16 @@ export function SyatFrame() {
         <p>Not a real city, policy, person, or measured outcome.</p>
       </div>
 
+      <details className="frame-basis">
+        <summary>View basis and limits</summary>
+        <div>
+          <p>Type: fictional Indian teaching fixture</p>
+          <p>Basis: a made-up sample policy note and teaching prompts</p>
+          <p>Source scope: this fixture only; it does not describe a real city, policy, person, or outcome</p>
+          <p>Limits: it is not reporting, evidence about a live issue, or a prediction</p>
+        </div>
+      </details>
+
       <SyatFrameSwitcher views={frameViews} />
 
       <footer className="syat-frame-footer">

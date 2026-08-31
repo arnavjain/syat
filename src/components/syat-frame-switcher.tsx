@@ -54,7 +54,7 @@ export function SyatFrameSwitcher({ views }: { views: FrameView[] }) {
           </button>
         ))}
       </div>
-      <section aria-labelledby={`syat-frame-tab-${activeView.id}`} className="active-view" id="syat-frame-view" role="tabpanel">
+      <section aria-labelledby={`syat-frame-tab-${activeView.id}`} className="active-view" id="syat-frame-view" role="tabpanel" tabIndex={0}>
         <p className="active-view-label">Current frame · {activeView.label}</p>
         <div className="view-reading">
           <div><span>Sees</span><p>{activeView.sees}</p></div>

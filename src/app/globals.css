@@ -58,7 +58,7 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 
 .mode-switch { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1240px; margin: 0 auto clamp(26px, 5vw, 56px); border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
 .mode-link { position: relative; z-index: 1; display: grid; gap: 3px; padding: 15px 0 18px; color: var(--soft-ink); transition: color 160ms var(--press-ease), transform 160ms var(--press-ease); }
-.mode-link span { font-family: Georgia, "Noto Serif Devanagari", serif; font-size: clamp(1.35rem, 2.2vw, 1.7rem); letter-spacing: -.035em; }
+.mode-link span { font-family: var(--font-editorial); font-size: clamp(1.35rem, 2.2vw, 1.7rem); letter-spacing: -.035em; }
 .mode-link small { font-size: .76rem; }
 .mode-link.active { color: var(--ink); }
 .mode-frame { position: absolute; bottom: -1px; left: 0; width: 50%; height: 5px; background: var(--hibiscus); border-radius: 4px 4px 0 0; transition: transform 200ms var(--press-ease); }
@@ -457,6 +457,11 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 .fixed-subject blockquote { margin: 0; font-family: var(--font-editorial); font-size: clamp(1.2rem, 2vw, 1.75rem); font-weight: 600; line-height: 1.08; letter-spacing: -.025em; }
 .fixed-subject > p { margin: 0; color: color-mix(in srgb, var(--paper) 65%, transparent); font-size: .64rem; }
 
+.frame-basis { margin: -6px 0 10px; border-bottom: 1px solid color-mix(in srgb, var(--ink) 28%, transparent); }
+.frame-basis summary { width: fit-content; padding: 8px 0 10px; color: var(--cobalt); cursor: pointer; font-size: .72rem; font-weight: 700; text-decoration: underline 1px currentColor; text-underline-offset: 4px; }
+.frame-basis > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: 0 0 11px; background: color-mix(in srgb, var(--ink) 16%, transparent); }
+.frame-basis p { margin: 0; padding: 8px 10px; background: var(--paper); color: var(--soft-ink); font-size: .67rem; line-height: 1.38; }
+
 .frame-switcher { min-width: 0; }
 
 .viewpoint-tabs {
@@ -605,6 +610,9 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
   .fixed-subject > span { font-size: .51rem; }
   .fixed-subject blockquote { font-size: 1.1rem; }
   .fixed-subject > p { font-size: .56rem; }
+  .frame-basis { margin-bottom: 8px; }
+  .frame-basis > div { grid-template-columns: 1fr; }
+  .frame-basis p { padding: 7px 9px; font-size: .62rem; }
 
   .viewpoint-tabs { margin-right: -16px; padding-right: 16px; }
   .viewpoint-tabs button { min-height: 44px; padding: 8px 10px; font-size: .66rem; }

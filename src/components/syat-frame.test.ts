@@ -51,6 +51,16 @@ describe("Syāt home frame", () => {
     expect(html).toContain("What this view uses");
   });
 
+  it("makes the fixture statement's basis and limits available without calling it reporting", () => {
+    const html = renderHome();
+
+    expect(html).toContain("View basis and limits");
+    expect(html).toContain("Type: fictional Indian teaching fixture");
+    expect(html).toContain("Basis: a made-up sample policy note and teaching prompts");
+    expect(html).toContain("Source scope: this fixture only; it does not describe a real city, policy, person, or outcome");
+    expect(html).toContain("Limits: it is not reporting, evidence about a live issue, or a prediction");
+  });
+
   it("switches a viewpoint and lets Whole View reset the frame", () => {
     const selectView = (
       designDirection as typeof designDirection & {
