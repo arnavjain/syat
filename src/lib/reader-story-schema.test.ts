@@ -147,7 +147,19 @@ function makeValidReaderStory() {
         sourceIds: ["ward-note"]
       }
     ],
-    relatedCoverage: [],
+    relatedCoverage: [
+      {
+        id: "independent-coverage",
+        publisher: "Independent local desk",
+        title: "How readers can follow the Bazaar Road trial",
+        url: "https://example.invalid/independent-bazaar-road",
+        publishedAt: "2026-08-30T08:00:00.000Z",
+        use: "Offers a link-only route to separate coverage of the announced trial.",
+        linkAllowed: true,
+        modelInputAllowed: false,
+        mediaReuseAllowed: false
+      }
+    ],
     reframe: { kind: "question", value: "How can a street trial be read from different daily routines?" },
     generation: {
       model: "deepseek/deepseek-v4-flash-0731",
@@ -223,5 +235,15 @@ describe("readerStorySchema", () => {
     } as never;
 
     expect(readerStorySchema.safeParse(story).success).toBe(false);
+  });
+
+  it("requires related coverage to stay link-only and unavailable to models or media reuse", () => {
+    const missingPermission = makeValidReaderStory();
+    delete (missingPermission.relatedCoverage[0] as Record<string, unknown>).modelInputAllowed;
+    const unrestrictedCoverage = makeValidReaderStory();
+    unrestrictedCoverage.relatedCoverage[0].mediaReuseAllowed = true;
+
+    expect(() => readerStorySchema.parse(missingPermission)).toThrow(/modelInputAllowed/);
+    expect(() => readerStorySchema.parse(unrestrictedCoverage)).toThrow(/mediaReuseAllowed/);
   });
 });

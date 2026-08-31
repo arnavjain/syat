@@ -119,7 +119,10 @@ export const linkOnlySourceSchema = z.object({
   title: z.string().min(1).max(320),
   url: z.url(),
   publishedAt: z.iso.datetime(),
-  use: z.string().min(12).max(300)
+  use: z.string().min(12).max(300),
+  linkAllowed: z.literal(true),
+  modelInputAllowed: z.literal(false),
+  mediaReuseAllowed: z.literal(false)
 }).strict();
 
 export const readerContextBridgeSchema = z.object({
