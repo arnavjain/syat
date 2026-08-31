@@ -23,6 +23,11 @@ export type PreviewStory = {
   evidence: Array<{ type: "documented" | "interpreted" | "unresolved"; text: string; sourceIds: string[]; scope: string }>;
   perspectives: Array<{ label: string; sees: string; values: string; uses: string; mayMiss: string }>;
   sources: PreviewSource[];
+  actions: {
+    sourceTrailTarget: "source-trail";
+    reframe: { topic?: string; claim?: string };
+    relatedTimelessTopicSlug: string;
+  };
 };
 
 export const previewStories: readonly PreviewStory[] = [
@@ -63,7 +68,8 @@ export const previewStories: readonly PreviewStory[] = [
     sources: [
       { id: "fixture-policy", publisher: "Syāt teaching desk", title: "Fictional Nadi Nagar street plan: sample policy note", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows the example plan’s stated terms." },
       { id: "fixture-experience", publisher: "Syāt teaching desk", title: "Fictional everyday-route notes: sample standpoint prompts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows why experience is framed as experience, not proof for everyone." }
-    ]
+    ],
+    actions: { sourceTrailTarget: "source-trail", reframe: { claim: "How does a street plan change daily life for people with different room to adjust?" }, relatedTimelessTopicSlug: "street-vending" }
   },
   {
     slug: "how-cities-move",
@@ -90,7 +96,8 @@ export const previewStories: readonly PreviewStory[] = [
       { label: "Historian", sees: "How past choices still shape present routes.", values: "Context and continuity.", uses: "Archives and comparison.", mayMiss: "The urgency of an individual trip." },
       { label: "Parent", sees: "The chain of trips needed to hold a day together.", values: "Safety and reliable time.", uses: "Daily routines and local knowledge.", mayMiss: "System-wide constraints." }
     ],
-    sources: [{ id: "fixture-method", publisher: "Syāt teaching desk", title: "Method fixture: a question across contexts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Explains the scope of this non-reporting fixture." }]
+    sources: [{ id: "fixture-method", publisher: "Syāt teaching desk", title: "Method fixture: a question across contexts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Explains the scope of this non-reporting fixture." }],
+    actions: { sourceTrailTarget: "source-trail", reframe: { topic: "street-vending" }, relatedTimelessTopicSlug: "street-vending" }
   }
 ] as const;
 

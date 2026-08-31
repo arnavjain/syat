@@ -8,5 +8,7 @@
 - English and Hindi are the first two editions.
 - Build three connected visual directions from the same content system: Annotated Evidence, Warm Commons, and Signal Garden. The chosen public direction will be selected after review; Warm Commons is the current accessibility and comfort baseline.
 - Onboarding must explain the product in plain language and guide the first reading, save, source view, and Reframe visit.
+- The first-use guide is four ordered browser-local steps. Completion uses the versioned `syat:onboarding:v1:completed` marker; storage failures never stop a reader from reaching the teaching story.
+- Both published teaching fixtures share one server-rendered story body. Each ends with a real source anchor, an honest saved-account gate, a Task-2-compatible Reframe query, and a related catalogue subject.
 - Media must be commercial-safe and credited. Social content uses official embeds only.
 - Preview stays private, watermarked, and `noindex` until a human approves publication.
