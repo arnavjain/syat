@@ -471,7 +471,7 @@ export type SelectedExactTime = {
 
 // v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
 // input hash, so a pipeline change gives every pack a fresh identity to attempt.
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v3.0";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v3.5";
 
 type JsonObject = Record<string, unknown>;
 
@@ -582,6 +582,7 @@ export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput
   }
   closeFlexibleTimeChoices(properties.story.properties.eventTime, allowedDates);
   closeFlexibleTimeChoices(properties.timeline.items.properties.time, allowedDates);
+  delete schema.$schema;
   return schema;
 }
 
@@ -607,7 +608,10 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
     "Begin with the concrete change, not a generic announcement phrase.",
     "Name official claims as claims and keep interpretation visibly separate.",
     "Include a standpoint only when a source explains why it belongs.",
-    "Do not manufacture a second side or a personal reaction."
+    "Do not manufacture a second side or a personal reaction.",
+    "Every source in the dossier must ground at least one statement. A source you cite but never use is a failure.",
+    "When two records describe the same subject differently, say so plainly and attribute each account to the record that makes it. Do not average them into one voice and do not decide which is right.",
+    "An audit and the institution it audits are not the same voice. Keep the audit's finding and the institution's own account clearly apart."
   ];
 
   return `You are an editorial research assistant for Syāt. Prepare a cautious, source-scoped draft for a human editor. Return exactly one JSON object and nothing else.

@@ -22,7 +22,11 @@ import { authoriseGenerationBudget, type GenerationBudgetDecision } from "./gene
 export type RepairCloseCopy = (request: { targets: readonly RepairTarget[]; prompt: string }) => Promise<unknown>;
 
 export const OPENROUTER_STORY_MODEL = "deepseek/deepseek-v4-flash-0731";
-export const STORY_DRAFT_TEMPERATURE = 0.5;
+// 0.15 tracked the source almost word for word, which is why this was raised. Most of that
+// pressure turned out to be the close-copy guard flagging statutory names, now fixed in
+// `runIsProperName`, and 0.5 and 0.35 both drifted off the strict output schema. A small lift
+// over the original keeps some variety without losing schema adherence.
+export const STORY_DRAFT_TEMPERATURE = 0.2;
 const STORY_DRAFT_MAX_TOKENS = 6000;
 export const MAX_STORY_DRAFT_EDITORIAL_BRIEF_UTF8_BYTES = 4_000;
 export const MAX_STORY_DRAFT_INDIA_CONNECTION_UTF8_BYTES = 2_000;
@@ -302,16 +306,19 @@ export async function createStoryDraft({
     selectedExactTime: input.selectedExactTime ?? null
   };
 
+  const fencedDraft = /^\s*```(?:json)?\s*([\s\S]*?)\s*```\s*$/.exec(content);
+  const draftJson = fencedDraft ? fencedDraft[1] : content;
+
   let draft: GeneratedStoryV2;
   try {
-    draft = parseGeneratedStoryV2Json(content, input.sourceDossier, expectedBinding);
+    draft = parseGeneratedStoryV2Json(draftJson, input.sourceDossier, expectedBinding);
   } catch (parseError) {
     // The only point where the provider body is still in memory. A close-copy failure is a
     // wording fault and can be repaired here; a structural fault cannot, and pretending
     // otherwise would be a way to launder a broken draft past the parser.
     if (!repairCloseCopy) throw parseError;
 
-    const structural = generatedStoryV2ResponseSchema.parse(JSON.parse(content));
+    const structural = generatedStoryV2ResponseSchema.parse(JSON.parse(draftJson));
     const targets = collectRepairTargets(structural, input.sourceDossier);
     if (targets.length === 0) throw parseError;
 

@@ -104,7 +104,7 @@ describe("promoteGeneratedStory", () => {
     expect(story.sources[0].rightsBasis).toBe("government_reproduction_policy");
     expect(story.relatedCoverage[0]).toMatchObject({ modelInputAllowed: false, mediaReuseAllowed: false });
     expect(story.generation.inputHash).toBe(generationInputHash);
-    expect(story.generation.promptVersion).toBe("syat.story-draft.v3.0");
+    expect(story.generation.promptVersion).toBe("syat.story-draft.v3.5");
     expect(story.media).toEqual([approvedVisual]);
     expect(story.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
     expect(story.statements[1]).toMatchObject({ basis: "evidence_gap", limits: "No independent observation or affected-person account is supplied." });
