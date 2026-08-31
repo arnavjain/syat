@@ -180,6 +180,15 @@ describe("syat.story-draft.v2", () => {
     expect(() => parseGeneratedStoryV2(draft, [officialSource])).toThrow(/closely cop(?:y|ies)/i);
   });
 
+  it("blocks a copied event title after a short institutional actor", () => {
+    const copiedTitle = "RBI Launches New Digital Rupee Pilot Today";
+    const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: `${copiedTitle} on 1 September 2026.` };
+    const draft = makeDraft();
+    draft.story.title = copiedTitle;
+
+    expect(() => parseGeneratedStoryV2(draft, [officialSource])).toThrow(/closely cop(?:y|ies)/i);
+  });
+
   it("rejects repeated stable media-plan IDs", () => {
     const draft = makeDraft();
     const plan = { id: "bazaar-road-photo", kind: "photo" as const, placement: "hero" as const, purpose: "Show the physical road layout described by the source record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by" as const, claimIds: ["trial-date"], sourceIds: ["pib-road-note"] };

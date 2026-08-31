@@ -251,10 +251,19 @@ function sharedRun(text: string, evidenceText: string, size: number) {
 
 type VisibleDraftField = { id: string; text: string; sourceIds: string[]; compactLabel?: true };
 
+const headlineActionVerbs = new Set(["announce", "approve", "close", "direct", "expand", "inaugurate", "launch", "open", "order", "release", "review", "start", "unveil", "visit"]);
+
+function isHeadlineActionVerb(token: string) {
+  const word = token.toLocaleLowerCase("en-IN");
+  const forms = [word, word.replace(/ies$/, "y"), word.replace(/es$/, ""), word.replace(/s$/, ""), word.replace(/ed$/, ""), word.replace(/d$/, ""), word.replace(/ing$/, ""), word.replace(/ing$/, "e")];
+  return forms.some((form) => headlineActionVerbs.has(form));
+}
+
 function withoutOpeningEntityOrOffice(text: string) {
   const tokens = text.normalize("NFKC").replace(/([\p{L}])['’]s\b/giu, "$1s").match(/[\p{L}\p{M}]+/gu) ?? [];
   let spanEnd = 0;
   for (const [index, token] of tokens.entries()) {
+    if (isHeadlineActionVerb(token)) break;
     const followsConnector = index > 0 && /^(?:and|for|of|the)$/i.test(tokens[index - 1]);
     if ((index < 3 || followsConnector) && /^\p{Lu}/u.test(token)) {
       spanEnd = index + 1;
