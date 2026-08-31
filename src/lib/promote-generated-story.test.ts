@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import type { DraftReview } from "./draft-review";
 import type { EditorialQualityReport } from "./editorial-quality";
 import { parseGeneratedStoryV2, type SourceDossierRecord } from "./generation-contract";
-import { promoteGeneratedStory } from "./promote-generated-story";
+import { assertSourcePackPromotionCompatible, promoteGeneratedStory as promoteGeneratedStoryWithInputHash } from "./promote-generated-story";
 import type { ReaderStory } from "./reader-story-schema";
 import type { SourcePack } from "./source-pack";
 
@@ -28,6 +28,13 @@ const sourcePack: SourcePack = {
     creditLine: "Independent Paper"
   }]
 };
+
+const generationInputHash = "7".repeat(64);
+type PromotionInputWithoutHash = Omit<Parameters<typeof promoteGeneratedStoryWithInputHash>[0], "generationInputHash">;
+
+function promoteGeneratedStory(input: PromotionInputWithoutHash) {
+  return promoteGeneratedStoryWithInputHash({ ...input, generationInputHash } as Parameters<typeof promoteGeneratedStoryWithInputHash>[0]);
+}
 
 function makeDraft(withExternalMedia = false) {
   return parseGeneratedStoryV2({
@@ -96,7 +103,7 @@ describe("promoteGeneratedStory", () => {
     expect(story.disclosure).toBe("AI-assisted private preview");
     expect(story.sources[0].rightsBasis).toBe("government_reproduction_policy");
     expect(story.relatedCoverage[0]).toMatchObject({ modelInputAllowed: false, mediaReuseAllowed: false });
-    expect(story.generation.inputHash).toMatch(/^[a-f0-9]{64}$/);
+    expect(story.generation.inputHash).toBe(generationInputHash);
     expect(story.media).toEqual([approvedVisual]);
     expect(story.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
     expect(story.statements[1]).toMatchObject({ basis: "evidence_gap", limits: "No independent observation or affected-person account is supplied." });
@@ -104,6 +111,13 @@ describe("promoteGeneratedStory", () => {
     expect(story.perspectives[0].rationale).toContain("bus route");
     expect(story.body[0]).toMatchObject({ section: { id: "announcement", title: "The announced change" } });
     expect(story.authoredVisual).toMatchObject({ mediaId: approvedVisual.id, kind: "process", claimIds: ["planned-trial", "outcome-open"] });
+  });
+
+  it("fails source-pack promotion compatibility before a draft or paid call is needed", () => {
+    const genericLicencePack: SourcePack = { ...sourcePack, sources: [{ ...source, rightsBasis: "explicit_licence", policyUrl: "https://example.invalid/custom-licence" }] };
+
+    expect(() => assertSourcePackPromotionCompatible(genericLicencePack)).toThrow(/licence-specific|explicit licence/i);
+    expect(assertSourcePackPromotionCompatible(sourcePack).id).toBe(sourcePack.id);
   });
 
   it("cannot promote a draft with an uncleared media plan", () => {

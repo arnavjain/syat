@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -203,8 +203,11 @@ describe("preview batch paid-call boundary", () => {
     };
 
     expect(() => validateOpenRouterModelMetadata(pricedModel)).toThrow(/structured/i);
+    expect(() => validateOpenRouterModelMetadata({
+      data: [{ ...pricedModel.data[0], supported_parameters: ["max_tokens", "response_format"] }]
+    })).toThrow(/strict JSON schema|structured/i);
     expect(validateOpenRouterModelMetadata({
-      data: [{ ...pricedModel.data[0], supported_parameters: ["max_tokens", "structured_outputs"] }]
+      data: [{ ...pricedModel.data[0], supported_parameters: ["max_tokens", "response_format", "structured_outputs"] }]
     })).toMatchObject({ id: "deepseek/deepseek-v4-flash-0731" });
   });
 });
@@ -314,6 +317,27 @@ describe("preview wave transaction", () => {
     process.chdir(directory);
     process.env.OPENROUTER_API_KEY = "test-key-never-sent";
     try {
+      const genericLicencePack = { ...structuredClone(sourcePack), sources: [{ ...sourcePack.sources[0], rightsBasis: "explicit_licence" as const, policyUrl: "https://example.invalid/custom-licence" }] };
+      await writeFile(join(directory, "data/source-packs/approved-preview.json"), JSON.stringify([genericLicencePack]), "utf8");
+      let metadataCalls = 0;
+      let providerCalls = 0;
+      await expect(runPreviewBatch(
+        { pilot: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        {
+          fetchImpl: async () => {
+            metadataCalls += 1;
+            return new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 });
+          },
+          createDraft: async () => {
+            providerCalls += 1;
+            throw new Error("The provider must not run for an incompatible source pack.");
+          }
+        }
+      )).rejects.toThrow(/licence-specific|explicit licence/i);
+      expect({ metadataCalls, providerCalls }).toEqual({ metadataCalls: 0, providerCalls: 0 });
+      await expect(readFile(join(directory, ".syat-private/generation-ledger.json"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
+      await writeFile(join(directory, "data/source-packs/approved-preview.json"), JSON.stringify([sourcePack]), "utf8");
+
       expect(findCloseCopyMatches(draft, sourcePack.sources)).toEqual([]);
       expect(reviewEditorialQuality(draft, []).blockers).toEqual([]);
       const report = await runPreviewBatch(
@@ -330,7 +354,14 @@ describe("preview wave transaction", () => {
       expect(report).toMatchObject({ status: "passed", count: 1, items: [{ slug: "district-water-review" }] });
       const index = JSON.parse(await readFile(join(directory, "data/stories/news/index.json"), "utf8"));
       expect(index.items).toHaveLength(1);
-      expect(JSON.parse(await readFile(join(directory, "data/stories/news/district-water-review.json"), "utf8"))).toMatchObject({ publicationAllowed: false, disclosure: "AI-assisted private preview" });
+      const savedStory = JSON.parse(await readFile(join(directory, "data/stories/news/district-water-review.json"), "utf8"));
+      expect(savedStory).toMatchObject({ publicationAllowed: false, disclosure: "AI-assisted private preview" });
+      const durableInputHash = report.items[0].inputHash;
+      const ledgerFile = JSON.parse(await readFile(join(directory, ".syat-private/generation-ledger.json"), "utf8"));
+      expect(savedStory.generation.inputHash).toBe(durableInputHash);
+      expect(ledgerFile.attempts[0].inputHash).toBe(durableInputHash);
+      expect(await readdir(join(directory, ".syat-private/generated-drafts"))).toContain(`${durableInputHash}.json`);
+      expect(report.items[0].outputHash).not.toBe(durableInputHash);
 
       const resumed = await runPreviewBatch(
         { pilot: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },

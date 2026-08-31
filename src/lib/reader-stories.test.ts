@@ -9,7 +9,8 @@ import {
   getFeaturedNewsStories,
   getNewsStory,
   getNewsStoryIndex,
-  getNewsStoryStaticParams
+  getNewsStoryStaticParams,
+  validateNewsStoryFileParity
 } from "./reader-stories";
 
 function makeValidReaderStory() {
@@ -91,6 +92,7 @@ function useNewsCorpus(items: unknown[], stories: ReaderStoryFixture[]) {
     rmSync(root, { recursive: true, force: true });
     restoreCorpus = undefined;
   };
+  return directory;
 }
 
 describe("static news story loader", () => {
@@ -111,10 +113,28 @@ describe("static news story loader", () => {
     expect(getNewsStoryIndex).toThrow(/no matching story file/);
   });
 
-  it("rejects a story file without an index row", () => {
+  it("keeps unindexed pre-activation story files invisible to readers and flags them in an offline parity check", () => {
     useNewsCorpus([], [makeValidReaderStory()]);
 
-    expect(getNewsStoryIndex).toThrow(/has no index row/);
+    expect(getNewsStoryIndex()).toEqual([]);
+    expect(getNewsStory("nadi-nagar-bazaar-road-trial")).toBeUndefined();
+    expect(validateNewsStoryFileParity).toThrow(/has no index row/);
+  });
+
+  it("keeps the old index usable before activation and reads the new story only after the index changes", () => {
+    const oldStory = makeValidReaderStory();
+    const newStory = { ...makeValidReaderStory(), id: "news-new-water-review", slug: "new-water-review", title: "A new district water review record becomes available", dek: "The second record is durable on disk but must remain invisible until its index is activated." };
+    const directory = useNewsCorpus([cardFor(oldStory)], [oldStory, newStory]);
+
+    expect(getNewsStoryIndex().map((story) => story.slug)).toEqual([oldStory.slug]);
+    expect(getNewsStory(oldStory.slug)?.slug).toBe(oldStory.slug);
+    expect(getNewsStory(newStory.slug)).toBeUndefined();
+
+    writeFileSync(join(directory, "index.json"), JSON.stringify({ contractVersion: "syat.reader-story-index.v1", generatedAt: "2026-08-31T01:00:00.000Z", items: [cardFor(oldStory), cardFor(newStory)] }));
+
+    expect(getNewsStoryIndex().map((story) => story.slug)).toEqual([oldStory.slug, newStory.slug]);
+    expect(getNewsStory(newStory.slug)?.title).toBe(newStory.title);
+    expect(validateNewsStoryFileParity()).toEqual({ indexedFiles: 2, storyFiles: 2 });
   });
 
   it("rejects an index card whose title differs from its story", () => {

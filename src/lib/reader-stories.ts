@@ -40,25 +40,18 @@ function loadValidatedNewsCorpus(): { index: NewsStoryIndex; storiesBySlug: Read
   if (!existsSync(indexPath)) throw new Error("News story index is missing.");
 
   const index = newsStoryIndexSchema.parse(readJson(indexPath));
-  const storyFiles = readdirSync(directory, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".json") && entry.name !== "index.json")
-    .map((entry) => entry.name);
   const storiesBySlug = new Map<string, ReaderStory>();
 
-  for (const fileName of storyFiles) {
-    const slugFromFileName = fileName.slice(0, -".json".length);
+  for (const item of index.items) {
+    const fileName = `${item.slug}.json`;
+    const storyPath = join(directory, fileName);
+    if (!existsSync(storyPath)) throw new Error(`News index slug ${item.slug} has no matching story file.`);
     const story = readerStorySchema.parse(readJson(join(directory, fileName)));
-    if (story.slug !== slugFromFileName) {
-      throw new Error(`News story file ${fileName} must contain the slug ${slugFromFileName}.`);
+    if (story.slug !== item.slug) {
+      throw new Error(`News story file ${fileName} must contain the slug ${item.slug}.`);
     }
     if (storiesBySlug.has(story.slug)) throw new Error(`News story slug ${story.slug} is repeated.`);
     storiesBySlug.set(story.slug, story);
-  }
-
-  const indexedSlugs = new Set(index.items.map((item) => item.slug));
-  for (const item of index.items) {
-    const story = storiesBySlug.get(item.slug);
-    if (!story) throw new Error(`News index slug ${item.slug} has no matching story file.`);
     if (
       item.title !== story.title ||
       item.dek !== story.dek ||
@@ -68,11 +61,24 @@ function loadValidatedNewsCorpus(): { index: NewsStoryIndex; storiesBySlug: Read
     }
   }
 
-  for (const slug of storiesBySlug.keys()) {
-    if (!indexedSlugs.has(slug)) throw new Error(`News story file ${slug}.json has no index row.`);
-  }
-
   return { index, storiesBySlug };
+}
+
+export function validateNewsStoryFileParity(): { indexedFiles: number; storyFiles: number } {
+  const directory = newsDirectory();
+  const { index } = loadValidatedNewsCorpus();
+  const indexedSlugs = new Set(index.items.map((item) => item.slug));
+  const storyFiles = readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json") && entry.name !== "index.json")
+    .map((entry) => entry.name);
+
+  for (const fileName of storyFiles) {
+    const slugFromFileName = fileName.slice(0, -".json".length);
+    const story = readerStorySchema.parse(readJson(join(directory, fileName)));
+    if (story.slug !== slugFromFileName) throw new Error(`News story file ${fileName} must contain the slug ${slugFromFileName}.`);
+    if (!indexedSlugs.has(story.slug)) throw new Error(`News story file ${story.slug}.json has no index row.`);
+  }
+  return { indexedFiles: index.items.length, storyFiles: storyFiles.length };
 }
 
 export function getNewsStory(slug: string): ReaderStory | undefined {

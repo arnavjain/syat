@@ -1,5 +1,3 @@
-import { createHash } from "node:crypto";
-
 import type { DraftReview } from "./draft-review";
 import type { EditorialQualityReport } from "./editorial-quality";
 import { parseGeneratedStoryV2, type GeneratedStoryV2 } from "./generation-contract";
@@ -18,6 +16,15 @@ function mapRightsBasis(source: SourcePackSource): ReaderStory["sources"][number
     throw new Error(`Source ${source.id} needs a licence-specific ReaderStory rights record before promotion.`);
   }
   return source.rightsBasis;
+}
+
+export function assertSourcePackPromotionCompatible(sourcePack: unknown): SourcePack {
+  const pack = validatePreviewSourcePack(sourcePack);
+  for (const source of pack.sources) {
+    mapSourceKind(source);
+    mapRightsBasis(source);
+  }
+  return pack;
 }
 
 function approvedMediaForPlans(draft: GeneratedStoryV2, approvedMedia: ApprovedMedia[]) {
@@ -85,14 +92,17 @@ export function promoteGeneratedStory({
   draftReview,
   qualityReview,
   sourcePack,
-  approvedMedia
+  approvedMedia,
+  generationInputHash
 }: {
   draft: GeneratedStoryV2;
   draftReview: DraftReview;
   qualityReview: EditorialQualityReport;
   sourcePack: SourcePack;
   approvedMedia: ApprovedMedia[];
+  generationInputHash: string;
 }): ReaderStory {
+  if (!/^[a-f0-9]{64}$/.test(generationInputHash)) throw new Error("Promotion requires the exact durable 64-character generation input hash.");
   if (draftReview.status === "blocked" || qualityReview.status === "blocked" || qualityReview.blockers.length > 0) {
     throw new Error("A blocked draft cannot become a reader preview.");
   }
@@ -100,7 +110,7 @@ export function promoteGeneratedStory({
     throw new Error("This ReaderStory promotion path accepts only en-IN news drafts.");
   }
   if (draft.editorialStatus !== "needs_editorial_review") throw new Error("Only a draft awaiting editorial review can become a reader preview.");
-  const pack = validatePreviewSourcePack(sourcePack);
+  const pack = assertSourcePackPromotionCompatible(sourcePack);
   const checkedDraft = parseGeneratedStoryV2(draft, pack.sources, { sourcePackId: pack.id, language: "en-IN", mode: "news", format: draft.format, indiaConnection: pack.indiaConnection });
   const { media, authoredMedia } = approvedMediaForPlans(checkedDraft, approvedMedia);
   const body = checkedDraft.bodySections.flatMap((section) => section.paragraphs.map((paragraph, paragraphIndex) => ({
@@ -113,7 +123,6 @@ export function promoteGeneratedStory({
   })));
   const bodyWordCount = body.reduce((total, block) => total + (block.text.match(/[\p{L}\p{N}]+/gu)?.length ?? 0), 0);
   const now = new Date().toISOString();
-  const inputHash = createHash("sha256").update(JSON.stringify({ sourcePack: pack, draft: checkedDraft })).digest("hex");
 
   return readerStorySchema.parse({
     contractVersion: "syat.reader-story.v1",
@@ -183,7 +192,7 @@ export function promoteGeneratedStory({
     generation: {
       model: "deepseek/deepseek-v4-flash-0731",
       promptVersion: "syat.story-draft.v2",
-      inputHash,
+      inputHash: generationInputHash,
       generatedBy: "openrouter",
       reviewedAt: now
     },

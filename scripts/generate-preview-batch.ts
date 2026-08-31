@@ -10,7 +10,7 @@ import { reviewEditorialQuality } from "../src/lib/editorial-quality";
 import { generatedStoryV2ResponseSchema, parseGeneratedStoryV2, type GeneratedStoryV2, type StoryDraftV2PromptInput } from "../src/lib/generation-contract";
 import { LocalGenerationLedger, type LedgerReceipt } from "../src/lib/local-generation-ledger";
 import { createStoryDraft, OPENROUTER_STORY_MODEL, type GenerationReservationRequest, type ReserveStoryAttempt, type StoryDraftResult } from "../src/lib/openrouter-story-client";
-import { promoteGeneratedStory } from "../src/lib/promote-generated-story";
+import { assertSourcePackPromotionCompatible, promoteGeneratedStory } from "../src/lib/promote-generated-story";
 import { readerStoryIndexItemSchema, readerStorySchema, type ReaderStory } from "../src/lib/reader-story-schema";
 import { sourcePackSchema, validatePreviewSourcePack, type SourcePack } from "../src/lib/source-pack";
 
@@ -119,8 +119,8 @@ export function validateOpenRouterModelMetadata(value: unknown) {
   const response = modelMetadataResponseSchema.parse(value);
   const model = response.data.find((candidate) => candidate.id === OPENROUTER_STORY_MODEL);
   if (!model) throw new Error(`The required OpenRouter model ${OPENROUTER_STORY_MODEL} is unavailable.`);
-  if (!model.supported_parameters.some((parameter) => parameter === "structured_outputs" || parameter === "response_format")) {
-    throw new Error("The live OpenRouter model does not advertise structured output support.");
+  if (!model.supported_parameters.includes("structured_outputs")) {
+    throw new Error("The live OpenRouter model does not advertise the strict JSON schema structured-output capability used by this client.");
   }
   if (model.context_length < 48_000) throw new Error("The live OpenRouter model context is below the reviewed prompt ceiling.");
   const promptPrice = Number(model.pricing.prompt);
@@ -292,15 +292,19 @@ async function writeNextFile(path: string, value: unknown, validate: (value: unk
   return nextPath;
 }
 
-async function atomicWriteJson(path: string, value: unknown, validate: (value: unknown) => unknown) {
-  const nextPath = await writeNextFile(path, value, validate);
-  await rename(nextPath, path);
-  const directoryHandle = await open(dirname(path), "r");
+async function syncDirectory(directory: string) {
+  const directoryHandle = await open(directory, "r");
   try {
     await directoryHandle.sync();
   } finally {
     await directoryHandle.close();
   }
+}
+
+async function atomicWriteJson(path: string, value: unknown, validate: (value: unknown) => unknown) {
+  const nextPath = await writeNextFile(path, value, validate);
+  await rename(nextPath, path);
+  await syncDirectory(dirname(path));
 }
 
 async function loadCachedDraft(cachePath: string, pack: SourcePack, input: StoryDraftV2PromptInput) {
@@ -346,6 +350,7 @@ export async function runPreviewBatch(
   if (selected.length !== options.count) throw new Error(`Requested ${options.count} source packs from ${options.start}, but only ${selected.length} are available; no paid request was made.`);
   if (new Set(selected.map((pack) => pack.id)).size !== selected.length) throw new Error("The requested source-pack wave contains duplicate IDs; no paid request was made.");
   if (selected.some((pack) => `authored-${pack.id}-relationship_map`.length > 80)) throw new Error("A source-pack ID is too long for the reviewed authored-visual record; no paid request was made.");
+  selected.forEach(assertSourcePackPromotionCompatible);
   await fetchModelMetadata(fetchImpl);
 
   const ledger = new LocalGenerationLedger(resolve(options.ledgerPath));
@@ -422,7 +427,8 @@ export async function runPreviewBatch(
           draftReview,
           qualityReview,
           sourcePack: pack,
-          approvedMedia: [authoredVisualApproval(draft, new Date().toISOString())]
+          approvedMedia: [authoredVisualApproval(draft, new Date().toISOString())],
+          generationInputHash: inputHash
         });
         readerStorySchema.parse(story);
         const existingCard = existingBySlug.get(story.slug);
@@ -499,14 +505,22 @@ export async function runPreviewBatch(
           await rename(file.nextPath, file.finalPath);
           committedStoryPaths.push(file.finalPath);
         }
+        // Story directory entries must be durable before the index can make them visible.
+        await syncDirectory(storyDirectory);
         await rename(indexNext, indexPath);
         indexCommitted = true;
+        await syncDirectory(storyDirectory);
         await rename(reportNext, reportPath);
+        await syncDirectory(dirname(reportPath));
       } catch (error) {
         if (indexCommitted) await atomicWriteJson(indexPath, existingIndex, (value) => newsIndexSchema.parse(value));
         await Promise.all(committedStoryPaths.map((path) => unlink(path).catch(() => undefined)));
+        await syncDirectory(storyDirectory);
         if (previousReport) await atomicWriteJson(reportPath, previousReport, (value) => waveReportSchema.parse(value));
-        else await unlink(reportPath).catch(() => undefined);
+        else {
+          await unlink(reportPath).catch(() => undefined);
+          await syncDirectory(dirname(reportPath));
+        }
         throw error;
       }
       return report;
