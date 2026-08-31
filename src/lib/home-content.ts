@@ -41,7 +41,7 @@ const newsContent: HomeContent = {
   sections: [
     {
       title: "Source desk preview",
-      intro: "One hundred dated India-first RSS records stay in the private review queue. A publisher headline is a source signal, not a Syāt story.",
+      intro: "Dated India-first RSS records stay in the private review queue. A publisher headline is a source signal, not a Syāt story.",
       items: [{
         title: "Open the private source desk",
         dek: "Review source signals with their original publisher links. Nothing in this queue is public reporting or an automatic home teaser.",

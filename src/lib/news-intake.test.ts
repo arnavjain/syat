@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as newsIntake from "./news-intake";
+import * as moderationQueue from "../components/moderation-queue";
 
 import { capItemsPerFeed, filterRecentItems, parseRssItems, selectBalancedItems, type NewsIntakeItem, type RssFeed } from "./news-intake";
 
@@ -96,6 +97,11 @@ describe("RSS intake", () => {
     expect(api.validateIntakeDocument({ ...valid, items: [{ ...valid.items[0]!, publishedAt: "not-a-date" }] }, now)).toContain("invalid published date");
     expect(api.validateIntakeDocument({ ...valid, items: [valid.items[0]!, valid.items[1]!, { ...valid.items[0]!, id: "a-3", url: "https://example.test/a-3" }] }, now)).toContain("publisher cap exceeded");
     expect(api.validateIntakeDocument({ ...valid, items: [{ ...valid.items[0]!, status: "published" as never, rights: undefined as never }] }, now)).toContain("item must remain review-only and link-only");
+    expect(api.validateIntakeDocument({ ...valid, itemCount: 1, items: [{ ...valid.items[0]!, editorialScope: "not-india-first" as never, sourceClass: "arbitrary" as never, note: "   " }] }, now)).toEqual(expect.arrayContaining([
+      "invalid editorial scope",
+      "invalid source class",
+      "item note is required"
+    ]));
     expect(api.isIntakeSnapshotCurrent({ generatedAt: "2026-08-20T12:00:00.000Z", windowDays: 7 }, now)).toBe(false);
   });
 
@@ -115,6 +121,14 @@ describe("RSS intake", () => {
     expect(api.isSourcePackChecklistComplete({ openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: false })).toBe(false);
     expect(api.isSourcePackChecklistComplete({ openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: true })).toBe(true);
   });
+
+  it("demotes a stored pack-ready decision when its required note is cleared or absent", () => {
+    const api = moderationQueue as unknown as ModerationQueueApi;
+    const completeChecklist = { openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: true };
+
+    expect(api.normalisePrivateReviewRecord({ decision: "source_pack_ready", note: "", updatedAt: "2026-08-31T12:00:00.000Z" }, completeChecklist).decision).toBe("needs_source_pack");
+    expect(api.normalisePrivateReviewRecord({ decision: "source_pack_ready", note: "Find the primary record.", updatedAt: "2026-08-31T12:00:00.000Z" }, { ...completeChecklist, namedNextNeed: false }).decision).toBe("needs_source_pack");
+  });
 });
 
 type IntakeDocumentFixture = {
@@ -131,6 +145,13 @@ type IntakeValidationApi = {
   isIntakeSnapshotCurrent: (snapshot: { generatedAt: string; windowDays: number }, now: Date) => boolean;
   canReplaceLastGoodIntake: (candidate: IntakeDocumentFixture, expectedFeedIds: readonly string[], completedFeedIds: readonly string[], now: Date) => boolean;
   isSourcePackChecklistComplete: (checklist: { openedOriginalLink: boolean; keptLinkOnly: boolean; namedNextNeed: boolean }) => boolean;
+};
+
+type ModerationQueueApi = {
+  normalisePrivateReviewRecord: (
+    record: { decision: "needs_source_pack" | "held" | "rejected" | "source_pack_ready"; note: string; updatedAt: string },
+    checklist: { openedOriginalLink: boolean; keptLinkOnly: boolean; namedNextNeed: boolean }
+  ) => { decision: "needs_source_pack" | "held" | "rejected" | "source_pack_ready" };
 };
 
 function intakeDocument(items: NewsIntakeItem[]): IntakeDocumentFixture {

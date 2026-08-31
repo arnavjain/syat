@@ -94,18 +94,20 @@ function formatDate(value: string) {
   return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
 
+export function normalisePrivateReviewRecord(record: ModerationRecord, checklist: SourcePackChecklist): ModerationRecord {
+  if (record.decision === "source_pack_ready" && (!isSourcePackChecklistComplete(checklist) || !record.note.trim())) {
+    return { ...record, decision: "needs_source_pack" };
+  }
+  return record;
+}
+
 export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   const [records, setRecords] = useState<Record<string, ModerationRecord>>({});
   const [checklists, setChecklists] = useState<Record<string, SourcePackChecklist>>({});
   const [isHydrated, setIsHydrated] = useState(false);
   const [filter, setFilter] = useState<ReviewFilter>("all");
   const [selectedId, setSelectedId] = useState(sources[0]?.id ?? "");
-  const safeRecords = useMemo(() => Object.fromEntries(Object.entries(records).map(([id, record]) => [
-    id,
-    record.decision === "source_pack_ready" && !isSourcePackChecklistComplete(checklists[id] ?? emptyChecklist)
-      ? { ...record, decision: "needs_source_pack" as const }
-      : record
-  ])), [checklists, records]);
+  const safeRecords = useMemo(() => Object.fromEntries(Object.entries(records).map(([id, record]) => [id, normalisePrivateReviewRecord(record, checklists[id] ?? emptyChecklist)])), [checklists, records]);
   const items = useMemo(() => mergeReviewRecords(sources, safeRecords), [sources, safeRecords]);
   const visibleItems = useMemo(() => filterReviewItems(items, filter), [filter, items]);
   const selected = items.find((item) => item.id === selectedId) ?? visibleItems[0];

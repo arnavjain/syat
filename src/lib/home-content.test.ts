@@ -15,6 +15,12 @@ describe("getHomeContent", () => {
     expect(home.sections.some((section) => section.title === "Reframe")).toBe(false);
   });
 
+  it("does not hardcode a source-intake count on the public News introduction", () => {
+    const sourceDesk = getHomeContent("news").sections.find((section) => section.title === "Source desk preview");
+
+    expect(sourceDesk?.intro).not.toMatch(/\bone hundred\b|\b100\b/i);
+  });
+
   it("switches to a separate Timeless editorial path", () => {
     const home = getHomeContent("timeless");
 

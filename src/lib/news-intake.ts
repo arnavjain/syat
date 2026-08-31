@@ -143,6 +143,9 @@ export function validateIntakeDocument(document: unknown, now = new Date()) {
     const source = item as Partial<NewsIntakeItem>;
     if (source.status !== "needs_editorial_review" || source.rights !== "link_only" || source.sourceType !== "rss_metadata") errors.push("item must remain review-only and link-only");
     if (!source.id || !source.title || !source.publisher || !source.sourceFeed || !source.url?.startsWith("https://")) errors.push("item is missing required link-only metadata");
+    if (source.editorialScope !== "india_first") errors.push("invalid editorial scope");
+    if (source.sourceClass !== "official_public_record" && source.sourceClass !== "newsroom_rss") errors.push("invalid source class");
+    if (!source.note?.trim()) errors.push("item note is required");
 
     const publishedAt = Date.parse(source.publishedAt ?? "");
     const accessedAt = Date.parse(source.accessedAt ?? "");
