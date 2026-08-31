@@ -13,7 +13,11 @@ import { authoriseGenerationBudget, type GenerationBudgetDecision } from "./gene
 
 export const OPENROUTER_STORY_MODEL = "deepseek/deepseek-v4-flash-0731";
 const STORY_DRAFT_MAX_TOKENS = 3200;
-const STORY_DRAFT_MAX_PROMPT_TOKENS = 16_000;
+export const MAX_STORY_DRAFT_EDITORIAL_BRIEF_UTF8_BYTES = 4_000;
+export const MAX_STORY_DRAFT_INDIA_CONNECTION_UTF8_BYTES = 2_000;
+export const MAX_STORY_DRAFT_DOSSIER_UTF8_BYTES = 12_000;
+export const MAX_STORY_DRAFT_DOSSIER_RECORD_UTF8_BYTES = 6_000;
+export const MAX_STORY_DRAFT_PROMPT_UTF8_BYTES = 48_000;
 const STORY_DRAFT_TIMEOUT_MS = 75_000;
 
 // Published model rates in USD per token, captured on 2026-08-31. The conversion deliberately rounds up at ₹100/USD.
@@ -22,6 +26,7 @@ const OUTPUT_USD_PER_TOKEN = 0.00000018;
 const CONSERVATIVE_INR_PER_USD = 100;
 
 type FetchLike = (input: string | URL | Request, init?: RequestInit) => Promise<Response>;
+const utf8 = new TextEncoder();
 
 export type StoryDraftInput = {
   language: "en-IN" | "hi-IN";
@@ -48,8 +53,31 @@ export type StoryDraftResult = {
 export type GenerationAttemptReservation = {
   attempt: number;
   estimatedPaise: number;
-  decision: GenerationBudgetDecision;
+  localDecision: GenerationBudgetDecision;
+  reservationId: string;
+  reservationPaise: number;
+  authoritativeTotalPaise: number;
+  budgetStatus: "allowed" | "warning";
 };
+
+export type GenerationReservationRequest = {
+  attempt: number;
+  estimatedPaise: number;
+  localDecision: GenerationBudgetDecision;
+  previousReservationIds: string[];
+  promptUtf8Bytes: number;
+};
+
+const generationReservationAcknowledgementSchema = z
+  .object({
+    reservationId: z.string().trim().min(1),
+    reservationPaise: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
+    authoritativeTotalPaise: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
+    budgetStatus: z.enum(["allowed", "warning"])
+  })
+  .strict();
+
+export type ReserveStoryAttempt = (request: GenerationReservationRequest) => Promise<unknown>;
 
 export function estimateStoryDraftCostInrPaise(promptTokens: number, completionTokens: number) {
   const usdCost = promptTokens * INPUT_USD_PER_TOKEN + completionTokens * OUTPUT_USD_PER_TOKEN;
@@ -57,7 +85,35 @@ export function estimateStoryDraftCostInrPaise(promptTokens: number, completionT
 }
 
 export function estimateMaximumStoryDraftCostInrPaise() {
-  return estimateStoryDraftCostInrPaise(STORY_DRAFT_MAX_PROMPT_TOKENS, STORY_DRAFT_MAX_TOKENS);
+  // This is a conservative byte-fallback reservation bound, not a provider token count claim.
+  return estimateStoryDraftCostInrPaise(MAX_STORY_DRAFT_PROMPT_UTF8_BYTES, STORY_DRAFT_MAX_TOKENS);
+}
+
+function inputByteLength(value: unknown, label: string) {
+  if (typeof value !== "string") {
+    throw new Error(`Story draft input size check requires ${label} to be text.`);
+  }
+  return utf8.encode(value).byteLength;
+}
+
+function assertAtMostBytes(value: unknown, maximum: number, label: string) {
+  if (inputByteLength(value, label) > maximum) {
+    throw new Error(`Story draft input size exceeds the ${label} limit.`);
+  }
+}
+
+function assertStoryDraftInputSize(input: StoryDraftInput) {
+  assertAtMostBytes(input.editorialBrief, MAX_STORY_DRAFT_EDITORIAL_BRIEF_UTF8_BYTES, "editorial brief");
+  assertAtMostBytes(input.indiaConnection, MAX_STORY_DRAFT_INDIA_CONNECTION_UTF8_BYTES, "India connection");
+
+  for (const source of input.sourceDossier) {
+    assertAtMostBytes(JSON.stringify(source), MAX_STORY_DRAFT_DOSSIER_RECORD_UTF8_BYTES, "source dossier record");
+  }
+  assertAtMostBytes(JSON.stringify(input.sourceDossier), MAX_STORY_DRAFT_DOSSIER_UTF8_BYTES, "source dossier");
+}
+
+function assertStoryDraftPromptSize(prompt: string) {
+  assertAtMostBytes(prompt, MAX_STORY_DRAFT_PROMPT_UTF8_BYTES, "prompt");
 }
 
 function getMaxAttempts(maxAttempts: number | undefined) {
@@ -82,8 +138,8 @@ export async function createStoryDraft({
   apiKey: string;
   input: StoryDraftInput;
   fetchImpl?: FetchLike;
-  budget?: { spentPaise: number; reservedPaise: number };
-  reserveAttempt?: (reservation: GenerationAttemptReservation) => void;
+  budget: { spentPaise: number; reservedPaise: number };
+  reserveAttempt: ReserveStoryAttempt;
   maxAttempts?: number;
   promptBuilder?: typeof buildStoryDraftPrompt;
 }): Promise<StoryDraftResult> {
@@ -93,16 +149,27 @@ export async function createStoryDraft({
 
   // Validate independently of the prompt builder so a test or future adapter cannot skip this gate.
   validateApprovedSourceDossier(input.sourceDossier);
+  assertStoryDraftInputSize(input);
 
-  if (!budget) {
-    throw new Error("A shared monthly budget snapshot is required before a story draft can be generated.");
+  if (typeof reserveAttempt !== "function") {
+    throw new Error("A shared durable reservation is required before a story draft can be generated.");
   }
 
   const maximumEstimatePaise = estimateMaximumStoryDraftCostInrPaise();
+  const firstDecision = authoriseGenerationBudget({
+    spentPaise: budget.spentPaise,
+    reservedPaise: budget.reservedPaise,
+    estimatedPaise: maximumEstimatePaise
+  });
+  if (firstDecision.status === "refused") {
+    throw new Error(budgetRefusalMessage(firstDecision));
+  }
+
+  const prompt = promptBuilder(input);
+  assertStoryDraftPromptSize(prompt);
   const attempts = getMaxAttempts(maxAttempts);
   const reservations: GenerationAttemptReservation[] = [];
   let reservedByThisJobPaise = 0;
-  let prompt: string | undefined;
   let response: Response | undefined;
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -115,15 +182,37 @@ export async function createStoryDraft({
       throw new Error(budgetRefusalMessage(decision));
     }
 
-    if (!reserveAttempt) {
-      throw new Error("A shared reservation recorder is required before a story draft can be generated.");
+    const reservationRequest: GenerationReservationRequest = {
+      attempt,
+      estimatedPaise: maximumEstimatePaise,
+      localDecision: decision,
+      previousReservationIds: reservations.map((reservation) => reservation.reservationId),
+      promptUtf8Bytes: inputByteLength(prompt, "prompt")
+    };
+
+    let acknowledgement: z.infer<typeof generationReservationAcknowledgementSchema>;
+    try {
+      acknowledgement = generationReservationAcknowledgementSchema.parse(await reserveAttempt(reservationRequest));
+    } catch {
+      throw new Error("Shared reservation acknowledgement was unavailable or malformed; no paid request was made.");
     }
 
-    const reservation = { attempt, estimatedPaise: maximumEstimatePaise, decision };
-    reserveAttempt(reservation);
+    if (
+      acknowledgement.reservationPaise !== maximumEstimatePaise ||
+      acknowledgement.authoritativeTotalPaise < acknowledgement.reservationPaise ||
+      acknowledgement.authoritativeTotalPaise >= 140_000 ||
+      (acknowledgement.budgetStatus === "allowed" && acknowledgement.authoritativeTotalPaise >= 100_000) ||
+      (acknowledgement.budgetStatus === "warning" && acknowledgement.authoritativeTotalPaise < 100_000)
+    ) {
+      throw new Error("Shared reservation acknowledgement did not match the permitted budget; no paid request was made.");
+    }
+
+    const reservation: GenerationAttemptReservation = {
+      ...reservationRequest,
+      ...acknowledgement
+    };
     reservations.push(reservation);
     reservedByThisJobPaise += maximumEstimatePaise;
-    prompt ??= promptBuilder(input);
 
     const signal = AbortSignal.timeout(STORY_DRAFT_TIMEOUT_MS);
     try {

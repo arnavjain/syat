@@ -134,4 +134,12 @@ describe("parseGeneratedStory", () => {
     expect(() => parseGeneratedStory(malformedResponse, sourceDossier)).toThrow();
     expect(parseGeneratedStory(response, sourceDossier).status).toBe("needs_editorial_review");
   });
+
+  it("allows an approved link-only source in a private draft but rejects link-only media", () => {
+    const invalidMedia = structuredClone(response);
+    invalidMedia.mediaPlan[0].rightsRequirement = "link_only";
+
+    expect(parseGeneratedStory(response, sourceDossier).status).toBe("needs_editorial_review");
+    expect(() => parseGeneratedStory(invalidMedia, sourceDossier)).toThrow();
+  });
 });

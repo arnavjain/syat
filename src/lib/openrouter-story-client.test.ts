@@ -2,6 +2,15 @@ import { describe, expect, it, vi } from "vitest";
 
 import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL } from "./openrouter-story-client";
 
+function acceptedReservation({ attempt, estimatedPaise }: { attempt: number; estimatedPaise: number }) {
+  return Promise.resolve({
+    reservationId: `reservation-${attempt}`,
+    reservationPaise: estimatedPaise,
+    authoritativeTotalPaise: estimatedPaise,
+    budgetStatus: "allowed" as const
+  });
+}
+
 const input = {
   language: "en-IN" as const,
   mode: "news" as const,
@@ -59,7 +68,7 @@ describe("createStoryDraft", () => {
       input,
       fetchImpl,
       budget: { spentPaise: 0, reservedPaise: 0 },
-      reserveAttempt: vi.fn()
+      reserveAttempt: vi.fn(acceptedReservation)
     });
 
     const request = JSON.parse(fetchImpl.mock.calls[0][1].body);
@@ -76,7 +85,7 @@ describe("createStoryDraft", () => {
   });
 
   it("refuses to make a paid request without an API key", async () => {
-    await expect(createStoryDraft({ apiKey: "", input, fetchImpl: vi.fn(), budget: { spentPaise: 0, reservedPaise: 0 } })).rejects.toThrow(/OPENROUTER_API_KEY/);
+    await expect(createStoryDraft({ apiKey: "", input, fetchImpl: vi.fn(), budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn(acceptedReservation) })).rejects.toThrow(/OPENROUTER_API_KEY/);
   });
 
   it("names a provider-truncated draft instead of trying to parse it", async () => {
@@ -87,7 +96,7 @@ describe("createStoryDraft", () => {
       }), { status: 200 })
     );
 
-    await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn() })).rejects.toThrow(/cut .*short/i);
+    await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn(acceptedReservation) })).rejects.toThrow(/cut .*short/i);
   });
 
   it("does not build a prompt or call a paid fetch when the monthly budget refuses the job", async () => {
@@ -99,7 +108,7 @@ describe("createStoryDraft", () => {
       input,
       fetchImpl,
       budget: { spentPaise: 140_000, reservedPaise: 0 },
-      reserveAttempt: vi.fn(),
+      reserveAttempt: vi.fn(acceptedReservation),
       promptBuilder
     })).rejects.toThrow(/budget/i);
 
@@ -126,10 +135,131 @@ describe("createStoryDraft", () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
 
+  it("rejects an oversized Unicode input before constructing a prompt, reserving, or fetching", async () => {
+    const fetchImpl = vi.fn();
+    const reserveAttempt = vi.fn(acceptedReservation);
+    const promptBuilder = vi.fn(() => "unused prompt");
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input: { ...input, editorialBrief: "🪷".repeat(2_000) },
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt,
+      promptBuilder
+    })).rejects.toThrow(/input size/i);
+
+    expect(promptBuilder).not.toHaveBeenCalled();
+    expect(reserveAttempt).not.toHaveBeenCalled();
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("rejects an oversized escaped-byte dossier before constructing a prompt, reserving, or fetching", async () => {
+    const fetchImpl = vi.fn();
+    const reserveAttempt = vi.fn(acceptedReservation);
+    const promptBuilder = vi.fn(() => "unused prompt");
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input: {
+        ...input,
+        sourceDossier: [{ ...input.sourceDossier[0], excerpt: "\u0000".repeat(7_000) }]
+      },
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt,
+      promptBuilder
+    })).rejects.toThrow(/input size/i);
+
+    expect(promptBuilder).not.toHaveBeenCalled();
+    expect(reserveAttempt).not.toHaveBeenCalled();
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("does not fetch when the shared reservation returns no durable acknowledgement", async () => {
+    const fetchImpl = vi.fn();
+    const reserveAttempt = vi.fn().mockResolvedValue(undefined);
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt
+    })).rejects.toThrow(/reservation acknowledgement/i);
+
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("does not fetch when the shared reservation rejects", async () => {
+    const fetchImpl = vi.fn();
+    const reserveAttempt = vi.fn().mockRejectedValue(new Error("ledger unavailable"));
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt
+    })).rejects.toThrow(/reservation acknowledgement/i);
+
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("does not fetch when the durable acknowledgement has an impossible authoritative total", async () => {
+    const fetchImpl = vi.fn();
+    const reserveAttempt = vi.fn(async ({ estimatedPaise }: { estimatedPaise: number }) => ({
+      reservationId: "wrong-amount",
+      reservationPaise: estimatedPaise,
+      authoritativeTotalPaise: estimatedPaise - 1,
+      budgetStatus: "allowed" as const
+    }));
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt
+    })).rejects.toThrow(/did not match/i);
+
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("waits for a matching durable reservation acknowledgement before fetching", async () => {
+    const events: string[] = [];
+    const fetchImpl = vi.fn(async () => {
+      events.push("fetch");
+      return new Response(JSON.stringify({ choices: [{ message: { content: modelContent } }] }), { status: 200 });
+    });
+    const reserveAttempt = vi.fn(async (request: { attempt: number; estimatedPaise: number }) => {
+      events.push("reserve");
+      await Promise.resolve();
+      events.push("acknowledged");
+      return {
+        reservationId: "durable-reservation",
+        reservationPaise: request.estimatedPaise,
+        authoritativeTotalPaise: request.estimatedPaise,
+        budgetStatus: "allowed" as const
+      };
+    });
+
+    const result = await createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt
+    });
+
+    expect(events).toEqual(["reserve", "acknowledged", "fetch"]);
+    expect(result.reservations[0]).toMatchObject({ reservationId: "durable-reservation" });
+  });
+
   it("includes the first reservation before refusing a retry that would cross the cap", async () => {
     const maximum = estimateMaximumStoryDraftCostInrPaise();
     const fetchImpl = vi.fn().mockRejectedValueOnce(new Error("temporary network failure"));
-    const reserveAttempt = vi.fn();
+    const reserveAttempt = vi.fn(acceptedReservation);
 
     await expect(createStoryDraft({
       apiKey: "test-key",
