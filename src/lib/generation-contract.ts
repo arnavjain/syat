@@ -83,6 +83,11 @@ export type SourceDossierRecord = {
   title: string;
   url: string;
   excerpt: string;
+  publishedAt?: string;
+  accessedAt?: string;
+  sourceKind?: "primary_document" | "official_statement" | "reputable_reporting" | "research" | "archive" | "social_embed";
+  rightsBasis?: "link_only" | "owned" | "public_domain" | "cc0" | "cc_by" | "cc_by_sa" | "government_open_data" | "official_embed" | "commercial_license";
+  reviewStatus?: "pending" | "approved" | "rejected" | "needs_changes";
 };
 
 export type GeneratedStory = z.infer<typeof generatedStoryResponseSchema> & {
@@ -124,6 +129,7 @@ export function buildStoryDraftPrompt(input: {
   language: "en-IN" | "hi-IN";
   mode: "news" | "timeless";
   editorialBrief: string;
+  indiaConnection: string;
   sourceDossier: SourceDossierRecord[];
 }) {
   return `You are an editorial research assistant for Syāt. Your job is to prepare a cautious, source-linked draft for a human editor. You are not a publisher and must not invent facts, sources, quotes, dates, people, images, or consensus. Use only the supplied dossier. If the dossier cannot support a statement, leave it as an unresolved question and explain what evidence would help. Treat direct evidence, interpretation, experience, and values as different kinds of statements. Do not turn disagreement into a false balance.
@@ -135,6 +141,7 @@ Rules:
 - Set contractVersion to "syat.story-draft.v1" and editorialStatus to "needs_editorial_review".
 - Every sourceIds value must use only a sourceId from the dossier.
 - Give every statement a stable lowercase id. Every content block must name the statement ids and source ids it relies on.
+- Use a direct quote only when it appears word-for-word in the supplied source excerpt. Otherwise paraphrase and label the limit of the evidence.
 - The title and dek must be precise, not sensational.
 - Make at least two distinct perspectives. Do not make up personal testimony.
 - mediaPlan requests a rights requirement only. It never asserts that a media asset is cleared.
@@ -142,6 +149,9 @@ Rules:
 
 Editorial brief:
 ${input.editorialBrief}
+
+India connection:
+${input.indiaConnection}
 
 Source dossier:
 ${JSON.stringify(input.sourceDossier, null, 2)}`;

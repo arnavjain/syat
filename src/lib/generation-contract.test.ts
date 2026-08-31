@@ -4,11 +4,11 @@ import { parseGeneratedStory } from "./generation-contract";
 
 const sourceDossier = [
   {
-    sourceId: "city-order",
-    publisher: "City of Rivergate",
-    title: "Congestion pricing implementation order",
-    url: "https://example.org/rivergate-order",
-    excerpt: "The charge will begin on 1 September and apply to the defined central zone."
+    sourceId: "ward-note",
+    publisher: "Nadi Nagar Municipal Corporation",
+    title: "Bazaar Road walking and bus-priority trial note",
+    url: "https://example.invalid/nadi-nagar-bazaar-road",
+    excerpt: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road."
   }
 ];
 
@@ -18,69 +18,69 @@ const response = {
   editorialStatus: "needs_editorial_review",
   story: {
     mode: "news",
-    title: "Rivergate prepares to begin its central-zone charge",
+    title: "Nadi Nagar prepares a Bazaar Road street trial",
     dek: "A source-linked draft for an editor to verify before publication.",
-    whatHappened: "The city order says the charge begins on 1 September in the defined central zone.",
-    whatChanged: "The start date and zone are now specified in the implementation order.",
-    whyItMattersNow: "People who travel through the zone need time to understand how the change affects them."
+    whatHappened: "The municipal note says the trial starts on 1 September and opens one bus-priority lane.",
+    whatChanged: "The start date and the street changes are now specified in the municipal note.",
+    whyItMattersNow: "People who walk, take buses, trade, or make deliveries on the street may experience the trial differently."
   },
   timeline: [
     {
       happenedAt: "2026-08-28",
-      text: "The city published the implementation order.",
-      sourceIds: ["city-order"]
+      text: "The municipal corporation published the trial note.",
+      sourceIds: ["ward-note"]
     }
   ],
   statements: [
     {
-      id: "claim-start-date",
+      id: "claim-trial-date",
       type: "documented",
-      text: "The order names 1 September as the start date.",
-      sourceIds: ["city-order"],
-      scope: "This describes the order, not whether the policy will meet its goals."
+      text: "The note names 1 September as the start date for the street trial.",
+      sourceIds: ["ward-note"],
+      scope: "This describes the municipal note, not whether the trial will meet its goals."
     }
   ],
   contentBlocks: [
     {
       id: "opening-paragraph",
       kind: "paragraph",
-      text: "The city order says the charge begins on 1 September in the defined central zone.",
-      claimIds: ["claim-start-date"],
-      sourceIds: ["city-order"]
+      text: "The municipal note says the trial starts on 1 September and opens one bus-priority lane.",
+      claimIds: ["claim-trial-date"],
+      sourceIds: ["ward-note"]
     }
   ],
   perspectives: [
     {
       id: "commuter",
       label: "Daily commuter",
-      sees: "A new regular cost on a familiar route.",
+      sees: "A possible change to a regular bus journey.",
       values: "Predictable, affordable travel.",
-      uses: "The published fee schedule and their travel routine.",
-      mayMiss: "Effects on people who cannot use a car.",
-      sourceIds: ["city-order"]
+      uses: "The published note and their travel routine.",
+      mayMiss: "Effects on people who work at the roadside.",
+      sourceIds: ["ward-note"]
     },
     {
       id: "planner",
       label: "Urban planner",
-      sees: "A change intended to alter traffic patterns.",
-      values: "Safer streets and reliable alternatives.",
-      uses: "The policy order and stated objectives.",
-      mayMiss: "The immediate cost pressure on individual travellers.",
-      sourceIds: ["city-order"]
+      sees: "A short trial intended to change how the street moves.",
+      values: "Safer crossings and reliable buses.",
+      uses: "The municipal note and stated objectives.",
+      mayMiss: "The immediate pressure on people who work beside the road.",
+      sourceIds: ["ward-note"]
     }
   ],
   unresolved: [
     {
-      question: "How will the charge affect different household budgets?",
-      whatWouldHelp: "Published independent monitoring after the first months.",
-      sourceIds: ["city-order"]
+      question: "How will the trial affect people with different mobility needs?",
+      whatWouldHelp: "Published access checks and independent monitoring during the trial.",
+      sourceIds: ["ward-note"]
     }
   ],
   mediaPlan: [
     {
       kind: "illustration",
       placement: "hero",
-      alt: "Diagram of the announced central-zone boundary.",
+      alt: "Diagram of the proposed Bazaar Road changes.",
       rightsRequirement: "owned"
     }
   ],
@@ -92,8 +92,8 @@ describe("parseGeneratedStory", () => {
     const result = parseGeneratedStory(response, sourceDossier);
 
     expect(result.status).toBe("needs_editorial_review");
-    expect(result.story.title).toContain("Rivergate");
-    expect(result.timeline[0].sourceIds).toEqual(["city-order"]);
+    expect(result.story.title).toContain("Nadi Nagar");
+    expect(result.timeline[0].sourceIds).toEqual(["ward-note"]);
   });
 
   it("rejects a model response that cites a source outside the supplied dossier", () => {

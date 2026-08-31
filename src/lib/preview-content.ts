@@ -27,41 +27,42 @@ export type PreviewStory = {
 
 export const previewStories: readonly PreviewStory[] = [
   {
-    slug: "city-toll-daily-realities",
+    slug: "street-plan-daily-realities",
     mode: "news",
     locale: "en-IN",
     status: "editorial_fixture",
-    kicker: "Editorial fixture · how a Syāt story is read",
-    title: "A city toll can be one policy and six different daily realities",
-    dek: "This deliberately fictional teaching story shows the reading method. It is not a report of a real city, policy, or person.",
+    kicker: "Editorial fixture · India-first reading method",
+    title: "One street plan, five different daily realities",
+    dek: "This deliberately fictional Indian teaching story shows the reading method. It is not a report about a real city, policy, or person.",
     updatedLabel: "Fixture revised 31 August 2026",
-    whatChanged: "A fictional city introduces a charge for entering its centre during peak hours. The policy text is one starting point; its effects depend on who has alternatives, flexibility, and support.",
-    whyItMatters: "The example makes a simple promise visible: the event, the evidence, and a person’s lived experience are not interchangeable kinds of knowledge.",
+    whatChanged: "A fictional municipal council in Nadi Nagar reserves part of Bazaar Road for buses, walking, and short deliveries during the day. The notice is one starting point; its effects depend on work, care, access, and the options people actually have.",
+    whyItMatters: "The example is Indian in everyday setting, but it makes no claim about a real Indian city. It shows a simple promise: the event, the evidence, and a person’s lived experience are not interchangeable kinds of knowledge.",
     visual: {
       kind: "authored_diagram",
-      label: "Perspective map: routes, the toll boundary, and four starting points",
-      credit: "Diagram by Syāt. Fictional teaching illustration.",
-      limitation: "It illustrates a method. It does not map a real place or measure a real policy outcome."
+      label: "Perspective map: bus corridor, market edge, school gate, and clinic approach",
+      credit: "Diagram by Syāt. Fictional Indian teaching illustration.",
+      limitation: "It illustrates a method. It does not map a real place, community, or policy outcome."
     },
     timeline: [
-      { date: "Week 0", text: "The fictional council publishes a proposal and a map of the charge area.", sourceIds: ["fixture-policy"] },
-      { date: "Week 6", text: "The fictional policy starts; readers can separate the published rule from expected effects.", sourceIds: ["fixture-policy"] },
-      { date: "Week 8", text: "Different routines make different costs and practical barriers visible.", sourceIds: ["fixture-experience"] }
+      { date: "Week 0", text: "The fictional council publishes a street plan, delivery window, and bus-corridor map.", sourceIds: ["fixture-policy"] },
+      { date: "Week 6", text: "The fictional plan starts; readers can separate the published rule from expected effects.", sourceIds: ["fixture-policy"] },
+      { date: "Week 8", text: "Different routines make different access, time, and practical barriers visible.", sourceIds: ["fixture-experience"] }
     ],
     evidence: [
-      { type: "documented", text: "The teaching-policy document describes a peak-hour charge and named exemptions.", sourceIds: ["fixture-policy"], scope: "Directly supported by the fictional policy document." },
-      { type: "interpreted", text: "A charge may reduce some car journeys while shifting pressure onto people who cannot change their route or work hours.", sourceIds: ["fixture-policy", "fixture-experience"], scope: "A reasoned interpretation, not a measured outcome." },
-      { type: "unresolved", text: "Will accessible transport, hardship support, and enforcement work for the people the exemptions aim to protect?", sourceIds: ["fixture-policy"], scope: "Needs outcome data and affected residents’ evidence." }
+      { type: "documented", text: "The teaching-policy document describes a daytime bus corridor, walking space, and delivery window.", sourceIds: ["fixture-policy"], scope: "Directly supported by the fictional policy document." },
+      { type: "interpreted", text: "A street plan may make some journeys safer or quicker while shifting practical pressure onto people who cannot change their timing, route, or work pattern.", sourceIds: ["fixture-policy", "fixture-experience"], scope: "A reasoned interpretation, not a measured outcome." },
+      { type: "unresolved", text: "Will footpaths, crossings, deliveries, buses, and access support work for people with the least room to adjust?", sourceIds: ["fixture-policy"], scope: "Needs outcome data and affected residents’ evidence." }
     ],
     perspectives: [
-      { label: "Daily commuter", sees: "A new cost attached to a familiar route.", values: "Reliable time and an affordable trip.", uses: "Work hours, bus frequency, and the published rules.", mayMiss: "The city-wide effects beyond one routine." },
-      { label: "Small business", sees: "Changes to deliveries, footfall, and staff travel.", values: "Predictable costs and viable trade.", uses: "Invoices, customer patterns, and exemptions.", mayMiss: "Benefits that arrive outside the immediate trading area." },
-      { label: "Disabled resident", sees: "Whether an exemption works in practice, not only on paper.", values: "Access, dignity, and dependable assistance.", uses: "The application process and each trip’s constraints.", mayMiss: "Other residents’ different access needs." },
-      { label: "City planner", sees: "A tool within a wider transport system.", values: "Cleaner air, public transport, and fair allocation.", uses: "The policy, budgets, and aggregate measures.", mayMiss: "Friction and harm within an individual journey." }
+      { label: "Bus commuter", sees: "Whether one bus journey becomes more dependable or more crowded.", values: "Reliable time and an affordable trip.", uses: "Shift hours, bus frequency, and the published plan.", mayMiss: "The limits faced by people who cannot use that route." },
+      { label: "Street vendor", sees: "Whether a customer can still reach the stall and a supplier can still deliver.", values: "A viable day’s trade and predictable access.", uses: "Delivery windows, footfall, and local relationships.", mayMiss: "Benefits that arrive outside the immediate market edge." },
+      { label: "Wheelchair user", sees: "Whether the promised route is continuous in practice, not only on the map.", values: "Access, dignity, and dependable assistance.", uses: "Kerbs, crossings, obstructions, and each trip’s constraints.", mayMiss: "Other residents’ different access needs." },
+      { label: "School caregiver", sees: "How a changed road meets the chain of pick-up, work, and care.", values: "Safety and reliable time.", uses: "School hours, walking conditions, and family routines.", mayMiss: "System-wide effects beyond one family’s day." },
+      { label: "City planner", sees: "A street allocation within a wider transport system.", values: "Safer streets, useful buses, and fair allocation.", uses: "The plan, budgets, and aggregate measures.", mayMiss: "Friction and harm within an individual journey." }
     ],
     sources: [
-      { id: "fixture-policy", publisher: "Syāt teaching desk", title: "Fictional city-centre charge: sample policy note", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows the example policy’s stated terms." },
-      { id: "fixture-experience", publisher: "Syāt teaching desk", title: "Fictional routine notes: sample standpoint prompts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows why experience is framed as experience, not proof for everyone." }
+      { id: "fixture-policy", publisher: "Syāt teaching desk", title: "Fictional Nadi Nagar street plan: sample policy note", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows the example plan’s stated terms." },
+      { id: "fixture-experience", publisher: "Syāt teaching desk", title: "Fictional everyday-route notes: sample standpoint prompts", url: "/en/about#editorial-fixtures", publishedLabel: "Teaching document", use: "Shows why experience is framed as experience, not proof for everyone." }
     ]
   },
   {
@@ -70,15 +71,15 @@ export const previewStories: readonly PreviewStory[] = [
     locale: "en-IN",
     status: "editorial_fixture",
     kicker: "Timeless fixture · a recurring public question",
-    title: "Why do cities keep asking the same question about movement?",
-    dek: "A teaching subject about access, work, public space, and the competing meanings of a journey.",
+    title: "How do Indian cities decide who gets time on a street?",
+    dek: "A teaching subject about access, work, public space, care, and the competing meanings of a journey.",
     updatedLabel: "Fixture revised 31 August 2026",
-    whatChanged: "The question returns whenever a city changes how streets, fares, or time are shared. The answer cannot be reduced to traffic alone.",
-    whyItMatters: "A timeless subject helps readers carry a question across places and eras without pretending every situation is the same.",
-    visual: { kind: "authored_diagram", label: "A four-route question map", credit: "Diagram by Syāt. Teaching illustration.", limitation: "A conceptual aid, not a transit map or dataset." },
+    whatChanged: "The question returns whenever an Indian city changes how a street, fare, or public time is shared. The answer cannot be reduced to traffic alone.",
+    whyItMatters: "A timeless subject helps readers carry a question across Indian places and eras without pretending every situation is the same.",
+    visual: { kind: "authored_diagram", label: "A four-route question map", credit: "Diagram by Syāt. Indian-context teaching illustration.", limitation: "A conceptual aid, not a transit map or dataset." },
     timeline: [
-      { date: "Then", text: "Cities have repeatedly reorganised movement around new tools, rules, and public expectations.", sourceIds: ["fixture-method"] },
-      { date: "Now", text: "A single journey still carries questions of access, cost, time, and care.", sourceIds: ["fixture-method"] }
+      { date: "Then", text: "Indian cities have repeatedly reorganised movement around new tools, rules, and public expectations.", sourceIds: ["fixture-method"] },
+      { date: "Now", text: "A single journey still carries questions of access, cost, time, care, and public space.", sourceIds: ["fixture-method"] }
     ],
     evidence: [
       { type: "documented", text: "This fixture uses no claim about a particular city or historical record.", sourceIds: ["fixture-method"], scope: "Teaching scope only." },

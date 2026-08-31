@@ -1,4 +1,4 @@
-import { formatSignalDate, latestNewsSignals } from "./news-signals";
+import { formatSignalDate, previewNewsSignals } from "./news-signals";
 
 export type HomeMode = "news" | "timeless";
 
@@ -27,28 +27,28 @@ const newsContent: HomeContent = {
   modeLabel: "News",
   helper: "Developing stories and current affairs",
   feature: {
-    kicker: "Learn the reading method",
-    title: "A city toll can be one policy and six different daily realities",
-    dek: "A clearly fictional teaching story for the private preview. It shows how Syāt separates the event from the different ways people live with it.",
-    perspectives: ["Daily commuter", "Small business", "Disabled resident", "City planner"],
-    cta: { label: "Read the story", href: "/en/news/city-toll-daily-realities" }
+    kicker: "Learn the reading method · India-first fixture",
+    title: "One street plan, five different daily realities",
+    dek: "A clearly fictional Indian teaching story for this private preview. It separates a municipal decision from the different ways people live with it.",
+    perspectives: ["Bus commuter", "Street vendor", "Wheelchair user", "School caregiver"],
+    cta: { label: "Read the story", href: "/en/news/street-plan-daily-realities" }
   },
   sections: [
     {
-      title: "Last seven days: source signals",
-      intro: "One hundred dated RSS records are in the review queue. These links open the original publishers; they are not Syāt stories.",
-      items: latestNewsSignals.slice(0, 2).map((signal) => ({
+      title: "India, last seven days: source signals",
+      intro: "One hundred dated India-first RSS records are in the review queue. These links open the original publishers; they are not Syāt stories.",
+      items: previewNewsSignals.slice(0, 2).map((signal) => ({
         title: signal.title,
-        dek: `Source signal from ${signal.publisher}. It remains link-only until a source trail and editorial draft are reviewed.`,
+        dek: `India source signal from ${signal.publisher}. It remains link-only until a source trail and editorial draft are reviewed.`,
         href: signal.url,
         label: `${signal.publisher} · ${formatSignalDate(signal.publishedAt)}`,
         type: "internet" as const
       }))
     },
     {
-      title: "More signals, waiting for context",
+      title: "More India signals, waiting for context",
       intro: "A current headline can point somewhere important, but a headline alone is not enough to publish a perspective story.",
-      items: latestNewsSignals.slice(2, 4).map((signal) => ({
+      items: previewNewsSignals.slice(2, 4).map((signal) => ({
         title: signal.title,
         dek: `Original source: ${signal.publisher}. Open its link; Syāt has not made claims about it.`,
         href: signal.url,
@@ -64,9 +64,9 @@ const timelessContent: HomeContent = {
   helper: "Culture, history, science and enduring ideas",
   feature: {
     kicker: "Timeless question",
-    title: "Why do cities keep asking the same question about movement?",
-    dek: "Transport is not only a technical problem. It is also a question of public space, access, work, and what a city owes its residents.",
-    perspectives: ["Historian", "Mobility researcher", "Street vendor", "Parent"],
+    title: "How do Indian cities decide who gets time on a street?",
+    dek: "Movement is not only a technical problem. It is also a question of public space, access, work, care, and what a city owes its residents.",
+    perspectives: ["Historian", "Mobility researcher", "Street vendor", "Caregiver"],
     cta: { label: "Explore the subject", href: "/en/timeless/how-cities-move" }
   },
   sections: [

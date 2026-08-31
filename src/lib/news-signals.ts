@@ -6,6 +6,8 @@ export type NewsSignal = {
   url: string;
   publisher: string;
   sourceFeed: string;
+  editorialScope: "india_first";
+  sourceClass: "official_public_record" | "newsroom_rss";
   publishedAt: string;
   accessedAt: string;
   sourceType: "rss_metadata";
@@ -31,6 +33,12 @@ export const newsSignalMetadata = {
 } as const;
 
 export const latestNewsSignals: readonly NewsSignal[] = document.items;
+
+const previewSensitiveTerms = /\b(assault|attack|death|dead|dies|died|killed|killing|murder|rape|raped|suicide|terror|violence|war)\b/i;
+
+// A sensitive event remains in the private review queue. It does not become a
+// casual home-page teaser before an editor has decided how it should be framed.
+export const previewNewsSignals = latestNewsSignals.filter((signal) => !previewSensitiveTerms.test(signal.title));
 
 export function formatSignalDate(date: string) {
   return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(date));

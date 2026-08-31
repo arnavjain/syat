@@ -11,7 +11,7 @@ describe("preview editorial content", () => {
     }
   });
 
-  it("returns the city toll fixture by its stable public slug", () => {
-    expect(getPreviewStory("city-toll-daily-realities")?.title).toMatch(/toll/i);
+  it("returns the India-first street-plan fixture by its stable public slug", () => {
+    expect(getPreviewStory("street-plan-daily-realities")?.title).toMatch(/street plan/i);
   });
 });

@@ -1,4 +1,10 @@
-export type RssFeed = { id: string; publisher: string; url: string };
+export type RssFeed = {
+  id: string;
+  publisher: string;
+  url: string;
+  editorialScope: "india_first";
+  sourceClass: "official_public_record" | "newsroom_rss";
+};
 
 export type NewsIntakeItem = {
   id: string;
@@ -6,6 +12,8 @@ export type NewsIntakeItem = {
   url: string;
   publisher: string;
   sourceFeed: string;
+  editorialScope: "india_first";
+  sourceClass: "official_public_record" | "newsroom_rss";
   publishedAt: string;
   accessedAt: string;
   sourceType: "rss_metadata";
@@ -58,12 +66,14 @@ export function parseRssItems(xml: string, feed: RssFeed, accessedAt = new Date(
       url,
       publisher: feed.publisher,
       sourceFeed: feed.url,
+      editorialScope: feed.editorialScope,
+      sourceClass: feed.sourceClass,
       publishedAt: publishedAt.toISOString(),
       accessedAt: accessedAt.toISOString(),
       sourceType: "rss_metadata" as const,
       status: "needs_editorial_review" as const,
       rights: "link_only" as const,
-      note: "RSS metadata only. Do not treat this as a published Syāt story; open the original source before editorial drafting."
+      note: "India-first source selection, metadata only. This may include an international event that needs an India connection before drafting. Do not treat it as a published Syāt story; open the original source before editorial work."
     }];
   });
 }
@@ -84,4 +94,45 @@ export function deduplicateIntake(items: NewsIntakeItem[]) {
     seen.add(key);
     return true;
   });
+}
+
+export function capItemsPerFeed(items: NewsIntakeItem[], maximumPerFeed: number) {
+  const countByFeed = new Map<string, number>();
+  return items.filter((item) => {
+    const count = countByFeed.get(item.sourceFeed) ?? 0;
+    if (count >= maximumPerFeed) return false;
+    countByFeed.set(item.sourceFeed, count + 1);
+    return true;
+  });
+}
+
+// A review queue should not be filled by whichever publisher happened to update
+// most often that morning. Keep the newest order inside each feed, then take one
+// item from each feed in turn.
+export function selectBalancedItems(items: NewsIntakeItem[], maximumPerFeed: number, maximumTotal: number) {
+  const groups = new Map<string, NewsIntakeItem[]>();
+  for (const item of items) {
+    const group = groups.get(item.sourceFeed) ?? [];
+    group.push(item);
+    groups.set(item.sourceFeed, group);
+  }
+
+  const queues = [...groups.values()].map((group) => group.slice(0, maximumPerFeed));
+  const selected: NewsIntakeItem[] = [];
+  let position = 0;
+
+  while (selected.length < maximumTotal) {
+    let added = false;
+    for (const queue of queues) {
+      const item = queue[position];
+      if (!item) continue;
+      selected.push(item);
+      added = true;
+      if (selected.length === maximumTotal) return selected;
+    }
+    if (!added) return selected;
+    position += 1;
+  }
+
+  return selected;
 }

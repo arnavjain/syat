@@ -1,21 +1,22 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-import { deduplicateIntake, filterRecentItems, parseRssItems, type NewsIntakeItem, type RssFeed } from "../src/lib/news-intake";
+import { deduplicateIntake, filterRecentItems, parseRssItems, selectBalancedItems, type NewsIntakeItem, type RssFeed } from "../src/lib/news-intake";
 
 const feeds: readonly RssFeed[] = [
-  { id: "bbc-world", publisher: "BBC News", url: "https://feeds.bbci.co.uk/news/world/rss.xml" },
-  { id: "bbc-business", publisher: "BBC News", url: "https://feeds.bbci.co.uk/news/business/rss.xml" },
-  { id: "bbc-tech", publisher: "BBC News", url: "https://feeds.bbci.co.uk/news/technology/rss.xml" },
-  { id: "bbc-science", publisher: "BBC News", url: "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml" },
-  { id: "bbc-health", publisher: "BBC News", url: "https://feeds.bbci.co.uk/news/health/rss.xml" },
-  { id: "guardian-world", publisher: "The Guardian", url: "https://www.theguardian.com/world/rss" },
-  { id: "guardian-business", publisher: "The Guardian", url: "https://www.theguardian.com/business/rss" },
-  { id: "guardian-tech", publisher: "The Guardian", url: "https://www.theguardian.com/technology/rss" },
-  { id: "guardian-environment", publisher: "The Guardian", url: "https://www.theguardian.com/environment/rss" },
-  { id: "un-news", publisher: "UN News", url: "https://news.un.org/feed/subscribe/en/news/all/rss.xml" },
-  { id: "nasa-breaking", publisher: "NASA", url: "https://www.nasa.gov/rss/dyn/breaking_news.rss" },
-  { id: "al-jazeera", publisher: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml" }
+  { id: "pib-releases", publisher: "Press Information Bureau", url: "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3", editorialScope: "india_first", sourceClass: "official_public_record" },
+  { id: "the-hindu-national", publisher: "The Hindu", url: "https://www.thehindu.com/news/national/feeder/default.rss", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "mongabay-india", publisher: "Mongabay India", url: "https://india.mongabay.com/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-india", publisher: "The Indian Express", url: "https://indianexpress.com/section/india/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-cities", publisher: "The Indian Express", url: "https://indianexpress.com/section/cities/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-business", publisher: "The Indian Express", url: "https://indianexpress.com/section/business/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-economy", publisher: "The Indian Express", url: "https://indianexpress.com/section/business/economy/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-technology", publisher: "The Indian Express", url: "https://indianexpress.com/section/technology/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-science", publisher: "The Indian Express", url: "https://indianexpress.com/section/technology/science/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-explained", publisher: "The Indian Express", url: "https://indianexpress.com/section/explained/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-health", publisher: "The Indian Express", url: "https://indianexpress.com/section/health-wellness/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-education", publisher: "The Indian Express", url: "https://indianexpress.com/section/education/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" },
+  { id: "indian-express-north-east", publisher: "The Indian Express", url: "https://indianexpress.com/section/north-east-india/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" }
 ];
 
 async function fetchFeed(feed: RssFeed, now: Date) {
@@ -42,13 +43,17 @@ async function main() {
     results.push(...(await Promise.all(feeds.slice(index, index + 2).map((feed) => fetchFeed(feed, now)))).flat());
   }
 
-  const recent = deduplicateIntake(filterRecentItems(results, now, 7)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const recent = selectBalancedItems(
+    deduplicateIntake(filterRecentItems(results, now, 7)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
+    16,
+    100
+  );
   const output = {
     contractVersion: "syat.news-intake.v1",
     generatedAt: now.toISOString(),
     windowDays: 7,
-    itemCount: Math.min(recent.length, 100),
-    items: recent.slice(0, 100)
+    itemCount: recent.length,
+    items: recent
   };
   const destination = resolve(process.cwd(), "data/news-intake.json");
   await mkdir(dirname(destination), { recursive: true });

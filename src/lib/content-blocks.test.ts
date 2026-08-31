@@ -5,15 +5,15 @@ import { parseContentBlocks } from "./content-blocks";
 describe("content block tracing", () => {
   it("accepts a paragraph only when its claim and source references are known", () => {
     const blocks = parseContentBlocks([
-      { id: "p-1", kind: "paragraph", text: "The order names a start date for the charge.", claimIds: ["claim-start"], sourceIds: ["city-order"] }
-    ], { claimIds: ["claim-start"], sourceIds: ["city-order"] });
+      { id: "p-1", kind: "paragraph", text: "The note names a start date for the street trial.", claimIds: ["claim-start"], sourceIds: ["ward-note"] }
+    ], { claimIds: ["claim-start"], sourceIds: ["ward-note"] });
 
     expect(blocks[0].id).toBe("p-1");
   });
 
   it("rejects a block that points at an unreviewed source", () => {
     expect(() => parseContentBlocks([
-      { id: "p-1", kind: "paragraph", text: "The order names a start date for the charge.", claimIds: ["claim-start"], sourceIds: ["unknown"] }
-    ], { claimIds: ["claim-start"], sourceIds: ["city-order"] })).toThrow(/unknown source/i);
+      { id: "p-1", kind: "paragraph", text: "The note names a start date for the street trial.", claimIds: ["claim-start"], sourceIds: ["unknown"] }
+    ], { claimIds: ["claim-start"], sourceIds: ["ward-note"] })).toThrow(/unknown source/i);
   });
 });

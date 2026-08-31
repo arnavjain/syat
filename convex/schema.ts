@@ -310,6 +310,34 @@ export default defineSchema({
     .index("by_request_id", ["requestId"])
     .index("by_state", ["state"]),
 
+  draftReviews: defineTable({
+    generationJobId: v.id("generationJobs"),
+    storyId: v.optional(v.id("stories")),
+    contractVersion: v.string(),
+    status: v.union(v.literal("blocked"), v.literal("needs_editorial_review"), v.literal("approved"), v.literal("rejected")),
+    publicationAllowed: v.boolean(),
+    checks: v.object({
+      sourceReferences: v.string(),
+      directQuotes: v.string(),
+      repeatedClaims: v.string(),
+      publisherDiversity: v.string(),
+      mediaRights: v.string(),
+      indiaContext: v.string()
+    }),
+    findings: v.array(v.object({
+      code: v.string(),
+      severity: v.union(v.literal("blocker"), v.literal("warning"), v.literal("note")),
+      message: v.string(),
+      relatedId: v.optional(v.string())
+    })),
+    editorDecisionNote: v.optional(v.string()),
+    reviewedBy: v.optional(v.string()),
+    reviewedAt: v.optional(v.number()),
+    createdAt: v.number()
+  })
+    .index("by_generation_job", ["generationJobId"])
+    .index("by_status", ["status"]),
+
   publicationOutbox: defineTable({
     storyVersionId: v.id("storyVersions"),
     eventType: v.union(v.literal("story_published"), v.literal("story_revalidated"), v.literal("edition_published")),

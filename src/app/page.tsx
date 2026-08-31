@@ -54,6 +54,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <div>
           <p className="micro-copy">A different way to follow what matters</p>
           <h1 id="home-title">See what you are missing.</h1>
+          <Link className="first-read-link" href="/en/onboarding">New here? Take the two-minute reading guide <span aria-hidden="true">↗</span></Link>
         </div>
         <p className="intro-copy">
           Read the event, the evidence, and the lives around it. Syāt helps you hold more than one honest view without flattening the differences.
@@ -88,25 +89,25 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
         <figure className="perspective-frame" aria-labelledby="frame-caption">
           <svg viewBox="0 0 560 430" role="img" aria-labelledby="frame-title frame-desc">
-            <title id="frame-title">A perspective map around a city-centre toll</title>
-            <desc id="frame-desc">A violet city grid is bounded by a pink toll route. Four labelled standpoints sit around the map.</desc>
+            <title id="frame-title">A perspective map around a fictional Indian street plan</title>
+            <desc id="frame-desc">A violet street grid is crossed by a bus corridor. Four everyday standpoints sit around the map.</desc>
             <rect className="map-paper" x="22" y="20" width="516" height="372" rx="34" />
             <path className="map-route soft" d="M98 110C156 66 219 91 269 130c43 33 82 15 128-14 37-24 81-14 111 18" />
             <path className="map-route" d="M72 293c49-43 83-69 133-53 44 14 62 51 115 42 42-7 58-60 104-65 37-4 63 22 94 50" />
             <path className="map-route thin" d="M118 62v277M211 61v286M307 51v300M400 67v273M482 91v220" />
             <path className="map-route thin horizontal" d="M61 159h439M50 233h460M75 315h411" />
-            <path className="toll-loop" d="M206 143c45-35 123-39 183-2 55 35 63 117 18 164-47 50-139 52-192 15-60-43-61-132-9-177Z" />
+            <path className="street-loop" d="M206 143c45-35 123-39 183-2 55 35 63 117 18 164-47 50-139 52-192 15-60-43-61-132-9-177Z" />
             <circle className="map-point one" cx="175" cy="147" r="9" />
             <circle className="map-point two" cx="397" cy="134" r="9" />
             <circle className="map-point three" cx="405" cy="284" r="9" />
             <circle className="map-point four" cx="187" cy="292" r="9" />
             <path className="corner-mark" d="M22 89V20h70M468 20h70v69M22 323v69h70M468 392h70v-69" />
           </svg>
-          <div className="frame-label label-one">Daily commuter</div>
-          <div className="frame-label label-two">City planner</div>
-          <div className="frame-label label-three">Small business</div>
-          <div className="frame-label label-four">Disabled resident</div>
-          <figcaption id="frame-caption">One event, four starting points. Open the story to see what each view uses and may miss.</figcaption>
+          <div className="frame-label label-one">Bus commuter</div>
+          <div className="frame-label label-two">School caregiver</div>
+          <div className="frame-label label-three">Street vendor</div>
+          <div className="frame-label label-four">Wheelchair user</div>
+          <figcaption id="frame-caption">One fictional street plan, four starting points. Open the story to see what each view uses and may miss.</figcaption>
         </figure>
       </section>
 

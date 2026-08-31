@@ -10,6 +10,7 @@ async function main() {
       language: "en-IN",
       mode: "timeless",
       editorialBrief: "Create a non-published teaching draft only. The sole source is fictional, and every statement must stay within its text.",
+      indiaConnection: "This fictional teaching fixture is an Indian neighbourhood context, not a report about a real event.",
       sourceDossier: [{
         sourceId: "teaching-note",
         publisher: "Syāt teaching desk",
@@ -22,6 +23,8 @@ async function main() {
 
   console.log(JSON.stringify({
     status: result.draft.status,
+    reviewStatus: result.review.status,
+    reviewFindings: result.review.findings.map((finding) => finding.code),
     title: result.draft.story.title,
     blocks: result.draft.contentBlocks.length,
     promptTokens: result.usage.promptTokens,
