@@ -7,6 +7,16 @@ import { isOnboardingComplete, markOnboardingComplete, onboardingSteps } from "@
 
 const teachingStoryPath = "/en/news/street-plan-daily-realities";
 
+export function getSafeBrowserStorage(): Storage | undefined {
+  if (typeof window === "undefined") return undefined;
+
+  try {
+    return window.localStorage;
+  } catch {
+    return undefined;
+  }
+}
+
 export function GuidedOnboarding() {
   const [stepIndex, setStepIndex] = useState(0);
   const [hasFinishedBefore, setHasFinishedBefore] = useState(false);
@@ -15,13 +25,13 @@ export function GuidedOnboarding() {
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      setHasFinishedBefore(isOnboardingComplete(window.localStorage));
+      setHasFinishedBefore(isOnboardingComplete(getSafeBrowserStorage()));
     });
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
   function finishGuide() {
-    markOnboardingComplete(window.localStorage);
+    markOnboardingComplete(getSafeBrowserStorage());
   }
 
   return (
