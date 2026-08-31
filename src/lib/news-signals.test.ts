@@ -27,12 +27,22 @@ describe("news signal projection", () => {
   it("keeps public source-signal previews empty until an explicit reviewed fixture ID is supplied", () => {
     const safeFixture = { ...latestNewsSignals[0]!, id: "reviewed-safe-fixture", title: "A reviewed fixture title" };
     const unreviewedSignal = { ...latestNewsSignals[0]!, id: "unreviewed-signal", title: "An ordinary intake title" };
+    const currentSnapshot = { generatedAt: "2026-08-30T00:00:00.000Z", windowDays: 7 };
 
-    expect(selectPublicPreviewSignals([safeFixture, unreviewedSignal], ["reviewed-safe-fixture"])).toEqual([safeFixture]);
+    expect(selectPublicPreviewSignals([safeFixture, unreviewedSignal], ["reviewed-safe-fixture"], currentSnapshot, new Date("2026-08-31T00:00:00.000Z"))).toEqual([safeFixture]);
     expect(previewNewsSignals).toEqual([]);
   });
 
   it("does not call an expired source snapshot current for a public surface", () => {
     expect(isSignalSnapshotCurrent({ generatedAt: "2026-08-01T00:00:00.000Z", windowDays: 7 }, new Date("2026-08-31T00:00:00.000Z"))).toBe(false);
+  });
+
+  it("fails closed for an otherwise reviewed safe signal when its snapshot is stale, future, or invalid", () => {
+    const safeFixture = { ...latestNewsSignals[0]!, id: "reviewed-safe-fixture", title: "A reviewed fixture title" };
+    const now = new Date("2026-08-31T00:00:00.000Z");
+
+    expect(selectPublicPreviewSignals([safeFixture], [safeFixture.id], { generatedAt: "2026-08-01T00:00:00.000Z", windowDays: 7 }, now)).toEqual([]);
+    expect(selectPublicPreviewSignals([safeFixture], [safeFixture.id], { generatedAt: "2026-09-01T00:00:00.000Z", windowDays: 7 }, now)).toEqual([]);
+    expect(selectPublicPreviewSignals([safeFixture], [safeFixture.id], { generatedAt: "not-a-date", windowDays: 7 }, now)).toEqual([]);
   });
 });

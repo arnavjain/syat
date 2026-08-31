@@ -53,7 +53,13 @@ export function isSignalSnapshotCurrent(snapshot: NewsSignalSnapshot, now = new 
   return Number.isFinite(generatedAt) && Number.isFinite(freshnessWindow) && freshnessWindow > 0 && age >= 0 && age <= freshnessWindow;
 }
 
-export function selectPublicPreviewSignals(signals: readonly NewsSignal[], reviewedFixtureIds: readonly string[]) {
+export function selectPublicPreviewSignals(
+  signals: readonly NewsSignal[],
+  reviewedFixtureIds: readonly string[],
+  snapshot: NewsSignalSnapshot,
+  now = new Date()
+) {
+  if (!isSignalSnapshotCurrent(snapshot, now)) return [];
   const reviewedIds = new Set(reviewedFixtureIds);
   return signals.filter((signal) => reviewedIds.has(signal.id) && !isSensitiveNewsSignal(signal));
 }
@@ -62,7 +68,7 @@ export function selectPublicPreviewSignals(signals: readonly NewsSignal[], revie
 // can add a tiny, named reviewed fixture ID here after editorial review. Until
 // then the source queue is visible only in private Studio.
 export const reviewedPublicPreviewSignalIds: readonly string[] = [];
-export const previewNewsSignals = selectPublicPreviewSignals(latestNewsSignals, reviewedPublicPreviewSignalIds);
+export const previewNewsSignals = selectPublicPreviewSignals(latestNewsSignals, reviewedPublicPreviewSignalIds, newsSignalMetadata);
 
 export function formatSignalDate(date: string) {
   return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(date));
