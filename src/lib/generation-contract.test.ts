@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parseGeneratedStory } from "./generation-contract";
+import { buildStoryDraftPrompt, parseGeneratedStory, type SourceDossierRecord } from "./generation-contract";
 
 const sourceDossier = [
   {
@@ -8,7 +8,10 @@ const sourceDossier = [
     publisher: "Nadi Nagar Municipal Corporation",
     title: "Bazaar Road walking and bus-priority trial note",
     url: "https://example.invalid/nadi-nagar-bazaar-road",
-    excerpt: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road."
+    excerpt: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road.",
+    sourceKind: "official_statement" as const,
+    rightsBasis: "link_only" as const,
+    reviewStatus: "approved" as const
   }
 ];
 
@@ -101,5 +104,34 @@ describe("parseGeneratedStory", () => {
     result.statements[0].sourceIds = ["invented-source"];
 
     expect(() => parseGeneratedStory(result, sourceDossier)).toThrow(/not in the supplied dossier/);
+  });
+
+  const invalidDossiers: SourceDossierRecord[][] = [
+    [{ ...sourceDossier[0], reviewStatus: "pending" }],
+    [{ ...sourceDossier[0], reviewStatus: "rejected" }],
+    [{ ...sourceDossier[0], rightsBasis: undefined }],
+    [{ ...sourceDossier[0], sourceId: "" }],
+    [sourceDossier[0], sourceDossier[0]]
+  ];
+
+  it.each(invalidDossiers.map((dossier) => ({ dossier })))("rejects an incomplete or non-approved source dossier before prompt construction", ({ dossier }) => {
+    expect(() => buildStoryDraftPrompt({
+      language: "en-IN",
+      mode: "news",
+      editorialBrief: "Use the supplied note carefully.",
+      indiaConnection: "A fictional teaching fixture in an Indian municipal context.",
+      sourceDossier: dossier
+    })).toThrow(/source dossier/i);
+  });
+
+  it("rejects unknown source and review values while preserving review-only output", () => {
+    const malformedDossier = [{ ...sourceDossier[0], reviewStatus: "approved_by_model" }] as unknown as SourceDossierRecord[];
+    const malformedSourceKind = [{ ...sourceDossier[0], sourceKind: "machine_guess" }] as unknown as SourceDossierRecord[];
+    const malformedResponse = { ...response, editorialStatus: "approved" };
+
+    expect(() => parseGeneratedStory(response, malformedDossier)).toThrow(/source dossier/i);
+    expect(() => parseGeneratedStory(response, malformedSourceKind)).toThrow(/source dossier/i);
+    expect(() => parseGeneratedStory(malformedResponse, sourceDossier)).toThrow();
+    expect(parseGeneratedStory(response, sourceDossier).status).toBe("needs_editorial_review");
   });
 });

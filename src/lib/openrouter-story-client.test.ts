@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { createStoryDraft, OPENROUTER_STORY_MODEL } from "./openrouter-story-client";
+import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL } from "./openrouter-story-client";
 
 const input = {
   language: "en-IN" as const,
@@ -13,7 +13,10 @@ const input = {
       publisher: "Nadi Nagar Municipal Corporation",
       title: "Bazaar Road walking and bus-priority trial note",
       url: "https://example.invalid/nadi-nagar-order",
-      excerpt: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road."
+      excerpt: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road.",
+      sourceKind: "official_statement" as const,
+      rightsBasis: "link_only" as const,
+      reviewStatus: "approved" as const
     }
   ]
 };
@@ -51,7 +54,13 @@ describe("createStoryDraft", () => {
       }), { status: 200 })
     );
 
-    const result = await createStoryDraft({ apiKey: "test-key", input, fetchImpl });
+    const result = await createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt: vi.fn()
+    });
 
     const request = JSON.parse(fetchImpl.mock.calls[0][1].body);
     expect(request.model).toBe(OPENROUTER_STORY_MODEL);
@@ -67,7 +76,7 @@ describe("createStoryDraft", () => {
   });
 
   it("refuses to make a paid request without an API key", async () => {
-    await expect(createStoryDraft({ apiKey: "", input, fetchImpl: vi.fn() })).rejects.toThrow(/OPENROUTER_API_KEY/);
+    await expect(createStoryDraft({ apiKey: "", input, fetchImpl: vi.fn(), budget: { spentPaise: 0, reservedPaise: 0 } })).rejects.toThrow(/OPENROUTER_API_KEY/);
   });
 
   it("names a provider-truncated draft instead of trying to parse it", async () => {
@@ -78,6 +87,61 @@ describe("createStoryDraft", () => {
       }), { status: 200 })
     );
 
-    await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl })).rejects.toThrow(/cut .*short/i);
+    await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn() })).rejects.toThrow(/cut .*short/i);
+  });
+
+  it("does not build a prompt or call a paid fetch when the monthly budget refuses the job", async () => {
+    const fetchImpl = vi.fn();
+    const promptBuilder = vi.fn();
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 140_000, reservedPaise: 0 },
+      reserveAttempt: vi.fn(),
+      promptBuilder
+    })).rejects.toThrow(/budget/i);
+
+    expect(promptBuilder).not.toHaveBeenCalled();
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("rejects an unapproved dossier before reserving, building, or fetching", async () => {
+    const fetchImpl = vi.fn();
+    const reserveAttempt = vi.fn();
+    const promptBuilder = vi.fn(() => "unused prompt");
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input: { ...input, sourceDossier: [...input.sourceDossier, input.sourceDossier[0]] },
+      fetchImpl,
+      budget: { spentPaise: 0, reservedPaise: 0 },
+      reserveAttempt,
+      promptBuilder
+    })).rejects.toThrow(/source dossier/i);
+
+    expect(reserveAttempt).not.toHaveBeenCalled();
+    expect(promptBuilder).not.toHaveBeenCalled();
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it("includes the first reservation before refusing a retry that would cross the cap", async () => {
+    const maximum = estimateMaximumStoryDraftCostInrPaise();
+    const fetchImpl = vi.fn().mockRejectedValueOnce(new Error("temporary network failure"));
+    const reserveAttempt = vi.fn();
+
+    await expect(createStoryDraft({
+      apiKey: "test-key",
+      input,
+      fetchImpl,
+      budget: { spentPaise: 140_000 - maximum - 1, reservedPaise: 0 },
+      reserveAttempt,
+      maxAttempts: 2
+    })).rejects.toThrow(/budget/i);
+
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(reserveAttempt).toHaveBeenCalledTimes(1);
+    expect(reserveAttempt.mock.calls[0][0]).toMatchObject({ attempt: 1, estimatedPaise: maximum });
   });
 });

@@ -4,6 +4,8 @@ import { contentBlockSchema, parseContentBlocks } from "./content-blocks";
 
 const sourceIdList = z.array(z.string().min(1)).min(1).max(8);
 const statementType = z.enum(["documented", "interpreted", "experienced", "valued", "unresolved"]);
+const sourceKind = z.enum(["primary_document", "official_statement", "reputable_reporting", "research", "archive", "social_embed"]);
+const rightsBasis = z.enum(["link_only", "owned", "public_domain", "cc0", "cc_by", "cc_by_sa", "government_open_data", "official_embed", "commercial_license"]);
 
 const timelineEntrySchema = z
   .object({
@@ -90,11 +92,42 @@ export type SourceDossierRecord = {
   reviewStatus?: "pending" | "approved" | "rejected" | "needs_changes";
 };
 
+const approvedSourceDossierRecordSchema = z
+  .object({
+    sourceId: z.string().trim().min(1),
+    publisher: z.string().trim().min(1),
+    title: z.string().trim().min(1),
+    url: z.url(),
+    excerpt: z.string().trim().min(1),
+    publishedAt: z.string().optional(),
+    accessedAt: z.string().optional(),
+    sourceKind,
+    rightsBasis,
+    reviewStatus: z.literal("approved")
+  })
+  .strict();
+
+export type ApprovedSourceDossierRecord = z.infer<typeof approvedSourceDossierRecordSchema>;
+
+export function validateApprovedSourceDossier(sourceDossier: SourceDossierRecord[]): ApprovedSourceDossierRecord[] {
+  const parsed = z.array(approvedSourceDossierRecordSchema).min(1).safeParse(sourceDossier);
+  if (!parsed.success) {
+    throw new Error("Source dossier must contain complete, approved source records before a draft can be prepared.");
+  }
+
+  const sourceIds = parsed.data.map((source) => source.sourceId);
+  if (new Set(sourceIds).size !== sourceIds.length) {
+    throw new Error("Source dossier contains duplicate source IDs and cannot be used to prepare a draft.");
+  }
+
+  return parsed.data;
+}
+
 export type GeneratedStory = z.infer<typeof generatedStoryResponseSchema> & {
   status: "needs_editorial_review";
 };
 
-function assertKnownSources(story: z.infer<typeof generatedStoryResponseSchema>, sourceDossier: SourceDossierRecord[]) {
+function assertKnownSources(story: z.infer<typeof generatedStoryResponseSchema>, sourceDossier: ApprovedSourceDossierRecord[]) {
   const knownSourceIds = new Set(sourceDossier.map((source) => source.sourceId));
   const referencedSourceIds = [
     ...story.timeline.flatMap((entry) => entry.sourceIds),
@@ -115,8 +148,9 @@ function assertKnownSources(story: z.infer<typeof generatedStoryResponseSchema>,
 }
 
 export function parseGeneratedStory(value: unknown, sourceDossier: SourceDossierRecord[]): GeneratedStory {
+  const approvedSourceDossier = validateApprovedSourceDossier(sourceDossier);
   const story = generatedStoryResponseSchema.parse(value);
-  assertKnownSources(story, sourceDossier);
+  assertKnownSources(story, approvedSourceDossier);
 
   return { ...story, status: "needs_editorial_review" };
 }
@@ -132,6 +166,7 @@ export function buildStoryDraftPrompt(input: {
   indiaConnection: string;
   sourceDossier: SourceDossierRecord[];
 }) {
+  const approvedSourceDossier = validateApprovedSourceDossier(input.sourceDossier);
   return `You are an editorial research assistant for Syāt. Your job is to prepare a cautious, source-linked draft for a human editor. You are not a publisher and must not invent facts, sources, quotes, dates, people, images, or consensus. Use only the supplied dossier. If the dossier cannot support a statement, leave it as an unresolved question and explain what evidence would help. Treat direct evidence, interpretation, experience, and values as different kinds of statements. Do not turn disagreement into a false balance.
 
 Return exactly one JSON object. No markdown, no prose before or after it. It must match this contract exactly:
@@ -154,5 +189,5 @@ India connection:
 ${input.indiaConnection}
 
 Source dossier:
-${JSON.stringify(input.sourceDossier, null, 2)}`;
+${JSON.stringify(approvedSourceDossier, null, 2)}`;
 }

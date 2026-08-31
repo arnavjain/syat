@@ -4,13 +4,16 @@ import {
   buildStoryDraftPrompt,
   generatedStoryResponseSchema,
   parseGeneratedStoryJson,
+  validateApprovedSourceDossier,
   type GeneratedStory,
   type SourceDossierRecord
 } from "./generation-contract";
 import { reviewGeneratedDraft, type DraftReview } from "./draft-review";
+import { authoriseGenerationBudget, type GenerationBudgetDecision } from "./generation-budget";
 
 export const OPENROUTER_STORY_MODEL = "deepseek/deepseek-v4-flash-0731";
 const STORY_DRAFT_MAX_TOKENS = 3200;
+const STORY_DRAFT_MAX_PROMPT_TOKENS = 16_000;
 const STORY_DRAFT_TIMEOUT_MS = 75_000;
 
 // Published model rates in USD per token, captured on 2026-08-31. The conversion deliberately rounds up at ₹100/USD.
@@ -20,7 +23,7 @@ const CONSERVATIVE_INR_PER_USD = 100;
 
 type FetchLike = (input: string | URL | Request, init?: RequestInit) => Promise<Response>;
 
-type StoryDraftInput = {
+export type StoryDraftInput = {
   language: "en-IN" | "hi-IN";
   mode: "news" | "timeless";
   editorialBrief: string;
@@ -39,6 +42,13 @@ export type StoryDraftResult = {
   review: DraftReview;
   usage: { promptTokens: number; completionTokens: number };
   estimatedCostInrPaise: number;
+  reservations: GenerationAttemptReservation[];
+};
+
+export type GenerationAttemptReservation = {
+  attempt: number;
+  estimatedPaise: number;
+  decision: GenerationBudgetDecision;
 };
 
 export function estimateStoryDraftCostInrPaise(promptTokens: number, completionTokens: number) {
@@ -46,58 +56,118 @@ export function estimateStoryDraftCostInrPaise(promptTokens: number, completionT
   return Math.max(1, Math.ceil(usdCost * CONSERVATIVE_INR_PER_USD * 100));
 }
 
+export function estimateMaximumStoryDraftCostInrPaise() {
+  return estimateStoryDraftCostInrPaise(STORY_DRAFT_MAX_PROMPT_TOKENS, STORY_DRAFT_MAX_TOKENS);
+}
+
+function getMaxAttempts(maxAttempts: number | undefined) {
+  if (maxAttempts === undefined) return 1;
+  if (maxAttempts === 1 || maxAttempts === 2) return maxAttempts;
+  throw new Error("Story draft generation allows one request and at most one bounded retry.");
+}
+
+function budgetRefusalMessage(decision: GenerationBudgetDecision) {
+  return `Story draft generation budget refused: ${decision.reason}.`;
+}
+
 export async function createStoryDraft({
   apiKey,
   input,
-  fetchImpl = fetch
+  fetchImpl = fetch,
+  budget,
+  reserveAttempt,
+  maxAttempts,
+  promptBuilder = buildStoryDraftPrompt
 }: {
   apiKey: string;
   input: StoryDraftInput;
   fetchImpl?: FetchLike;
+  budget?: { spentPaise: number; reservedPaise: number };
+  reserveAttempt?: (reservation: GenerationAttemptReservation) => void;
+  maxAttempts?: number;
+  promptBuilder?: typeof buildStoryDraftPrompt;
 }): Promise<StoryDraftResult> {
   if (!apiKey) {
     throw new Error("OPENROUTER_API_KEY is required to generate a story draft.");
   }
 
-  const prompt = buildStoryDraftPrompt(input);
-  const signal = AbortSignal.timeout(STORY_DRAFT_TIMEOUT_MS);
-  let response: Response;
-  try {
-    response = await fetchImpl("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
-      },
-      signal,
-      body: JSON.stringify({
-        model: OPENROUTER_STORY_MODEL,
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.15,
-        max_tokens: STORY_DRAFT_MAX_TOKENS,
-        stream: false,
-        reasoning: { effort: "none", exclude: true },
-        provider: {
-          require_parameters: true,
-          sort: "throughput",
-          data_collection: "deny",
-          max_price: { prompt: 0.1, completion: 0.2 }
-        },
-        response_format: {
-          type: "json_schema",
-          json_schema: {
-            name: "syat_story_draft",
-            strict: true,
-            schema: z.toJSONSchema(generatedStoryResponseSchema)
-          }
-        }
-      })
+  // Validate independently of the prompt builder so a test or future adapter cannot skip this gate.
+  validateApprovedSourceDossier(input.sourceDossier);
+
+  if (!budget) {
+    throw new Error("A shared monthly budget snapshot is required before a story draft can be generated.");
+  }
+
+  const maximumEstimatePaise = estimateMaximumStoryDraftCostInrPaise();
+  const attempts = getMaxAttempts(maxAttempts);
+  const reservations: GenerationAttemptReservation[] = [];
+  let reservedByThisJobPaise = 0;
+  let prompt: string | undefined;
+  let response: Response | undefined;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const decision = authoriseGenerationBudget({
+      spentPaise: budget.spentPaise,
+      reservedPaise: budget.reservedPaise + reservedByThisJobPaise,
+      estimatedPaise: maximumEstimatePaise
     });
-  } catch (error) {
-    if (signal.aborted) {
-      throw new Error(`OpenRouter did not return a draft within ${STORY_DRAFT_TIMEOUT_MS / 1000} seconds. The job can be retried from the private review queue.`);
+    if (decision.status === "refused") {
+      throw new Error(budgetRefusalMessage(decision));
     }
-    throw error;
+
+    if (!reserveAttempt) {
+      throw new Error("A shared reservation recorder is required before a story draft can be generated.");
+    }
+
+    const reservation = { attempt, estimatedPaise: maximumEstimatePaise, decision };
+    reserveAttempt(reservation);
+    reservations.push(reservation);
+    reservedByThisJobPaise += maximumEstimatePaise;
+    prompt ??= promptBuilder(input);
+
+    const signal = AbortSignal.timeout(STORY_DRAFT_TIMEOUT_MS);
+    try {
+      response = await fetchImpl("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json"
+        },
+        signal,
+        body: JSON.stringify({
+          model: OPENROUTER_STORY_MODEL,
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.15,
+          max_tokens: STORY_DRAFT_MAX_TOKENS,
+          stream: false,
+          reasoning: { effort: "none", exclude: true },
+          provider: {
+            require_parameters: true,
+            sort: "throughput",
+            data_collection: "deny",
+            max_price: { prompt: 0.1, completion: 0.2 }
+          },
+          response_format: {
+            type: "json_schema",
+            json_schema: {
+              name: "syat_story_draft",
+              strict: true,
+              schema: z.toJSONSchema(generatedStoryResponseSchema)
+            }
+          }
+        })
+      });
+      break;
+    } catch (error) {
+      if (signal.aborted) {
+        throw new Error(`OpenRouter did not return a draft within ${STORY_DRAFT_TIMEOUT_MS / 1000} seconds. The job can be retried from the private review queue.`);
+      }
+      if (attempt === attempts) throw error;
+    }
+  }
+
+  if (!response) {
+    throw new Error("OpenRouter did not return a story draft response.");
   }
 
   const payload = (await response.json()) as OpenRouterPayload;
@@ -115,14 +185,16 @@ export async function createStoryDraft({
     throw new Error("OpenRouter returned no draft content.");
   }
 
-  const promptTokens = payload.usage?.prompt_tokens ?? 0;
-  const completionTokens = payload.usage?.completion_tokens ?? 0;
+  const promptTokens = Number.isSafeInteger(payload.usage?.prompt_tokens) && (payload.usage?.prompt_tokens ?? 0) >= 0 ? payload.usage?.prompt_tokens ?? 0 : 0;
+  const completionTokens = Number.isSafeInteger(payload.usage?.completion_tokens) && (payload.usage?.completion_tokens ?? 0) >= 0 ? payload.usage?.completion_tokens ?? 0 : 0;
 
   const draft = parseGeneratedStoryJson(content, input.sourceDossier);
   return {
     draft,
     review: reviewGeneratedDraft(draft, input.sourceDossier, { indiaConnection: input.indiaConnection }),
     usage: { promptTokens, completionTokens },
-    estimatedCostInrPaise: estimateStoryDraftCostInrPaise(promptTokens, completionTokens)
+    // This is the reserved maximum, not a bill or trusted provider-reported actual cost.
+    estimatedCostInrPaise: maximumEstimatePaise,
+    reservations
   };
 }

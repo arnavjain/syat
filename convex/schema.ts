@@ -5,6 +5,7 @@ const storyMode = v.union(v.literal("news"), v.literal("timeless"));
 const storyStatus = v.union(v.literal("draft"), v.literal("ready_for_review"), v.literal("approved"), v.literal("published"), v.literal("archived"));
 const reviewState = v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected"), v.literal("needs_changes"));
 const rightsBasis = v.union(v.literal("owned"), v.literal("public_domain"), v.literal("cc0"), v.literal("cc_by"), v.literal("cc_by_sa"), v.literal("government_open_data"), v.literal("official_embed"), v.literal("commercial_license"));
+const sourceRightsBasis = v.union(v.literal("link_only"), rightsBasis);
 const sourceKind = v.union(v.literal("primary_document"), v.literal("official_statement"), v.literal("reputable_reporting"), v.literal("research"), v.literal("archive"), v.literal("social_embed"));
 const statementType = v.union(v.literal("documented"), v.literal("interpreted"), v.literal("experienced"), v.literal("valued"), v.literal("unresolved"));
 
@@ -57,6 +58,8 @@ export default defineSchema({
     language: v.string(),
     quoteScope: v.optional(v.string()),
     archiveUrl: v.optional(v.string()),
+    // Older source rows may lack this while they are migrated. Generation rejects them at its boundary.
+    rightsBasis: v.optional(sourceRightsBasis),
     reviewStatus: reviewState,
     reviewedBy: v.optional(v.string()),
     reviewedAt: v.optional(v.number()),
@@ -64,6 +67,26 @@ export default defineSchema({
   })
     .index("by_public_id", ["publicId"])
     .index("by_review_status", ["reviewStatus"]),
+
+  sourceIntakeRecords: defineTable({
+    publicId: v.string(),
+    sourceId: v.optional(v.id("sources")),
+    collectionRunId: v.string(),
+    publisher: v.string(),
+    feedUrl: v.string(),
+    canonicalUrl: v.string(),
+    title: v.string(),
+    discoveredAt: v.number(),
+    fetchedAt: v.number(),
+    rawContentHash: v.string(),
+    intakeState: v.union(v.literal("candidate"), v.literal("accepted"), v.literal("duplicate"), v.literal("stale"), v.literal("rejected"), v.literal("needs_editorial_review")),
+    rejectionReason: v.optional(v.string()),
+    createdAt: v.number()
+  })
+    .index("by_public_id", ["publicId"])
+    .index("by_collection_run", ["collectionRunId"])
+    .index("by_source", ["sourceId"])
+    .index("by_intake_state", ["intakeState"]),
 
   mediaAssets: defineTable({
     publicId: v.string(),
@@ -74,7 +97,7 @@ export default defineSchema({
     creditLine: v.string(),
     creator: v.optional(v.string()),
     sourceUrl: v.optional(v.string()),
-    rightsBasis,
+    rightsBasis: sourceRightsBasis,
     licenseUrl: v.optional(v.string()),
     licenceText: v.optional(v.string()),
     reviewStatus: reviewState,
@@ -128,6 +151,45 @@ export default defineSchema({
     note: v.optional(v.string()),
     createdAt: v.number()
   }).index("by_story_version", ["storyVersionId"]),
+
+  storyTimelineEntries: defineTable({
+    storyVersionId: v.id("storyVersions"),
+    publicId: v.string(),
+    eventType: v.union(v.literal("reported_change"), v.literal("documented_event"), v.literal("unresolved_context")),
+    timeKind: v.union(v.literal("exact_date"), v.literal("period"), v.literal("unknown")),
+    happenedAt: v.optional(v.number()),
+    periodLabel: v.optional(v.string()),
+    text: v.string(),
+    uncertaintyNote: v.optional(v.string()),
+    sourceIds: v.array(v.id("sources")),
+    sortOrder: v.number(),
+    createdAt: v.number()
+  })
+    .index("by_story_version", ["storyVersionId"])
+    .index("by_story_version_and_public_id", ["storyVersionId", "publicId"]),
+
+  storyPeopleAssociations: defineTable({
+    storyVersionId: v.id("storyVersions"),
+    publicId: v.string(),
+    entityKind: v.union(v.literal("person"), v.literal("institution"), v.literal("community"), v.literal("unknown_role")),
+    displayName: v.string(),
+    association: v.string(),
+    whyRelevant: v.string(),
+    sourceIds: v.array(v.id("sources")),
+    verificationState: v.union(v.literal("story_approved"), v.literal("fictional_fixture"), v.literal("unverified_role")),
+    createdAt: v.number()
+  })
+    .index("by_story_version", ["storyVersionId"])
+    .index("by_story_version_and_public_id", ["storyVersionId", "publicId"]),
+
+  storyTopicLinks: defineTable({
+    storyId: v.id("stories"),
+    topicPublicId: v.string(),
+    relation: v.union(v.literal("context_for"), v.literal("asks_same_question"), v.literal("historical_context"), v.literal("contrasts_with")),
+    createdAt: v.number()
+  })
+    .index("by_story", ["storyId"])
+    .index("by_topic_public_id", ["topicPublicId"]),
 
   storyMedia: defineTable({
     storyVersionId: v.id("storyVersions"),
@@ -295,6 +357,9 @@ export default defineSchema({
     jobType: v.union(v.literal("source_extract"), v.literal("story_draft"), v.literal("translation"), v.literal("reframe"), v.literal("recommendation")),
     inputHash: v.string(),
     model: v.string(),
+    budgetMonth: v.optional(v.string()),
+    estimatedMaxPaise: v.optional(v.number()),
+    reservedPaise: v.optional(v.number()),
     state: v.union(v.literal("queued"), v.literal("running"), v.literal("succeeded"), v.literal("failed"), v.literal("cancelled")),
     costInrPaise: v.optional(v.number()),
     outputRef: v.optional(v.string()),
@@ -308,21 +373,55 @@ export default defineSchema({
     updatedAt: v.number()
   })
     .index("by_request_id", ["requestId"])
-    .index("by_state", ["state"]),
+    .index("by_state", ["state"])
+    .index("by_input_hash", ["inputHash"])
+    .index("by_budget_month_and_state", ["budgetMonth", "state"]),
+
+  generationJobSources: defineTable({
+    generationJobId: v.id("generationJobs"),
+    sourceId: v.id("sources"),
+    sourcePublicId: v.string(),
+    sourceKind,
+    rightsBasis,
+    reviewStatus: reviewState,
+    dossierSnapshotHash: v.string(),
+    approvedBy: v.optional(v.string()),
+    approvedAt: v.optional(v.number()),
+    createdAt: v.number()
+  })
+    .index("by_generation_job", ["generationJobId"])
+    .index("by_source", ["sourceId"]),
+
+  generationAttempts: defineTable({
+    generationJobId: v.id("generationJobs"),
+    attemptNumber: v.number(),
+    inputHash: v.string(),
+    budgetMonth: v.string(),
+    reservationPaise: v.number(),
+    actualSpendPaise: v.optional(v.number()),
+    state: v.union(v.literal("reserved"), v.literal("sent"), v.literal("succeeded"), v.literal("failed"), v.literal("cancelled")),
+    externalResponseId: v.optional(v.string()),
+    failureCode: v.optional(v.string()),
+    createdAt: v.number(),
+    completedAt: v.optional(v.number())
+  })
+    .index("by_generation_job_and_attempt", ["generationJobId", "attemptNumber"])
+    .index("by_input_hash", ["inputHash"])
+    .index("by_budget_month_and_state", ["budgetMonth", "state"]),
 
   draftReviews: defineTable({
     generationJobId: v.id("generationJobs"),
     storyId: v.optional(v.id("stories")),
     contractVersion: v.string(),
-    status: v.union(v.literal("blocked"), v.literal("needs_editorial_review"), v.literal("approved"), v.literal("rejected")),
-    publicationAllowed: v.boolean(),
+    status: v.union(v.literal("blocked"), v.literal("needs_editorial_review")),
+    publicationAllowed: v.literal(false),
     checks: v.object({
-      sourceReferences: v.string(),
-      directQuotes: v.string(),
-      repeatedClaims: v.string(),
-      publisherDiversity: v.string(),
-      mediaRights: v.string(),
-      indiaContext: v.string()
+      sourceReferences: v.literal("passed"),
+      directQuotes: v.union(v.literal("passed"), v.literal("blocked")),
+      repeatedClaims: v.union(v.literal("passed"), v.literal("blocked")),
+      publisherDiversity: v.union(v.literal("limited"), v.literal("multiple_publishers")),
+      mediaRights: v.union(v.literal("not_requested"), v.literal("human_review_required")),
+      indiaContext: v.union(v.literal("provided"), v.literal("missing"))
     }),
     findings: v.array(v.object({
       code: v.string(),
@@ -337,6 +436,19 @@ export default defineSchema({
   })
     .index("by_generation_job", ["generationJobId"])
     .index("by_status", ["status"]),
+
+  reviewEvents: defineTable({
+    targetType: v.union(v.literal("source"), v.literal("source_dossier"), v.literal("generation_job"), v.literal("draft_review"), v.literal("story_version"), v.literal("media_asset")),
+    targetId: v.string(),
+    action: v.union(v.literal("created"), v.literal("submitted"), v.literal("approved"), v.literal("rejected"), v.literal("needs_changes"), v.literal("commented"), v.literal("reserved_budget"), v.literal("recorded_spend")),
+    actorSubject: v.optional(v.string()),
+    note: v.optional(v.string()),
+    beforeState: v.optional(v.string()),
+    afterState: v.optional(v.string()),
+    createdAt: v.number()
+  })
+    .index("by_target_and_created_at", ["targetType", "targetId", "createdAt"])
+    .index("by_created_at", ["createdAt"]),
 
   publicationOutbox: defineTable({
     storyVersionId: v.id("storyVersions"),
