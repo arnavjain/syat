@@ -8,8 +8,6 @@ const homeModeHrefs: Record<HomeMode, "/" | "/en/timeless"> = {
   timeless: "/en/timeless"
 };
 
-const staticHomeDestinations = new Set(["/", "/en/timeless", "/en/explore"]);
-
 export type StoryTeaser = {
   title: string;
   dek: string;
@@ -129,9 +127,7 @@ export function getHomeModeHref(mode: HomeMode) {
   return homeModeHrefs[mode];
 }
 
-export function isCurrentHomeDestination(href: string) {
-  if (staticHomeDestinations.has(href)) return true;
-
+export function isCurrentFixtureDestination(href: string) {
   const match = href.match(/^\/en\/(news|timeless)\/([^/]+)$/);
   if (!match) return false;
 
