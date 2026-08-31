@@ -171,6 +171,15 @@ describe("syat.story-draft.v2", () => {
     expect(parseGeneratedStoryV2(draft, [officialSource]).story.title).toBe(routinePhrase);
   });
 
+  it("blocks a distinctive copied event phrase after a named minister", () => {
+    const copiedTitle = "Minister Kavita Rao Opens India’s First Floating Grain Laboratory";
+    const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "Minister Kavita Rao Opens Indias First Floating Grain Laboratory on 1 September 2026." };
+    const draft = makeDraft();
+    draft.story.title = copiedTitle;
+
+    expect(() => parseGeneratedStoryV2(draft, [officialSource])).toThrow(/closely cop(?:y|ies)/i);
+  });
+
   it("rejects repeated stable media-plan IDs", () => {
     const draft = makeDraft();
     const plan = { id: "bazaar-road-photo", kind: "photo" as const, placement: "hero" as const, purpose: "Show the physical road layout described by the source record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by" as const, claimIds: ["trial-date"], sourceIds: ["pib-road-note"] };

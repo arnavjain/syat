@@ -233,7 +233,7 @@ function allReferencedSourceIds(draft: GeneratedStoryV2) {
 }
 
 function textTokens(text: string) {
-  return text.toLocaleLowerCase("en-IN").normalize("NFKC").match(/[\p{L}\p{N}]+/gu) ?? [];
+  return text.toLocaleLowerCase("en-IN").normalize("NFKC").replace(/([\p{L}])['’]s\b/giu, "$1s").match(/[\p{L}\p{N}]+/gu) ?? [];
 }
 
 function sharedRun(text: string, evidenceText: string, size: number) {
@@ -251,9 +251,22 @@ function sharedRun(text: string, evidenceText: string, size: number) {
 
 type VisibleDraftField = { id: string; text: string; sourceIds: string[]; compactLabel?: true };
 
-function isEntityLedLabel(text: string) {
-  const tokens = text.normalize("NFKC").match(/[\p{L}\p{M}]+/gu)?.slice(0, 8) ?? [];
-  return tokens.filter((token) => /^\p{Lu}/u.test(token)).length >= 3;
+function withoutOpeningEntityOrOffice(text: string) {
+  const tokens = text.normalize("NFKC").replace(/([\p{L}])['’]s\b/giu, "$1s").match(/[\p{L}\p{M}]+/gu) ?? [];
+  let spanEnd = 0;
+  for (const [index, token] of tokens.entries()) {
+    const followsConnector = index > 0 && /^(?:and|for|of|the)$/i.test(tokens[index - 1]);
+    if ((index < 3 || followsConnector) && /^\p{Lu}/u.test(token)) {
+      spanEnd = index + 1;
+      continue;
+    }
+    if (spanEnd === index && /^(?:and|for|of|the)$/i.test(token)) {
+      spanEnd = index + 1;
+      continue;
+    }
+    break;
+  }
+  return tokens.slice(spanEnd).join(" ");
 }
 
 function visibleDraftFields(draft: GeneratedStoryV2): VisibleDraftField[] {
@@ -287,8 +300,9 @@ export function findCloseCopyMatches(draft: GeneratedStoryV2, sourceDossier: Sou
   const sourceById = new Map(sourceDossier.map((source) => [source.id, source]));
   return visibleDraftFields(draft).flatMap((field) => field.sourceIds.flatMap((sourceId) => {
     const source = sourceById.get(sourceId);
-    const runSize = field.compactLabel && isEntityLedLabel(field.text) ? 10 : 7;
-    return source && sharedRun(field.text, source.evidenceText, runSize) ? [{ fieldId: field.id, sourceId }] : [];
+    const visibleText = field.compactLabel ? withoutOpeningEntityOrOffice(field.text) : field.text;
+    const runSize = field.compactLabel ? 6 : 7;
+    return source && sharedRun(visibleText, source.evidenceText, runSize) ? [{ fieldId: field.id, sourceId }] : [];
   }));
 }
 

@@ -38,7 +38,8 @@ const genericOpening = /^(?:in a (?:significant|major|landmark|notable) (?:devel
 const hypeTerms = /\b(?:groundbreaking|game[ -]?changer|historic milestone|revolutionary|transformative leap|unprecedented success|sweeping victory|massive boost)\b/i;
 const modalOrAbstract = new Set(["may", "might", "could", "would", "possibly", "potentially", "impact", "development", "initiative", "stakeholder", "landscape", "significant", "various"]);
 const causalTerms = /\b(?:because|therefore|thus|hence|caused?|causing|led to|resulted in|driven by)\b/i;
-const attributedCausalClaim = /(?:^|[.!?]\s+)[^.!?]{1,140}\b(?:says?|said|states?|stated|attributes?|attributed)\b[^.!?]{0,180}\b(?:because|therefore|thus|hence|caused?|causing|led to|resulted in|driven by)\b/i;
+const reportingVerb = /\b(?:says?|said|states?|stated|attributes?|attributed)\b/i;
+const clauseBoundary = /(?:[,;:—–]|\s+\b(?:although|but|however|nevertheless|nonetheless|though|whereas|while|yet)\b\s*)/i;
 const concreteTerms = new Set(["road", "lane", "bus", "train", "school", "hospital", "court", "river", "village", "city", "district", "ministry", "office", "record", "report", "route", "street", "market", "worker", "farmer", "student", "household", "rupee", "kilometre", "hectare", "station"]);
 
 function words(text: string): string[] {
@@ -78,6 +79,16 @@ function paragraphs(story: GeneratedStoryV2) {
 
 function sentences(text: string) {
   return text.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+}
+
+function allCausalClausesAreAttributed(text: string) {
+  const causalClauses = sentences(text).flatMap((sentence) => sentence.split(clauseBoundary)).filter((clause) => causalTerms.test(clause));
+  return causalClauses.length > 0 && causalClauses.every((clause) => {
+    const reporting = reportingVerb.exec(clause);
+    if (!reporting) return false;
+    const causal = causalTerms.exec(clause);
+    return Boolean(causal && reporting.index < causal.index);
+  });
 }
 
 function addUnique(list: EditorialQualityFinding[], finding: EditorialQualityFinding) {
@@ -140,12 +151,15 @@ export function reviewEditorialQuality(story: GeneratedStoryV2, corpus: readonly
   }
 
   for (const paragraph of bodyParagraphs) {
-    const factualCausalText = paragraph.text.replace(/\b(?:matters?|important)\s+because\b/gi, "");
+    const factualCausalText = paragraph.text
+      .replace(/\b(?:matters?|important)\s+because\b/gi, "")
+      .replace(/\b(?:no|not)\b[^.!?]{0,100}\bcauses?\b/gi, "")
+      .replace(/\brather than\b[^.!?]{0,100}\bcauses?\b/gi, "");
     if (!causalTerms.test(factualCausalText)) continue;
     const linkedStatements = story.statements.filter((statement) => paragraph.claimIds.includes(statement.id));
     const causalBasisPresent = linkedStatements.some((statement) => statement.basis === "direct_record" || statement.basis === "reported_observation");
     const attributedOfficialReason = linkedStatements.some((statement) => statement.basis === "official_claim")
-      && attributedCausalClaim.test(factualCausalText);
+      && allCausalClausesAreAttributed(factualCausalText);
     if (!causalBasisPresent && !attributedOfficialReason) addUnique(blockers, { code: "unsupported-causal-language", message: "Causal wording appears without a direct-record basis or clear attribution as an official claim.", relatedId: paragraph.id });
   }
 

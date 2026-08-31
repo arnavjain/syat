@@ -125,4 +125,32 @@ describe("reviewEditorialQuality", () => {
 
     expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(false);
   });
+
+  it("ends official attribution at a contrast clause", () => {
+    const story = makeStory();
+    story.bodySections[0].paragraphs[0].text = "The ministry said the meeting ended at noon, but prices rose because demand increased. The official record supplies no evidence for that separate price claim.";
+
+    expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(true);
+  });
+
+  it("ends official attribution at a separate comma-delimited clause", () => {
+    const story = makeStory();
+    story.bodySections[0].paragraphs[0].text = "The ministry said the meeting ended at noon, prices rose because demand increased. The official record supplies no evidence for that separate price claim.";
+
+    expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(true);
+  });
+
+  it("keeps causality inside the same attributed clause", () => {
+    const story = makeStory();
+    story.bodySections[0].paragraphs[0].text = "RBI said it changed the rule because settlement risks had increased. This remains RBI's stated reason rather than an independently established cause.";
+
+    expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(false);
+  });
+
+  it("blocks an unattributed cause even when another clause has a valid attribution", () => {
+    const story = makeStory();
+    story.bodySections[0].paragraphs[0].text = "RBI said it changed the rule because settlement risks had increased. Prices then rose because demand increased, but the official source supplies no evidence for that second cause.";
+
+    expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(true);
+  });
 });
