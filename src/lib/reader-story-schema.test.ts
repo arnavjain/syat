@@ -195,6 +195,13 @@ describe("readerStorySchema", () => {
     expect(parsed.disclosure).toBe("AI-assisted private preview");
   });
 
+  it("preserves the government reproduction policy used by approved PIB source packs", () => {
+    const story = makeValidReaderStory();
+    story.sources[0].rightsBasis = "government_reproduction_policy";
+
+    expect(readerStorySchema.parse(story).sources[0].rightsBasis).toBe("government_reproduction_policy");
+  });
+
   it("rejects an unknown claim or source reference", () => {
     const story = makeValidReaderStory();
     story.body[0].sourceIds = ["missing-source"];

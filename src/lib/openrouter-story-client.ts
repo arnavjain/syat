@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 import {
-  buildStoryDraftPrompt,
-  generatedStoryResponseSchema,
-  parseGeneratedStoryJson,
+  buildStoryDraftV2Prompt,
+  generatedStoryV2ResponseSchema,
+  parseGeneratedStoryV2Json,
   validateApprovedSourceDossier,
-  type GeneratedStory,
-  type SourceDossierRecord
+  type GeneratedStoryV2,
+  type StoryDraftV2PromptInput
 } from "./generation-contract";
 import { reviewGeneratedDraft, type DraftReview } from "./draft-review";
 import { authoriseGenerationBudget, type GenerationBudgetDecision } from "./generation-budget";
@@ -28,25 +28,20 @@ const CONSERVATIVE_INR_PER_USD = 100;
 type FetchLike = (input: string | URL | Request, init?: RequestInit) => Promise<Response>;
 const utf8 = new TextEncoder();
 
-export type StoryDraftInput = {
-  language: "en-IN" | "hi-IN";
-  mode: "news" | "timeless";
-  editorialBrief: string;
-  indiaConnection: string;
-  sourceDossier: SourceDossierRecord[];
-};
+export type StoryDraftInput = StoryDraftV2PromptInput;
 
 type OpenRouterPayload = {
   choices?: Array<{ finish_reason?: string | null; message?: { content?: string | null } }>;
-  usage?: { prompt_tokens?: number; completion_tokens?: number };
+  usage?: { prompt_tokens?: number; completion_tokens?: number; cost?: number };
   error?: { message?: string };
 };
 
 export type StoryDraftResult = {
-  draft: GeneratedStory;
+  draft: GeneratedStoryV2;
   review: DraftReview;
   usage: { promptTokens: number; completionTokens: number };
-  estimatedCostInrPaise: number;
+  reservedMaximumPaise: number;
+  actualCostUsd: number;
   reservations: GenerationAttemptReservation[];
 };
 
@@ -133,7 +128,7 @@ export async function createStoryDraft({
   budget,
   reserveAttempt,
   maxAttempts,
-  promptBuilder = buildStoryDraftPrompt
+  promptBuilder = buildStoryDraftV2Prompt
 }: {
   apiKey: string;
   input: StoryDraftInput;
@@ -141,7 +136,7 @@ export async function createStoryDraft({
   budget: { spentPaise: number; reservedPaise: number };
   reserveAttempt: ReserveStoryAttempt;
   maxAttempts?: number;
-  promptBuilder?: typeof buildStoryDraftPrompt;
+  promptBuilder?: typeof buildStoryDraftV2Prompt;
 }): Promise<StoryDraftResult> {
   if (!apiKey) {
     throw new Error("OPENROUTER_API_KEY is required to generate a story draft.");
@@ -245,7 +240,7 @@ export async function createStoryDraft({
             json_schema: {
               name: "syat_story_draft",
               strict: true,
-              schema: z.toJSONSchema(generatedStoryResponseSchema)
+              schema: z.toJSONSchema(generatedStoryV2ResponseSchema)
             }
           }
         })
@@ -280,14 +275,19 @@ export async function createStoryDraft({
 
   const promptTokens = Number.isSafeInteger(payload.usage?.prompt_tokens) && (payload.usage?.prompt_tokens ?? 0) >= 0 ? payload.usage?.prompt_tokens ?? 0 : 0;
   const completionTokens = Number.isSafeInteger(payload.usage?.completion_tokens) && (payload.usage?.completion_tokens ?? 0) >= 0 ? payload.usage?.completion_tokens ?? 0 : 0;
+  const actualCostUsd = payload.usage?.cost;
+  if (typeof actualCostUsd !== "number" || !Number.isFinite(actualCostUsd) || actualCostUsd < 0) {
+    throw new Error("OpenRouter returned an invalid or missing usage cost; the reservation cannot be reconciled safely.");
+  }
 
-  const draft = parseGeneratedStoryJson(content, input.sourceDossier);
+  const draft = parseGeneratedStoryV2Json(content, input.sourceDossier);
   return {
     draft,
     review: reviewGeneratedDraft(draft, input.sourceDossier, { indiaConnection: input.indiaConnection }),
     usage: { promptTokens, completionTokens },
     // This is the reserved maximum, not a bill or trusted provider-reported actual cost.
-    estimatedCostInrPaise: maximumEstimatePaise,
+    reservedMaximumPaise: maximumEstimatePaise,
+    actualCostUsd,
     reservations
   };
 }

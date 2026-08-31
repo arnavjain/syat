@@ -14,42 +14,62 @@ function acceptedReservation({ attempt, estimatedPaise }: GenerationReservationR
 const input = {
   language: "en-IN" as const,
   mode: "news" as const,
+  format: "news_brief" as const,
   editorialBrief: "Prepare a cautious story draft from the fictional Nadi Nagar municipal order.",
   indiaConnection: "This teaching fixture is a fictional Indian municipal context, not a report about a real event.",
+  sourceRoles: [{ sourceId: "ward-note", role: "official account of the planned trial" }],
+  missingVoices: ["Independent observation", "People who use Bazaar Road"],
   sourceDossier: [
     {
-      sourceId: "ward-note",
+      id: "ward-note",
+      publisherId: "nadi-municipal-corporation",
       publisher: "Nadi Nagar Municipal Corporation",
       title: "Bazaar Road walking and bus-priority trial note",
       url: "https://example.invalid/nadi-nagar-order",
-      excerpt: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road.",
+      evidenceText: "The trial starts on 1 September and opens one bus-priority lane on Bazaar Road.",
+      publishedAt: "2026-08-28T06:00:00.000Z",
+      accessedAt: "2026-08-31T06:00:00.000Z",
       sourceKind: "official_statement" as const,
-      rightsBasis: "link_only" as const,
-      reviewStatus: "approved" as const
+      linkAllowed: true,
+      modelInputAllowed: true,
+      mediaReuseAllowed: false,
+      rightsBasis: "government_reproduction_policy" as const,
+      policyUrl: "https://example.invalid/reproduction-policy",
+      reviewedAt: "2026-08-31T06:00:00.000Z",
+      creditLine: "Source: Nadi Nagar Municipal Corporation"
     }
   ]
 };
 
 const modelContent = JSON.stringify({
-  contractVersion: "syat.story-draft.v1",
+  contractVersion: "syat.story-draft.v2",
   language: "en-IN",
   editorialStatus: "needs_editorial_review",
+  format: "news_brief",
   story: {
     mode: "news",
     title: "Nadi Nagar names the start date for a Bazaar Road trial",
-    dek: "A source-linked fixture awaiting editorial review.",
-    whatHappened: "The published note says that a Bazaar Road trial begins on 1 September with a bus-priority lane.",
-    whatChanged: "The note supplies a start date and a specific street change that were not in the briefing.",
-    whyItMattersNow: "Regular bus riders, walkers, traders, and nearby businesses can now check how the trial may affect their routines."
+    dek: "The city note names the planned date and lane change, while effects on people using the street remain unmeasured.",
+    theme: "Cities and public life",
+    indiaConnection: input.indiaConnection,
+    eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" },
+    reframe: { kind: "question", value: "What evidence would show how the street trial works for different road users?" }
   },
-  timeline: [{ happenedAt: "2026-08-28", text: "The municipal note was published.", sourceIds: ["ward-note"] }],
-  statements: [{ id: "claim-start-date", type: "documented", text: "The note names 1 September as the start date for the trial.", sourceIds: ["ward-note"] }],
-  contentBlocks: [{ id: "opening-paragraph", kind: "paragraph", text: "The published note names 1 September as the start date for the Bazaar Road trial.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }],
-  perspectives: [
-    { id: "bus-rider", label: "Bus rider", sees: "A possible change to a familiar route.", values: "Affordable reliable travel.", uses: "The published note and daily routine.", mayMiss: "Effects on people who work beside the road.", sourceIds: ["ward-note"] },
-    { id: "street-vendor", label: "Street vendor", sees: "A possible change to roadside space and access.", values: "A dependable place to work and safe customer access.", uses: "The municipal note and daily work on the street.", mayMiss: "How bus delays affect people travelling farther.", sourceIds: ["ward-note"] }
+  bodySections: [
+    { id: "announcement", title: "The announced change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, according to the municipal note.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }] },
+    { id: "scope", title: "What the note supports", paragraphs: [{ id: "source-scope", text: "The note identifies a planned date and lane change but supplies no measured result from the road.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }] },
+    { id: "unknowns", title: "Evidence still needed", paragraphs: [{ id: "evidence-needed", text: "Travel-time records and direct observations would help assess how the trial affects riders, walkers and traders.", claimIds: ["claim-outcomes-open"], sourceIds: ["ward-note"] }] }
   ],
-  unresolved: [{ question: "How will the trial affect people with different mobility needs?", whatWouldHelp: "Independent access checks during the first weeks.", sourceIds: ["ward-note"] }],
+  timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The municipal note gives this as the planned start date.", sourceIds: ["ward-note"] }],
+  statements: [
+    { id: "claim-start-date", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["ward-note"], sourceScope: "This reports the date and change described in the municipal note.", limits: "It does not confirm implementation or a measured outcome." },
+    { id: "claim-outcomes-open", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users are not established.", sourceIds: ["ward-note"], sourceScope: "The note contains no travel-time record or direct observation.", limits: "The source pack contains no affected-person account." }
+  ],
+  perspectives: [{ id: "bus-rider", label: "Bus rider", rationale: "The note concerns a bus-priority lane on a regular route.", sees: "A possible change to a familiar journey.", values: "Affordable and reliable travel.", uses: "The route and date described in the note.", mayMiss: "Effects on people who work beside the road.", sourceIds: ["ward-note"] }],
+  people: [{ id: "municipal-corporation", kind: "institution", label: "Nadi Nagar Municipal Corporation", association: "The institution issued the note describing the planned trial.", sourceIds: ["ward-note"] }],
+  unresolved: [{ id: "access-effects", question: "How will the trial affect people with different mobility needs?", whatWouldHelp: "Independent access checks and observations during the first weeks.", sourceIds: ["ward-note"] }],
+  contextBridge: { topicSlug: "local-decision", question: "How should a local decision be made?", connection: "The street trial links a municipal decision to public experiences that still need reporting." },
+  authoredVisual: { kind: "process", title: "From announcement to assessment", description: "The visual separates the announced plan, road observation and later outcome assessment.", limitation: "It does not claim an outcome that the note cannot establish.", claimIds: ["claim-start-date", "claim-outcomes-open"], sourceIds: ["ward-note"] },
   mediaPlan: [],
   modelNotes: ["Verify local impact reporting before publication."]
 });
@@ -59,7 +79,7 @@ describe("createStoryDraft", () => {
     const fetchImpl = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({
         choices: [{ message: { content: modelContent } }],
-        usage: { prompt_tokens: 100, completion_tokens: 200 }
+        usage: { prompt_tokens: 100, completion_tokens: 200, cost: 0.000042 }
       }), { status: 200 })
     );
 
@@ -77,11 +97,12 @@ describe("createStoryDraft", () => {
     expect(request.provider).toEqual({ require_parameters: true, sort: "throughput", data_collection: "deny", max_price: { prompt: 0.1, completion: 0.2 } });
     expect(request.max_tokens).toBe(3200);
     expect(request.reasoning).toEqual({ effort: "none", exclude: true });
-    expect(result.draft.status).toBe("needs_editorial_review");
+    expect(result.draft.editorialStatus).toBe("needs_editorial_review");
     expect(result.review.status).toBe("needs_editorial_review");
     expect(result.review.publicationAllowed).toBe(false);
     expect(result.usage.completionTokens).toBe(200);
-    expect(result.estimatedCostInrPaise).toBeGreaterThan(0);
+    expect(result.reservedMaximumPaise).toBeGreaterThan(0);
+    expect(result.actualCostUsd).toBe(0.000042);
   });
 
   it("refuses to make a paid request without an API key", async () => {
@@ -91,12 +112,21 @@ describe("createStoryDraft", () => {
   it("names a provider-truncated draft instead of trying to parse it", async () => {
     const fetchImpl = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({
-        choices: [{ finish_reason: "length", message: { content: "{\"contractVersion\":\"syat.story-draft.v1\"" } }],
+        choices: [{ finish_reason: "length", message: { content: "{\"contractVersion\":\"syat.story-draft.v2\"" } }],
         usage: { prompt_tokens: 100, completion_tokens: 8000 }
       }), { status: 200 })
     );
 
     await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn(acceptedReservation) })).rejects.toThrow(/cut .*short/i);
+  });
+
+  it.each([Number.NaN, Number.POSITIVE_INFINITY, -0.01])("rejects invalid provider usage cost %s", async (cost) => {
+    const fetchImpl = vi.fn().mockResolvedValue(new Response(JSON.stringify({
+      choices: [{ message: { content: modelContent } }],
+      usage: { prompt_tokens: 100, completion_tokens: 200, cost }
+    }), { status: 200 }));
+
+    await expect(createStoryDraft({ apiKey: "test-key", input, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn(acceptedReservation) })).rejects.toThrow(/usage cost/i);
   });
 
   it("does not build a prompt or call a paid fetch when the monthly budget refuses the job", async () => {
@@ -163,7 +193,7 @@ describe("createStoryDraft", () => {
       apiKey: "test-key",
       input: {
         ...input,
-        sourceDossier: [{ ...input.sourceDossier[0], excerpt: "\u0000".repeat(7_000) }]
+        sourceDossier: [{ ...input.sourceDossier[0], evidenceText: "\u0000".repeat(7_000) }]
       },
       fetchImpl,
       budget: { spentPaise: 0, reservedPaise: 0 },
@@ -230,7 +260,7 @@ describe("createStoryDraft", () => {
     const events: string[] = [];
     const fetchImpl = vi.fn(async () => {
       events.push("fetch");
-      return new Response(JSON.stringify({ choices: [{ message: { content: modelContent } }] }), { status: 200 });
+      return new Response(JSON.stringify({ choices: [{ message: { content: modelContent } }], usage: { cost: 0.00004 } }), { status: 200 });
     });
     const reserveAttempt = vi.fn(async (request: { attempt: number; estimatedPaise: number }) => {
       events.push("reserve");
@@ -283,7 +313,7 @@ describe("createStoryDraft", () => {
   it("allows one retry when it receives a distinct second receipt", async () => {
     const fetchImpl = vi.fn()
       .mockRejectedValueOnce(new Error("temporary network failure"))
-      .mockResolvedValueOnce(new Response(JSON.stringify({ choices: [{ message: { content: modelContent } }] }), { status: 200 }));
+      .mockResolvedValueOnce(new Response(JSON.stringify({ choices: [{ message: { content: modelContent } }], usage: { cost: 0.00004 } }), { status: 200 }));
     const reserveAttempt = vi.fn(acceptedReservation);
 
     const result = await createStoryDraft({

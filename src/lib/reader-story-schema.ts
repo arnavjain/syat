@@ -84,7 +84,7 @@ export const readerSourceSchema = z.object({
   accessedAt: z.iso.datetime(),
   use: z.string().min(12).max(300),
   scope: z.string().min(12).max(300),
-  rightsBasis: z.enum(["link_only", "owned", "public_domain", "cc0", "cc_by", "cc_by_sa", "government_open_data", "official_embed", "commercial_license"]),
+  rightsBasis: z.enum(["link_only", "owned", "public_domain", "cc0", "cc_by", "cc_by_sa", "government_reproduction_policy", "government_open_data", "official_embed", "commercial_license"]),
   reviewStatus: z.literal("approved"),
   linkAllowed: z.boolean(),
   modelInputAllowed: z.boolean(),
