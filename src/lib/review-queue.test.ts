@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { applyReviewDecision, encodeReviewEventForStorage, filterReviewItems, getReviewSummary, mergeReviewRecords, projectReviewEvents, projectStoredReviewEvents, type ModerationRecord, type ModerationSource } from "./review-queue";
+import { applyReviewDecision, encodeReviewEventForStorage, filterReviewItems, getReviewSummary, mergeReviewRecords, preserveDatabaseReviewEvent, projectReviewEvents, projectStoredReviewEvents, type ModerationRecord, type ModerationSource } from "./review-queue";
 
 const sources: ModerationSource[] = [
   { id: "signal-a", title: "A source signal", publisher: "Newsroom A", url: "https://example.invalid/a", publishedAt: "2026-08-31T08:00:00.000Z", sourceClass: "newsroom_rss" },
@@ -125,5 +125,25 @@ describe("review queue state", () => {
     };
 
     expect(projectStoredReviewEvents("signal-a", [older, laterInvalidReady])).toMatchObject({ decision: "needs_source_pack", publicationAllowed: false });
+  });
+
+  it("keeps a later ready database row with missing note and checklist as a fail-closed sentinel", () => {
+    const older = encodeReviewEventForStorage({
+      targetId: "signal-a",
+      decision: "held",
+      note: "Wait for the original order.",
+      checklist: { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false },
+      occurredAt: "2026-08-31T10:00:00.000Z",
+      publicationAllowed: false
+    });
+    const laterMissingFields = preserveDatabaseReviewEvent({
+      targetId: "signal-a",
+      action: "commented",
+      afterState: "source_pack_ready",
+      createdAt: Date.parse("2026-08-31T10:01:00.000Z")
+    });
+
+    expect(laterMissingFields).toMatchObject({ targetId: "signal-a", afterState: "source_pack_ready", note: undefined, beforeState: undefined });
+    expect(projectStoredReviewEvents("signal-a", [older, laterMissingFields!])).toMatchObject({ decision: "needs_source_pack", publicationAllowed: false });
   });
 });

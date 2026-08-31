@@ -2,7 +2,7 @@ import { v } from "convex/values";
 
 import { authComponent } from "./auth";
 import { mutation, query } from "./_generated/server";
-import { applyReviewDecision, encodeReviewEventForStorage, projectStoredReviewEvents, type StoredReviewEvent } from "../src/lib/review-queue";
+import { applyReviewDecision, encodeReviewEventForStorage, preserveDatabaseReviewEvent, projectStoredReviewEvents, type StoredReviewEvent } from "../src/lib/review-queue";
 
 const decisionValidator = v.union(
   v.literal("needs_source_pack"),
@@ -78,9 +78,10 @@ export const getReviewProjection = query({
       .query("reviewEvents")
       .withIndex("by_target_and_created_at", (index) => index.eq("targetType", "source").eq("targetId", args.sourceSignalId))
       .collect();
-    const events: StoredReviewEvent[] = stored.flatMap((event) => event.action === "commented" && event.afterState && event.beforeState && event.note !== undefined
-      ? [{ targetId: event.targetId, action: "commented", afterState: event.afterState, beforeState: event.beforeState, note: event.note, createdAt: new Date(event.createdAt).toISOString() }]
-      : []);
+    const events: StoredReviewEvent[] = stored.flatMap((event) => {
+      const preserved = preserveDatabaseReviewEvent(event);
+      return preserved ? [preserved] : [];
+    });
 
     return projectStoredReviewEvents(args.sourceSignalId, events);
   }

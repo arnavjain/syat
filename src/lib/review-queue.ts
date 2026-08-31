@@ -41,9 +41,18 @@ export type StoredReviewEvent = {
   targetId: string;
   action: "commented";
   afterState: string;
-  beforeState: string;
-  note: string;
+  beforeState?: string;
+  note?: string;
   createdAt: string;
+};
+
+export type DatabaseReviewEvent = {
+  targetId: string;
+  action: string;
+  afterState?: string;
+  beforeState?: string;
+  note?: string;
+  createdAt: number;
 };
 
 const allowedDecisions = new Set<ModerationDecision>(["needs_source_pack", "held", "rejected", "source_pack_ready"]);
@@ -84,7 +93,8 @@ export function projectReviewEvents(targetId: string, events: readonly ReviewDec
   };
 }
 
-function readExactChecklist(value: string) {
+function readExactChecklist(value: string | undefined) {
+  if (value === undefined) return null;
   try {
     const parsed = JSON.parse(value) as { contract?: unknown; checklist?: Partial<ReviewDecisionEvent["checklist"]> };
     if (parsed.contract !== "syat.review-event.v1" || !parsed.checklist) return null;
@@ -110,15 +120,28 @@ export function encodeReviewEventForStorage(event: ReviewDecisionEvent): StoredR
 function decodeStoredReviewEvent(event: StoredReviewEvent): ReviewDecisionEvent | null {
   if (!allowedDecisions.has(event.afterState as ModerationDecision)) return null;
   const checklist = readExactChecklist(event.beforeState);
-  if (!checklist && event.afterState !== "source_pack_ready") return null;
 
   return {
     targetId: event.targetId,
-    decision: event.afterState as ModerationDecision,
-    note: event.note,
+    // A later malformed record must not revive an older state. It becomes an
+    // incomplete ready sentinel, which the projection demotes safely.
+    decision: checklist ? event.afterState as ModerationDecision : "source_pack_ready",
+    note: event.note ?? "",
     checklist: checklist ?? { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false },
     occurredAt: event.createdAt,
     publicationAllowed: false
+  };
+}
+
+export function preserveDatabaseReviewEvent(event: DatabaseReviewEvent): StoredReviewEvent | null {
+  if (event.action !== "commented" || !event.afterState) return null;
+  return {
+    targetId: event.targetId,
+    action: "commented",
+    afterState: event.afterState,
+    beforeState: event.beforeState,
+    note: event.note,
+    createdAt: new Date(event.createdAt).toISOString()
   };
 }
 
