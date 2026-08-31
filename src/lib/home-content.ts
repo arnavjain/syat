@@ -2,6 +2,11 @@ import { formatSignalDate, previewNewsSignals } from "./news-signals";
 
 export type HomeMode = "news" | "timeless";
 
+const homeModeHrefs: Record<HomeMode, "/" | "/en/timeless"> = {
+  news: "/",
+  timeless: "/en/timeless"
+};
+
 export type StoryTeaser = {
   title: string;
   dek: string;
@@ -77,14 +82,14 @@ const timelessContent: HomeContent = {
         {
           title: "Who gets to call a place public?",
           dek: "A guided path through streets, parks, platforms and informal gathering places.",
-          href: "/en/timeless/what-makes-a-place-public",
+          href: "/en/explore",
           label: "Society",
           type: "subject"
         },
         {
           title: "What does a map make visible, and what does it leave out?",
           dek: "Read maps as tools, arguments, and records of power.",
-          href: "/en/timeless/maps-and-power",
+          href: "/en/explore",
           label: "History and design",
           type: "subject"
         }
@@ -97,14 +102,14 @@ const timelessContent: HomeContent = {
         {
           title: "The letter that changed how one community described its river.",
           dek: "Original words, later reception, and the questions that remain.",
-          href: "/en/timeless/river-letter",
+          href: "/en/explore",
           label: "Archive reading",
           type: "subject"
         },
         {
           title: "When a measurement becomes a value judgement.",
           dek: "How science explains uncertainty without abandoning care.",
-          href: "/en/timeless/measurement-and-values",
+          href: "/en/explore",
           label: "Science",
           type: "subject"
         }
@@ -115,4 +120,8 @@ const timelessContent: HomeContent = {
 
 export function getHomeContent(mode: HomeMode): HomeContent {
   return mode === "timeless" ? timelessContent : newsContent;
+}
+
+export function getHomeModeHref(mode: HomeMode) {
+  return homeModeHrefs[mode];
 }

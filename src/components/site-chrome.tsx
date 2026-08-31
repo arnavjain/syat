@@ -11,9 +11,9 @@ const links: Array<{ section: Exclude<Section, "about" | "studio">; href: string
   { section: "you", href: "/en/you", label: "You" }
 ];
 
-export function SiteChrome({ active, children, compact = false }: { active: Section; children: ReactNode; compact?: boolean }) {
+export function SiteChrome({ active, children, compact = false, className = "" }: { active: Section; children: ReactNode; compact?: boolean; className?: string }) {
   return (
-    <main className={`page-shell ${compact ? "page-shell-compact" : ""}`}>
+    <main className={`page-shell ${compact ? "page-shell-compact" : ""} ${className}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="preview-ribbon">Private preview · fixtures and source signals are labelled before publication</div>
       <header className="masthead">
