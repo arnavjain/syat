@@ -1,6 +1,6 @@
 import type { DraftReview } from "./draft-review";
 import type { EditorialQualityReport } from "./editorial-quality";
-import { parseGeneratedStoryV2, type GeneratedStoryV2 } from "./generation-contract";
+import { parseGeneratedStoryV2, STORY_DRAFT_PROMPT_VERSION, type GeneratedStoryV2 } from "./generation-contract";
 import { readerMediaSchema, readerStorySchema, type ReaderStory } from "./reader-story-schema";
 import { validatePreviewSourcePack, type SourcePack, type SourcePackSource } from "./source-pack";
 
@@ -191,7 +191,7 @@ export function promoteGeneratedStory({
     reframe: checkedDraft.story.reframe,
     generation: {
       model: "deepseek/deepseek-v4-flash-0731",
-      promptVersion: "syat.story-draft.v2",
+      promptVersion: STORY_DRAFT_PROMPT_VERSION,
       inputHash: generationInputHash,
       generatedBy: "openrouter",
       reviewedAt: now

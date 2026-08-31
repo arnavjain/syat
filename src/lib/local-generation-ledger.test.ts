@@ -290,24 +290,24 @@ describe("preview wave transaction", () => {
         theme: "Public services",
         indiaConnection: sourcePack.indiaConnection,
         eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" },
-        eventTimeEvidence: { claimIds: ["review-record"], sourceIds: ["pib-water-note"] },
+        eventTimeEvidence: { claimIds: ["claim-1"], sourceIds: ["pib-water-note"] },
         reframe: { kind: "question", value: "What records would show whether the announced district review happened as described?" }
       },
       bodySections: [
-        { id: "record", title: "What the record contains", paragraphs: [{ id: "record-one", text: paragraphs[0], claimIds: ["review-record"], sourceIds: ["pib-water-note"] }, { id: "record-two", text: paragraphs[1], claimIds: ["review-record", "evidence-gap"], sourceIds: ["pib-water-note"] }] },
-        { id: "process", title: "How to read the process", paragraphs: [{ id: "process-one", text: paragraphs[2], claimIds: ["review-record", "evidence-gap"], sourceIds: ["pib-water-note"] }, { id: "process-two", text: paragraphs[3], claimIds: ["evidence-gap"], sourceIds: ["pib-water-note"] }] },
-        { id: "next", title: "What evidence comes next", paragraphs: [{ id: "next-one", text: paragraphs[4], claimIds: ["review-record", "evidence-gap"], sourceIds: ["pib-water-note"] }, { id: "next-two", text: paragraphs[5], claimIds: ["review-record", "evidence-gap"], sourceIds: ["pib-water-note"] }] }
+        { id: "record", title: "What the record contains", paragraphs: [{ id: "record-one", text: paragraphs[0], claimIds: ["claim-1"], sourceIds: ["pib-water-note"] }, { id: "record-two", text: paragraphs[1], claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-water-note"] }] },
+        { id: "process", title: "How to read the process", paragraphs: [{ id: "process-one", text: paragraphs[2], claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-water-note"] }, { id: "process-two", text: paragraphs[3], claimIds: ["claim-2"], sourceIds: ["pib-water-note"] }] },
+        { id: "next", title: "What evidence comes next", paragraphs: [{ id: "next-one", text: paragraphs[4], claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-water-note"] }, { id: "next-two", text: paragraphs[5], claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-water-note"] }] }
       ],
-      timeline: [{ id: "record-date", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The supplied ministry record carries this date for the described review process.", claimIds: ["review-record"], sourceIds: ["pib-water-note"] }],
+      timeline: [{ id: "record-date", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The supplied ministry record carries this date for the described review process.", claimIds: ["claim-1"], sourceIds: ["pib-water-note"] }],
       statements: [
-        { id: "review-record", type: "documented", basis: "official_claim", text: "The ministry says its review involves 12 district water offices.", sourceIds: ["pib-water-note"], sourceScope: "This is limited to the issuing ministry's description of its administrative process.", limits: "The source does not independently verify implementation or any service outcome." },
-        { id: "evidence-gap", type: "unresolved", basis: "evidence_gap", text: "District findings and resident experience are not present in the supplied record.", sourceIds: ["pib-water-note"], sourceScope: "The source pack contains one ministry record and no district-level evidence.", limits: "No inspection sheet, measurement, independent observation, or affected-person account is supplied." }
+        { id: "claim-1", type: "documented", basis: "official_claim", text: "The ministry says its review involves 12 district water offices.", sourceIds: ["pib-water-note"], sourceScope: "This is limited to the issuing ministry's description of its administrative process.", limits: "The source does not independently verify implementation or any service outcome." },
+        { id: "claim-2", type: "unresolved", basis: "evidence_gap", text: "District findings and resident experience are not present in the supplied record.", sourceIds: ["pib-water-note"], sourceScope: "The source pack contains one ministry record and no district-level evidence.", limits: "No inspection sheet, measurement, independent observation, or affected-person account is supplied." }
       ],
       perspectives: [{ id: "resident", label: "District resident", rationale: "Residents may use services connected with a district water office named by the review.", sees: "The local service and any practical change at the point where it is used.", values: "Reliable access, clear information, and accountable public administration.", uses: "The ministry's list as a starting point for questions about local records.", mayMiss: "Internal administrative constraints that are not visible from a service encounter.", sourceIds: ["pib-water-note"] }],
       people: [{ id: "water-ministry", kind: "institution", label: "Issuing ministry", association: "The institution issued the record describing the district review process.", sourceIds: ["pib-water-note"] }],
       unresolved: [{ id: "district-results", question: "Which district checks were completed and what records did they produce?", whatWouldHelp: "Inspection sheets, dated office records, published measurements, and independent local observation.", sourceIds: ["pib-water-note"] }],
       contextBridge: { topicSlug: "local-decision", question: "How should an administrative decision be assessed?", connection: "The review shows why an official plan and evidence of local implementation need separate treatment." },
-      authoredVisual: { kind: "timeline", title: "Record, checks, and missing findings", description: "A source-bound sequence separates the dated ministry record from later checks and still-unpublished findings.", limitation: "Only the first step has a supported date in the supplied record.", claimIds: ["review-record", "evidence-gap"], sourceIds: ["pib-water-note"] },
+      authoredVisual: { kind: "timeline", title: "Record, checks, and missing findings", description: "A source-bound sequence separates the dated ministry record from later checks and still-unpublished findings.", limitation: "Only the first step has a supported date in the supplied record.", claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-water-note"] },
       mediaPlan: [],
       modelNotes: ["Keep every operational claim attributed to the ministry record."]
     };

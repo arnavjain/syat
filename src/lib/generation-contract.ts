@@ -2,11 +2,13 @@ import { z } from "zod";
 
 import { sourcePackSourceSchema, type SourcePackSource } from "./source-pack";
 import { canEnterModelInput } from "./source-rights";
-import { getTimelessTopic } from "./timeless-topics";
+import { getTimelessTopic, timelessTopics } from "./timeless-topics";
 
 const idSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(80);
 const sourceIdsSchema = z.array(idSchema).min(1).max(12);
-const claimIdsSchema = z.array(idSchema).min(1).max(16);
+const claimIdSchema = z.string().regex(/^claim-[1-9][0-9]*$/).max(80);
+const claimIdsSchema = z.array(claimIdSchema).min(1).max(16);
+const timelessTopicSlugSchema = z.enum(timelessTopics.map((topic) => topic.slug), { error: "Unknown Timeless topic slug." });
 const storyFormatSchema = z.enum(["news_brief", "explainer", "timeline", "source_map", "public_impact"]);
 const statementTypeSchema = z.enum(["documented", "interpreted", "experienced", "valued", "unresolved"]);
 const statementBasisSchema = z.enum(["direct_record", "official_claim", "reported_observation", "interpretation", "missing_voice", "evidence_gap"]);
@@ -31,7 +33,7 @@ const bodySectionSchema = z.object({
 }).strict();
 
 const statementSchema = z.object({
-  id: idSchema,
+  id: claimIdSchema,
   type: statementTypeSchema,
   basis: statementBasisSchema,
   text: z.string().trim().min(12).max(500),
@@ -123,7 +125,7 @@ const generatedStoryV2Shape = z.object({
   people: z.array(associationSchema).max(16),
   unresolved: z.array(unresolvedSchema).min(1).max(12),
   contextBridge: z.object({
-    topicSlug: idSchema,
+    topicSlug: timelessTopicSlugSchema,
     question: z.string().trim().min(12).max(300),
     connection: z.string().trim().min(12).max(500)
   }).strict(),
@@ -156,6 +158,10 @@ export const generatedStoryV2ResponseSchema = generatedStoryV2Shape.superRefine(
   assertUniqueIds(ctx, draft.people, ["people"]);
   assertUniqueIds(ctx, draft.unresolved, ["unresolved"]);
   assertUniqueIds(ctx, draft.mediaPlan, ["mediaPlan"]);
+  for (const [index, statement] of draft.statements.entries()) {
+    const expectedId = `claim-${index + 1}`;
+    if (statement.id !== expectedId) addReferenceIssue(ctx, ["statements", index, "id"], `Statement IDs must be sequential claim-1 through claim-N; expected ${expectedId}.`);
+  }
   if (new Set(draft.sourceIds).size !== draft.sourceIds.length) addReferenceIssue(ctx, ["sourceIds"], "Draft source IDs must be unique.");
 
   const claimIds = new Set(draft.statements.map((statement) => statement.id));
@@ -385,6 +391,53 @@ export type StoryDraftV2PromptInput = {
   sourceDossier: SourceDossierRecord[];
 };
 
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.1";
+
+type JsonObject = Record<string, unknown>;
+
+function isJsonObject(value: unknown): value is JsonObject {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function closeSourceIdChoices(value: unknown, sourceIds: readonly string[]) {
+  if (Array.isArray(value)) {
+    value.forEach((item) => closeSourceIdChoices(item, sourceIds));
+    return;
+  }
+  if (!isJsonObject(value)) return;
+  const properties = value.properties;
+  if (isJsonObject(properties) && isJsonObject(properties.sourceIds)) {
+    const items = properties.sourceIds.items;
+    properties.sourceIds.items = { ...(isJsonObject(items) ? items : {}), enum: [...sourceIds] };
+  }
+  Object.values(value).forEach((child) => closeSourceIdChoices(child, sourceIds));
+}
+
+function setJsonSchemaConst(schema: JsonObject, path: string[], value: string) {
+  let current: unknown = schema;
+  for (const segment of path) {
+    if (!isJsonObject(current)) throw new Error("Story draft provider schema is missing an expected binding path.");
+    current = current[segment];
+  }
+  if (!isJsonObject(current)) throw new Error("Story draft provider schema binding is not an object.");
+  current.const = value;
+  delete current.enum;
+}
+
+export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput) {
+  const approved = validateApprovedSourceDossier(input.sourceDossier);
+  const sourceIds = approved.map((source) => source.id);
+  const schema = z.toJSONSchema(generatedStoryV2ResponseSchema);
+  if (!isJsonObject(schema)) throw new Error("Story draft provider schema could not be constructed.");
+  closeSourceIdChoices(schema, sourceIds);
+  setJsonSchemaConst(schema, ["properties", "sourcePackId"], input.sourcePackId);
+  setJsonSchemaConst(schema, ["properties", "language"], input.language);
+  setJsonSchemaConst(schema, ["properties", "format"], input.format);
+  setJsonSchemaConst(schema, ["properties", "story", "properties", "mode"], input.mode);
+  setJsonSchemaConst(schema, ["properties", "story", "properties", "indiaConnection"], input.indiaConnection);
+  return schema;
+}
+
 export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
   idSchema.parse(input.sourcePackId);
   const approved = validateApprovedSourceDossier(input.sourceDossier);
@@ -407,13 +460,17 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
 
   return `You are an editorial research assistant for Syāt. Prepare a cautious, source-scoped draft for a human editor. Return exactly one JSON object and nothing else.
 
+Prompt version: ${STORY_DRAFT_PROMPT_VERSION}
+
 Contract:
-${JSON.stringify(z.toJSONSchema(generatedStoryV2Shape), null, 2)}
+${JSON.stringify(buildStoryDraftProviderJsonSchema(input), null, 2)}
 
 Editorial rules:
 ${editorialRules.map((rule) => `- ${rule}`).join("\n")}
 - Do not invent a person, quote, date, cause, reaction, result, or consensus.
 - Give every statement its evidence basis, exact source scope, and limit.
+- Use statement IDs exactly claim-1 through claim-N in statements array order, with no gaps, aliases, or descriptive IDs.
+- Final internal reference-set check: make a set from statements[].id, then verify every claimIds value in body paragraphs, timeline, eventTimeEvidence, authoredVisual, and mediaPlan belongs to that set. Return nothing until no reference is missing.
 - Copy sourcePackId exactly as "${input.sourcePackId}" and sourceIds exactly as ${JSON.stringify(approved.map((source) => source.id))}.
 - Give eventTime and every timeline entry explicit claimIds and sourceIds. Use an exact date or period only when those sources contain it; otherwise use unknown.
 - Vary sentence length and section shape. Prefer concrete nouns and active verbs.
@@ -428,6 +485,7 @@ Language: ${input.language}
 Mode: ${input.mode}
 Format: ${input.format}
 Source pack: ${input.sourcePackId}
+Allowed Context Bridge topicSlug choices: ${timelessTopics.map((topic) => topic.slug).join(", ")}
 Editorial brief: ${input.editorialBrief}
 India connection: ${input.indiaConnection}
 Source roles: ${JSON.stringify(input.sourceRoles)}

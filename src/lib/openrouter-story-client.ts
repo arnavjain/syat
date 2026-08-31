@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import {
   buildStoryDraftV2Prompt,
-  generatedStoryV2ResponseSchema,
+  buildStoryDraftProviderJsonSchema,
   parseGeneratedStoryV2Json,
   validateApprovedSourceDossier,
   type GeneratedStoryV2,
@@ -240,7 +240,7 @@ export async function createStoryDraft({
             json_schema: {
               name: "syat_story_draft",
               strict: true,
-              schema: z.toJSONSchema(generatedStoryV2ResponseSchema)
+              schema: buildStoryDraftProviderJsonSchema(input)
             }
           }
         })

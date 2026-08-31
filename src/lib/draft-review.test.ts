@@ -16,22 +16,22 @@ const dossier: SourceDossierRecord[] = [{
 function makeDraft(): GeneratedStoryV2 {
   return parseGeneratedStoryV2({
     contractVersion: "syat.story-draft.v2", sourcePackId: "bazaar-road-trial", sourceIds: ["official-note"], language: "en-IN", editorialStatus: "needs_editorial_review", format: "news_brief",
-    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a start date", dek: "The official note names 1 September, but the effects on road users have not yet been measured.", theme: "Cities and public life", indiaConnection: "The planned transport change concerns a municipal road in India.", eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, eventTimeEvidence: { claimIds: ["start-date"], sourceIds: ["official-note"] }, reframe: { kind: "question", value: "What evidence would show how the road change affects different users?" } },
+    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a start date", dek: "The official note names 1 September, but the effects on road users have not yet been measured.", theme: "Cities and public life", indiaConnection: "The planned transport change concerns a municipal road in India.", eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, eventTimeEvidence: { claimIds: ["claim-1"], sourceIds: ["official-note"] }, reframe: { kind: "question", value: "What evidence would show how the road change affects different users?" } },
     bodySections: [
-      { id: "change", title: "The planned change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, the official note says.", claimIds: ["start-date"], sourceIds: ["official-note"] }] },
-      { id: "record", title: "What the record supports", paragraphs: [{ id: "scope", text: "The note establishes the announced date and location, not whether the trial will begin as planned.", claimIds: ["start-date"], sourceIds: ["official-note"] }] },
-      { id: "gap", title: "Evidence still needed", paragraphs: [{ id: "unknown", text: "Travel-time records and observations would be needed to understand the effect on bus riders and traders.", claimIds: ["effects-open"], sourceIds: ["official-note"] }] }
+      { id: "change", title: "The planned change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, the official note says.", claimIds: ["claim-1"], sourceIds: ["official-note"] }] },
+      { id: "record", title: "What the record supports", paragraphs: [{ id: "scope", text: "The note establishes the announced date and location, not whether the trial will begin as planned.", claimIds: ["claim-1"], sourceIds: ["official-note"] }] },
+      { id: "gap", title: "Evidence still needed", paragraphs: [{ id: "unknown", text: "Travel-time records and observations would be needed to understand the effect on bus riders and traders.", claimIds: ["claim-2"], sourceIds: ["official-note"] }] }
     ],
-    timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The note gives this as the planned start date.", claimIds: ["start-date"], sourceIds: ["official-note"] }],
+    timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The note gives this as the planned start date.", claimIds: ["claim-1"], sourceIds: ["official-note"] }],
     statements: [
-      { id: "start-date", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["official-note"], sourceScope: "The statement is limited to the date announced in the official note.", limits: "It does not confirm later implementation or effects." },
-      { id: "effects-open", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users remain unknown.", sourceIds: ["official-note"], sourceScope: "The supplied record does not contain outcome measurements.", limits: "No independent observation is present in this source pack." }
+      { id: "claim-1", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["official-note"], sourceScope: "The statement is limited to the date announced in the official note.", limits: "It does not confirm later implementation or effects." },
+      { id: "claim-2", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users remain unknown.", sourceIds: ["official-note"], sourceScope: "The supplied record does not contain outcome measurements.", limits: "No independent observation is present in this source pack." }
     ],
     perspectives: [{ id: "bus-rider", label: "Bus rider", rationale: "The note concerns a bus-priority lane used on this route.", sees: "A possible change to the timing of a regular trip.", values: "Reliable and affordable travel on the route.", uses: "The route and start date in the official note.", mayMiss: "The working conditions of traders beside the road.", sourceIds: ["official-note"] }],
     people: [{ id: "transport-ministry", kind: "institution", label: "Transport ministry", association: "The institution issued the source note for the planned road trial.", sourceIds: ["official-note"] }],
     unresolved: [{ id: "travel-time", question: "How will travel times change during the trial?", whatWouldHelp: "Comparable route data collected before and during the trial.", sourceIds: ["official-note"] }],
     contextBridge: { topicSlug: "local-decision", question: "How should a local decision be made?", connection: "The road trial connects a public decision with experiences that have not yet been measured." },
-    authoredVisual: { kind: "timeline", title: "The evidence timeline", description: "The announcement, planned start and later measurement are shown as distinct steps.", limitation: "The visual does not show an outcome because none is established.", claimIds: ["start-date", "effects-open"], sourceIds: ["official-note"] },
+    authoredVisual: { kind: "timeline", title: "The evidence timeline", description: "The announcement, planned start and later measurement are shown as distinct steps.", limitation: "The visual does not show an outcome because none is established.", claimIds: ["claim-1", "claim-2"], sourceIds: ["official-note"] },
     mediaPlan: [], modelNotes: ["Seek direct observation before final reporting."]
   }, dossier);
 }
@@ -54,7 +54,7 @@ describe("reviewGeneratedDraft", () => {
 
   it("requires human rights review when the model proposes external media", () => {
     const draft = makeDraft();
-    draft.mediaPlan.push({ id: "bazaar-road-photo", kind: "photo", placement: "hero", purpose: "Show the physical road layout described by the record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "explicit_licence", claimIds: ["start-date"], sourceIds: ["official-note"] });
+    draft.mediaPlan.push({ id: "bazaar-road-photo", kind: "photo", placement: "hero", purpose: "Show the physical road layout described by the record.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "explicit_licence", claimIds: ["claim-1"], sourceIds: ["official-note"] });
     const result = reviewGeneratedDraft(draft, dossier, { indiaConnection: draft.story.indiaConnection });
     expect(result.checks.mediaRights).toBe("human_review_required");
     expect(result.findings).toContainEqual(expect.objectContaining({ code: "media-rights-review-needed" }));

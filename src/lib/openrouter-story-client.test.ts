@@ -57,24 +57,24 @@ const modelDraft: GeneratedStoryV2 = {
     theme: "Cities and public life",
     indiaConnection: input.indiaConnection,
     eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" },
-    eventTimeEvidence: { claimIds: ["claim-start-date"], sourceIds: ["ward-note"] },
+    eventTimeEvidence: { claimIds: ["claim-1"], sourceIds: ["ward-note"] },
     reframe: { kind: "question", value: "What evidence would show how the street trial works for different road users?" }
   },
   bodySections: [
-    { id: "announcement", title: "The announced change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, according to the municipal note.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }] },
-    { id: "scope", title: "What the note supports", paragraphs: [{ id: "source-scope", text: "The note identifies a planned date and lane change but supplies no measured result from the road.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }] },
-    { id: "unknowns", title: "Evidence still needed", paragraphs: [{ id: "evidence-needed", text: "Travel-time records and direct observations would help assess how the trial affects riders, walkers and traders.", claimIds: ["claim-outcomes-open"], sourceIds: ["ward-note"] }] }
+    { id: "announcement", title: "The announced change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, according to the municipal note.", claimIds: ["claim-1"], sourceIds: ["ward-note"] }] },
+    { id: "scope", title: "What the note supports", paragraphs: [{ id: "source-scope", text: "The note identifies a planned date and lane change but supplies no measured result from the road.", claimIds: ["claim-1"], sourceIds: ["ward-note"] }] },
+    { id: "unknowns", title: "Evidence still needed", paragraphs: [{ id: "evidence-needed", text: "Travel-time records and direct observations would help assess how the trial affects riders, walkers and traders.", claimIds: ["claim-2"], sourceIds: ["ward-note"] }] }
   ],
-  timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The municipal note gives this as the planned start date.", claimIds: ["claim-start-date"], sourceIds: ["ward-note"] }],
+  timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The municipal note gives this as the planned start date.", claimIds: ["claim-1"], sourceIds: ["ward-note"] }],
   statements: [
-    { id: "claim-start-date", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["ward-note"], sourceScope: "This reports the date and change described in the municipal note.", limits: "It does not confirm implementation or a measured outcome." },
-    { id: "claim-outcomes-open", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users are not established.", sourceIds: ["ward-note"], sourceScope: "The note contains no travel-time record or direct observation.", limits: "The source pack contains no affected-person account." }
+    { id: "claim-1", type: "documented", basis: "official_claim", text: "The note names 1 September as the planned start date.", sourceIds: ["ward-note"], sourceScope: "This reports the date and change described in the municipal note.", limits: "It does not confirm implementation or a measured outcome." },
+    { id: "claim-2", type: "unresolved", basis: "evidence_gap", text: "The effects on different road users are not established.", sourceIds: ["ward-note"], sourceScope: "The note contains no travel-time record or direct observation.", limits: "The source pack contains no affected-person account." }
   ],
   perspectives: [{ id: "bus-rider", label: "Bus rider", rationale: "The note concerns a bus-priority lane on a regular route.", sees: "A possible change to a familiar journey.", values: "Affordable and reliable travel.", uses: "The route and date described in the note.", mayMiss: "Effects on people who work beside the road.", sourceIds: ["ward-note"] }],
   people: [{ id: "municipal-corporation", kind: "institution", label: "Nadi Nagar Municipal Corporation", association: "The institution issued the note describing the planned trial.", sourceIds: ["ward-note"] }],
   unresolved: [{ id: "access-effects", question: "How will the trial affect people with different mobility needs?", whatWouldHelp: "Independent access checks and observations during the first weeks.", sourceIds: ["ward-note"] }],
   contextBridge: { topicSlug: "local-decision", question: "How should a local decision be made?", connection: "The street trial links a municipal decision to public experiences that still need reporting." },
-  authoredVisual: { kind: "process", title: "From announcement to assessment", description: "The visual separates the announced plan, road observation and later outcome assessment.", limitation: "It does not claim an outcome that the note cannot establish.", claimIds: ["claim-start-date", "claim-outcomes-open"], sourceIds: ["ward-note"] },
+  authoredVisual: { kind: "process", title: "From announcement to assessment", description: "The visual separates the announced plan, road observation and later outcome assessment.", limitation: "It does not claim an outcome that the note cannot establish.", claimIds: ["claim-1", "claim-2"], sourceIds: ["ward-note"] },
   mediaPlan: [],
   modelNotes: ["Verify local impact reporting before publication."]
 };
@@ -100,6 +100,17 @@ describe("createStoryDraft", () => {
     const request = JSON.parse(fetchImpl.mock.calls[0][1].body);
     expect(request.model).toBe(OPENROUTER_STORY_MODEL);
     expect(request.response_format.json_schema.strict).toBe(true);
+    const providerSchema = request.response_format.json_schema.schema;
+    expect(providerSchema.properties.statements.items.properties.id.pattern).toBe("^claim-[1-9][0-9]*$");
+    expect(providerSchema.properties.contextBridge.properties.topicSlug.enum).toContain("local-decision");
+    expect(providerSchema.properties.contextBridge.properties.topicSlug.enum).not.toContain("customs-time-release-study");
+    expect(providerSchema.properties.sourceIds.items.enum).toEqual(["ward-note"]);
+    expect(providerSchema.properties.story.properties.eventTimeEvidence.properties.sourceIds.items.enum).toEqual(["ward-note"]);
+    expect(providerSchema.properties.sourcePackId.const).toBe(input.sourcePackId);
+    expect(providerSchema.properties.language.const).toBe(input.language);
+    expect(providerSchema.properties.format.const).toBe(input.format);
+    expect(providerSchema.properties.story.properties.mode.const).toBe(input.mode);
+    expect(providerSchema.properties.story.properties.indiaConnection.const).toBe(input.indiaConnection);
     expect(request.provider).toEqual({ require_parameters: true, sort: "throughput", data_collection: "deny", max_price: { prompt: 0.1, completion: 0.2 } });
     expect(request.max_tokens).toBe(3200);
     expect(request.reasoning).toEqual({ effort: "none", exclude: true });

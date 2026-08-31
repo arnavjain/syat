@@ -7,7 +7,7 @@ import { z } from "zod";
 
 import { reviewGeneratedDraft } from "../src/lib/draft-review";
 import { reviewEditorialQuality } from "../src/lib/editorial-quality";
-import { generatedStoryV2ResponseSchema, parseGeneratedStoryV2, type GeneratedStoryV2, type StoryDraftV2PromptInput } from "../src/lib/generation-contract";
+import { generatedStoryV2ResponseSchema, parseGeneratedStoryV2, STORY_DRAFT_PROMPT_VERSION, type GeneratedStoryV2, type StoryDraftV2PromptInput } from "../src/lib/generation-contract";
 import { LocalGenerationLedger, type LedgerReceipt } from "../src/lib/local-generation-ledger";
 import { createStoryDraft, OPENROUTER_STORY_MODEL, type GenerationReservationRequest, type ReserveStoryAttempt, type StoryDraftResult } from "../src/lib/openrouter-story-client";
 import { assertSourcePackPromotionCompatible, promoteGeneratedStory } from "../src/lib/promote-generated-story";
@@ -19,7 +19,7 @@ const INR_PER_USD = 100;
 const DEFAULT_LEDGER_PATH = ".syat-private/generation-ledger.json";
 const DEFAULT_SOURCE_PACK_PATH = "data/source-packs/approved-preview.json";
 const MODEL_METADATA_URL = "https://openrouter.ai/api/v1/models";
-const PROMPT_VERSION = "syat.story-draft.v2";
+const PROMPT_VERSION = STORY_DRAFT_PROMPT_VERSION;
 const promptPriceCeiling = 0.000000065;
 const completionPriceCeiling = 0.00000018;
 

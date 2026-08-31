@@ -39,23 +39,23 @@ function promoteGeneratedStory(input: PromotionInputWithoutHash) {
 function makeDraft(withExternalMedia = false) {
   return parseGeneratedStoryV2({
     contractVersion: "syat.story-draft.v2", sourcePackId: "bazaar-road-bus-trial", sourceIds: ["pib-city-note"], language: "en-IN", editorialStatus: "needs_editorial_review", format: "explainer",
-    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a planned start date", dek: "The city record names the road and date, while travel effects and implementation remain unverified.", theme: "Cities and public life", indiaConnection: sourcePack.indiaConnection, eventTime: { kind: "exact_date", value: "2026-09-01", label: "From 1 September 2026" }, eventTimeEvidence: { claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] }, reframe: { kind: "question", value: "What evidence would show how the bus-priority change works on the ground?" } },
+    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a planned start date", dek: "The city record names the road and date, while travel effects and implementation remain unverified.", theme: "Cities and public life", indiaConnection: sourcePack.indiaConnection, eventTime: { kind: "exact_date", value: "2026-09-01", label: "From 1 September 2026" }, eventTimeEvidence: { claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }, reframe: { kind: "question", value: "What evidence would show how the bus-priority change works on the ground?" } },
     bodySections: [
-      { id: "announcement", title: "The announced change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, according to the city transport record.", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] }] },
-      { id: "limits", title: "What the record cannot establish", paragraphs: [{ id: "record-limit", text: "The announcement does not establish whether the lane opened as planned or how journeys changed.", claimIds: ["outcome-open"], sourceIds: ["pib-city-note"] }] },
-      { id: "reporting", title: "What reporting would add", paragraphs: [{ id: "next-reporting", text: "Road observations and comparable route data would help assess effects on riders, walkers and traders.", claimIds: ["outcome-open"], sourceIds: ["pib-city-note"] }] }
+      { id: "announcement", title: "The announced change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, according to the city transport record.", claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }] },
+      { id: "limits", title: "What the record cannot establish", paragraphs: [{ id: "record-limit", text: "The announcement does not establish whether the lane opened as planned or how journeys changed.", claimIds: ["claim-2"], sourceIds: ["pib-city-note"] }] },
+      { id: "reporting", title: "What reporting would add", paragraphs: [{ id: "next-reporting", text: "Road observations and comparable route data would help assess effects on riders, walkers and traders.", claimIds: ["claim-2"], sourceIds: ["pib-city-note"] }] }
     ],
-    timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The city record gives this as the planned start date.", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] }],
+    timeline: [{ id: "planned-start", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The city record gives this as the planned start date.", claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }],
     statements: [
-      { id: "planned-trial", type: "documented", basis: "official_claim", text: "The city record says the trial is planned from 1 September.", sourceIds: ["pib-city-note"], sourceScope: "This is the plan described by the official source.", limits: "It does not confirm implementation or effects." },
-      { id: "outcome-open", type: "unresolved", basis: "evidence_gap", text: "The effect on road users has not been established.", sourceIds: ["pib-city-note"], sourceScope: "The source pack contains no outcome measurement.", limits: "No independent observation or affected-person account is supplied." }
+      { id: "claim-1", type: "documented", basis: "official_claim", text: "The city record says the trial is planned from 1 September.", sourceIds: ["pib-city-note"], sourceScope: "This is the plan described by the official source.", limits: "It does not confirm implementation or effects." },
+      { id: "claim-2", type: "unresolved", basis: "evidence_gap", text: "The effect on road users has not been established.", sourceIds: ["pib-city-note"], sourceScope: "The source pack contains no outcome measurement.", limits: "No independent observation or affected-person account is supplied." }
     ],
     perspectives: [{ id: "bus-rider", label: "Bus rider", rationale: "The announced lane change concerns a bus route on Bazaar Road.", sees: "A possible change to a regular journey.", values: "Reliable and affordable travel.", uses: "The route and date in the city record.", mayMiss: "Changes to work and access beside the road.", sourceIds: ["pib-city-note"] }],
     people: [{ id: "city-transport-office", kind: "institution", label: "City transport office", association: "The institution issued the note describing the planned trial.", sourceIds: ["pib-city-note"] }],
     unresolved: [{ id: "route-effects", question: "How do travel time and street access change during the trial?", whatWouldHelp: "Comparable route data, road observations and conversations with affected people.", sourceIds: ["pib-city-note"] }],
     contextBridge: { topicSlug: "local-decision", question: "How should a local decision be made?", connection: "The trial links a public decision to experiences that still need direct reporting." },
-    authoredVisual: { kind: "process", title: "From plan to measured outcome", description: "The visual separates the announcement, road observation and later assessment.", limitation: "It does not present an outcome that the source pack cannot establish.", claimIds: ["planned-trial", "outcome-open"], sourceIds: ["pib-city-note"] },
-    mediaPlan: withExternalMedia ? [{ id: "bazaar-road-photo", kind: "photo", placement: "hero", purpose: "Show the road layout before the trial.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] }] : [],
+    authoredVisual: { kind: "process", title: "From plan to measured outcome", description: "The visual separates the announcement, road observation and later assessment.", limitation: "It does not present an outcome that the source pack cannot establish.", claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-city-note"] },
+    mediaPlan: withExternalMedia ? [{ id: "bazaar-road-photo", kind: "photo", placement: "hero", purpose: "Show the road layout before the trial.", alt: "Bazaar Road before the planned bus-priority trial.", rightsRequirement: "cc_by", claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }] : [],
     modelNotes: ["Independent road observation remains necessary."]
   }, [source]);
 }
@@ -78,7 +78,7 @@ const approvedVisual: ReaderStory["media"][number] = {
   creditLine: "Syāt visual desk, based on the credited source record", sourceUrl: source.url, rightsBasis: "owned",
   reviewStatus: "approved", reviewedAt: "2026-08-31T07:00:00.000Z",
   rightsProof: { kind: "documented_record", recordId: "syat-visual-approval", note: "Syāt authored this source-led visual for the private preview." },
-  limitation: "The visual does not establish whether the trial occurred or produced a result.", claimIds: ["planned-trial", "outcome-open"], sourceIds: ["pib-city-note"]
+  limitation: "The visual does not establish whether the trial occurred or produced a result.", claimIds: ["claim-1", "claim-2"], sourceIds: ["pib-city-note"]
 };
 
 const approvedPhoto = {
@@ -92,7 +92,7 @@ const approvedPhoto = {
   creator: "Independent photographer",
   creditLine: "Independent photographer, CC BY",
   rightsBasis: "cc_by" as const,
-  claimIds: ["planned-trial"]
+  claimIds: ["claim-1"]
 };
 
 describe("promoteGeneratedStory", () => {
@@ -104,13 +104,14 @@ describe("promoteGeneratedStory", () => {
     expect(story.sources[0].rightsBasis).toBe("government_reproduction_policy");
     expect(story.relatedCoverage[0]).toMatchObject({ modelInputAllowed: false, mediaReuseAllowed: false });
     expect(story.generation.inputHash).toBe(generationInputHash);
+    expect(story.generation.promptVersion).toBe("syat.story-draft.v2.1");
     expect(story.media).toEqual([approvedVisual]);
     expect(story.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
     expect(story.statements[1]).toMatchObject({ basis: "evidence_gap", limits: "No independent observation or affected-person account is supplied." });
     expect(story.statements[1]).not.toHaveProperty("evidenceNeed");
     expect(story.perspectives[0].rationale).toContain("bus route");
     expect(story.body[0]).toMatchObject({ section: { id: "announcement", title: "The announced change" } });
-    expect(story.authoredVisual).toMatchObject({ mediaId: approvedVisual.id, kind: "process", claimIds: ["planned-trial", "outcome-open"] });
+    expect(story.authoredVisual).toMatchObject({ mediaId: approvedVisual.id, kind: "process", claimIds: ["claim-1", "claim-2"] });
   });
 
   it("fails source-pack promotion compatibility before a draft or paid call is needed", () => {
@@ -126,7 +127,7 @@ describe("promoteGeneratedStory", () => {
 
   it("does not treat the authored visual approval as clearance for a separate external media plan", () => {
     const draft = makeDraft();
-    draft.mediaPlan.push({ id: "external-travel-chart", kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "cc_by", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] });
+    draft.mediaPlan.push({ id: "external-travel-chart", kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "cc_by", claimIds: ["claim-1"], sourceIds: ["pib-city-note"] });
     expect(() => promoteGeneratedStory({ draft, draftReview: { ...draftReview, checks: { ...draftReview.checks, mediaRights: "human_review_required" } }, qualityReview, sourcePack, approvedMedia: [approvedVisual] })).toThrow(/approved media/i);
   });
 
@@ -151,7 +152,7 @@ describe("promoteGeneratedStory", () => {
     const mismatches = [
       { ...approvedPhoto, planId: "another-photo-plan" },
       { ...approvedPhoto, alt: "A different approved caption that does not match the requested alternative text." },
-      { ...approvedPhoto, claimIds: ["outcome-open"] },
+      { ...approvedPhoto, claimIds: ["claim-2"] },
       { ...approvedPhoto, rightsBasis: "owned" as const }
     ];
 
@@ -161,14 +162,14 @@ describe("promoteGeneratedStory", () => {
   });
 
   it("requires the approved Syāt visual to name the exact authored-visual claims", () => {
-    const wrongClaims = { ...approvedVisual, claimIds: ["planned-trial"] };
+    const wrongClaims = { ...approvedVisual, claimIds: ["claim-1"] };
 
     expect(() => promoteGeneratedStory({ draft: makeDraft(), draftReview, qualityReview, sourcePack, approvedMedia: [wrongClaims] })).toThrow(/authored visual/i);
   });
 
   it("never treats explicit_licence as a wildcard for an owned external asset", () => {
     const draft = makeDraft();
-    draft.mediaPlan.push({ id: "external-licensed-chart", kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "explicit_licence", claimIds: ["planned-trial"], sourceIds: ["pib-city-note"] });
+    draft.mediaPlan.push({ id: "external-licensed-chart", kind: "chart", placement: "inline", purpose: "Add an external chart comparing travel-time records.", alt: "External chart comparing morning travel times on Bazaar Road.", rightsRequirement: "explicit_licence", claimIds: ["claim-1"], sourceIds: ["pib-city-note"] });
     const externalOwned = { ...approvedVisual, id: "external-owned-chart", creator: "Outside chart desk", label: "External travel-time chart" };
 
     expect(() => promoteGeneratedStory({ draft, draftReview: { ...draftReview, checks: { ...draftReview.checks, mediaRights: "human_review_required" } }, qualityReview, sourcePack, approvedMedia: [approvedVisual, externalOwned] })).toThrow(/explicit licence|approved media/i);
