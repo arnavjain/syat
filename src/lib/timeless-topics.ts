@@ -140,3 +140,11 @@ export const timelessTopics: readonly TimelessTopic[] = themes.flatMap(([theme, 
     readingLens
   }))
 );
+
+export function getTimelessTopic(slug: string): TimelessTopic | undefined {
+  return timelessTopics.find((topic) => topic.slug === slug);
+}
+
+export function timelessTopicPath(slug: string): string | undefined {
+  return getTimelessTopic(slug) ? `/en/timeless/topic/${slug}` : undefined;
+}
