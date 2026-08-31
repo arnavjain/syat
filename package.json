@@ -4,7 +4,7 @@
   "private": true,
   "description": "A reading-first perspective product for news and enduring ideas.",
   "engines": {
-    "node": ">=22.0.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
