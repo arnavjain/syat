@@ -222,6 +222,15 @@ function currentIndiaMonth(now = new Date()) {
   return `${parts.find((part) => part.type === "year")?.value}-${parts.find((part) => part.type === "month")?.value}`;
 }
 
+/** What each record can and cannot establish. An audit is the counterweight to an
+ * institution's account of itself, so the model must not treat the two as one voice. */
+function sourceRoleFor(sourceKind: SourcePack["sources"][number]["sourceKind"]): string {
+  if (sourceKind === "official_statement") return "Records the issuing institution's own account; it does not independently verify that account.";
+  if (sourceKind === "audit_report") return "An independent audit of an institution's own records. It can contradict or narrow that institution's account, and where the two disagree the disagreement is itself part of the story. It covers only the period and sample it names.";
+  if (sourceKind === "government_open_data") return "Reusable published data. It can support or undercut a stated claim, but it carries no explanation of why a figure changed.";
+  return "Provides reusable public-record evidence within its recorded licence and scope.";
+}
+
 function draftInputFor(pack: SourcePack, position: number): StoryDraftV2PromptInput {
   const formats: StoryDraftV2PromptInput["format"][] = ["explainer", "timeline", "public_impact", "source_map", "news_brief"];
   return {
@@ -231,7 +240,7 @@ function draftInputFor(pack: SourcePack, position: number): StoryDraftV2PromptIn
     format: formats[position % formats.length],
     editorialBrief: "Write a useful 350–800 word India-first private-preview story. Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.",
     indiaConnection: pack.indiaConnection,
-    sourceRoles: pack.sources.map((source) => ({ sourceId: source.id, role: source.sourceKind === "official_statement" ? "Records the issuing institution's own account; it does not independently verify that account." : "Provides reusable public-record evidence within its recorded licence and scope." })),
+    sourceRoles: pack.sources.map((source) => ({ sourceId: source.id, role: sourceRoleFor(source.sourceKind) })),
     missingVoices: ["Independent reporting or measurement", "People directly affected by the change", "Evidence that tests the issuing institution's account"],
     sourceDossier: pack.sources
   };

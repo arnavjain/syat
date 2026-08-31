@@ -19,7 +19,7 @@ export const sourcePackSourceSchema = z.object({
   publisher: z.string().min(2).max(160),
   title: z.string().min(1).max(320),
   url: z.url(),
-  sourceKind: z.enum(["official_statement", "government_open_data", "reputable_reporting"]),
+  sourceKind: z.enum(["official_statement", "government_open_data", "audit_report", "reputable_reporting"]),
   publishedAt: z.iso.datetime(),
   accessedAt: z.iso.datetime(),
   evidenceText: z.string().max(50_000),

@@ -7,7 +7,7 @@ import { validatePreviewSourcePack, type SourcePack, type SourcePackSource } fro
 type ApprovedMedia = ReaderStory["media"][number];
 
 function mapSourceKind(source: SourcePackSource): ReaderStory["sources"][number]["sourceKind"] {
-  if (source.sourceKind === "government_open_data") return "primary_document";
+  if (source.sourceKind === "government_open_data" || source.sourceKind === "audit_report") return "primary_document";
   return source.sourceKind;
 }
 

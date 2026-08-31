@@ -18,7 +18,8 @@
     "content:collect-news": "tsx scripts/collect-rss-intake.ts",
     "content:generate-pilot": "node --env-file=.env.local --import tsx scripts/generate-preview-batch.ts --pilot --count 6",
     "content:generate-wave": "node --env-file=.env.local --import tsx scripts/generate-preview-batch.ts",
-    "content:smoke-ai": "node --env-file=.env.local --import tsx scripts/smoke-openrouter.ts"
+    "content:smoke-ai": "node --env-file=.env.local --import tsx scripts/smoke-openrouter.ts",
+    "content:collect-cag": "tsx scripts/collect-cag-source-packs.ts"
   },
   "dependencies": {
     "@better-auth/core": "^1.6.22",
