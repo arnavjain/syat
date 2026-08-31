@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 import { z } from "zod";
 
 import { sourcePackSourceSchema, type SourcePackSource } from "./source-pack";
@@ -253,14 +255,17 @@ function textTokens(text: string) {
 function sharedRun(text: string, evidenceText: string, size: number) {
   const visible = textTokens(text);
   const evidence = textTokens(evidenceText);
-  if (visible.length < size || evidence.length < size) return false;
+  if (visible.length < size || evidence.length < size) return null;
   const evidenceRuns = new Set<string>();
   for (let index = 0; index <= evidence.length - size; index += 1) evidenceRuns.add(evidence.slice(index, index + size).join(" "));
   for (let index = 0; index <= visible.length - size; index += 1) {
     const run = visible.slice(index, index + size);
-    if (evidenceRuns.has(run.join(" "))) return true;
+    const normalisedRun = run.join(" ");
+    if (evidenceRuns.has(normalisedRun)) {
+      return { tokenCount: size, matchHash: createHash("sha256").update(normalisedRun).digest("hex") };
+    }
   }
-  return false;
+  return null;
 }
 
 type VisibleDraftField = { id: string; text: string; sourceIds: string[]; compactLabel?: true };
@@ -325,7 +330,8 @@ export function findCloseCopyMatches(draft: GeneratedStoryV2, sourceDossier: Sou
     const source = sourceById.get(sourceId);
     const visibleText = field.compactLabel ? withoutOpeningEntityOrOffice(field.text) : field.text;
     const runSize = field.compactLabel ? 6 : 7;
-    return source && sharedRun(visibleText, source.evidenceText, runSize) ? [{ fieldId: field.id, sourceId }] : [];
+    const match = source ? sharedRun(visibleText, source.evidenceText, runSize) : null;
+    return match ? [{ fieldId: field.id, sourceId, ...match }] : [];
   }));
 }
 
@@ -386,7 +392,7 @@ export function parseGeneratedStoryV2(value: unknown, sourceDossier: SourceDossi
   if (!timeGroundedInSources(draft.story.eventTime, draft.story.eventTimeEvidence.sourceIds, sourceById)) throw new Error("Generated story event date is not grounded in cited source evidence.");
   for (const entry of draft.timeline) if (!timeGroundedInSources(entry.time, entry.sourceIds, sourceById)) throw new Error(`Timeline time ${entry.id} is not grounded in cited source evidence.`);
   const copy = findCloseCopyMatches(draft, approved)[0];
-  if (copy) throw new Error(`Visible field ${copy.fieldId} closely copies source wording instead of synthesising it.`);
+  if (copy) throw new Error(`Visible field ${copy.fieldId} closely copies a ${copy.tokenCount}-token source span instead of synthesising it (fingerprint ${copy.matchHash.slice(0, 12)}).`);
   return draft;
 }
 
@@ -412,7 +418,7 @@ export type SelectedExactTime = {
   label: string;
 };
 
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.5";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.6";
 
 type JsonObject = Record<string, unknown>;
 
@@ -542,6 +548,9 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
   const editorialRules = [
     "Use only the supplied dossier; do not use remembered facts.",
     "Do not quote or closely copy source wording.",
+    "Write the title and dek with fresh sentence structure.",
+    "Outside exact proper names and necessary technical labels, do not reuse any six-token source span in the title or any seven-token source span in the dek.",
+    "Exact proper names and necessary technical labels may repeat only as terms; the surrounding grammar must be new.",
     "Begin with the concrete change, not a generic announcement phrase.",
     "Name official claims as claims and keep interpretation visibly separate.",
     "Include a standpoint only when a source explains why it belongs.",

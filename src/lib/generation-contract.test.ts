@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildStoryDraftProviderJsonSchema,
   buildStoryDraftV2Prompt,
+  findCloseCopyMatches,
   parseGeneratedStoryV2,
   parseGeneratedStoryV2Json,
   type GeneratedStoryV2,
@@ -231,6 +232,19 @@ describe("syat.story-draft.v2", () => {
     expect(() => parseGeneratedStoryV2(draft, [copiedSource])).toThrow(/closely cop(?:y|ies)/i);
   });
 
+  it("reports a privacy-safe seven-token fingerprint when a dek copies source structure", () => {
+    const copiedSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "The ministry says the revised lane plan will reduce waiting times for scheduled buses while independent results remain unavailable. The planned start is 1 September 2026." };
+    const draft = makeDraft();
+    draft.story.dek = "The revised lane plan will reduce waiting times for scheduled buses, but independent results remain unavailable.";
+
+    const match = findCloseCopyMatches(draft, [copiedSource]).find((candidate) => candidate.fieldId === "story:dek");
+
+    expect(match).toMatchObject({ fieldId: "story:dek", sourceId: "pib-road-note", tokenCount: 7 });
+    expect(match?.matchHash).toMatch(/^[a-f0-9]{64}$/);
+    expect(match).not.toHaveProperty("matchedText");
+    expect(() => parseGeneratedStoryV2(draft, [copiedSource])).toThrow(/7-token.*[a-f0-9]{12}/i);
+  });
+
   it("rejects a copied 20-word sentence hidden inside a longer source and short verbatim visible copy", () => {
     const copiedSentence = "The authority will close the eastern lane each morning while scheduled buses pass the market and return after ten o'clock.";
     const longEvidence = `The record names 1 September 2026. ${"Background details about the municipal transport record and its stated administrative process. ".repeat(14)} ${copiedSentence} ${"Further record material describes later monitoring and internal reporting steps. ".repeat(8)}`;
@@ -311,7 +325,10 @@ describe("syat.story-draft.v2", () => {
     expect(prompt).toContain("In a significant development");
     expect(prompt).toContain("syat.story-draft.v2");
     expect(prompt).toContain("modelInputAllowed");
-    expect(prompt).toContain("Prompt version: syat.story-draft.v2.5");
+    expect(prompt).toContain("Prompt version: syat.story-draft.v2.6");
+    expect(prompt).toContain("Write the title and dek with fresh sentence structure");
+    expect(prompt).toContain("do not reuse any six-token source span in the title or any seven-token source span in the dek");
+    expect(prompt).toContain("Exact proper names and necessary technical labels may repeat");
     expect(prompt).toContain('Allowed exact dates and labels: 2026-09-01 -> 1 September 2026. Use unknown for every other eventTime and timeline time with label exactly "Date not established in the supplied evidence".');
     expect(prompt).toContain("statement IDs exactly claim-1 through claim-N");
     expect(prompt).toContain("Final internal reference-set check");
