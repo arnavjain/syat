@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import { isSourcePackChecklistComplete, type SourcePackChecklist } from "@/lib/news-intake";
 import {
   filterReviewItems,
   getReviewSummary,
@@ -13,6 +14,13 @@ import {
 } from "@/lib/review-queue";
 
 const storageKey = "syat.private-review-queue.v1";
+const checklistStorageKey = "syat.private-review-source-pack-checklist.v1";
+
+const emptyChecklist: SourcePackChecklist = {
+  openedOriginalLink: false,
+  keptLinkOnly: false,
+  namedNextNeed: false
+};
 
 const filters: Array<{ id: ReviewFilter; label: string }> = [
   { id: "all", label: "All" },
@@ -47,9 +55,35 @@ function readBrowserRecords() {
   }
 }
 
+function isChecklist(value: unknown): value is SourcePackChecklist {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Partial<SourcePackChecklist>;
+  return typeof candidate.openedOriginalLink === "boolean"
+    && typeof candidate.keptLinkOnly === "boolean"
+    && typeof candidate.namedNextNeed === "boolean";
+}
+
+function readBrowserChecklists() {
+  try {
+    const stored = JSON.parse(window.localStorage.getItem(checklistStorageKey) ?? "{}") as Record<string, unknown>;
+    return Object.fromEntries(Object.entries(stored).filter((entry): entry is [string, SourcePackChecklist] => isChecklist(entry[1])));
+  } catch {
+    return {} as Record<string, SourcePackChecklist>;
+  }
+}
+
 function writeBrowserRecords(records: Record<string, ModerationRecord>) {
   try {
     window.localStorage.setItem(storageKey, JSON.stringify(records));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function writeBrowserChecklists(checklists: Record<string, SourcePackChecklist>) {
+  try {
+    window.localStorage.setItem(checklistStorageKey, JSON.stringify(checklists));
     return true;
   } catch {
     return false;
@@ -62,10 +96,17 @@ function formatDate(value: string) {
 
 export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   const [records, setRecords] = useState<Record<string, ModerationRecord>>({});
+  const [checklists, setChecklists] = useState<Record<string, SourcePackChecklist>>({});
   const [isHydrated, setIsHydrated] = useState(false);
   const [filter, setFilter] = useState<ReviewFilter>("all");
   const [selectedId, setSelectedId] = useState(sources[0]?.id ?? "");
-  const items = useMemo(() => mergeReviewRecords(sources, records), [sources, records]);
+  const safeRecords = useMemo(() => Object.fromEntries(Object.entries(records).map(([id, record]) => [
+    id,
+    record.decision === "source_pack_ready" && !isSourcePackChecklistComplete(checklists[id] ?? emptyChecklist)
+      ? { ...record, decision: "needs_source_pack" as const }
+      : record
+  ])), [checklists, records]);
+  const items = useMemo(() => mergeReviewRecords(sources, safeRecords), [sources, safeRecords]);
   const visibleItems = useMemo(() => filterReviewItems(items, filter), [filter, items]);
   const selected = items.find((item) => item.id === selectedId) ?? visibleItems[0];
   const summary = getReviewSummary(items);
@@ -73,6 +114,7 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       setRecords(readBrowserRecords());
+      setChecklists(readBrowserChecklists());
       setIsHydrated(true);
     });
     return () => window.cancelAnimationFrame(frame);
@@ -81,6 +123,10 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
   useEffect(() => {
     if (isHydrated) writeBrowserRecords(records);
   }, [isHydrated, records]);
+
+  useEffect(() => {
+    if (isHydrated) writeBrowserChecklists(checklists);
+  }, [checklists, isHydrated]);
 
   function changeRecord(id: string, change: Partial<ModerationRecord>) {
     setRecords((current) => ({
@@ -100,13 +146,22 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
     if (!nextItems.some((item) => item.id === selectedId)) setSelectedId(nextItems[0]?.id ?? "");
   }
 
+  function changeChecklist(id: string, change: Partial<SourcePackChecklist>) {
+    setChecklists((current) => ({
+      ...current,
+      [id]: { ...(current[id] ?? emptyChecklist), ...change }
+    }));
+  }
+
   function resetBrowserQueue() {
     try {
       window.localStorage.removeItem(storageKey);
+      window.localStorage.removeItem(checklistStorageKey);
     } catch {
       // The on-screen state can still reset when a browser blocks storage.
     }
     setRecords({});
+    setChecklists({});
     setFilter("all");
     setSelectedId(sources[0]?.id ?? "");
   }
@@ -153,11 +208,18 @@ export function ModerationQueue({ sources }: { sources: ModerationSource[] }) {
             <div><dt>Use</dt><dd>Link-only; not Syāt reporting</dd></div>
           </dl>
           <a className="docket-source-link" href={selected.url} rel="noreferrer" target="_blank">Open the original source <span aria-hidden="true">↗</span></a>
+          <fieldset className="source-pack-checklist">
+            <legend>Before marking a source pack ready</legend>
+            <p>These are private review checks, not publication approval.</p>
+            <label><input type="checkbox" checked={(checklists[selected.id] ?? emptyChecklist).openedOriginalLink} onChange={(event) => changeChecklist(selected.id, { openedOriginalLink: event.target.checked })} /> I opened the original link.</label>
+            <label><input type="checkbox" checked={(checklists[selected.id] ?? emptyChecklist).keptLinkOnly} onChange={(event) => changeChecklist(selected.id, { keptLinkOnly: event.target.checked })} /> I kept this signal link-only.</label>
+            <label><input type="checkbox" checked={(checklists[selected.id] ?? emptyChecklist).namedNextNeed} onChange={(event) => changeChecklist(selected.id, { namedNextNeed: event.target.checked })} /> I named the next source or context need in the private note.</label>
+          </fieldset>
           <fieldset className="decision-actions">
             <legend>Choose the next review step</legend>
             <button type="button" className={selected.decision === "needs_source_pack" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "needs_source_pack" })}>Keep in source queue</button>
             <button type="button" className={selected.decision === "held" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "held" })}>Hold for context</button>
-            <button type="button" className={selected.decision === "source_pack_ready" ? "active" : ""} onClick={() => changeRecord(selected.id, { decision: "source_pack_ready" })}>Source pack ready</button>
+            <button type="button" className={selected.decision === "source_pack_ready" ? "active" : ""} disabled={!isSourcePackChecklistComplete(checklists[selected.id] ?? emptyChecklist) || !selected.note.trim()} onClick={() => changeRecord(selected.id, { decision: "source_pack_ready" })}>Source pack ready</button>
             <button type="button" className={`reject ${selected.decision === "rejected" ? "active" : ""}`} onClick={() => changeRecord(selected.id, { decision: "rejected" })}>Reject from queue</button>
           </fieldset>
           <label className="moderation-note"><span>Private review note</span><textarea value={selected.note} onChange={(event) => changeRecord(selected.id, { note: event.target.value })} placeholder="What evidence or context should the next editor look for?" rows={4} /></label>

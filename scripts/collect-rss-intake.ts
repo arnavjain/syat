@@ -1,7 +1,7 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-import { deduplicateIntake, filterRecentItems, parseRssItems, selectBalancedItems, type NewsIntakeItem, type RssFeed } from "../src/lib/news-intake";
+import { canReplaceLastGoodIntake, deduplicateIntake, filterRecentItems, maximumSignalsPerPublisher, parseRssItems, selectBalancedItems, type NewsIntakeDocument, type NewsIntakeItem, type RssFeed } from "../src/lib/news-intake";
 
 const feeds: readonly RssFeed[] = [
   { id: "pib-releases", publisher: "Press Information Bureau", url: "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3", editorialScope: "india_first", sourceClass: "official_public_record" },
@@ -19,16 +19,18 @@ const feeds: readonly RssFeed[] = [
   { id: "indian-express-north-east", publisher: "The Indian Express", url: "https://indianexpress.com/section/north-east-india/feed/", editorialScope: "india_first", sourceClass: "newsroom_rss" }
 ];
 
-async function fetchFeed(feed: RssFeed, now: Date) {
+type FeedResult = { feedId: string; items: NewsIntakeItem[]; complete: true } | { feedId: string; items: []; complete: false };
+
+async function fetchFeed(feed: RssFeed, now: Date): Promise<FeedResult> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12_000);
   try {
     const response = await fetch(feed.url, { headers: { Accept: "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8" }, signal: controller.signal });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return parseRssItems(await response.text(), feed, now);
+    return { feedId: feed.id, items: parseRssItems(await response.text(), feed, now), complete: true };
   } catch (error) {
     console.error(`Skipped ${feed.id}: ${error instanceof Error ? error.message : String(error)}`);
-    return [] as NewsIntakeItem[];
+    return { feedId: feed.id, items: [], complete: false };
   } finally {
     clearTimeout(timeout);
   }
@@ -36,30 +38,46 @@ async function fetchFeed(feed: RssFeed, now: Date) {
 
 async function main() {
   const now = new Date();
-  const results: NewsIntakeItem[] = [];
+  const results: FeedResult[] = [];
 
   // Two feeds at once is enough for a small private research queue and avoids aggressive polling.
   for (let index = 0; index < feeds.length; index += 2) {
-    results.push(...(await Promise.all(feeds.slice(index, index + 2).map((feed) => fetchFeed(feed, now)))).flat());
+    results.push(...(await Promise.all(feeds.slice(index, index + 2).map((feed) => fetchFeed(feed, now)))));
+  }
+
+  const incompleteFeeds = results.filter((result) => !result.complete).map((result) => result.feedId);
+  if (incompleteFeeds.length > 0) {
+    console.error(`Collection was incomplete (${incompleteFeeds.join(", ")}); kept the last good intake unchanged.`);
+    process.exitCode = 2;
+    return;
   }
 
   const recent = selectBalancedItems(
-    deduplicateIntake(filterRecentItems(results, now, 7)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
-    16,
+    deduplicateIntake(filterRecentItems(results.flatMap((result) => result.items), now, 7)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
+    maximumSignalsPerPublisher,
     100
   );
-  const output = {
+  const output: NewsIntakeDocument = {
     contractVersion: "syat.news-intake.v1",
     generatedAt: now.toISOString(),
     windowDays: 7,
+    maximumPerPublisher: maximumSignalsPerPublisher,
     itemCount: recent.length,
     items: recent
   };
   const destination = resolve(process.cwd(), "data/news-intake.json");
   await mkdir(dirname(destination), { recursive: true });
-  await writeFile(destination, `${JSON.stringify(output, null, 2)}\n`);
-  console.log(`Wrote ${output.itemCount} RSS metadata signals to data/news-intake.json.`);
-  if (output.itemCount < 100) process.exitCode = 2;
+  if (!canReplaceLastGoodIntake(output, feeds.map((feed) => feed.id), results.map((result) => result.feedId), now)) {
+    console.error("Collected candidate failed its full intake contract; kept the last good intake unchanged.");
+    process.exitCode = 2;
+    return;
+  }
+
+  const temporaryDestination = `${destination}.next`;
+  await writeFile(temporaryDestination, `${JSON.stringify(output, null, 2)}\n`);
+  await rename(temporaryDestination, destination);
+  const distribution = [...recent.reduce((counts, item) => counts.set(item.publisher, (counts.get(item.publisher) ?? 0) + 1), new Map<string, number>()).entries()].map(([publisher, count]) => `${publisher}: ${count}`).join("; ");
+  console.log(`Replaced the intake with ${output.itemCount} review-only, link-only source signals (cap ${maximumSignalsPerPublisher} per publisher). ${distribution || "No current records."}`);
 }
 
 void main();
