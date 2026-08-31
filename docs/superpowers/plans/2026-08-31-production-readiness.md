@@ -156,24 +156,68 @@
 - Create: `src/components/statement-basis-sheet.tsx`
 - Create: `src/components/context-bridge.tsx`
 - Create: `src/components/editorial-feed.tsx`
+- Create: `src/components/post-timeline.tsx`
+- Create: `src/components/associated-people.tsx`
 - Modify: `src/components/story-page.tsx`
 - Modify: `src/components/home-view.tsx`
 - Modify: `src/lib/preview-content.ts`
 - Modify: `src/app/globals.css`
 - Test: `src/lib/preview-content.test.ts`
 - Test: `src/components/statement-basis-sheet.test.ts`
+- Test: `src/components/post-timeline.test.ts`
+- Test: `src/components/associated-people.test.ts`
 
 **Interfaces:**
 - Produces: a keyboard-accessible Tap for basis sheet backed by exact fixture claim, basis, source scope, and limitation data; a visual News-to-Timeless Context Bridge; and feed modules with distinct editorial jobs rather than a repeated teaser card grid.
+- Produces: a post timeline whose events can state an exact date, a period, or an explicitly unknown time, with source IDs and a clear distinction between reported change and unresolved context. Produces an associated-people/roles module that uses only story-approved names or clearly fictional fixture roles, says why each association matters, links to the source material, and represents institutions, communities, and unknown/unverified roles without a misleading person card.
 
-- [ ] Add failing tests for a valid statement-basis record, Context Bridge target, distinct feed-module contracts, and rights-complete authored media fixture metadata.
+- [ ] Add failing tests for a valid statement-basis record, Context Bridge target, distinct feed-module contracts, rights-complete authored media fixture metadata, timeline ordering/unknown-time state, and source-backed associated people/roles.
 - [ ] Run focused tests and confirm failure.
 - [ ] Add one isolated dialog/sheet client island with native semantics and a static evidence fallback.
 - [ ] Make related Timeless material a clearly connected Context Bridge, not a generic fifth action card.
 - [ ] Replace repeated home teaser-grid mapping with four small modules: lead/change strip, standard story row, Context Bridge, and media/framing trail. Keep mobile reading order clear.
 - [ ] Add an authored preview media fixture with creator, source, rights basis, review status, and non-publishable status; do not import unreviewed external media.
+- [ ] Add a compact timeline to the story with event type, date/period/unknown-time label, source link, and clearly marked uncertainty. Never manufacture exact dates for Timeless material.
+- [ ] Add an associated-people/roles surface to a story. It must explain each connection in plain language, distinguish a named person from an institution/community/unknown role, expose the supporting source, and avoid photos, social handles, popularity metrics, or unverified biographical claims.
 - [ ] Add a compact sticky story rail that has a static fallback and touch-safe anchors; only add active-section client behavior if the browser implementation stays small and accessible.
 - [ ] Run browser review for home/story desktop/mobile, normal and reduced-motion states, then full checks.
+- [ ] Commit the slice.
+
+### Task 4D: Make preview content safer, more useful, and more human
+
+**Files:**
+- Modify: `src/lib/news-signals.ts`
+- Modify: `src/lib/news-intake.ts`
+- Modify: `scripts/check-content.ts`
+- Modify: `src/lib/home-content.ts`
+- Modify: `src/lib/onboarding.ts`
+- Modify: `src/components/guided-onboarding.tsx`
+- Modify: `src/lib/preview-content.ts`
+- Modify: `src/components/story-page.tsx`
+- Modify: `src/lib/reframe-plan.ts`
+- Modify: `src/components/reframe-workbench.tsx`
+- Modify: `src/app/en/studio/page.tsx`
+- Modify: `src/components/moderation-queue.tsx`
+- Create: `src/app/en/fixtures/[slug]/page.tsx`
+- Test: `src/lib/news-signals.test.ts`
+- Test: `src/lib/news-intake.test.ts`
+- Test: `src/lib/reframe-plan.test.ts`
+- Test: `src/lib/preview-content.test.ts`
+
+**Interfaces:**
+- Produces: a safe public-preview source-signal allow-list, conservative sensitive-headline handling, decoded/fresh RSS labels, inspectable fictional teaching documents, a locally useful claim/question/passage Reframe plan, and honest Studio publisher-gap copy.
+
+- [ ] Add failing tests proving graphic-sensitivity patterns never become automatic public teaser items, numeric/named entities decode correctly, stale snapshots fail a public-current check, and only explicit public-preview IDs can appear on the public signal strip.
+- [ ] Add failing tests proving the fixture source trail targets real static fixture documents, Reframe recomputes input kind and structurally changes for a claim/question/passage, and copy uses concrete first-time language.
+- [ ] Run focused tests and confirm failure.
+- [ ] Make source signals Studio-only by default and use a small authored/approved fixture allow-list for any public preview. Retain a stronger sensitive pattern blocklist only as defence in depth.
+- [ ] Decode RSS HTML entities without changing publisher attribution; preserve last-known-good collection and hide/label stale snapshots accurately.
+- [ ] Replace the vague onboarding phrase and add a short fixture-based practice: identify a documented statement, reveal its source note, then switch a viewpoint.
+- [ ] Publish the fictional teaching-policy note and route-note as clearly labelled static fixtures; connect exact story source cards to them.
+- [ ] Make viewpoints less formulaic by allowing subject-specific observations and stating that a role is a starting standpoint, not a whole community.
+- [ ] Make Reframe re-detect claim/question/passage after edits, preserve original text, split multiple statements, and produce editable evidence/interpretation/unresolved slots without making an AI claim.
+- [ ] Make Studio show current publisher counts beside separate source-acquisition gaps; remove language that implies the actual queue is balanced.
+- [ ] Run browser review for onboarding, source trail, Reframe, Studio, and public source strip at desktop/mobile, then full checks.
 - [ ] Commit the slice.
 
 ### Task 5: Safe, measurable India-first intake
