@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import type { HomeContent, StoryTeaser } from "@/lib/home-content";
-import { getPreviewStory } from "@/lib/preview-content";
 
 import { ContextBridge } from "./context-bridge";
 
@@ -11,7 +10,6 @@ function TeaserLink({ item, className }: { item: StoryTeaser; className?: string
 }
 
 export function EditorialFeed({ content }: { content: HomeContent }) {
-  const fixture = getPreviewStory(content.modeLabel === "News" ? "street-plan-daily-realities" : "how-cities-move");
   const firstSection = content.sections[0];
   const secondSection = content.sections[1];
   const leadHref = content.feature.cta.href;
@@ -29,7 +27,7 @@ export function EditorialFeed({ content }: { content: HomeContent }) {
       <div className="feed-row-list">{firstSection.items.map((item) => <article key={`${item.href}-${item.title}`}><p>{item.label}{item.type === "internet" ? " · source signal, not a Syāt story" : ""}</p><h3><TeaserLink item={item} /></h3><span>{item.dek}</span></article>)}</div>
     </section>}
 
-    {fixture && <ContextBridge bridge={fixture.contextBridge} />}
+    {content.contextBridge ? <ContextBridge bridge={content.contextBridge} /> : null}
 
     {secondSection && <section className="feed-framing-trail" aria-labelledby="feed-trail-title">
       <div><p className="micro-copy">Media / framing trail</p><h2 id="feed-trail-title">{secondSection.title}</h2><p>{secondSection.intro}</p></div>

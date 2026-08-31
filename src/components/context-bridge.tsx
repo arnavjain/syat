@@ -2,8 +2,9 @@ import Link from "next/link";
 
 import { getTimelessTopic } from "@/lib/timeless-topics";
 
-export function ContextBridge({ bridge }: { bridge: { targetSlug: string; question: string; connection: string } }) {
-  const topic = getTimelessTopic(bridge.targetSlug);
+export function ContextBridge({ bridge }: { bridge: { targetSlug?: string; topicSlug?: string; question: string; connection: string } }) {
+  const targetSlug = bridge.topicSlug ?? bridge.targetSlug;
+  const topic = targetSlug ? getTimelessTopic(targetSlug) : undefined;
   if (!topic) return null;
 
   return (

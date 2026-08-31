@@ -20,20 +20,15 @@ export function HomeView({ mode, direction, isDesignReview = false }: { mode: Ho
       </aside>}
       <section className="home-intro" aria-labelledby="home-title">
         <div>
-          <p className="micro-copy">News first · more than one honest view</p>
-          <h1 id="home-title">See what you are missing.</h1>
+          <p className="micro-copy">News and enduring questions, read with their limits</p>
+          <h1 id="home-title">Read what changed. See what evidence cannot settle.</h1>
         </div>
         <div className="home-intro-actions">
-          <p className="intro-copy">Follow what changed, see what each view uses, and step back into the larger question.</p>
-          <form action="/en/reframe" className="bring-form" method="get">
-            <label htmlFor="home-claim">Bring a link, quote, or question</label>
-            <div>
-              <input aria-describedby="bring-limit" id="home-claim" maxLength={320} name="claim" placeholder="Paste a claim or ask a question" required type="text" />
-              <button type="submit">Reframe it <span aria-hidden="true">↗</span></button>
-            </div>
-            <p id="bring-limit">A link is treated as text. This preview does not fetch it or accept files.</p>
-          </form>
-          <Link className="first-read-link" href="/en/onboarding">New here? Read the two-minute guide <span aria-hidden="true">↗</span></Link>
+          <p className="intro-copy">Syāt separates documented claims, interpretation and open questions, then lets you inspect the source trail yourself.</p>
+          <div className="home-first-actions">
+            <Link className="primary-action" href={content.feature.cta.href}>Start reading <span aria-hidden="true">↗</span></Link>
+            <Link className="first-read-link" href="/en/onboarding">Take the two-minute tour</Link>
+          </div>
         </div>
       </section>
 
@@ -49,18 +44,18 @@ export function HomeView({ mode, direction, isDesignReview = false }: { mode: Ho
         <span className="mode-frame" aria-hidden="true" />
       </nav>
 
-      <section className="home-stage" aria-label={`${direction.label} Syāt Frame demonstration`}>
+      {isDesignReview ? <section className="home-stage" aria-label={`${direction.label} Syāt Frame demonstration`}>
         <DirectionSignature direction={direction} />
         <SyatFrame />
-      </section>
+      </section> : null}
+
+      <EditorialFeed content={content} />
 
       <section className="reading-promise" aria-label="How Syāt labels a story">
         <div><span className="legend-mark documented" /><strong>Documented</strong><p>What a source directly supports.</p></div>
         <div><span className="legend-mark interpreted" /><strong>Interpreted</strong><p>What reasonable people conclude from it.</p></div>
         <div><span className="legend-mark unresolved" /><strong>Unresolved</strong><p>What still needs better evidence.</p></div>
       </section>
-
-      <EditorialFeed content={content} />
 
       <section className="source-note" aria-labelledby="source-note-title">
         <div><p className="micro-copy">A source is more than a link</p><h2 id="source-note-title">Every published story will show who said what, when, and how far the evidence reaches.</h2></div>

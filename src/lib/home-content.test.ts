@@ -16,9 +16,16 @@ describe("getHomeContent", () => {
   });
 
   it("does not hardcode a source-intake count on the public News introduction", () => {
-    const sourceDesk = getHomeContent("news").sections.find((section) => section.title === "Source desk preview");
+    const introduction = getHomeContent("news").sections.map((section) => section.intro).join(" ");
 
-    expect(sourceDesk?.intro).not.toMatch(/\bone hundred\b|\b100\b/i);
+    expect(introduction).not.toMatch(/\bone hundred\b|\b100\b/i);
+  });
+
+  it("keeps the News archive reachable while the generated index is empty", () => {
+    const news = getHomeContent("news");
+
+    expect(news.sections.flatMap((section) => section.items).some((item) => item.href === "/en/news")).toBe(true);
+    expect(isCurrentFixtureDestination("/en/news")).toBe(true);
   });
 
   it("switches to a separate Timeless editorial path", () => {

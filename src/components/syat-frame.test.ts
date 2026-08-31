@@ -17,23 +17,43 @@ function renderHome(direction = "warm-commons") {
   );
 }
 
+// The fictional Syāt Frame is a connected design-review variant, not part of the
+// reading-led public Home. It renders only under /preview/design/*.
+function renderDesignReview(direction = "warm-commons") {
+  return renderToStaticMarkup(
+    createElement(HomeView, {
+      mode: "news",
+      direction: getDesignDirection(direction),
+      isDesignReview: true,
+    }),
+  );
+}
+
 describe("Syāt home frame", () => {
-  it("submits an entered question to the accepted Reframe claim route", () => {
+  it("leads with reading actions instead of a Reframe input", () => {
     const html = renderHome();
 
-    expect(html).toMatch(/<form[^>]*action="\/en\/reframe"[^>]*method="get"/u);
-    expect(html).toContain('name="claim"');
-    expect(html).toContain('aria-describedby="bring-limit"');
-    expect(html).toContain('id="bring-limit"');
-    expect(html).toContain("Bring a link, quote, or question");
+    expect(html).toContain("Start reading");
+    expect(html).toContain("Take the two-minute tour");
+    expect(html).toContain('href="/en/onboarding"');
+    expect(html).not.toContain("<form");
+    expect(html).not.toContain('name="claim"');
     expect(html).not.toContain('type="file"');
   });
 
-  it("renders a truthful, direction-specific signature in static HTML", () => {
-    expect(renderHome("annotated-evidence")).toContain('data-direction-signature="change-spine"');
-    expect(renderHome("warm-commons")).toContain('data-direction-signature="subject-frame"');
+  it("keeps the fictional frame out of the reading-led Home", () => {
+    const html = renderHome();
 
-    const garden = renderHome("signal-garden");
+    expect(html).not.toContain('data-syat-frame="true"');
+    expect(html).not.toContain("data-direction-signature");
+    expect(html).not.toContain("Nadi Nagar");
+  });
+
+  it("renders a truthful, direction-specific signature in static HTML", () => {
+    expect(renderDesignReview("annotated-evidence")).toContain('data-direction-signature="change-spine"');
+    expect(renderDesignReview("warm-commons")).toContain('data-direction-signature="subject-frame"');
+
+    const garden = renderDesignReview("signal-garden");
     expect(garden).toContain('data-direction-signature="credit-tray"');
     expect(garden).toContain("<dt>Creator</dt><dd>Syāt prototype team</dd>");
     expect(garden).toContain("<dt>Rights basis</dt><dd>Syāt-authored fixture</dd>");
@@ -41,7 +61,7 @@ describe("Syāt home frame", () => {
   });
 
   it("ships a fixed subject and a static viewpoint fallback in the first response", () => {
-    const html = renderHome();
+    const html = renderDesignReview();
 
     expect(html).toContain('data-syat-frame="true"');
     expect(html).toContain("The fictional Nadi Nagar plan reserves part of Bazaar Road");
@@ -52,7 +72,7 @@ describe("Syāt home frame", () => {
   });
 
   it("makes the fixture statement's basis and limits available without calling it reporting", () => {
-    const html = renderHome();
+    const html = renderDesignReview();
 
     expect(html).toContain("View basis and limits");
     expect(html).toContain("Type: fictional Indian teaching fixture");

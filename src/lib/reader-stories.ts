@@ -34,12 +34,15 @@ function readJson(path: string): unknown {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
+function loadValidatedNewsIndex(): NewsStoryIndex {
+  const indexPath = join(newsDirectory(), "index.json");
+  if (!existsSync(indexPath)) throw new Error("News story index is missing.");
+  return newsStoryIndexSchema.parse(readJson(indexPath));
+}
+
 function loadValidatedNewsCorpus(): { index: NewsStoryIndex; storiesBySlug: ReadonlyMap<string, ReaderStory> } {
   const directory = newsDirectory();
-  const indexPath = join(directory, "index.json");
-  if (!existsSync(indexPath)) throw new Error("News story index is missing.");
-
-  const index = newsStoryIndexSchema.parse(readJson(indexPath));
+  const index = loadValidatedNewsIndex();
   const storiesBySlug = new Map<string, ReaderStory>();
 
   for (const item of index.items) {
@@ -88,6 +91,11 @@ export function getNewsStory(slug: string): ReaderStory | undefined {
 
 export function getNewsStoryIndex(): readonly ReaderStoryIndexItem[] {
   return loadValidatedNewsCorpus().index.items;
+}
+
+/** Lightweight card projection for Home and the archive. It never opens story-body files. */
+export function getNewsStoryIndexProjection(): readonly ReaderStoryIndexItem[] {
+  return loadValidatedNewsIndex().items;
 }
 
 export function getNewsStoryStaticParams(): Array<{ slug: string }> {

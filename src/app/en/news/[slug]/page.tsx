@@ -1,21 +1,36 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { SiteChrome } from "@/components/site-chrome";
-import { StoryPage as SharedStoryPage } from "@/components/story-page";
+import { StoryPage } from "@/components/story-page";
 import { getPreviewStory, getPreviewStoryStaticParams } from "@/lib/preview-content";
+import { getNewsStory, getNewsStoryStaticParams } from "@/lib/reader-stories";
 
 export const dynamicParams = false;
 
+export function getNewsRouteStaticParams() {
+  const params = [...getNewsStoryStaticParams(), ...getPreviewStoryStaticParams("news")];
+  return [...new Map(params.map((item) => [item.slug, item])).values()];
+}
+
 export function generateStaticParams() {
-  return getPreviewStoryStaticParams("news");
+  return getNewsRouteStaticParams();
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const story = getNewsStory(slug) ?? getPreviewStory(slug);
+  if (!story || story.mode !== "news") return { title: "News preview not found", robots: { index: false, follow: false } };
+  return {
+    title: `${story.title} · Syāt`,
+    description: story.dek,
+    robots: { index: false, follow: false }
+  };
 }
 
 export default async function NewsStoryPage({ params }: { params: Promise<{ slug: string }> }) {
-  const story = getPreviewStory((await params).slug);
+  const { slug } = await params;
+  const story = getNewsStory(slug) ?? getPreviewStory(slug);
   if (!story || story.mode !== "news") notFound();
-  return <NewsStory story={story} />;
-}
-
-function NewsStory({ story }: { story: NonNullable<ReturnType<typeof getPreviewStory>> }) {
-  return <SiteChrome active="home"><SharedStoryPage story={story} /></SiteChrome>;
+  return <SiteChrome active="home"><StoryPage story={story} /></SiteChrome>;
 }

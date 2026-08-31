@@ -9,6 +9,7 @@ import {
   getFeaturedNewsStories,
   getNewsStory,
   getNewsStoryIndex,
+  getNewsStoryIndexProjection,
   getNewsStoryStaticParams,
   validateNewsStoryFileParity
 } from "./reader-stories";
@@ -111,6 +112,7 @@ describe("static news story loader", () => {
     useNewsCorpus([cardFor(story)], []);
 
     expect(getNewsStoryIndex).toThrow(/no matching story file/);
+    expect(getNewsStoryIndexProjection()).toEqual([cardFor(story)]);
   });
 
   it("keeps unindexed pre-activation story files invisible to readers and flags them in an offline parity check", () => {

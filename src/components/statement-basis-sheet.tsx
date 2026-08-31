@@ -1,6 +1,12 @@
-import type { PreviewEvidence } from "@/lib/preview-content";
+type BasisRecord = {
+  id: string;
+  statementType: string;
+  basis: string;
+  sourceScope: string;
+  limits: string;
+};
 
-export function StatementBasisSheet({ statement, basis, sourceIds }: { statement: string; basis: PreviewEvidence["basis"]; sourceIds: string[] }) {
+export function StatementBasisSheet({ statement, basis, sourceIds }: { statement: string; basis: BasisRecord; sourceIds: readonly string[] }) {
   const exactStatement = statement;
 
   return (
