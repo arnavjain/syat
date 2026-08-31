@@ -21,3 +21,10 @@ The private preview may contain fixtures, licensed test media, and clearly label
 - Preview: `https://syat-9y4jewph5-jdso.vercel.app`
 - Verified on 2026-08-31: Vercel reports the preview as ready. An unauthenticated request redirects to Vercel SSO and responds with `X-Robots-Tag: noindex`.
 - The shared build contains only the current private-preview product. It does not make RSS signals, real AI drafts, external media, or community features public.
+
+## Morning handoff: what friends may review
+
+- Selected people may review the protected Vercel link after the owner decides who receives it. Keep Vercel Authentication and `noindex` in place. This is a product review, not public publication.
+- The review build has one fictional teaching story in each reading mode, 100 static Timeless subjects, and 59 Studio-only link records. The 59 records are 24 The Indian Express, 24 The Hindu, and 11 Mongabay India; they are not a balanced public feed and cannot appear as a current home signal.
+- The reader may test onboarding, the local-only Reframe workbench, source limits, timeline, people/roles, and the browser-only Studio state when an owner deliberately enables its protected-preview gate. They must not treat a Studio change as shared editorial approval.
+- Before a public launch, a person must still approve editorial claims, every source and media-rights record, Hindi copy, the Jain philosophy explanation, community safety and moderation, notification consent, Google/Convex identity, and the release itself. A real OpenRouter job also needs an approved source dossier, a shared spend ledger, an editor identity, and a direct human request.

@@ -26,3 +26,9 @@ static credited derivative      static reading page + Convex record
 ## Future-ready, not turned on
 
 The model reserves records for accounts, saved items, public perspectives, comments, moderation reports, polls, recommendations, notifications, translations, and on-demand AI jobs. Public write paths remain off until policy and staffing are approved.
+
+## Current protected-review boundary
+
+The hosted review build is deliberately smaller than the future model. It serves static reading pages, fictional teaching documents, and 100 static Timeless questions. Its 59 RSS records stay link-only in the private Studio; the public source-signal allow-list is empty and stale snapshots fail closed. Authenticated shared editorial review, public writing, source approval, real media, social embeds, notifications, translations, and paid generation remain disabled until their human and service gates are met.
+
+The design baseline is Warm Commons: a rounded, calm reading surface with editorial serif, interface sans, evidence mono, and restrained bright accents. Annotated Evidence and Signal Garden are private comparison routes with the same content contract. The local original Reframe prototype remains the quality bar for the stable-subject changing-frame interaction; `anekantavada.lovable.app` informed the About-page learning frame only, not its generic hero or scoring patterns.
