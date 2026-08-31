@@ -98,3 +98,55 @@ Reviewed the resulting source for static rendering, client-boundary additions, f
 
 - The Chrome screenshot backend emits JPEG files; artifacts therefore use `.jpg` and are ignored under `.superpowers/`.
 - Browser review is local only. A human still chooses the public direction and approves any publication, media-rights, or source decision.
+
+## Independent review repair (2026-08-31)
+
+**Code commit:** `59de956 fix: repair review accessibility findings`
+
+### RED → GREEN evidence
+
+RED first:
+
+```text
+npm test -- src/app/globals.test.ts
+# 1 file failed, 3 tests failed
+```
+
+The failures covered the three reported gaps: the interpreted-evidence, perspective-term, and topic-card small labels did not all resolve to `--hibiscus-text`; transform lifts were still in coarse-pointer hover rules; and story-orientation links lacked a 44px independent control contract.
+
+GREEN and final verification:
+
+```text
+npm test -- src/app/globals.test.ts
+# 1 file passed, 3 tests passed
+
+npm run typecheck
+npm run lint
+npm test
+# 17 files passed, 54 tests passed
+
+npm run build
+git diff --check
+```
+
+All final commands completed with exit status 0. The build continued to emit the three preview directions as SSG routes.
+
+### Repair summary
+
+| Before | After | Why |
+| --- | --- | --- |
+| Three small normal-text roles used the brighter decorative hibiscus in their defining rules. | Interpreted-evidence labels, perspective terms, and topic-card labels resolve to `--hibiscus-text` (`rgb(180, 20, 75)` in the browser). | Preserves hibiscus for accents while making the small editorial text readable. |
+| Four card/action hover rules applied a transform lift to any pointer. | The lift transforms live only inside `@media (hover: hover) and (pointer: fine)`; existing active press and reduced-motion handling remain. | Touch devices keep immediate visual feedback without hover-like movement. |
+| Story orientation was a wrapping row of inline links, making Sources prone to becoming a tiny orphan. | It is a four-column navigation grid with bordered, underlined, 44px link controls and the shared global focus ring. | Makes the choices easy to tap and scan without changing their meanings. |
+| Reduced-motion handling was duplicated and private review controls consumed more mobile height than needed. | One reduced-motion rule remains; private review controls use a compact three-column, 44px mobile layout. | Planned polish that keeps the comparison visible above the fold. |
+
+### Fresh mobile browser review
+
+Fresh production `next start` rendering at **390×844 CSS pixels** (saved rasters are 390×843 due to the Chrome capture backend):
+
+| Surface | Artifact | Observed result |
+| --- | --- | --- |
+| News story | `task-4-visuals/task-4-review-fix-news-mobile-390x844.jpg` | No horizontal overflow; Evidence, Timeline, Viewpoints, and Sources each measured 85×44px on one row; keyboard Tab reached an orientation link with a solid 2.4px cobalt outline and 4px offset. |
+| Warm Commons preview | `task-4-visuals/task-4-review-fix-warm-commons-mobile-390x844.jpg` | No horizontal overflow; all three private comparison controls measured 107×44px and remained visible above the hero. |
+
+The visual pass also confirmed no clipped or wrapped orientation labels. No new concern was found.
