@@ -69,7 +69,7 @@ function makeDraft(overrides: Partial<GeneratedStoryV2> = {}): GeneratedStoryV2 
   };
 }
 
-function providerTimeChoices(evidenceText: string) {
+function providerTimeChoices(evidenceText: string, selectedExactTime?: { value: string; label: string }) {
   const sourceDossierForRequest: SourceDossierRecord[] = [{ ...sourceDossier[0], evidenceText }];
   const input = {
     sourcePackId: "bazaar-road-bus-trial",
@@ -80,7 +80,8 @@ function providerTimeChoices(evidenceText: string) {
     indiaConnection: "This concerns a public transport trial on an Indian municipal road.",
     sourceRoles: [{ sourceId: "pib-road-note", role: "official account of the planned change" }],
     missingVoices: ["Independent observation", "People who use and work beside the road"],
-    sourceDossier: sourceDossierForRequest
+    sourceDossier: sourceDossierForRequest,
+    selectedExactTime
   };
   const schema = JSON.parse(JSON.stringify(buildStoryDraftProviderJsonSchema(input)));
   const eventTime = schema.properties.story.properties.eventTime;
@@ -100,11 +101,18 @@ describe("syat.story-draft.v2", () => {
     expect(buildStoryDraftV2Prompt(choices.input)).toContain('Allowed exact dates and labels: none. Use unknown for eventTime and every timeline time with label exactly "Date not established in the supplied evidence".');
   });
 
+  it("defaults every generated time to unknown even when evidence contains an exact date", () => {
+    const choices = providerTimeChoices("The transport record says the trial starts on 1 September 2026 on Bazaar Road.");
+
+    expect(choices.eventTime.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["unknown"]);
+    expect(choices.timelineTime.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["unknown"]);
+  });
+
   it.each([
     "The transport record says the trial starts on 1 September 2026 on Bazaar Road.",
     "The transport record says the trial starts on 2026-09-01 on Bazaar Road."
   ])("closes provider event and timeline times to the exact date found in evidence: %s", (evidenceText) => {
-    const choices = providerTimeChoices(evidenceText);
+    const choices = providerTimeChoices(evidenceText, { value: "2026-09-01", label: "1 September 2026" });
 
     for (const timeOptions of [choices.eventTime, choices.timelineTime]) {
       expect(timeOptions.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["exact_date", "unknown"]);
@@ -112,6 +120,11 @@ describe("syat.story-draft.v2", () => {
       expect(timeOptions[0].properties.label.const).toBe("1 September 2026");
       expect(timeOptions[1].properties.label.const).toBe("Date not established in the supplied evidence");
     }
+  });
+
+  it("rejects a preselected exact-time pair that is absent from evidence or has an invented label", () => {
+    expect(() => providerTimeChoices("The transport record does not name a date.", { value: "2026-09-01", label: "1 September 2026" })).toThrow(/selected|evidence/i);
+    expect(() => providerTimeChoices("The transport record names 1 September 2026.", { value: "2026-09-01", label: "Launch day" })).toThrow(/selected|label/i);
   });
 
   it("rejects an exact event or timeline label that does not match its ISO date", () => {
@@ -133,14 +146,15 @@ describe("syat.story-draft.v2", () => {
     expect(() => parseGeneratedStoryV2(wrongTimelineLabel, sourceDossier)).toThrow(/Date not established|label/i);
   });
 
-  it("supports exact, period, and unknown timeline time without invented dates", () => {
+  it("supports exact and unknown generated timeline time but rejects a free-form period", () => {
     const draft = makeDraft({ timeline: [
       { id: "exact", time: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, text: "The trial is due to begin on the date named in the note.", claimIds: ["claim-1"], sourceIds: ["pib-road-note"] },
-      { id: "period", time: { kind: "period", value: "September 2026", label: "During September 2026" }, text: "Observation can take place during the trial period.", claimIds: ["claim-1"], sourceIds: ["pib-road-note"] },
       { id: "unknown", time: { kind: "unknown", label: "Date not established in the supplied evidence" }, text: "The date for publishing measured outcomes is not stated.", claimIds: ["claim-2"], sourceIds: ["pib-road-note"] }
     ] });
+    const withPeriod = { ...draft, timeline: [...draft.timeline, { id: "period", time: { kind: "period" as const, value: "September 2026", label: "During September 2026" }, text: "Observation can take place during the trial period.", claimIds: ["claim-1"], sourceIds: ["pib-road-note"] }] };
 
-    expect(parseGeneratedStoryV2Json(JSON.stringify(draft), sourceDossier).timeline.map((entry) => entry.time.kind)).toEqual(["exact_date", "period", "unknown"]);
+    expect(parseGeneratedStoryV2Json(JSON.stringify(draft), sourceDossier).timeline.map((entry) => entry.time.kind)).toEqual(["exact_date", "unknown"]);
+    expect(() => parseGeneratedStoryV2(withPeriod, sourceDossier)).toThrow(/period|invalid/i);
   });
 
   it("requires a basis, source scope, and limit for every statement", () => {
@@ -185,10 +199,9 @@ describe("syat.story-draft.v2", () => {
     expect(() => parseGeneratedStoryV2(timeline, [...sourceDossier, unrelated])).toThrow(/support/i);
   });
 
-  it("rejects an exact or period date that is absent from its cited evidence", () => {
+  it("rejects an exact date that is absent from its cited evidence", () => {
     const draft = makeDraft();
     draft.story.eventTime = { kind: "exact_date", value: "2027-01-12", label: "12 January 2027" };
-    draft.timeline[0].time = { kind: "period", value: "January 2027", label: "During January 2027" };
 
     expect(() => parseGeneratedStoryV2(draft, sourceDossier)).toThrow(/date|time.*evidence/i);
   });
@@ -292,13 +305,13 @@ describe("syat.story-draft.v2", () => {
   });
 
   it("builds a JSON-only prompt from reusable source-pack records and names the language rules", () => {
-    const prompt = buildStoryDraftV2Prompt({ sourcePackId: "bazaar-road-bus-trial", language: "en-IN", mode: "news", format: "explainer", editorialBrief: "Explain the documented change and the evidence still needed.", indiaConnection: "This concerns a public transport trial on an Indian municipal road.", sourceRoles: [{ sourceId: "pib-road-note", role: "official account of the planned change" }], missingVoices: ["Independent observation", "People who use and work beside the road"], sourceDossier });
+    const prompt = buildStoryDraftV2Prompt({ sourcePackId: "bazaar-road-bus-trial", language: "en-IN", mode: "news", format: "explainer", editorialBrief: "Explain the documented change and the evidence still needed.", indiaConnection: "This concerns a public transport trial on an Indian municipal road.", sourceRoles: [{ sourceId: "pib-road-note", role: "official account of the planned change" }], missingVoices: ["Independent observation", "People who use and work beside the road"], sourceDossier, selectedExactTime: { value: "2026-09-01", label: "1 September 2026" } });
     expect(prompt).toContain("do not use remembered facts");
     expect(prompt).toContain("Do not quote or closely copy source wording");
     expect(prompt).toContain("In a significant development");
     expect(prompt).toContain("syat.story-draft.v2");
     expect(prompt).toContain("modelInputAllowed");
-    expect(prompt).toContain("Prompt version: syat.story-draft.v2.4");
+    expect(prompt).toContain("Prompt version: syat.story-draft.v2.5");
     expect(prompt).toContain('Allowed exact dates and labels: 2026-09-01 -> 1 September 2026. Use unknown for every other eventTime and timeline time with label exactly "Date not established in the supplied evidence".');
     expect(prompt).toContain("statement IDs exactly claim-1 through claim-N");
     expect(prompt).toContain("Final internal reference-set check");

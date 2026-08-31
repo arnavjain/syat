@@ -20,7 +20,6 @@ function canonicalExactDateLabel(value: string) {
 
 const flexibleTimeSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("exact_date"), value: z.iso.date(), label: z.string().trim().min(3).max(80) }).strict(),
-  z.object({ kind: z.literal("period"), value: z.string().trim().min(3).max(120), label: z.string().trim().min(3).max(120) }).strict(),
   z.object({ kind: z.literal("unknown"), label: z.literal(UNKNOWN_TIME_LABEL) }).strict()
 ]).superRefine((time, ctx) => {
   if (time.kind === "exact_date" && time.label !== canonicalExactDateLabel(time.value)) {
@@ -343,10 +342,6 @@ function sameIds(left: readonly string[], right: readonly string[]) {
 function timeGroundedInSources(time: z.infer<typeof flexibleTimeSchema>, sourceIds: readonly string[], sourceById: Map<string, SourceDossierRecord>) {
   if (time.kind === "unknown") return true;
   const evidence = sourceIds.map((sourceId) => sourceById.get(sourceId)?.evidenceText ?? "").join(" ").toLocaleLowerCase("en-IN").normalize("NFKC").replace(/[^\p{L}\p{N}-]+/gu, " ");
-  if (time.kind === "period") {
-    const value = time.value.toLocaleLowerCase("en-IN").normalize("NFKC");
-    return evidence.includes(value);
-  }
   if (evidence.includes(time.value)) return true;
   const [year, month, day] = time.value.split("-");
   const monthName = new Intl.DateTimeFormat("en-IN", { month: "long", timeZone: "UTC" }).format(new Date(`${year}-${month}-${day}T00:00:00.000Z`)).toLocaleLowerCase("en-IN");
@@ -360,6 +355,7 @@ export type StoryDraftExpectedBinding = {
   mode: "news" | "timeless";
   format: z.infer<typeof storyFormatSchema>;
   indiaConnection: string;
+  selectedExactTime?: SelectedExactTime | null;
 };
 
 export function parseGeneratedStoryV2(value: unknown, sourceDossier: SourceDossierRecord[], expected?: StoryDraftExpectedBinding): GeneratedStoryV2 {
@@ -372,12 +368,22 @@ export function parseGeneratedStoryV2(value: unknown, sourceDossier: SourceDossi
     if (draft.story.mode !== expected.mode) throw new Error("Generated story mode does not match the requested mode.");
     if (draft.format !== expected.format) throw new Error("Generated story format does not match the requested format.");
     if (normaliseBindingText(draft.story.indiaConnection) !== normaliseBindingText(expected.indiaConnection)) throw new Error("Generated story India connection does not match the requested India connection.");
+    const selectedExactTime = expected.selectedExactTime;
+    if (selectedExactTime !== undefined) {
+      const times = [draft.story.eventTime, ...draft.timeline.map((entry) => entry.time)];
+      const invalidExactTime = times.find((time) => time.kind === "exact_date" && (
+        selectedExactTime === null ||
+        time.value !== selectedExactTime.value ||
+        time.label !== selectedExactTime.label
+      ));
+      if (invalidExactTime) throw new Error("Generated exact time was not the preselected evidence pair; unattended generation must use unknown.");
+    }
   }
   const knownSourceIds = new Set(approved.map((source) => source.id));
   const unknownSourceId = allReferencedSourceIds(draft).find((sourceId) => !knownSourceIds.has(sourceId));
   if (unknownSourceId) throw new Error(`Generated story cited ${unknownSourceId}, which is not in the supplied dossier.`);
   const sourceById = new Map<string, SourceDossierRecord>(approved.map((source) => [source.id, source]));
-  if (!timeGroundedInSources(draft.story.eventTime, draft.story.eventTimeEvidence.sourceIds, sourceById)) throw new Error("Generated story event date or period is not grounded in cited source evidence.");
+  if (!timeGroundedInSources(draft.story.eventTime, draft.story.eventTimeEvidence.sourceIds, sourceById)) throw new Error("Generated story event date is not grounded in cited source evidence.");
   for (const entry of draft.timeline) if (!timeGroundedInSources(entry.time, entry.sourceIds, sourceById)) throw new Error(`Timeline time ${entry.id} is not grounded in cited source evidence.`);
   const copy = findCloseCopyMatches(draft, approved)[0];
   if (copy) throw new Error(`Visible field ${copy.fieldId} closely copies source wording instead of synthesising it.`);
@@ -398,9 +404,15 @@ export type StoryDraftV2PromptInput = {
   sourceRoles: Array<{ sourceId: string; role: string }>;
   missingVoices: string[];
   sourceDossier: SourceDossierRecord[];
+  selectedExactTime?: SelectedExactTime;
 };
 
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.4";
+export type SelectedExactTime = {
+  value: string;
+  label: string;
+};
+
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.5";
 
 type JsonObject = Record<string, unknown>;
 
@@ -455,6 +467,18 @@ function extractExactEvidenceDates(sources: readonly ApprovedSourceDossierRecord
   return [...dates].sort();
 }
 
+function selectedExactEvidenceDates(selectedExactTime: SelectedExactTime | undefined, sources: readonly ApprovedSourceDossierRecord[]) {
+  if (!selectedExactTime) return [];
+  const parsedValue = z.iso.date().safeParse(selectedExactTime.value);
+  if (!parsedValue.success || selectedExactTime.label !== canonicalExactDateLabel(selectedExactTime.value)) {
+    throw new Error("Selected exact time must use a valid evidence date and its canonical label.");
+  }
+  if (!extractExactEvidenceDates(sources).includes(selectedExactTime.value)) {
+    throw new Error("Selected exact time is not present in the approved source evidence.");
+  }
+  return [selectedExactTime.value];
+}
+
 function closeFlexibleTimeChoices(timeSchema: unknown, allowedDates: readonly string[]) {
   if (!isJsonObject(timeSchema) || !Array.isArray(timeSchema.oneOf)) throw new Error("Story draft provider schema is missing flexible time choices.");
   const exactDate = timeSchema.oneOf.find((option) => isJsonObject(option) && isJsonObject(option.properties) && isJsonObject(option.properties.kind) && option.properties.kind.const === "exact_date");
@@ -484,7 +508,7 @@ function closeFlexibleTimeChoices(timeSchema: unknown, allowedDates: readonly st
 export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput) {
   const approved = validateApprovedSourceDossier(input.sourceDossier);
   const sourceIds = approved.map((source) => source.id);
-  const allowedDates = extractExactEvidenceDates(approved);
+  const allowedDates = selectedExactEvidenceDates(input.selectedExactTime, approved);
   const schema = z.toJSONSchema(generatedStoryV2ResponseSchema);
   if (!isJsonObject(schema)) throw new Error("Story draft provider schema could not be constructed.");
   closeSourceIdChoices(schema, sourceIds);
@@ -505,7 +529,7 @@ export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput
 export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
   idSchema.parse(input.sourcePackId);
   const approved = validateApprovedSourceDossier(input.sourceDossier);
-  const allowedDates = extractExactEvidenceDates(approved);
+  const allowedDates = selectedExactEvidenceDates(input.selectedExactTime, approved);
   const allowedDateLabels = allowedDates.map((date) => `${date} -> ${canonicalExactDateLabel(date)}`);
   const knownIds = new Set(approved.map((source) => source.id));
   if (input.sourceRoles.length < 1 || input.sourceRoles.some((record) => !knownIds.has(record.sourceId) || record.role.trim().length < 8)) {
@@ -538,7 +562,7 @@ ${editorialRules.map((rule) => `- ${rule}`).join("\n")}
 - Use statement IDs exactly claim-1 through claim-N in statements array order, with no gaps, aliases, or descriptive IDs.
 - Final internal reference-set check: make a set from statements[].id, then verify every claimIds value in body paragraphs, timeline, eventTimeEvidence, authoredVisual, and mediaPlan belongs to that set. Return nothing until no reference is missing.
 - Copy sourcePackId exactly as "${input.sourcePackId}" and sourceIds exactly as ${JSON.stringify(approved.map((source) => source.id))}.
-- Give eventTime and every timeline entry explicit claimIds and sourceIds. Use only an allowed exact date; free-form periods are not allowed in this pilot.
+- Give eventTime and every timeline entry explicit claimIds and sourceIds. Use an exact date only when the input preselected its evidence-backed value and canonical label; otherwise use unknown. Free-form periods are not allowed in this pilot.
 - ${allowedDates.length === 0 ? `Allowed exact dates and labels: none. Use unknown for eventTime and every timeline time with label exactly "${UNKNOWN_TIME_LABEL}".` : `Allowed exact dates and labels: ${allowedDateLabels.join(", ")}. Use unknown for every other eventTime and timeline time with label exactly "${UNKNOWN_TIME_LABEL}".`}
 - Vary sentence length and section shape. Prefer concrete nouns and active verbs.
 - Set contractVersion to "syat.story-draft.v2" and editorialStatus to "needs_editorial_review".

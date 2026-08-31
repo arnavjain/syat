@@ -285,7 +285,8 @@ export async function createStoryDraft({
     language: input.language,
     mode: input.mode,
     format: input.format,
-    indiaConnection: input.indiaConnection
+    indiaConnection: input.indiaConnection,
+    selectedExactTime: input.selectedExactTime ?? null
   });
   return {
     draft,

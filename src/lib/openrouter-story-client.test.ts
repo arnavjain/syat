@@ -21,6 +21,7 @@ const input = {
   indiaConnection: "This teaching fixture is a fictional Indian municipal context, not a report about a real event.",
   sourceRoles: [{ sourceId: "ward-note", role: "official account of the planned trial" }],
   missingVoices: ["Independent observation", "People who use Bazaar Road"],
+  selectedExactTime: { value: "2026-09-01", label: "1 September 2026" },
   sourceDossier: [
     {
       id: "ward-note",
@@ -139,6 +140,16 @@ describe("createStoryDraft", () => {
 
     expect(maximumPaise).toBe(42);
     expect(maximumPaise).toBeLessThan(10_000);
+  });
+
+  it("rejects an exact provider time when unattended generation did not preselect it", async () => {
+    const unattendedInput = { ...input, selectedExactTime: undefined };
+    const fetchImpl = vi.fn().mockResolvedValue(new Response(JSON.stringify({
+      choices: [{ message: { content: modelContent } }],
+      usage: { cost: 0.00004 }
+    }), { status: 200 }));
+
+    await expect(createStoryDraft({ apiKey: "test-key", input: unattendedInput, fetchImpl, budget: { spentPaise: 0, reservedPaise: 0 }, reserveAttempt: vi.fn(acceptedReservation) })).rejects.toThrow(/preselected|unknown/i);
   });
 
   it("rejects provider output that changes the requested language, mode, format, India connection, or source pack", async () => {
