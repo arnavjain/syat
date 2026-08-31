@@ -400,7 +400,7 @@ export type StoryDraftV2PromptInput = {
   sourceDossier: SourceDossierRecord[];
 };
 
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.3";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.4";
 
 type JsonObject = Record<string, unknown>;
 

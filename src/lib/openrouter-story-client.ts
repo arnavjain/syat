@@ -12,7 +12,7 @@ import { reviewGeneratedDraft, type DraftReview } from "./draft-review";
 import { authoriseGenerationBudget, type GenerationBudgetDecision } from "./generation-budget";
 
 export const OPENROUTER_STORY_MODEL = "deepseek/deepseek-v4-flash-0731";
-const STORY_DRAFT_MAX_TOKENS = 3200;
+const STORY_DRAFT_MAX_TOKENS = 6000;
 export const MAX_STORY_DRAFT_EDITORIAL_BRIEF_UTF8_BYTES = 4_000;
 export const MAX_STORY_DRAFT_INDIA_CONNECTION_UTF8_BYTES = 2_000;
 export const MAX_STORY_DRAFT_DOSSIER_UTF8_BYTES = 12_000;

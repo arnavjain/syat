@@ -82,6 +82,7 @@ const modelContent = JSON.stringify(modelDraft);
 
 describe("createStoryDraft", () => {
   it("uses the fixed model, strict schema, and source parser before returning a review draft", async () => {
+    const reserveAttempt = vi.fn(acceptedReservation);
     const fetchImpl = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({
         choices: [{ message: { content: modelContent } }],
@@ -94,7 +95,7 @@ describe("createStoryDraft", () => {
       input,
       fetchImpl,
       budget: { spentPaise: 0, reservedPaise: 0 },
-      reserveAttempt: vi.fn(acceptedReservation)
+      reserveAttempt
     });
 
     const request = JSON.parse(fetchImpl.mock.calls[0][1].body);
@@ -122,14 +123,22 @@ describe("createStoryDraft", () => {
     expect(providerSchema.properties.story.properties.mode.const).toBe(input.mode);
     expect(providerSchema.properties.story.properties.indiaConnection.const).toBe(input.indiaConnection);
     expect(request.provider).toEqual({ require_parameters: true, sort: "throughput", data_collection: "deny", max_price: { prompt: 0.1, completion: 0.2 } });
-    expect(request.max_tokens).toBe(3200);
+    expect(request.max_tokens).toBe(6000);
     expect(request.reasoning).toEqual({ effort: "none", exclude: true });
     expect(result.draft.editorialStatus).toBe("needs_editorial_review");
     expect(result.review.status).toBe("needs_editorial_review");
     expect(result.review.publicationAllowed).toBe(false);
     expect(result.usage.completionTokens).toBe(200);
-    expect(result.reservedMaximumPaise).toBeGreaterThan(0);
+    expect(result.reservedMaximumPaise).toBe(42);
+    expect(reserveAttempt.mock.calls[0][0].estimatedPaise).toBe(42);
     expect(result.actualCostUsd).toBe(0.000042);
+  });
+
+  it("keeps the conservative 6,000-token reservation inside the ₹100 per-job ceiling", () => {
+    const maximumPaise = estimateMaximumStoryDraftCostInrPaise();
+
+    expect(maximumPaise).toBe(42);
+    expect(maximumPaise).toBeLessThan(10_000);
   });
 
   it("rejects provider output that changes the requested language, mode, format, India connection, or source pack", async () => {

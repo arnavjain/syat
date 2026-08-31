@@ -298,7 +298,7 @@ describe("syat.story-draft.v2", () => {
     expect(prompt).toContain("In a significant development");
     expect(prompt).toContain("syat.story-draft.v2");
     expect(prompt).toContain("modelInputAllowed");
-    expect(prompt).toContain("Prompt version: syat.story-draft.v2.3");
+    expect(prompt).toContain("Prompt version: syat.story-draft.v2.4");
     expect(prompt).toContain('Allowed exact dates and labels: 2026-09-01 -> 1 September 2026. Use unknown for every other eventTime and timeline time with label exactly "Date not established in the supplied evidence".');
     expect(prompt).toContain("statement IDs exactly claim-1 through claim-N");
     expect(prompt).toContain("Final internal reference-set check");
