@@ -154,3 +154,94 @@ describe("reviewEditorialQuality", () => {
     expect(reviewEditorialQuality(story, []).blockers.some((item) => item.code === "unsupported-causal-language")).toBe(true);
   });
 });
+
+describe("reviewEditorialQuality human voice", () => {
+  it("passes copy that already reads like a person wrote it", () => {
+    const report = reviewEditorialQuality(makeStory(), []);
+    const voiceCodes = ["officialese", "decorative-dash", "corpus-repeated-opening", "perspective-sameness", "boilerplate-limits"];
+
+    for (const code of voiceCodes) expect(report.blockers.map((item) => item.code)).not.toContain(code);
+    expect(report.scores.humanVoice).toBeGreaterThanOrEqual(4);
+  });
+
+  it("blocks the source's official register instead of plain words", () => {
+    const story = makeStory();
+    story.bodySections[0].paragraphs[0].text = `It may be recalled that the said corridor was notified vide the earlier order. ${story.bodySections[0].paragraphs[0].text}`;
+    const report = reviewEditorialQuality(story, []);
+
+    expect(report.blockers.map((item) => item.code)).toContain("officialese");
+    expect(report.scores.humanVoice).toBeLessThan(4);
+  });
+
+  it("blocks a decorative em or en dash anywhere a reader can see it", () => {
+    const withDash = makeStory();
+    withDash.story.dek = "The city record names the road \u2014 and the date \u2014 while effects remain unverified.";
+
+    expect(reviewEditorialQuality(withDash, []).blockers.map((item) => item.code)).toContain("decorative-dash");
+
+    const inScope = makeStory();
+    inScope.statements[0].limits = "It does not confirm implementation \u2013 or any measured effect.";
+    expect(reviewEditorialQuality(inScope, []).blockers.map((item) => item.code)).toContain("decorative-dash");
+  });
+
+  it("blocks an article that opens with the same six words as another story in the corpus", () => {
+    const original = makeStory();
+    const echo = makeStory([
+      `${original.bodySections[0].paragraphs[0].text.split(" ").slice(0, 6).join(" ")} but this article then continues with entirely different wording about the corridor and its records.`,
+      original.bodySections[1].paragraphs[0].text,
+      original.bodySections[2].paragraphs[0].text
+    ]);
+
+    // Reuse only the opening, so the near-duplicate-body check is not what fires here.
+    expect(reviewEditorialQuality(echo, [original]).blockers.map((item) => item.code)).toContain("corpus-repeated-opening");
+  });
+
+  it("blocks four restatements of one standpoint dressed as different perspectives", () => {
+    const story = makeStory();
+    const base = story.perspectives[0];
+    story.perspectives = [
+      base,
+      { ...base, id: "trader", label: "Trader", sees: base.sees, mayMiss: "Something else entirely about deliveries." }
+    ];
+
+    const report = reviewEditorialQuality(story, []);
+    expect(report.blockers.map((item) => item.code)).toContain("perspective-sameness");
+    expect(report.scores.perspectiveQuality).toBeLessThan(5);
+  });
+
+  it("blocks a limit that only restates its own source scope or repeats across statements", () => {
+    const echoed = makeStory();
+    echoed.statements[0].limits = echoed.statements[0].sourceScope;
+    const echoedReport = reviewEditorialQuality(echoed, []);
+    expect(echoedReport.blockers.map((item) => item.code)).toContain("boilerplate-limits");
+    expect(echoedReport.scores.sourceTransparency).toBeLessThan(5);
+
+    const repeated = makeStory();
+    repeated.statements[1].limits = repeated.statements[0].limits;
+    expect(reviewEditorialQuality(repeated, []).blockers.map((item) => item.code)).toContain("boilerplate-limits");
+  });
+
+  it("warns when the prose turns abstract, uniform or doubly hedged without blocking the run", () => {
+    const abstract = makeStory([
+      "The implementation of the notification created an expectation of an improvement in the utilisation of the allocation, and the consideration of the modification produced a determination that the continuation of the arrangement required an examination of the documentation and a clarification of the authorisation before any confirmation of the completion of the transformation.",
+      makeStory().bodySections[1].paragraphs[0].text,
+      makeStory().bodySections[2].paragraphs[0].text
+    ]);
+    const abstractCodes = reviewEditorialQuality(abstract, []).warnings.map((item) => item.code);
+    expect(abstractCodes).toContain("nominalisation-density");
+
+    const hedged = makeStory();
+    hedged.unresolved[0].whatWouldHelp = "Route data could potentially help an editor compare the journey records.";
+    expect(reviewEditorialQuality(hedged, []).warnings.map((item) => item.code)).toContain("hedge-stacking");
+  });
+
+  it("keeps humanVoice a measured score rather than a copy of the language deductions", () => {
+    const clean = reviewEditorialQuality(makeStory(), []);
+    const officialesePresent = makeStory();
+    officialesePresent.story.indiaConnection = "In this regard the Indian corridor record is hereby described for the reader.";
+    const degraded = reviewEditorialQuality(officialesePresent, []);
+
+    expect(degraded.scores.humanVoice).toBeLessThan(clean.scores.humanVoice);
+    expect(degraded.scores.clarity).toBe(clean.scores.clarity);
+  });
+});
