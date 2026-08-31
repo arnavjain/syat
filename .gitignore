@@ -21,3 +21,5 @@ data/source-packs/*.next
 
 # Operating-system files
 .DS_Store
+.vercel
+.env*
