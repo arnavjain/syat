@@ -106,6 +106,12 @@ describe("createStoryDraft", () => {
     expect(providerSchema.properties.contextBridge.properties.topicSlug.enum).not.toContain("customs-time-release-study");
     expect(providerSchema.properties.sourceIds.items.enum).toEqual(["ward-note"]);
     expect(providerSchema.properties.story.properties.eventTimeEvidence.properties.sourceIds.items.enum).toEqual(["ward-note"]);
+    const eventTimeOptions = providerSchema.properties.story.properties.eventTime.oneOf;
+    const timelineTimeOptions = providerSchema.properties.timeline.items.properties.time.oneOf;
+    expect(eventTimeOptions.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["exact_date", "unknown"]);
+    expect(timelineTimeOptions.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["exact_date", "unknown"]);
+    expect(eventTimeOptions[0].properties.value.enum).toEqual(["2026-09-01"]);
+    expect(timelineTimeOptions[0].properties.value.enum).toEqual(["2026-09-01"]);
     expect(providerSchema.properties.sourcePackId.const).toBe(input.sourcePackId);
     expect(providerSchema.properties.language.const).toBe(input.language);
     expect(providerSchema.properties.format.const).toBe(input.format);

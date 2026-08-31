@@ -391,7 +391,7 @@ export type StoryDraftV2PromptInput = {
   sourceDossier: SourceDossierRecord[];
 };
 
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.1";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.2";
 
 type JsonObject = Record<string, unknown>;
 
@@ -424,9 +424,46 @@ function setJsonSchemaConst(schema: JsonObject, path: string[], value: string) {
   delete current.enum;
 }
 
+const monthNumbers = new Map([
+  ["january", "01"], ["february", "02"], ["march", "03"], ["april", "04"],
+  ["may", "05"], ["june", "06"], ["july", "07"], ["august", "08"],
+  ["september", "09"], ["october", "10"], ["november", "11"], ["december", "12"]
+]);
+
+function extractExactEvidenceDates(sources: readonly ApprovedSourceDossierRecord[]) {
+  const dates = new Set<string>();
+  for (const source of sources) {
+    for (const match of source.evidenceText.matchAll(/\b\d{4}-\d{2}-\d{2}\b/g)) {
+      if (z.iso.date().safeParse(match[0]).success) dates.add(match[0]);
+    }
+    for (const match of source.evidenceText.matchAll(/\b([0-3]?\d)(?:st|nd|rd|th)?\s+(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})\b/gi)) {
+      const month = monthNumbers.get(match[2].toLocaleLowerCase("en-IN"));
+      if (!month) continue;
+      const date = `${match[3]}-${month}-${match[1].padStart(2, "0")}`;
+      if (z.iso.date().safeParse(date).success) dates.add(date);
+    }
+  }
+  return [...dates].sort();
+}
+
+function closeFlexibleTimeChoices(timeSchema: unknown, allowedDates: readonly string[]) {
+  if (!isJsonObject(timeSchema) || !Array.isArray(timeSchema.oneOf)) throw new Error("Story draft provider schema is missing flexible time choices.");
+  const exactDate = timeSchema.oneOf.find((option) => isJsonObject(option) && isJsonObject(option.properties) && isJsonObject(option.properties.kind) && option.properties.kind.const === "exact_date");
+  const unknown = timeSchema.oneOf.find((option) => isJsonObject(option) && isJsonObject(option.properties) && isJsonObject(option.properties.kind) && option.properties.kind.const === "unknown");
+  if (!isJsonObject(unknown)) throw new Error("Story draft provider schema is missing the unknown time choice.");
+  if (allowedDates.length === 0) {
+    timeSchema.oneOf = [unknown];
+    return;
+  }
+  if (!isJsonObject(exactDate) || !isJsonObject(exactDate.properties) || !isJsonObject(exactDate.properties.value)) throw new Error("Story draft provider schema is missing the exact-date value choice.");
+  exactDate.properties.value.enum = [...allowedDates];
+  timeSchema.oneOf = [exactDate, unknown];
+}
+
 export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput) {
   const approved = validateApprovedSourceDossier(input.sourceDossier);
   const sourceIds = approved.map((source) => source.id);
+  const allowedDates = extractExactEvidenceDates(approved);
   const schema = z.toJSONSchema(generatedStoryV2ResponseSchema);
   if (!isJsonObject(schema)) throw new Error("Story draft provider schema could not be constructed.");
   closeSourceIdChoices(schema, sourceIds);
@@ -435,12 +472,19 @@ export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput
   setJsonSchemaConst(schema, ["properties", "format"], input.format);
   setJsonSchemaConst(schema, ["properties", "story", "properties", "mode"], input.mode);
   setJsonSchemaConst(schema, ["properties", "story", "properties", "indiaConnection"], input.indiaConnection);
+  const properties = schema.properties;
+  if (!isJsonObject(properties) || !isJsonObject(properties.story) || !isJsonObject(properties.story.properties) || !isJsonObject(properties.timeline) || !isJsonObject(properties.timeline.items) || !isJsonObject(properties.timeline.items.properties)) {
+    throw new Error("Story draft provider schema is missing expected time binding paths.");
+  }
+  closeFlexibleTimeChoices(properties.story.properties.eventTime, allowedDates);
+  closeFlexibleTimeChoices(properties.timeline.items.properties.time, allowedDates);
   return schema;
 }
 
 export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
   idSchema.parse(input.sourcePackId);
   const approved = validateApprovedSourceDossier(input.sourceDossier);
+  const allowedDates = extractExactEvidenceDates(approved);
   const knownIds = new Set(approved.map((source) => source.id));
   if (input.sourceRoles.length < 1 || input.sourceRoles.some((record) => !knownIds.has(record.sourceId) || record.role.trim().length < 8)) {
     throw new Error("Source roles must explain the role of a source in the approved dossier.");
@@ -472,7 +516,8 @@ ${editorialRules.map((rule) => `- ${rule}`).join("\n")}
 - Use statement IDs exactly claim-1 through claim-N in statements array order, with no gaps, aliases, or descriptive IDs.
 - Final internal reference-set check: make a set from statements[].id, then verify every claimIds value in body paragraphs, timeline, eventTimeEvidence, authoredVisual, and mediaPlan belongs to that set. Return nothing until no reference is missing.
 - Copy sourcePackId exactly as "${input.sourcePackId}" and sourceIds exactly as ${JSON.stringify(approved.map((source) => source.id))}.
-- Give eventTime and every timeline entry explicit claimIds and sourceIds. Use an exact date or period only when those sources contain it; otherwise use unknown.
+- Give eventTime and every timeline entry explicit claimIds and sourceIds. Use only an allowed exact date; free-form periods are not allowed in this pilot.
+- ${allowedDates.length === 0 ? "Allowed exact dates: none. Use unknown for eventTime and every timeline time." : `Allowed exact dates: ${allowedDates.join(", ")}. Use unknown for every other eventTime and timeline time.`}
 - Vary sentence length and section shape. Prefer concrete nouns and active verbs.
 - Set contractVersion to "syat.story-draft.v2" and editorialStatus to "needs_editorial_review".
 - Return three to six titled body sections and one source-led authored visual specification.
