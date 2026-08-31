@@ -34,7 +34,7 @@ const newsContent: HomeContent = {
   helper: "Developing stories and current affairs",
   feature: {
     kicker: "Learn the reading method · India-first fixture",
-    title: "One street plan, five different daily realities",
+    title: "One street plan, four different daily realities",
     dek: "A clearly fictional Indian teaching story for this private preview. It separates a municipal decision from the different ways people live with it.",
     perspectives: ["Bus commuter", "Street vendor", "Wheelchair user", "School caregiver"],
     cta: { label: "Read the story", href: "/en/news/street-plan-daily-realities" }

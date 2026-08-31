@@ -4,6 +4,7 @@ import { designDirections, type DesignDirection } from "@/lib/design-direction";
 import { getHomeContent, getHomeModeHref, type HomeMode } from "@/lib/home-content";
 
 import { DirectionSignature } from "./direction-signature";
+import { EditorialFeed } from "./editorial-feed";
 import { SiteChrome } from "./site-chrome";
 import { SyatFrame } from "./syat-frame";
 
@@ -59,22 +60,7 @@ export function HomeView({ mode, direction, isDesignReview = false }: { mode: Ho
         <div><span className="legend-mark unresolved" /><strong>Unresolved</strong><p>What still needs better evidence.</p></div>
       </section>
 
-      {content.sections.map((section, index) => {
-        const sectionId = `editorial-section-${index + 1}`;
-        return <section className="editorial-section" key={section.title} aria-labelledby={sectionId}>
-          <div className="section-heading"><h2 id={sectionId}>{section.title}</h2><p>{section.intro}</p></div>
-          <div className="teaser-grid">
-            {section.items.map((item) => (
-              <article className="story-teaser" key={`${item.href}-${item.title}`}>
-                <p className="teaser-label">{item.label}</p>
-                <h3>{item.type === "internet" ? <a href={item.href} rel="noreferrer" target="_blank">{item.title} <span aria-hidden="true">↗</span></a> : <Link href={item.href}>{item.title}</Link>}</h3>
-                <p>{item.dek}</p>
-                {item.type === "internet" ? <a className="teaser-arrow" href={item.href} rel="noreferrer" target="_blank" aria-label={`Open original source: ${item.title}`}>Original source <span aria-hidden="true">↗</span></a> : <Link className="teaser-arrow" href={item.href} aria-label={`Open ${item.title}`}>Read <span aria-hidden="true">↗</span></Link>}
-              </article>
-            ))}
-          </div>
-        </section>;
-      })}
+      <EditorialFeed content={content} />
 
       <section className="source-note" aria-labelledby="source-note-title">
         <div><p className="micro-copy">A source is more than a link</p><h2 id="source-note-title">Every published story will show who said what, when, and how far the evidence reaches.</h2></div>
