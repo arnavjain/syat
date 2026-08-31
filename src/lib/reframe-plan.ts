@@ -17,14 +17,7 @@ const maximumInputLength = 320;
 export function normalizeReframeInput(value: string | null | undefined): string {
   if (!value) return "";
 
-  let decoded = value;
-  try {
-    decoded = decodeURIComponent(value.replace(/\+/g, " "));
-  } catch {
-    // Keep malformed input as text instead of rejecting or misrepresenting it.
-  }
-
-  return decoded.normalize("NFKC").replace(/\s+/gu, " ").trim().slice(0, maximumInputLength);
+  return value.normalize("NFKC").replace(/\s+/gu, " ").trim().slice(0, maximumInputLength);
 }
 
 export function resolveReframeInitialInput(topic: string | null, claim: string | null): { value: string; kind: ReframeInputKind } {

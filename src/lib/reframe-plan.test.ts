@@ -31,11 +31,12 @@ describe("reframe plan", () => {
     expect(archivePlan.steps.map((step) => step.description)).not.toEqual(waterPlan.steps.map((step) => step.description));
   });
 
-  it("decodes, normalizes, and bounds untrusted query text", () => {
+  it("normalizes and bounds already-decoded query text", () => {
     const normalizeReframeInput = (reframePlan as typeof reframePlan & { normalizeReframeInput?: (value: string | null | undefined) => string }).normalizeReframeInput;
 
-    expect(normalizeReframeInput?.("  What%20does%20an%20archive%20leave%20out%3F  ")).toBe("What does an archive leave out?");
-    expect(normalizeReframeInput?.("%E0%A4%A")).toBe("%E0%A4%A");
+    expect(normalizeReframeInput?.("  C++ is useful  ")).toBe("C++ is useful");
+    expect(normalizeReframeInput?.("A %25 saving is still visible")).toBe("A %25 saving is still visible");
+    expect(normalizeReframeInput?.("A malformed % claim stays visible")).toBe("A malformed % claim stays visible");
     expect(normalizeReframeInput?.("a".repeat(500))).toHaveLength(320);
   });
 
@@ -43,6 +44,7 @@ describe("reframe plan", () => {
     const resolveReframeInitialInput = (reframePlan as typeof reframePlan & { resolveReframeInitialInput?: (topic: string | null, claim: string | null) => { value: string; kind: string } }).resolveReframeInitialInput;
 
     expect(resolveReframeInitialInput?.("archive-silence", null)).toEqual({ value: "What does an archive leave out?", kind: "topic" });
-    expect(resolveReframeInitialInput?.("archive-silence", "  A%20different%20claim  ")).toEqual({ value: "A different claim", kind: "claim" });
+    expect(resolveReframeInitialInput?.("archive-silence", "  A different claim  ")).toEqual({ value: "A different claim", kind: "claim" });
+    expect(resolveReframeInitialInput?.(null, "C++ is useful")).toEqual({ value: "C++ is useful", kind: "claim" });
   });
 });
