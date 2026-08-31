@@ -15,7 +15,7 @@ export function SiteChrome({ active, children, compact = false, className = "" }
   return (
     <div className={`page-shell ${compact ? "page-shell-compact" : ""} ${className}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <div className="preview-ribbon">Private preview · fixtures and source signals are labelled before publication</div>
+      <div className="preview-ribbon">Timeless questions are published. News is still in private review, and every draft is labelled.</div>
       <header className="masthead">
         <Link className="wordmark" href="/" aria-label="Syāt home">Syāt<span aria-hidden="true">.</span></Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -25,7 +25,7 @@ export function SiteChrome({ active, children, compact = false, className = "" }
       </header>
       <main id="main-content">{children}</main>
       <footer className="site-footer">
-        <p>Syāt is a private reading prototype. Source signals are not published reporting.</p>
+        <p>Syāt writes its own questions and draws its own artwork. Links to other newsrooms are credited and belong to them.</p>
         <div><Link href="/en/about">About the method</Link><Link href="/en/onboarding">How to read Syāt</Link><Link href="/en/studio">Review Studio</Link></div>
       </footer>
       <nav className="mobile-nav" aria-label="Mobile navigation">

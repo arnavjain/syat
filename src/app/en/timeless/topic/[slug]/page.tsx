@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { SiteChrome } from "@/components/site-chrome";
-import { getTimelessTopic, timelessTopics } from "@/lib/timeless-topics";
+import { TopicVisual } from "@/components/topic-visual";
+import { getTopicContent } from "@/lib/timeless-content";
+import { getTimelessTopic, themeSlug, timelessTopics, topicsInTheme } from "@/lib/timeless-topics";
 
 export const dynamicParams = false;
 
@@ -10,9 +13,81 @@ export function generateStaticParams() {
   return timelessTopics.map((topic) => ({ slug: topic.slug }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const topic = getTimelessTopic((await params).slug);
+  if (!topic) return { title: "Question not found" };
+  return { title: `${topic.title} · Syāt`, description: getTopicContent(topic.slug)?.opening.slice(0, 180) };
+}
+
 export default async function TimelessTopicPage({ params }: { params: Promise<{ slug: string }> }) {
   const topic = getTimelessTopic((await params).slug);
   if (!topic) notFound();
+  const content = getTopicContent(topic.slug);
+  if (!content) notFound();
 
-  return <SiteChrome active="explore"><article className="story-page"><header className="story-header"><p className="micro-copy">{topic.theme} · {topic.readingLens} lens</p><h1>{topic.title}</h1><p className="page-lede">{topic.prompt}</p></header><section className="story-summary"><div><p className="micro-copy">A starting point</p><p>This question is a static catalogue subject. It is not a published Syāt story.</p></div><div><p className="micro-copy">What is still needed</p><p>An editor-reviewed source pack, checked claims, and rights-cleared media must come before publication.</p></div></section><section className="source-trail"><p className="micro-copy">Source trail</p><h2>No reviewed source pack is published yet.</h2><p>This page names the gap plainly. You can use the question to make a local reading plan, without sending it anywhere.</p><Link className="primary-action" href={`/en/reframe?topic=${topic.slug}`}>Reframe this question <span aria-hidden="true">↗</span></Link></section></article></SiteChrome>;
+  const siblings = topicsInTheme(topic.theme).filter((item) => item.slug !== topic.slug).slice(0, 4);
+
+  return (
+    <SiteChrome active="explore">
+      <article className="topic-page">
+        <header className="topic-header">
+          <p className="topic-eyebrow">
+            <Link href={`/en/timeless/theme/${themeSlug(topic.theme)}`}>{topic.theme}</Link>
+            <span aria-hidden="true"> · </span>
+            <span>{topic.readingLens} lens</span>
+          </p>
+          <h1>{topic.title}</h1>
+          <p className="topic-opening">{content.opening}</p>
+        </header>
+
+        <TopicVisual topic={topic} />
+
+        <section className="topic-standpoints" aria-labelledby="standpoints-title">
+          <div className="topic-section-heading">
+            <h2 id="standpoints-title">Who is looking, and what that shows</h2>
+            <p>Each standpoint is a position someone genuinely holds. None of them is the answer, and the disagreement between them is the point.</p>
+          </div>
+          <div className="standpoint-list">
+            {content.standpoints.map((standpoint) => (
+              <article className="standpoint" key={standpoint.label}>
+                <h3>{standpoint.label}</h3>
+                <dl>
+                  <div><dt>Brings into view</dt><dd>{standpoint.sees}</dd></div>
+                  <div><dt>Treats as important</dt><dd>{standpoint.values}</dd></div>
+                  <div><dt>May miss</dt><dd>{standpoint.mayMiss}</dd></div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="topic-contested" aria-labelledby="contested-title">
+          <h2 id="contested-title">Where careful people still disagree</h2>
+          <p>{content.contested}</p>
+        </section>
+
+        <section className="topic-change" aria-labelledby="change-title">
+          <h2 id="change-title">What would change your mind</h2>
+          <p>{content.changeYourMind}</p>
+        </section>
+
+        <section className="topic-next" aria-labelledby="next-title">
+          <h2 id="next-title">Keep reading</h2>
+          <div className="topic-next-list">
+            {siblings.map((item) => (
+              <Link className="topic-next-item" href={`/en/timeless/topic/${item.slug}`} key={item.slug}>
+                <span>{item.theme}</span>
+                <strong>{item.title}</strong>
+              </Link>
+            ))}
+          </div>
+          <p className="topic-next-links">
+            <Link href={`/en/timeless/theme/${themeSlug(topic.theme)}`}>All questions in {topic.theme}</Link>
+            <Link href="/en/explore">Browse every question</Link>
+            <Link href={`/en/reframe?topic=${topic.slug}`}>Reframe this question</Link>
+          </p>
+        </section>
+      </article>
+    </SiteChrome>
+  );
 }

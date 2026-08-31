@@ -13,11 +13,16 @@ import "@fontsource/ibm-plex-mono/500.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Syāt — see what you are missing",
-  description: "A reading-first product for stories and enduring ideas seen through more than one standpoint.",
-  robots: {
-    index: false,
-    follow: false
+  metadataBase: new URL("https://syat.vercel.app"),
+  title: {
+    default: "Syāt — questions that keep opening",
+    template: "%s"
+  },
+  description: "One hundred open questions, each written out with the standpoints that genuinely disagree about it, what each brings into view, and what it misses.",
+  openGraph: {
+    title: "Syāt — questions that keep opening",
+    description: "Read one subject from more than one honest standpoint.",
+    type: "website"
   }
 };
 

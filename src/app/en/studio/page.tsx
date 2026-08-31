@@ -50,7 +50,9 @@ export default function StudioPage() {
           <div><strong>0</strong><span>publicly generated stories</span></div>
           <div><strong>0</strong><span>rights-cleared external media files</span></div>
         </div>
-        <ModerationQueue sources={moderationSources} browserFallbackEnabled={access.canWriteBrowserReview} />
+        {access.kind === "blocked"
+          ? <p className="studio-blocked" role="status">The source review queue is not shown here. It lists other newsrooms&rsquo; headlines for private editorial review, and it is never part of a public page.</p>
+          : <ModerationQueue sources={moderationSources} browserFallbackEnabled={access.canWriteBrowserReview} />}
         <div className="review-table" role="table" aria-label="Content and publication queue">
           <div className="review-row review-heading" role="row"><span role="columnheader">Queue</span><span role="columnheader">Count</span><span role="columnheader">State</span><span role="columnheader">Guardrail</span></div>
           {reviewRows.map(([queue, count, state, guardrail]) => <div className="review-row" role="row" key={queue}><strong role="cell">{queue}</strong><span role="cell">{count}</span><span role="cell">{state}</span><span role="cell">{guardrail}</span></div>)}
@@ -63,7 +65,7 @@ export default function StudioPage() {
           </div>
           <div>
             <h3>Current queue by publisher</h3>
-            <ul>{publisherCounts.map(([publisher, count]) => <li key={publisher}><p>Collected source signals</p><h3>{publisher}</h3><span>{count} of {latestNewsSignals.length} records</span></li>)}</ul>
+            {access.kind === "blocked" ? null : <ul>{publisherCounts.map(([publisher, count]) => <li key={publisher}><p>Collected source signals</p><h3>{publisher}</h3><span>{count} of {latestNewsSignals.length} records</span></li>)}</ul>}
             <h3>Publishers we still need in a future intake</h3>
             <ul>{acquisitionGaps.map((publisher) => <li key={publisher.id}><p>{publisher.kind} · {publisher.intake}</p><h3>{publisher.name}</h3><span>{publisher.note}</span></li>)}</ul>
           </div>

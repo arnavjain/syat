@@ -145,6 +145,33 @@ export function getTimelessTopic(slug: string): TimelessTopic | undefined {
   return timelessTopics.find((topic) => topic.slug === slug);
 }
 
+/** Stable URL segment for a theme name. */
+export function themeSlug(theme: string): string {
+  return theme.toLocaleLowerCase("en-IN").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+export const timelessThemes: ReadonlyArray<{ theme: string; slug: string; readingLens: TimelessTopic["readingLens"]; count: number }> =
+  [...new Map(timelessTopics.map((topic) => [topic.theme, topic])).values()].map((topic) => ({
+    theme: topic.theme,
+    slug: themeSlug(topic.theme),
+    readingLens: topic.readingLens,
+    count: timelessTopics.filter((item) => item.theme === topic.theme).length
+  }));
+
+export function topicsInTheme(theme: string): readonly TimelessTopic[] {
+  return timelessTopics.filter((topic) => topic.theme === theme);
+}
+
+export function getThemeBySlug(slug: string) {
+  return timelessThemes.find((theme) => theme.slug === slug);
+}
+
+export const readingLenses: ReadonlyArray<{ lens: TimelessTopic["readingLens"]; count: number }> =
+  [...new Set(timelessTopics.map((topic) => topic.readingLens))].map((lens) => ({
+    lens,
+    count: timelessTopics.filter((topic) => topic.readingLens === lens).length
+  }));
+
 export function timelessTopicPath(slug: string): string | undefined {
   return getTimelessTopic(slug) ? `/en/timeless/topic/${slug}` : undefined;
 }
