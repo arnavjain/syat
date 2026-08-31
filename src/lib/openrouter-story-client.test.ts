@@ -110,8 +110,12 @@ describe("createStoryDraft", () => {
     const timelineTimeOptions = providerSchema.properties.timeline.items.properties.time.oneOf;
     expect(eventTimeOptions.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["exact_date", "unknown"]);
     expect(timelineTimeOptions.map((option: { properties: { kind: { const: string } } }) => option.properties.kind.const)).toEqual(["exact_date", "unknown"]);
-    expect(eventTimeOptions[0].properties.value.enum).toEqual(["2026-09-01"]);
-    expect(timelineTimeOptions[0].properties.value.enum).toEqual(["2026-09-01"]);
+    expect(eventTimeOptions[0].properties.value.const).toBe("2026-09-01");
+    expect(eventTimeOptions[0].properties.label.const).toBe("1 September 2026");
+    expect(eventTimeOptions[1].properties.label.const).toBe("Date not established in the supplied evidence");
+    expect(timelineTimeOptions[0].properties.value.const).toBe("2026-09-01");
+    expect(timelineTimeOptions[0].properties.label.const).toBe("1 September 2026");
+    expect(timelineTimeOptions[1].properties.label.const).toBe("Date not established in the supplied evidence");
     expect(providerSchema.properties.sourcePackId.const).toBe(input.sourcePackId);
     expect(providerSchema.properties.language.const).toBe(input.language);
     expect(providerSchema.properties.format.const).toBe(input.format);

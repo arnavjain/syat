@@ -39,7 +39,7 @@ function promoteGeneratedStory(input: PromotionInputWithoutHash) {
 function makeDraft(withExternalMedia = false) {
   return parseGeneratedStoryV2({
     contractVersion: "syat.story-draft.v2", sourcePackId: "bazaar-road-bus-trial", sourceIds: ["pib-city-note"], language: "en-IN", editorialStatus: "needs_editorial_review", format: "explainer",
-    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a planned start date", dek: "The city record names the road and date, while travel effects and implementation remain unverified.", theme: "Cities and public life", indiaConnection: sourcePack.indiaConnection, eventTime: { kind: "exact_date", value: "2026-09-01", label: "From 1 September 2026" }, eventTimeEvidence: { claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }, reframe: { kind: "question", value: "What evidence would show how the bus-priority change works on the ground?" } },
+    story: { mode: "news", title: "Bazaar Road bus-priority trial gets a planned start date", dek: "The city record names the road and date, while travel effects and implementation remain unverified.", theme: "Cities and public life", indiaConnection: sourcePack.indiaConnection, eventTime: { kind: "exact_date", value: "2026-09-01", label: "1 September 2026" }, eventTimeEvidence: { claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }, reframe: { kind: "question", value: "What evidence would show how the bus-priority change works on the ground?" } },
     bodySections: [
       { id: "announcement", title: "The announced change", paragraphs: [{ id: "opening", text: "A bus-priority trial is due to start on Bazaar Road on 1 September, according to the city transport record.", claimIds: ["claim-1"], sourceIds: ["pib-city-note"] }] },
       { id: "limits", title: "What the record cannot establish", paragraphs: [{ id: "record-limit", text: "The announcement does not establish whether the lane opened as planned or how journeys changed.", claimIds: ["claim-2"], sourceIds: ["pib-city-note"] }] },
@@ -104,7 +104,7 @@ describe("promoteGeneratedStory", () => {
     expect(story.sources[0].rightsBasis).toBe("government_reproduction_policy");
     expect(story.relatedCoverage[0]).toMatchObject({ modelInputAllowed: false, mediaReuseAllowed: false });
     expect(story.generation.inputHash).toBe(generationInputHash);
-    expect(story.generation.promptVersion).toBe("syat.story-draft.v2.2");
+    expect(story.generation.promptVersion).toBe("syat.story-draft.v2.3");
     expect(story.media).toEqual([approvedVisual]);
     expect(story.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
     expect(story.statements[1]).toMatchObject({ basis: "evidence_gap", limits: "No independent observation or affected-person account is supplied." });

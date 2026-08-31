@@ -12,12 +12,21 @@ const timelessTopicSlugSchema = z.enum(timelessTopics.map((topic) => topic.slug)
 const storyFormatSchema = z.enum(["news_brief", "explainer", "timeline", "source_map", "public_impact"]);
 const statementTypeSchema = z.enum(["documented", "interpreted", "experienced", "valued", "unresolved"]);
 const statementBasisSchema = z.enum(["direct_record", "official_claim", "reported_observation", "interpretation", "missing_voice", "evidence_gap"]);
+const UNKNOWN_TIME_LABEL = "Date not established in the supplied evidence";
+
+function canonicalExactDateLabel(value: string) {
+  return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T00:00:00.000Z`));
+}
 
 const flexibleTimeSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("exact_date"), value: z.iso.date(), label: z.string().trim().min(3).max(80) }).strict(),
   z.object({ kind: z.literal("period"), value: z.string().trim().min(3).max(120), label: z.string().trim().min(3).max(120) }).strict(),
-  z.object({ kind: z.literal("unknown"), label: z.string().trim().min(3).max(120) }).strict()
-]);
+  z.object({ kind: z.literal("unknown"), label: z.literal(UNKNOWN_TIME_LABEL) }).strict()
+]).superRefine((time, ctx) => {
+  if (time.kind === "exact_date" && time.label !== canonicalExactDateLabel(time.value)) {
+    ctx.addIssue({ code: "custom", path: ["label"], message: `Exact-date label must use the canonical label ${canonicalExactDateLabel(time.value)}.` });
+  }
+});
 
 const paragraphSchema = z.object({
   id: idSchema,
@@ -391,7 +400,7 @@ export type StoryDraftV2PromptInput = {
   sourceDossier: SourceDossierRecord[];
 };
 
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.2";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v2.3";
 
 type JsonObject = Record<string, unknown>;
 
@@ -450,14 +459,26 @@ function closeFlexibleTimeChoices(timeSchema: unknown, allowedDates: readonly st
   if (!isJsonObject(timeSchema) || !Array.isArray(timeSchema.oneOf)) throw new Error("Story draft provider schema is missing flexible time choices.");
   const exactDate = timeSchema.oneOf.find((option) => isJsonObject(option) && isJsonObject(option.properties) && isJsonObject(option.properties.kind) && option.properties.kind.const === "exact_date");
   const unknown = timeSchema.oneOf.find((option) => isJsonObject(option) && isJsonObject(option.properties) && isJsonObject(option.properties.kind) && option.properties.kind.const === "unknown");
-  if (!isJsonObject(unknown)) throw new Error("Story draft provider schema is missing the unknown time choice.");
+  if (!isJsonObject(unknown) || !isJsonObject(unknown.properties) || !isJsonObject(unknown.properties.label)) throw new Error("Story draft provider schema is missing the unknown time choice.");
+  unknown.properties.label.const = UNKNOWN_TIME_LABEL;
+  delete unknown.properties.label.enum;
   if (allowedDates.length === 0) {
     timeSchema.oneOf = [unknown];
     return;
   }
-  if (!isJsonObject(exactDate) || !isJsonObject(exactDate.properties) || !isJsonObject(exactDate.properties.value)) throw new Error("Story draft provider schema is missing the exact-date value choice.");
-  exactDate.properties.value.enum = [...allowedDates];
-  timeSchema.oneOf = [exactDate, unknown];
+  if (!isJsonObject(exactDate) || !isJsonObject(exactDate.properties)) throw new Error("Story draft provider schema is missing the exact-date value choice.");
+  const exactDateProperties = exactDate.properties;
+  if (!isJsonObject(exactDateProperties.value) || !isJsonObject(exactDateProperties.label)) throw new Error("Story draft provider schema is missing the exact-date value choice.");
+  const exactDateValue = exactDateProperties.value;
+  const exactDateLabel = exactDateProperties.label;
+  const exactDateChoices = allowedDates.map((date) => {
+    const value: JsonObject = { ...exactDateValue, const: date };
+    const label: JsonObject = { ...exactDateLabel, const: canonicalExactDateLabel(date) };
+    delete value.enum;
+    delete label.enum;
+    return { ...exactDate, properties: { ...exactDateProperties, value, label } };
+  });
+  timeSchema.oneOf = [...exactDateChoices, unknown];
 }
 
 export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput) {
@@ -485,6 +506,7 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
   idSchema.parse(input.sourcePackId);
   const approved = validateApprovedSourceDossier(input.sourceDossier);
   const allowedDates = extractExactEvidenceDates(approved);
+  const allowedDateLabels = allowedDates.map((date) => `${date} -> ${canonicalExactDateLabel(date)}`);
   const knownIds = new Set(approved.map((source) => source.id));
   if (input.sourceRoles.length < 1 || input.sourceRoles.some((record) => !knownIds.has(record.sourceId) || record.role.trim().length < 8)) {
     throw new Error("Source roles must explain the role of a source in the approved dossier.");
@@ -517,7 +539,7 @@ ${editorialRules.map((rule) => `- ${rule}`).join("\n")}
 - Final internal reference-set check: make a set from statements[].id, then verify every claimIds value in body paragraphs, timeline, eventTimeEvidence, authoredVisual, and mediaPlan belongs to that set. Return nothing until no reference is missing.
 - Copy sourcePackId exactly as "${input.sourcePackId}" and sourceIds exactly as ${JSON.stringify(approved.map((source) => source.id))}.
 - Give eventTime and every timeline entry explicit claimIds and sourceIds. Use only an allowed exact date; free-form periods are not allowed in this pilot.
-- ${allowedDates.length === 0 ? "Allowed exact dates: none. Use unknown for eventTime and every timeline time." : `Allowed exact dates: ${allowedDates.join(", ")}. Use unknown for every other eventTime and timeline time.`}
+- ${allowedDates.length === 0 ? `Allowed exact dates and labels: none. Use unknown for eventTime and every timeline time with label exactly "${UNKNOWN_TIME_LABEL}".` : `Allowed exact dates and labels: ${allowedDateLabels.join(", ")}. Use unknown for every other eventTime and timeline time with label exactly "${UNKNOWN_TIME_LABEL}".`}
 - Vary sentence length and section shape. Prefer concrete nouns and active verbs.
 - Set contractVersion to "syat.story-draft.v2" and editorialStatus to "needs_editorial_review".
 - Return three to six titled body sections and one source-led authored visual specification.
