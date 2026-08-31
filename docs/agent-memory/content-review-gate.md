@@ -10,6 +10,7 @@ Syāt can use AI to prepare a source-linked draft. It cannot use AI to publish a
 - A direct quote is blocked when it does not appear word-for-word in the small source excerpt supplied for that job.
 - A repeated factual claim is blocked so the editor does not have to untangle duplicate wording.
 - The review warns if there is only one publisher, a news source has no date, a media idea still needs rights review, or the job lacks a written India connection.
+- Corpus review warns about source-role and publisher concentration. It does not assign publishers political labels or reward decorative "other side" links.
 - The result is always `publicationAllowed: false`.
 
 ## What a person must decide
@@ -20,6 +21,14 @@ Syāt can use AI to prepare a source-linked draft. It cannot use AI to publish a
 - Whether a viewpoint is responsibly described and does not create false balance.
 - Whether a visual has the creator credit, rights basis, proof, accessible text, and approval to appear.
 - Whether an English or Hindi version can be published.
+
+## Private six-story UX pilot boundary
+
+The first six generated News stories may use one PIB release each because the immediate test is the reading experience, not a balanced edition. Show this limitation on the archive and every pilot story:
+
+> Private UX pilot. These six AI-assisted drafts use Press Information Bureau releases as the only evidence supplied to the writing model. They do not represent Syāt's intended source mix or independent reporting.
+
+Each pilot story must also state that its evidence base is one PIB release, that independent reporting and affected voices were not supplied, and that any related links were not used to generate the draft. Do not scale beyond this pilot until the source-diversity gate in the 100-story plan passes.
 
 ## Where it is stored
 

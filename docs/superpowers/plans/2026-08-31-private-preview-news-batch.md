@@ -689,6 +689,22 @@ git commit -m "feat: finish first-read landing and onboarding"
 
 Rank reusable evidence strength, reader utility, India connection, theme coverage, geographic spread, source-role completeness, and duplication risk. Keep 15 spare packs so a weak output can be rejected without padding.
 
+- [ ] **Step 1A: Pass the source-diversity gate before scaling beyond the private pilot**
+
+The six PIB-only drafts may test navigation, evidence drawers, timelines, mobile reading, and onboarding. They must carry a visible pilot limitation and must not be presented as proof of editorial balance.
+
+Before the first ten-story wave:
+
+- expand reusable evidence beyond PIB with permitted regulator, court, audit, parliamentary, state/local, research, or open-data records;
+- give at least six of the next ten packs one genuinely relevant independent related-coverage link;
+- include at least three digital-only related links across at least two of ThePrint, The Wire, and Scroll, plus two legacy-newsroom and two specialist or regional links where relevant;
+- keep all newsroom material link-only unless an exact reviewed reuse basis says otherwise, exclude it from model input, and never cite a headline as claim evidence;
+- add links for a distinct reporting role or unresolved question, not to manufacture an opposing side;
+- warn when one newsroom exceeds three related links in the wave or 25% of the 100-story corpus, and target at least eight publishers across legacy, digital, specialist, and regional categories;
+- require at least three of the ten stories to carry a second reusable source role beyond a Union government release.
+
+A story with no useful independent coverage says so. Missing affected voices remain visible; the model must never invent reported experience.
+
 - [ ] **Step 2: Generate the first ten-story scale wave**
 
 Run: `npm run content:generate-wave -- --start 6 --count 10 --wave wave-01`
