@@ -3,6 +3,9 @@ import type { SourcePackSource } from "./source-pack";
 
 export type CagReportLink = { id: string; url: string };
 
+/** Enough audit prose to support a 350-word article without padding. */
+export const MINIMUM_EVIDENCE_CHARACTERS = 1_500;
+
 const CAG_REPORT_URL = "https://cag.gov.in/en/audit-report/details";
 
 const namedEntities: Record<string, string> = {
@@ -87,7 +90,7 @@ export function parseCagReport(html: string, url: string, accessedAt: Date): Sou
   if (!tabled) throw new Error("CAG report tabling date is missing.");
 
   const evidenceText = overviewText(html);
-  if (evidenceText.length < 600) throw new Error(`CAG report overview is ${evidenceText.length} characters, too thin to write a grounded article from.`);
+  if (evidenceText.length < MINIMUM_EVIDENCE_CHARACTERS) throw new Error(`CAG report overview is ${evidenceText.length} characters, too thin to write a grounded article from.`);
 
   const sector = textFromHtml(/sectorSingleAudit[^>]*>\s*<span[^>]*>\s*<b>\s*Sector\s*<\/b>\s*<\/span>\s*<span[^>]*>([\s\S]*?)<\/span>/i.exec(html)?.[1] ?? "");
   const governmentType = labelledValue(html, "Government Type");

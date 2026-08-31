@@ -10,7 +10,7 @@ const CAG_LIST_URL = "https://cag.gov.in/en/audit-report";
 const REQUEST_TIMEOUT_MS = 20_000;
 const MINIMUM_START_GAP_MS = 700;
 const DEFAULT_OUTPUT = "data/source-packs/cag-candidates.json";
-const MAXIMUM_LISTING_PAGES = 14;
+const MAXIMUM_LISTING_PAGES = 32;
 
 // One request at a time with a gap between starts. This is a small research queue, not a crawl.
 class PoliteHtmlClient {

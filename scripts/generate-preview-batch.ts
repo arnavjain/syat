@@ -432,7 +432,7 @@ export async function runPreviewBatch(
           }
           const cachedDraft = await loadCachedDraft(cachePath, pack, input);
           const cachedReview = reviewGeneratedDraft(cachedDraft, pack.sources, { indiaConnection: pack.indiaConnection });
-          const cachedQuality = reviewEditorialQuality(cachedDraft, corpus.filter((cached) => cached.inputHash !== inputHash).map((cached) => cached.draft));
+          const cachedQuality = reviewEditorialQuality(cachedDraft, corpus.filter((cached) => cached.inputHash !== inputHash && cached.draft.sourcePackId !== cachedDraft.sourcePackId).map((cached) => cached.draft));
           const codes = [...cachedReview.findings.filter((finding) => finding.severity === "blocker").map((finding) => finding.code), ...cachedQuality.blockers.map((finding) => finding.code)];
           const lowScores = Object.entries(cachedQuality.scores).filter(([, value]) => value < 4).map(([name]) => name);
           console.log(`${pack.id}: ${codes.length === 0 && lowScores.length === 0 ? "would pass" : "would block"}${codes.length > 0 ? ` (${codes.join(", ")})` : ""}${lowScores.length > 0 ? ` [low: ${lowScores.join(", ")}]` : ""} · voice ${cachedQuality.scores.humanVoice}/5 · warnings ${cachedQuality.warnings.map((warning) => warning.code).join(", ") || "none"}`);
@@ -513,7 +513,7 @@ export async function runPreviewBatch(
         }
 
         const draftReview = result?.review ?? reviewGeneratedDraft(draft, pack.sources, { indiaConnection: pack.indiaConnection });
-        const qualityReview = reviewEditorialQuality(draft, corpus.filter((cached) => cached.inputHash !== inputHash).map((cached) => cached.draft));
+        const qualityReview = reviewEditorialQuality(draft, corpus.filter((cached) => cached.inputHash !== inputHash && cached.draft.sourcePackId !== draft.sourcePackId).map((cached) => cached.draft));
         if (draftReview.status === "blocked" || qualityReview.status === "blocked" || qualityReview.blockers.length > 0 || Object.values(qualityReview.scores).some((score) => score < 4)) {
           const codes = [...draftReview.findings.filter((finding) => finding.severity === "blocker").map((finding) => finding.code), ...qualityReview.blockers.map((finding) => finding.code)];
           throw new Error(`Story ${pack.id} did not pass the private-preview quality gate${codes.length > 0 ? ` (${codes.join(", ")})` : " (score below 4)"}.`);

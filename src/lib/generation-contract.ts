@@ -471,7 +471,7 @@ export type SelectedExactTime = {
 
 // v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
 // input hash, so a pipeline change gives every pack a fresh identity to attempt.
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v3.5";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v3.7";
 
 type JsonObject = Record<string, unknown>;
 
@@ -611,7 +611,10 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
     "Do not manufacture a second side or a personal reaction.",
     "Every source in the dossier must ground at least one statement. A source you cite but never use is a failure.",
     "When two records describe the same subject differently, say so plainly and attribute each account to the record that makes it. Do not average them into one voice and do not decide which is right.",
-    "An audit and the institution it audits are not the same voice. Keep the audit's finding and the institution's own account clearly apart."
+    "An audit and the institution it audits are not the same voice. Keep the audit's finding and the institution's own account clearly apart.",
+    "Do not open with the document's own framing, such as what a report relates to or contains. Open with the specific thing the record shows about a place, a service or a sum of money.",
+    "Vary the opening. Do not begin with the institution's name or the document type.",
+    "A statement's limit must say something its source scope does not. Repeating the scope in other words is not a limit."
   ];
 
   return `You are an editorial research assistant for Syāt. Prepare a cautious, source-scoped draft for a human editor. Return exactly one JSON object and nothing else.

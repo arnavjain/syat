@@ -24,7 +24,7 @@ describe("CAG report parser", () => {
     const source = parseCagReport(detail, url, new Date("2026-09-01T00:00:00.000Z"));
 
     expect(source.evidenceText).toContain("Article 151 of the Constitution");
-    expect(source.evidenceText.length).toBeGreaterThan(600);
+    expect(source.evidenceText.length).toBeGreaterThan(1_500);
     expect(source.evidenceText).not.toMatch(/About Us|Organisation Chart|Skip to|MENU/i);
   });
 
