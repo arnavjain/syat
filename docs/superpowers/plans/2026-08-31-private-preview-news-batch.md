@@ -598,6 +598,80 @@ git add src/components src/app/en/news src/lib/home-content.ts src/app/globals.c
 git commit -m "feat: render static preview news library"
 ```
 
+### Task 6A: Finish the landing page and first-time onboarding
+
+**Files:**
+- Modify: `src/components/home-view.tsx`
+- Modify: `src/components/home-view.test.tsx`
+- Modify: `src/components/guided-onboarding.tsx`
+- Modify: `src/components/guided-onboarding.test.tsx`
+- Modify: `src/lib/onboarding.ts`
+- Modify: `src/lib/onboarding.test.ts`
+- Modify: `src/components/site-chrome.tsx`
+- Modify: `src/app/en/onboarding/page.tsx`
+- Modify: `src/app/globals.css`
+
+**Interfaces:**
+- Consumes: the accepted six-story pilot, lightweight News index, existing News/Timeless switch, local onboarding state, and the Warm Commons design contract.
+- Produces: a static, mobile-first landing page that explains Syāt within one screen and a guided first-use path through reading, evidence, saving, Context Bridge, and Reframe.
+
+- [ ] **Step 1: Write failing landing and onboarding journey tests**
+
+Test the full first-use path, not just isolated copy:
+
+- Home states what Syāt does in plain words and offers one primary action, `Start reading`.
+- `Take the two-minute tour` is the only secondary first-use action.
+- The first visible story is a real accepted Indian pilot story, not a fictional fixture or generic hero illustration.
+- Reframe does not appear as the home-page headline, hero form, or primary action; it remains in navigation and the later guided step.
+- The tour explains documented, interpreted, and unresolved material; opens a teaching story; points to source basis; explains the honest save/sign-in limit; connects News to Timeless; and ends with optional Reframe.
+- Returning readers skip the tour automatically but can reopen it.
+- Storage failure never traps the reader.
+
+- [ ] **Step 2: Make the landing page useful in five seconds**
+
+Use one compact above-the-fold composition:
+
+- Syāt wordmark and one-line product promise;
+- headline of no more than twelve words;
+- explanation of roughly twenty words;
+- one `Start reading` button and one `Take the two-minute tour` link;
+- a real pilot lead story and its authored visual entering the next viewport;
+- News/Timeless choice visible without competing with the main action.
+
+Do not add fake user counts, logo walls, testimonials, pricing, newsletter pressure, a Reframe input, or AI-generated decorative hero art. The product and its source discipline are the proof.
+
+- [ ] **Step 3: Build a guided first-read sequence**
+
+Keep the current four-step local guide, but make every step perform a real action:
+
+1. **Read the layers** — distinguish documented, interpreted, experienced, valued, and unresolved material.
+2. **Check the basis** — open one statement's source scope and limit.
+3. **Keep the thread** — show Save honestly as device-only until Google sign-in is added, then cross the Context Bridge into a Timeless topic.
+4. **Ask a better question** — introduce Reframe as an optional tool after reading, not the product's main task.
+
+Each screen has Back, Next, Skip tour, visible progress, keyboard focus, a 44px tap target, and a safe return to the story. Completion remains versioned browser-local state.
+
+- [ ] **Step 4: Apply the Warm Commons design contract**
+
+Follow `.superpowers/sdd/2026-08-31-private-preview-news-batch/task-6-design-addendum.md`. Use Spectral plus IBM Plex Sans, the recorded semantic colour roles, the 12/20/30px radius system, restrained motion, and a deliberate 390px layout. Remove repeated uppercase mini-labels, generic equal-card rows, oversized headings, and decorative copy.
+
+- [ ] **Step 5: Verify first-time and returning flows in a browser**
+
+Render at 390px, 768px, and 1440px. Test a fresh local-storage state, completed state, and blocked-storage state. Check focus order, skip behavior, back navigation, bottom navigation overlap, long Indian headlines, reduced motion, and direct story entry.
+
+- [ ] **Step 6: Run tests, typecheck, lint, build, and commit**
+
+Run: `npm test -- src/components/home-view.test.tsx src/components/guided-onboarding.test.tsx src/lib/onboarding.test.ts && npm run typecheck && npm run lint && npm run build`
+
+Expected: PASS; Home and onboarding remain statically server-rendered except for the small browser-local guide controller.
+
+Commit:
+
+```bash
+git add src/components/home-view.tsx src/components/home-view.test.tsx src/components/guided-onboarding.tsx src/components/guided-onboarding.test.tsx src/lib/onboarding.ts src/lib/onboarding.test.ts src/components/site-chrome.tsx src/app/en/onboarding/page.tsx src/app/globals.css
+git commit -m "feat: finish first-read landing and onboarding"
+```
+
 ### Task 7: Scale in reviewed waves to exactly 100 stories
 
 **Files:**
