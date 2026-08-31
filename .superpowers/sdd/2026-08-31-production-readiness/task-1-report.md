@@ -92,3 +92,36 @@ Production-server checks returned HTTP 200 for both routes. They included the fo
 ## Concerns
 
 The four Timeless cards deliberately open the broad Explore page until Task 2 creates truthful, individual subject pages. This is the recorded preflight decision, not a replacement for that follow-up work.
+
+## Review-fix addendum
+
+The review correctly identified that the original route test compared copied strings instead of checking the route and fixture contracts. The replacement test derives the visible internal links from `getHomeContent`, validates static destinations, and resolves detail URLs through `getPreviewStory` with the expected News or Timeless mode. Unknown News and Timeless slugs now fail the contract.
+
+### RED
+
+Command:
+
+```text
+npm test -- src/lib/home-content.test.ts
+```
+
+Result: 2 of 4 tests failed because `isCurrentHomeDestination` did not exist.
+
+```text
+FAIL backs every internal home link with a current static route or matching fixture
+TypeError: undefined is not a function
+
+FAIL uses stable route paths for the editorial modes
+TypeError: undefined is not a function
+```
+
+### GREEN and checks
+
+```text
+npm test -- src/lib/home-content.test.ts  -> 1 file passed, 4 tests passed
+npm run typecheck                          -> exit 0
+npm run lint                               -> exit 0
+npm run build                              -> exit 0; / and /en/timeless remain static
+```
+
+Fix commit: `1e32b63 test: verify home destinations against fixtures`.
