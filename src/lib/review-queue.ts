@@ -37,6 +37,15 @@ export type ReviewDecisionInput = Omit<ReviewDecisionEvent, "publicationAllowed"
   decision: ModerationDecision | string;
 };
 
+export type StoredReviewEvent = {
+  targetId: string;
+  action: "commented";
+  afterState: string;
+  beforeState: string;
+  note: string;
+  createdAt: string;
+};
+
 const allowedDecisions = new Set<ModerationDecision>(["needs_source_pack", "held", "rejected", "source_pack_ready"]);
 
 function hasCompleteChecklist(checklist: ReviewDecisionEvent["checklist"]) {
@@ -73,6 +82,51 @@ export function projectReviewEvents(targetId: string, events: readonly ReviewDec
     updatedAt: latest.occurredAt,
     publicationAllowed: false
   };
+}
+
+function readExactChecklist(value: string) {
+  try {
+    const parsed = JSON.parse(value) as { contract?: unknown; checklist?: Partial<ReviewDecisionEvent["checklist"]> };
+    if (parsed.contract !== "syat.review-event.v1" || !parsed.checklist) return null;
+    const { openedOriginalLink, keptLinkOnly, namedNextNeed } = parsed.checklist;
+    if (typeof openedOriginalLink !== "boolean" || typeof keptLinkOnly !== "boolean" || typeof namedNextNeed !== "boolean") return null;
+    return { openedOriginalLink, keptLinkOnly, namedNextNeed };
+  } catch {
+    return null;
+  }
+}
+
+export function encodeReviewEventForStorage(event: ReviewDecisionEvent): StoredReviewEvent {
+  return {
+    targetId: event.targetId,
+    action: "commented",
+    afterState: event.decision,
+    beforeState: JSON.stringify({ contract: "syat.review-event.v1", checklist: event.checklist }),
+    note: event.note,
+    createdAt: event.occurredAt
+  };
+}
+
+function decodeStoredReviewEvent(event: StoredReviewEvent): ReviewDecisionEvent | null {
+  if (!allowedDecisions.has(event.afterState as ModerationDecision)) return null;
+  const checklist = readExactChecklist(event.beforeState);
+  if (!checklist && event.afterState !== "source_pack_ready") return null;
+
+  return {
+    targetId: event.targetId,
+    decision: event.afterState as ModerationDecision,
+    note: event.note,
+    checklist: checklist ?? { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false },
+    occurredAt: event.createdAt,
+    publicationAllowed: false
+  };
+}
+
+export function projectStoredReviewEvents(targetId: string, events: readonly StoredReviewEvent[]): ModerationRecord & { publicationAllowed: false } {
+  return projectReviewEvents(targetId, events.flatMap((event) => {
+    const decoded = decodeStoredReviewEvent(event);
+    return decoded ? [decoded] : [];
+  }));
 }
 
 export type ReviewFilter = "all" | ModerationDecision | "sensitive";

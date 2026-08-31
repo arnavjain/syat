@@ -58,7 +58,9 @@ export function resolveEditorAccess(input: EditorAccessInput): EditorAccess {
 }
 
 export function studioEnvironmentFromServer(environment: NodeJS.ProcessEnv = process.env): StudioEnvironment {
-  return environment.VERCEL_ENV === "preview" || environment.NODE_ENV !== "production" ? "protected_preview" : "production";
+  return environment.VERCEL_ENV === "preview" && environment.NODE_ENV === "production" && environment.SYAT_PROTECTED_REVIEW_GATE === "allow-browser-only-review"
+    ? "protected_preview"
+    : "production";
 }
 
 export function editorAllowListFromServer(environment: NodeJS.ProcessEnv = process.env) {

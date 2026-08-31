@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { applyReviewDecision, filterReviewItems, getReviewSummary, mergeReviewRecords, projectReviewEvents, type ModerationRecord, type ModerationSource } from "./review-queue";
+import { applyReviewDecision, encodeReviewEventForStorage, filterReviewItems, getReviewSummary, mergeReviewRecords, projectReviewEvents, projectStoredReviewEvents, type ModerationRecord, type ModerationSource } from "./review-queue";
 
 const sources: ModerationSource[] = [
   { id: "signal-a", title: "A source signal", publisher: "Newsroom A", url: "https://example.invalid/a", publishedAt: "2026-08-31T08:00:00.000Z", sourceClass: "newsroom_rss" },
@@ -86,5 +86,44 @@ describe("review queue state", () => {
     }]);
 
     expect(projected).toMatchObject({ decision: "needs_source_pack", publicationAllowed: false });
+  });
+
+  it("round-trips the exact database event encoding for a valid source pack", () => {
+    const result = applyReviewDecision({
+      targetId: "signal-a",
+      decision: "source_pack_ready",
+      note: "Find the original municipal order next.",
+      checklist: { openedOriginalLink: true, keptLinkOnly: true, namedNextNeed: true },
+      occurredAt: "2026-08-31T10:00:00.000Z"
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    const stored = encodeReviewEventForStorage(result.event);
+
+    expect(stored.beforeState).toBe('{"contract":"syat.review-event.v1","checklist":{"openedOriginalLink":true,"keptLinkOnly":true,"namedNextNeed":true}}');
+    expect(projectStoredReviewEvents("signal-a", [stored])).toMatchObject({ decision: "source_pack_ready", publicationAllowed: false });
+  });
+
+  it("fails a later malformed source-pack-ready database event closed instead of reviving an older decision", () => {
+    const valid = applyReviewDecision({
+      targetId: "signal-a",
+      decision: "held",
+      note: "Wait for the original order.",
+      checklist: { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false },
+      occurredAt: "2026-08-31T10:00:00.000Z"
+    });
+    expect(valid.ok).toBe(true);
+    if (!valid.ok) return;
+    const older = encodeReviewEventForStorage(valid.event);
+    const laterInvalidReady = {
+      ...older,
+      afterState: "source_pack_ready",
+      note: " ",
+      beforeState: '{"openedOriginalLink":true,"keptLinkOnly":true,"namedNextNeed":true}',
+      createdAt: "2026-08-31T10:01:00.000Z"
+    };
+
+    expect(projectStoredReviewEvents("signal-a", [older, laterInvalidReady])).toMatchObject({ decision: "needs_source_pack", publicationAllowed: false });
   });
 });

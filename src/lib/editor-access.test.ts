@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { resolveEditorAccess } from "./editor-access";
+import { resolveEditorAccess, studioEnvironmentFromServer } from "./editor-access";
 
 describe("editor access", () => {
   it("fails closed in production when shared auth or storage is missing", () => {
@@ -30,6 +30,15 @@ describe("editor access", () => {
       canWriteBrowserReview: true
     });
     expect(access.label).toContain("browser-only private review");
+  });
+
+  it("requires an explicit server-only gate for a protected Vercel review preview", () => {
+    expect(studioEnvironmentFromServer({ NODE_ENV: "production", VERCEL_ENV: "preview" })).toBe("production");
+    expect(studioEnvironmentFromServer({ NODE_ENV: "development", VERCEL_ENV: "preview" })).toBe("production");
+    expect(studioEnvironmentFromServer({ NODE_ENV: "production", VERCEL_ENV: "preview", SYAT_PROTECTED_REVIEW_GATE: "unexpected" })).toBe("production");
+    expect(studioEnvironmentFromServer({ NODE_ENV: "production", VERCEL_ENV: "preview", NEXT_PUBLIC_SYAT_PROTECTED_REVIEW_GATE: "allow-browser-only-review" })).toBe("production");
+    expect(studioEnvironmentFromServer({ NODE_ENV: "production", VERCEL_ENV: "preview", SYAT_PROTECTED_REVIEW_GATE: "allow-browser-only-review" })).toBe("protected_preview");
+    expect(studioEnvironmentFromServer({ NODE_ENV: "production", VERCEL_ENV: "production", SYAT_PROTECTED_REVIEW_GATE: "allow-browser-only-review" })).toBe("production");
   });
 
   it("uses trusted server identity claims and an explicit allow-list, not a client role or email", () => {

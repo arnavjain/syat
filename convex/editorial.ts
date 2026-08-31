@@ -2,7 +2,7 @@ import { v } from "convex/values";
 
 import { authComponent } from "./auth";
 import { mutation, query } from "./_generated/server";
-import { applyReviewDecision, projectReviewEvents, type ReviewDecisionEvent } from "../src/lib/review-queue";
+import { applyReviewDecision, encodeReviewEventForStorage, projectStoredReviewEvents, type StoredReviewEvent } from "../src/lib/review-queue";
 
 const decisionValidator = v.union(
   v.literal("needs_source_pack"),
@@ -32,39 +32,6 @@ async function requireAllowedEditor(ctx: Parameters<typeof authComponent.getAuth
   return subject;
 }
 
-function parseChecklist(value: string | undefined) {
-  try {
-    const parsed = JSON.parse(value ?? "{}") as Partial<ReviewDecisionEvent["checklist"]>;
-    return {
-      openedOriginalLink: parsed.openedOriginalLink === true,
-      keptLinkOnly: parsed.keptLinkOnly === true,
-      namedNextNeed: parsed.namedNextNeed === true
-    };
-  } catch {
-    return { openedOriginalLink: false, keptLinkOnly: false, namedNextNeed: false };
-  }
-}
-
-function storedSourceEvent(event: {
-  targetId: string;
-  action: string;
-  afterState?: string;
-  beforeState?: string;
-  note?: string;
-  createdAt: number;
-}): ReviewDecisionEvent | null {
-  if (event.action !== "commented" || !event.afterState) return null;
-  const result = applyReviewDecision({
-    targetId: event.targetId,
-    decision: event.afterState,
-    note: event.note ?? "",
-    checklist: parseChecklist(event.beforeState),
-    occurredAt: new Date(event.createdAt).toISOString()
-  });
-
-  return result.ok ? result.event : null;
-}
-
 // This is intentionally append-only. Its input has no role, approval, or
 // publication field, and its decision union describes research steps only.
 export const recordReviewDecision = mutation({
@@ -87,14 +54,15 @@ export const recordReviewDecision = mutation({
 
     if (!result.ok) throw new Error(result.reason);
 
+    const stored = encodeReviewEventForStorage(result.event);
     await ctx.db.insert("reviewEvents", {
       targetType: "source",
       targetId: args.sourceSignalId,
-      action: "commented",
+      action: stored.action,
       actorSubject,
-      note: result.event.note,
-      beforeState: JSON.stringify({ checklist: result.event.checklist }),
-      afterState: result.event.decision,
+      note: stored.note,
+      beforeState: stored.beforeState,
+      afterState: stored.afterState,
       createdAt
     });
 
@@ -110,11 +78,10 @@ export const getReviewProjection = query({
       .query("reviewEvents")
       .withIndex("by_target_and_created_at", (index) => index.eq("targetType", "source").eq("targetId", args.sourceSignalId))
       .collect();
-    const events = stored.flatMap((event) => {
-      const parsed = storedSourceEvent(event);
-      return parsed ? [parsed] : [];
-    });
+    const events: StoredReviewEvent[] = stored.flatMap((event) => event.action === "commented" && event.afterState && event.beforeState && event.note !== undefined
+      ? [{ targetId: event.targetId, action: "commented", afterState: event.afterState, beforeState: event.beforeState, note: event.note, createdAt: new Date(event.createdAt).toISOString() }]
+      : []);
 
-    return projectReviewEvents(args.sourceSignalId, events);
+    return projectStoredReviewEvents(args.sourceSignalId, events);
   }
 });
