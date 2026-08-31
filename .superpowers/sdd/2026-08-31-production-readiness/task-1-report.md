@@ -125,3 +125,37 @@ npm run build                              -> exit 0; / and /en/timeless remain 
 ```
 
 Fix commit: `1e32b63 test: verify home destinations against fixtures`.
+
+## Review-fix addendum 2
+
+The static-destination allow-list was misleading: it did not prove that the three page modules still existed. The test now imports `/`, `/en/timeless`, and `/en/explore` directly and asserts that each default page export is a function. The Vitest alias now mirrors the TypeScript `@/` alias so those page modules can compile in the test runner. `isCurrentFixtureDestination` retains only the detail-route check against fixture data; the self-declared static set is removed.
+
+### RED
+
+Command:
+
+```text
+npm test -- src/lib/home-content.test.ts
+```
+
+The direct imports first exposed an alias-resolution test-runner error. After adding the matching alias configuration, the intended test failed because `isCurrentFixtureDestination` did not exist:
+
+```text
+FAIL backs every internal home link with a live static page or matching fixture
+TypeError: undefined is not a function
+at fixtureLinks.every(isCurrentFixtureDestination)
+
+Test Files  1 failed (1)
+Tests       1 failed | 3 passed (4)
+```
+
+### GREEN and checks
+
+```text
+npm test -- src/lib/home-content.test.ts  -> 1 file passed, 4 tests passed
+npm run typecheck                          -> exit 0
+npm run lint                               -> exit 0
+npm run build                              -> exit 0; / and /en/timeless remain static
+```
+
+Fix commit: `397e341 test: load static home route modules`.
