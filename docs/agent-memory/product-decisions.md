@@ -12,3 +12,4 @@
 - Both published teaching fixtures share one server-rendered story body. Each ends with a real source anchor, an honest saved-account gate, a Task-2-compatible Reframe query, and a related catalogue subject.
 - Media must be commercial-safe and credited. Social content uses official embeds only.
 - Preview stays private, watermarked, and `noindex` until a human approves publication.
+- Reading posts show a source-bound timeline, named/fictitious people-or-roles connections, statement basis and limits, and a News-to-Timeless Context Bridge. A time may be exact, a period, or explicitly unknown; names are never presented as social profiles. Fixture media stays route-specific and visibly not publishable until a person clears its source, credit, rights, and review record.
