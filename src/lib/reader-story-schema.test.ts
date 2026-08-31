@@ -119,7 +119,10 @@ function makeValidReaderStory() {
         use: "Supports the stated terms and timing of the municipal trial.",
         scope: "The note describes the corporation's announced plan, not its outcomes.",
         rightsBasis: "link_only",
-        reviewStatus: "approved"
+        reviewStatus: "approved",
+        linkAllowed: true,
+        modelInputAllowed: true,
+        mediaReuseAllowed: false
       }
     ],
     media: [
@@ -135,6 +138,11 @@ function makeValidReaderStory() {
         rightsBasis: "owned",
         reviewStatus: "approved",
         reviewedAt: "2026-08-31T10:00:00.000Z",
+        rightsProof: {
+          kind: "documented_record",
+          recordId: "rights-street-trial-diagram",
+          note: "The Syāt visual desk recorded ownership of this authored illustration."
+        },
         limitation: "It shows the announced layout, not whether the trial works in practice.",
         sourceIds: ["ward-note"]
       }
@@ -188,5 +196,32 @@ describe("readerStorySchema", () => {
     story.media.push({ ...story.media[0], id: "street-trial-diagram" });
 
     expect(() => readerStorySchema.parse(story)).toThrow(/missing-topic|street-trial-diagram/);
+  });
+
+  it.each(["linkAllowed", "modelInputAllowed", "mediaReuseAllowed"] as const)("requires the %s source permission", (permission) => {
+    const story = makeValidReaderStory();
+    delete (story.sources[0] as Record<string, unknown>)[permission];
+
+    expect(() => readerStorySchema.parse(story)).toThrow(new RegExp(permission));
+  });
+
+  it("requires a documented rights proof before media can render", () => {
+    const story = makeValidReaderStory();
+    delete (story.media[0] as Record<string, unknown>).rightsProof;
+
+    expect(() => readerStorySchema.parse(story)).toThrow(/rightsProof/);
+  });
+
+  it("rejects unsupported quote blocks", () => {
+    const story = makeValidReaderStory();
+    story.body[0] = {
+      id: "source-quote",
+      kind: "quote",
+      text: "The municipality announced a trial.",
+      quoteId: "quote-ward-note",
+      sourceId: "ward-note"
+    } as never;
+
+    expect(readerStorySchema.safeParse(story).success).toBe(false);
   });
 });

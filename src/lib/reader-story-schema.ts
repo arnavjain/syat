@@ -35,14 +35,6 @@ export const readerContentBlockSchema = z.discriminatedUnion("kind", [
   }).strict(),
   z.object({
     id: readerIdSchema,
-    kind: z.literal("quote"),
-    text: z.string().min(1).max(800),
-    quoteId: readerIdSchema,
-    sourceId: readerIdSchema,
-    translatedText: z.string().min(1).max(800).optional()
-  }).strict(),
-  z.object({
-    id: readerIdSchema,
     kind: z.literal("media"),
     mediaId: readerIdSchema,
     claimIds: sourceIdListSchema,
@@ -93,8 +85,16 @@ export const readerSourceSchema = z.object({
   use: z.string().min(12).max(300),
   scope: z.string().min(12).max(300),
   rightsBasis: z.enum(["link_only", "owned", "public_domain", "cc0", "cc_by", "cc_by_sa", "government_open_data", "official_embed", "commercial_license"]),
-  reviewStatus: z.literal("approved")
+  reviewStatus: z.literal("approved"),
+  linkAllowed: z.boolean(),
+  modelInputAllowed: z.boolean(),
+  mediaReuseAllowed: z.boolean()
 }).strict();
+
+export const readerMediaRightsProofSchema = z.discriminatedUnion("kind", [
+  z.object({ kind: z.literal("licence_url"), url: z.url(), note: z.string().min(12).max(300) }).strict(),
+  z.object({ kind: z.literal("documented_record"), recordId: readerIdSchema, note: z.string().min(12).max(300) }).strict()
+]);
 
 export const readerMediaSchema = z.object({
   id: readerIdSchema,
@@ -108,6 +108,7 @@ export const readerMediaSchema = z.object({
   rightsBasis: z.enum(["owned", "public_domain", "cc0", "cc_by", "cc_by_sa", "government_open_data", "official_embed", "commercial_license"]),
   reviewStatus: z.literal("approved"),
   reviewedAt: z.iso.datetime(),
+  rightsProof: readerMediaRightsProofSchema,
   limitation: z.string().min(12).max(320),
   sourceIds: sourceIdListSchema
 }).strict();
@@ -206,8 +207,6 @@ export function assertReaderReferences(story: z.infer<typeof readerStorySchemaSh
       for (const claimId of block.claimIds) {
         if (!claimIds.has(claimId)) addUnknownReferenceIssue(ctx, ["body", index, "claimIds"], "Claim", claimId);
       }
-    } else {
-      checkSources([block.sourceId], ["body", index, "sourceId"]);
     }
 
     if (block.kind === "media" && !mediaIds.has(block.mediaId)) {
