@@ -1,7 +1,20 @@
-import Link from "next/link";
-
+import { ReadingShelf } from "@/components/reading-shelf";
 import { SiteChrome } from "@/components/site-chrome";
 
+export const metadata = {
+  title: "Your shelf · Syāt",
+  description: "Questions you have saved to return to, kept on your own device."
+};
+
 export default function SavedPage() {
-  return <SiteChrome active="saved"><section className="empty-page"><p className="micro-copy">Saved</p><h1>Make room for the question you want to return to.</h1><p className="page-lede">Your shelf appears after account sync is connected. Until then, try the reading method on a teaching story.</p><Link className="primary-action" href="/en/news/street-plan-daily-realities">Read the fixture <span aria-hidden="true">↗</span></Link></section></SiteChrome>;
+  return (
+    <SiteChrome active="saved">
+      <section className="shelf-page">
+        <p className="micro-copy">Saved</p>
+        <h1>The questions you wanted to return to.</h1>
+        <p className="page-lede">Your shelf lives on this device. There are no accounts yet, so nothing here is uploaded, synced or visible to anyone else. Clearing your browser data clears it.</p>
+        <ReadingShelf />
+      </section>
+    </SiteChrome>
+  );
 }

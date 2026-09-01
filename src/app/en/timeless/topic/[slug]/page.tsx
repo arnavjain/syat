@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { SaveButton } from "@/components/save-button";
 import { SiteChrome } from "@/components/site-chrome";
 import { TopicVisual } from "@/components/topic-visual";
 import { getTopicContent } from "@/lib/timeless-content";
@@ -39,6 +40,8 @@ export default async function TimelessTopicPage({ params }: { params: Promise<{ 
           <h1>{topic.title}</h1>
           <p className="topic-opening">{content.opening}</p>
         </header>
+
+        <SaveButton entry={{ kind: "topic", slug: topic.slug, title: topic.title, context: topic.theme }} />
 
         <TopicVisual topic={topic} />
 

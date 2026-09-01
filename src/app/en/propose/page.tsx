@@ -1,3 +1,4 @@
+import { ProposalCount } from "@/components/proposal-count";
 import { SiteChrome } from "@/components/site-chrome";
 import { TopicProposalForm } from "@/components/topic-proposal-form";
 import { timelessThemes } from "@/lib/timeless-topics";
@@ -24,6 +25,7 @@ export default function ProposePage() {
             <li>No text is generated for you here. Syāt writes each question&rsquo;s standpoints by hand, which is why they take a while.</li>
           </ul>
         </section>
+        <ProposalCount />
         <TopicProposalForm themes={timelessThemes.map((theme) => theme.theme)} themeSlugs={Object.fromEntries(timelessThemes.map((theme) => [theme.theme, theme.slug]))} />
       </div>
     </SiteChrome>
