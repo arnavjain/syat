@@ -11,6 +11,7 @@
 import type * as auth from "../auth.js";
 import type * as editorial from "../editorial.js";
 import type * as http from "../http.js";
+import type * as proposals from "../proposals.js";
 
 import type {
   ApiFromModules,
@@ -22,6 +23,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   editorial: typeof editorial;
   http: typeof http;
+  proposals: typeof proposals;
 }>;
 
 /**

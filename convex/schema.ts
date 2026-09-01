@@ -459,5 +459,22 @@ export default defineSchema({
     lastError: v.optional(v.string()),
     createdAt: v.number(),
     deliveredAt: v.optional(v.number())
-  }).index("by_idempotency_key", ["idempotencyKey"])
+  }).index("by_idempotency_key", ["idempotencyKey"]),
+
+  // A question proposed by a reader. This is the one table the public can write to, so it
+  // holds only short, bounded text, always starts pending, and is never read by a public
+  // page. A proposal becomes a catalogue entry when a person writes that entry by hand.
+  topicProposals: defineTable({
+    question: v.string(),
+    reason: v.string(),
+    themeSlug: v.string(),
+    state: v.union(v.literal("pending"), v.literal("under_review"), v.literal("accepted"), v.literal("declined")),
+    // Coarse per-visitor bucket used only to slow bursts. Not an identity.
+    submitterBucket: v.string(),
+    moderationNote: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number()
+  })
+    .index("by_state_and_created_at", ["state", "createdAt"])
+    .index("by_bucket_and_created_at", ["submitterBucket", "createdAt"])
 });

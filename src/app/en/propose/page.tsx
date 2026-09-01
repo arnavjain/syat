@@ -19,12 +19,12 @@ export default function ProposePage() {
         <section className="propose-how" aria-labelledby="propose-how-title">
           <h2 id="propose-how-title">How this works</h2>
           <ul>
-            <li>Your question is kept on this device. It is not sent anywhere when you save it.</li>
-            <li>Nothing publishes automatically. A person reads a proposal before it becomes a page.</li>
+            <li>Your question goes to a review queue and is kept on this device too, so you do not lose it.</li>
+            <li>Nothing publishes automatically. A person reads every proposal before it becomes a page.</li>
             <li>No text is generated for you here. Syāt writes each question&rsquo;s standpoints by hand, which is why they take a while.</li>
           </ul>
         </section>
-        <TopicProposalForm themes={timelessThemes.map((theme) => theme.theme)} />
+        <TopicProposalForm themes={timelessThemes.map((theme) => theme.theme)} themeSlugs={Object.fromEntries(timelessThemes.map((theme) => [theme.theme, theme.slug]))} />
       </div>
     </SiteChrome>
   );
