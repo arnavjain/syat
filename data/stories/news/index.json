@@ -1,33 +1,19 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-09-04T19:21:58.389Z",
+  "generatedAt": "2026-09-04T19:57:37.781Z",
   "items": [
     {
-      "slug": "cag-126028",
-      "format": "timeline",
-      "title": "Jharkhand's rural job scheme and tap-water mission: what the audit record shows and leaves open",
-      "dek": "An audit of two public programmes in Jharkhand examines how funds moved and how work was recorded, but it does not settle what the people who depend on these schemes experienced on the ground.",
-      "theme": "Public programme implementation and record-keeping",
+      "slug": "cag-126269",
+      "format": "news_brief",
+      "title": "Haryana e-procurement audit finds bid rigging signs and missing system controls",
+      "dek": "An audit of Haryana's e-procurement system records that multiple bids came from the same computers and that key financial rules were bypassed, while the system's own records do not explain why.",
+      "theme": "e-procurement system deficiencies",
       "eventTime": {
         "kind": "unknown",
         "label": "Date not established in the supplied evidence"
       },
-      "updatedAt": "2026-09-04T19:17:01.201Z",
-      "readingMinutes": 3,
-      "featured": true
-    },
-    {
-      "slug": "cag-126002",
-      "format": "public_impact",
-      "title": "Audit finds gaps in PMAY-G record in Jharkhand, but cannot confirm who got houses",
-      "dek": "A new audit of the rural housing scheme in Jharkhand shows that the official records do not prove that the intended beneficiaries were selected or that the houses were built as claimed.",
-      "theme": "Accountability in rural housing delivery",
-      "eventTime": {
-        "kind": "unknown",
-        "label": "Date not established in the supplied evidence"
-      },
-      "updatedAt": "2026-09-04T19:20:27.843Z",
-      "readingMinutes": 3,
+      "updatedAt": "2026-09-04T19:57:37.772Z",
+      "readingMinutes": 2,
       "featured": true
     }
   ]

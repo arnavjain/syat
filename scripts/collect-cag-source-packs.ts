@@ -1,13 +1,15 @@
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-import { extractCagReportLinks, findCagJurisdiction, parseCagReport, type CagReportLink } from "../src/lib/cag-source-parser";
+import { extractCagReportLinks, extractCagReportPdfUrl, findCagJurisdiction, parseCagReport, type CagReportLink } from "../src/lib/cag-source-parser";
+import { extractAuditSummary } from "../src/lib/cag-report-text";
 import { composeContestedPack, concentrationWarnings, deduplicateContestedPacks, type CoverageSignal } from "../src/lib/contested-pack";
 import { latestNewsSignals } from "../src/lib/news-signals";
 import type { SourcePack, SourcePackSource } from "../src/lib/source-pack";
 
 const CAG_LIST_URL = "https://cag.gov.in/en/audit-report";
 const REQUEST_TIMEOUT_MS = 20_000;
+const PDF_TIMEOUT_MS = 90_000;
 const MINIMUM_START_GAP_MS = 700;
 const DEFAULT_OUTPUT = "data/source-packs/cag-candidates.json";
 const MAXIMUM_LISTING_PAGES = 32;
@@ -15,6 +17,16 @@ const MAXIMUM_LISTING_PAGES = 32;
 // One request at a time with a gap between starts. This is a small research queue, not a crawl.
 class PoliteHtmlClient {
   private lastStartedAt = 0;
+
+  async fetchBytes(url: string): Promise<Uint8Array> {
+    const waitMs = Math.max(0, this.lastStartedAt + MINIMUM_START_GAP_MS - Date.now());
+    if (waitMs > 0) await new Promise((resolveWait) => setTimeout(resolveWait, waitMs));
+    this.lastStartedAt = Date.now();
+
+    const response = await fetch(url, { headers: { Accept: "application/pdf" }, signal: AbortSignal.timeout(PDF_TIMEOUT_MS) });
+    if (!response.ok) throw new Error(`CAG report download failed with status ${response.status}.`);
+    return new Uint8Array(await response.arrayBuffer());
+  }
 
   async fetchHtml(url: string): Promise<string> {
     const waitMs = Math.max(0, this.lastStartedAt + MINIMUM_START_GAP_MS - Date.now());
@@ -76,6 +88,7 @@ async function main(): Promise<void> {
   // enough reports actually qualify rather than stopping at a link count.
   const packs: SourcePack[] = [];
   const skipped: string[] = [];
+  const summaryFallbacks: string[] = [];
   const seen = new Set<string>();
   let emptyPages = 0;
 
@@ -94,7 +107,21 @@ async function main(): Promise<void> {
       seen.add(link.id);
       try {
         const accessedAt = new Date();
-        packs.push(packFor(parseCagReport(await client.fetchHtml(link.url), link.url, accessedAt), signals, accessedAt.toISOString()));
+        const detail = await client.fetchHtml(link.url);
+        const source = parseCagReport(detail, link.url, accessedAt);
+
+        // Replace the preface with the report's own findings where the PDF can be read.
+        const pdfUrl = extractCagReportPdfUrl(detail);
+        if (pdfUrl) {
+          try {
+            const extracted = await extractAuditSummary(await client.fetchBytes(pdfUrl));
+            source.evidenceText = extracted.summary;
+          } catch (pdfError) {
+            summaryFallbacks.push(`${link.id}: ${pdfError instanceof Error ? pdfError.message : String(pdfError)}`);
+          }
+        }
+
+        packs.push(packFor(source, signals, accessedAt.toISOString()));
       } catch (error) {
         skipped.push(`${link.id}: ${error instanceof Error ? error.message : String(error)}`);
       }
@@ -117,6 +144,7 @@ async function main(): Promise<void> {
     const thin = skipped.filter((line) => /too thin/.test(line)).length;
     console.error(`Skipped ${skipped.length} report(s): ${thin} had no publishable overview on the page, ${skipped.length - thin} were missing a required field.`);
   }
+  if (summaryFallbacks.length > 0) console.error(`${summaryFallbacks.length} report(s) kept the listing preface because their PDF could not be read.`);
   for (const warning of concentrationWarnings(unique)) console.error(`Concentration warning: ${warning.message}`);
   const withCoverage = unique.filter((pack) => pack.relatedCoverage.length > 0).length;
   console.log(`Collected ${unique.length} CAG audit packs; ${withCoverage} carry credited independent coverage. Every newsroom link stays link-only and never enters model input.`);

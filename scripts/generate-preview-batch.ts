@@ -259,7 +259,7 @@ function draftInputFor(pack: SourcePack, position: number): StoryDraftV2PromptIn
     language: "en-IN",
     mode: "news",
     format: formats[position % formats.length],
-    editorialBrief: `Write an India-first private-preview story about this subject: ${pack.title.slice(0, 200)}. Aim for 550 to 700 words of body text across four to six titled sections, each with at least two paragraphs. Anything under 350 words is rejected, so do not write a summary. ${angle} Do not begin with the document's own framing, the institution's name, or the words "this report". Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.`,
+    editorialBrief: `Write an India-first private-preview story about this subject: ${pack.title.slice(0, 200)}. Aim for 420 to 520 words of body text across three or four titled sections, each with two paragraphs. Anything under 350 words is rejected, so do not write a summary, but do not exceed 560 words either. ${angle} Do not begin with the document's own framing, the institution's name, or the words "this report". Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.`,
     indiaConnection: pack.indiaConnection,
     sourceRoles: pack.sources.map((source) => ({ sourceId: source.id, role: sourceRoleFor(source.sourceKind) })),
     missingVoices: ["Independent reporting or measurement", "People directly affected by the change", "Evidence that tests the issuing institution's account"],

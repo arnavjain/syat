@@ -1,7 +1,10 @@
 import { findCloseCopySpansForRepair, type GeneratedStoryV2, type SourceDossierRecord } from "./generation-contract";
 
 function digits(text: string): string[] {
-  return (text.match(/\d[\d,.]*/g) ?? []).map((value) => value.replace(/[,.]$/, ""));
+  return (text.match(/\d[\d,.]*/g) ?? [])
+    .map((value) => value.replace(/[,.]+$/, ""))
+    .map((value) => value.replace(/,/g, ""))
+    .filter((value) => value.length > 0);
 }
 
 export type RepairTarget = { fieldId: string; sourceId: string; currentText: string; avoidWording: string; sourceText: string; figures: readonly string[] };
@@ -179,8 +182,12 @@ export function applyRepairPatch(draft: GeneratedStoryV2, patch: unknown, target
     if (before.length !== after.length || before.some((value, index) => value !== after[index])) {
       throw new Error(`Repair response changed the numbers in ${fieldId}; a rewrite may not alter or invent a figure.`);
     }
-    if (/[–—]/.test(text)) throw new Error(`Repair response introduced a decorative dash in ${fieldId}.`);
-    if (!assignField(repaired, fieldId, text)) throw new Error(`Repair response named ${fieldId}, which is not a repairable visible field.`);
+    const withoutDashes = text
+      .replace(/(\d)\s*[–—]\s*(\d)/g, "$1 to $2")
+      .replace(/\s*[–—]\s*/g, ", ")
+      .replace(/,\s*,/g, ",");
+    if (/[–—]/.test(withoutDashes)) throw new Error(`Repair response introduced a decorative dash in ${fieldId}.`);
+    if (!assignField(repaired, fieldId, withoutDashes)) throw new Error(`Repair response named ${fieldId}, which is not a repairable visible field.`);
   }
 
   // Nothing outside the flagged visible strings may move.

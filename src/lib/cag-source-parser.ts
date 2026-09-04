@@ -3,6 +3,11 @@ import type { SourcePackSource } from "./source-pack";
 
 export type CagReportLink = { id: string; url: string };
 
+/** The published report file, which carries the findings the listing page does not. */
+export function extractCagReportPdfUrl(html: string): string | undefined {
+  return /href="(https:\/\/cag\.gov\.in\/uploads\/download_audit_report\/[^"]+\.pdf)"/i.exec(html)?.[1];
+}
+
 /** Enough audit prose to support a 350-word article without padding. */
 export const MINIMUM_EVIDENCE_CHARACTERS = 1_500;
 

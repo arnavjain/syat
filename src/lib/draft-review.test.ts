@@ -112,3 +112,39 @@ describe("unsupported comparative findings", () => {
     expect(review.findings.filter((finding) => finding.code === "unsupported-finding")).toHaveLength(0);
   });
 });
+
+describe("comparative claims are judged on direction, not wording", () => {
+  function withEvidence(evidenceText: string): SourceDossierRecord[] {
+    return [{ ...dossier[0], evidenceText }];
+  }
+
+  it("accepts a direction the record reports in different words", () => {
+    // An audit saying "remained unutilised" supports a story saying spending came in lower
+    // than budget. Requiring the exact phrase rejected faithful paraphrase.
+    const draft = makeDraft();
+    draft.story.dek = "Spending came in lower than the budget provision, the audit reports.";
+    const evidence = withEvidence("Out of the total budget of the State, an amount of Rs 31,110 crore remained unutilised during the year, and savings occurred under ten grants.");
+
+    const review = reviewGeneratedDraft(draft, evidence, { indiaConnection: draft.story.indiaConnection });
+    expect(review.findings.filter((finding) => finding.code === "unsupported-finding")).toHaveLength(0);
+  });
+
+  it("treats a count as a count rather than a comparison", () => {
+    const draft = makeDraft();
+    draft.story.dek = "The same user could be nominated more than once for processing tenders.";
+    const evidence = withEvidence("The system's design allowed a nomination to be recorded without a link to the earlier record.");
+
+    const review = reviewGeneratedDraft(draft, evidence, { indiaConnection: draft.story.indiaConnection });
+    expect(review.findings.filter((finding) => finding.code === "unsupported-finding")).toHaveLength(0);
+  });
+
+  it("still blocks a direction the record never reports in any wording", () => {
+    const draft = makeDraft();
+    draft.story.dek = "The state exceeded its approved budget provision during the year.";
+    const evidence = withEvidence("This report provides an analytical review of the finances of the State based on the audited accounts. Chapter II reviews the appropriations and allocative priorities.");
+
+    const review = reviewGeneratedDraft(draft, evidence, { indiaConnection: draft.story.indiaConnection });
+    expect(review.findings.filter((finding) => finding.code === "unsupported-finding").length).toBeGreaterThan(0);
+    expect(review.status).toBe("blocked");
+  });
+});

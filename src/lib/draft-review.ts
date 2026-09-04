@@ -45,12 +45,41 @@ type ReviewContext = { indiaConnection: string };
  *
  * Bare fiscal nouns like "deficit" are deliberately excluded: they occur as neutral terms.
  */
-const comparativeFindings: readonly string[] = [
-  "exceeded", "overspent", "overspend", "underspent", "underspend",
-  "shortfall", "fell short", "short of",
-  "more than", "less than", "higher than", "lower than",
-  "increased", "decreased", "rose to", "fell to"
+type ComparativeClaim = {
+  /** How the draft might phrase the direction. */
+  claim: RegExp;
+  /** Any of these in the evidence supports that direction, however the record words it. */
+  support: RegExp;
+};
+
+/**
+ * A story may only assert a direction its evidence supports, in whatever words the record
+ * uses. "Excess" in an audit backs a story saying spending "exceeded" a limit; "unutilised"
+ * or "savings" backs one saying spending came in "lower than" budget. What is not allowed is
+ * a direction the record never reports at all.
+ *
+ * "more than once" is a count, not a comparison, so it is excluded rather than treated as a
+ * finding about a quantity.
+ */
+const comparativeClaims: readonly ComparativeClaim[] = [
+  {
+    claim: /\bexceeded\b|\boverspen[dt]\w*\b|\bover the limit\b|\b(?:more|higher) than (?!once\b|twice\b|one\b|two\b)[^.]{0,40}\b(?:limit|target|budget|provision|approved|estimate|projection)\w*\b/i,
+    support: /\bexcess\b|\bexceed\w*\b|\boverspen\w*\b|\bin excess of\b|\bbeyond the\b|\bwithout authority\b/i
+  },
+  {
+    claim: /\bshortfall\b|\bfell short\b|\bunderspen[dt]\w*\b|\b(?:less|lower) than (?!once\b|twice\b)[^.]{0,40}\b(?:limit|target|budget|provision|approved|estimate|projection)\w*\b/i,
+    support: /\bshortfall\b|\bshort of\b|\bsaving\w*\b|\bunutilised\b|\bun-?utilized\b|\bsurrender\w*\b|\bnot utilised\b|\bless than\b|\blower than\b/i
+  },
+  {
+    claim: /\bincreased\b|\brose to\b|\bgrew to\b/i,
+    support: /\bincreas\w*\b|\brose\b|\bgrew\b|\bgrowth\b|\bhigher\b|\bup from\b/i
+  },
+  {
+    claim: /\bdecreased\b|\bfell to\b|\bdeclined to\b/i,
+    support: /\bdecreas\w*\b|\bdeclin\w*\b|\bfell\b|\breduc\w*\b|\blower\b|\bdown from\b/i
+  }
 ];
+
 
 function normalise(text: string) {
   return text.toLocaleLowerCase("en-IN").normalize("NFKC").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
@@ -71,12 +100,13 @@ export function reviewGeneratedDraft(draft: GeneratedStoryV2, sourceDossier: Sou
 
   const evidence = sourceDossier.map((source) => source.evidenceText).join(" ").toLocaleLowerCase("en-IN");
   const visibleClaims = visibleClaimText(draft);
-  for (const comparison of comparativeFindings) {
-    if (visibleClaims.includes(comparison) && !evidence.includes(comparison)) {
+  for (const comparative of comparativeClaims) {
+    const claimed = comparative.claim.exec(visibleClaims);
+    if (claimed && !comparative.support.test(evidence)) {
       findings.push({
         code: "unsupported-finding",
         severity: "blocker",
-        message: `The draft states "${comparison}" as a finding, but no supplied record makes that comparison. Describe what the record covers instead of a result it does not report.`
+        message: `The draft states "${claimed[0].trim()}" as a finding, but no supplied record reports that direction in any wording. Describe what the record covers instead of a result it does not report.`
       });
     }
   }

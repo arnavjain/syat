@@ -94,7 +94,12 @@ describe("repair patch refusals", () => {
   it("refuses an empty, non-string or dash-bearing rewrite", () => {
     expect(() => applyRepairPatch(draft, { "paragraph:para-1": "   " }, targets)).toThrow(/emptied/);
     expect(() => applyRepairPatch(draft, { "paragraph:para-1": 42 }, targets)).toThrow(/non-string/);
-    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "The report says records — in the blocks it checked — fell short of the required method." }, targets)).toThrow(/decorative dash/);
+    // A dash is a typographic habit, not a meaning. Losing a usable rewrite over one would be
+    // worse than normalising it, so it is normalised and the stored text carries none.
+    const normalised = applyRepairPatch(draft, { "paragraph:para-1": "The report says records — in the blocks it checked — fell short of the required method." }, targets);
+    const storedText = normalised.bodySections[0].paragraphs[0].text;
+    expect(storedText).not.toMatch(/[–—]/);
+    expect(storedText).toContain("records, in the blocks it checked, fell short");
   });
 
   it("refuses a response that is not an object of rewrites", () => {
@@ -147,5 +152,40 @@ describe("repair privacy", () => {
     expect(findings).toHaveLength(1);
     expect(Object.keys(findings[0]).sort()).toEqual(["fieldId", "matchHash", "sourceId", "tokenCount"]);
     expect(JSON.stringify(findings)).not.toContain("prescribed manner");
+  });
+});
+
+describe("dash normalisation", () => {
+  it("reads a dash between figures as a range rather than a comma", () => {
+    const draft = makeCopyingDraft();
+    draft.bodySections[0].paragraphs[0].text = "The report states that muster rolls were not maintained in the prescribed manner in 12 of 48 panchayats.";
+    const targets = collectRepairTargets(draft, dossier);
+    const repaired = applyRepairPatch(draft, { "paragraph:para-1": "Between 12 — 48 panchayats the registers fell short of the required method." }, targets);
+
+    expect(repaired.bodySections[0].paragraphs[0].text).toContain("12 to 48");
+    expect(repaired.bodySections[0].paragraphs[0].text).not.toMatch(/[–—]/);
+  });
+});
+
+describe("figure comparison", () => {
+  function withFigure(text: string) {
+    const draft = makeCopyingDraft();
+    draft.bodySections[0].paragraphs[0].text = text;
+    return { draft, targets: collectRepairTargets(draft, dossier) };
+  }
+
+  it("accepts a rewrite that regroups an Indian figure without changing its value", () => {
+    // The same amount is written 1,50,938.84 or 150,938.84. Rejecting a rewrite for
+    // regrouping a number lost honest drafts over punctuation.
+    const original = "The report states that muster rolls were not maintained in the prescribed manner across a budget of Rs 1,50,938.84 crore.";
+    const { draft, targets } = withFigure(original);
+
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method across a budget of Rs 150,938.84 crore." }, targets)).not.toThrow();
+  });
+
+  it("still rejects a rewrite that changes a value", () => {
+    const { draft, targets } = withFigure("The report states that muster rolls were not maintained in the prescribed manner in 46 cases.");
+
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method in 47 cases." }, targets)).toThrow(/changed the numbers/);
   });
 });

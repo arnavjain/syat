@@ -1,0 +1,442 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126269",
+  "slug": "cag-126269",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "news_brief",
+  "title": "Haryana e-procurement audit finds bid rigging signs and missing system controls",
+  "dek": "An audit of Haryana's e-procurement system records that multiple bids came from the same computers and that key financial rules were bypassed, while the system's own records do not explain why.",
+  "theme": "e-procurement system deficiencies",
+  "indiaConnection": "This audit examines how a public programme in Haryana was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-126269"
+    ]
+  },
+  "collectedAt": "2026-09-04T19:46:31.422Z",
+  "generatedAt": "2026-09-04T19:57:37.772Z",
+  "updatedAt": "2026-09-04T19:57:37.772Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "The e-procurement system in Haryana was set up without a signed agreement with the National Informatics Centre, and the Project Monitoring Unit did not work effectively. Because of this, some activities were done offline or not at all, which went against the purpose of the system. The audit record states that these gaps were found in the implementation phase.",
+      "section": {
+        "id": "section-1",
+        "title": "System roll-out gaps"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The system also lacked important functions and modules, and users were not trained enough. The audit says that these problems meant the system did not work as intended. The record does not say whether these issues were fixed later or how they affected specific purchases.",
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The tendering process had several problems, according to the audit. There were cases where bids were not publicised enough, bidders were given too little time, and the tender-cum-auction feature was not used. Also, re-invited tenders were not linked to the original ones, and some users were nominated more than once for the same tender.",
+      "section": {
+        "id": "section-2",
+        "title": "Tendering process flaws"
+      },
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The system design was weak because business rules were not set for things like extending time, how long bids should stay open, and how to handle grievances. The audit also found that the system did not stop irregular practices such as extending tenders for very short periods, decrypting bids on different dates, and opening bids out of order. These issues are listed together in the audit, but the record does not say that one caused the other.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit says it saw instances that suggest collusive bidding and bid rigging. Multiple bids were submitted from the same IP address or from the same procuring entity computers within a short time. This could mean manipulation or a lack of system control, but the audit does not say which one it is.",
+      "section": {
+        "id": "section-3",
+        "title": "Signs of collusion"
+      },
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "These findings are based on the audit's own examination of the system records. The audit does not name any specific bidders or say whether any action was taken. It only points out that the system allowed such patterns to appear.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "The audit also found problems with data integrity and management information. Tender stages were not updated, evaluation summaries were not uploaded, and there were issues with user data and profiles. Award values and tender statuses were sometimes inconsistent on the portal.",
+      "section": {
+        "id": "section-4",
+        "title": "Data and money problems"
+      },
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "Financial rules were not followed in some cases. Fees and earnest money deposits were not transferred or adjusted properly, some refunds were wrong or not made, and GST was sometimes not charged or not sent to the government. The audit does not say how much money was involved or who was responsible.",
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The e-procurement system in Haryana was implemented without a signed agreement with NIC, and the Project Monitoring Unit did not function effectively.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report covers the implementation of the e-procurement system in Haryana, including the period and sample it names.",
+      "type": "documented",
+      "limits": "The report does not say whether the agreement was later signed or what the PMU's specific failures were."
+    },
+    {
+      "id": "claim-2",
+      "text": "Some activities were performed offline or not at all, which defeated the objectives of e-procurement.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report describes the activities that were not performed or were done offline during the implementation.",
+      "type": "documented",
+      "limits": "The report does not identify which activities were affected or how often this happened."
+    },
+    {
+      "id": "claim-3",
+      "text": "The tendering process had issues like inadequate bid publicity, insufficient time for bid submission, and non-use of the tender-cum-auction feature.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report examines the tendering process in the e-procurement system.",
+      "type": "documented",
+      "limits": "The report does not say how many tenders were affected or the value of those tenders."
+    },
+    {
+      "id": "claim-4",
+      "text": "The system design was weak because business rules were not mapped for time extensions, bid open duration, grievance redressal, and corrigenda.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report assesses the system design and its business rules.",
+      "type": "documented",
+      "limits": "The report does not provide examples of how these missing rules affected specific tenders."
+    },
+    {
+      "id": "claim-5",
+      "text": "Multiple bids from the same IP address or computers within a short time suggest possible collusive bidding or lack of system control.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit report observed these patterns in the system records.",
+      "type": "interpreted",
+      "limits": "The report does not prove that collusion actually occurred; it only suggests the possibility."
+    },
+    {
+      "id": "claim-6",
+      "text": "Data integrity and MIS deficiencies included non-updation of tender stages, missing evaluation summaries, and inconsistent award values.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report reviews the data integrity and MIS of the e-procurement portal.",
+      "type": "documented",
+      "limits": "The report does not say how these inconsistencies affected procurement outcomes."
+    },
+    {
+      "id": "claim-7",
+      "text": "Financial rule violations included improper transfer or adjustment of fees and EMD, erroneous refunds, and GST not being charged or remitted.",
+      "sourceIds": [
+        "cag-126269"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report examines financial transactions related to fees, EMD, and GST.",
+      "type": "documented",
+      "limits": "The report does not quantify the total amount of money involved or name the entities responsible."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The e-procurement system was implemented without a signed agreement with NIC, and the Project Monitoring Unit was not effective.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The tendering process showed problems like poor bid publicity, short submission times, and weak system design.",
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Multiple bids were submitted from the same IP addresses or computers, suggesting possible collusion.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "timeline-4",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Data integrity issues and financial rule violations were observed, including problems with fees, EMD, and GST.",
+      "claimIds": [
+        "claim-6",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor",
+      "rationale": "The audit is the source of the findings and provides the official record.",
+      "sees": "The audit sees the system's deficiencies and irregularities in the records.",
+      "values": "It values compliance with rules and system integrity.",
+      "uses": "It uses the system's own data to identify gaps.",
+      "mayMiss": "It may miss the experiences of users and bidders.",
+      "sourceIds": [
+        "cag-126269"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "Conducted the audit of Haryana's e-procurement system.",
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "National Informatics Centre",
+      "association": "Mentioned as the agency with which the agreement was not executed.",
+      "sourceIds": [
+        "cag-126269"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What was the total financial impact of the fee, EMD, and GST irregularities?",
+      "whatWouldHelp": "Independent financial analysis or follow-up audit with quantified amounts.",
+      "sourceIds": [
+        "cag-126269"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "Were the system deficiencies corrected after the audit?",
+      "whatWouldHelp": "Evidence of corrective actions taken by the Haryana government.",
+      "sourceIds": [
+        "cag-126269"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "evidence-threshold",
+    "question": "What can an audit record actually prove about a public system's failures?",
+    "connection": "This audit shows how an official record can document problems but leave key questions about responsibility and impact unanswered."
+  },
+  "sources": [
+    {
+      "id": "cag-126269",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India Information System Audits (Government of Haryana Report No. 3 of 2026) · Sector: IT Audit · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126269",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-09-01T00:00:00.000Z",
+      "accessedAt": "2026-09-04T19:46:31.422Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7.",
+      "scope": "The audit report covers the implementation of the e-procurement system in Haryana, including the period and sample it names.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126269-timeline",
+      "kind": "chart",
+      "label": "Sequence of e-procurement system issues in Haryana",
+      "alt": "Sequence of e-procurement system issues in Haryana. A timeline showing the order of events as recorded in the audit: implementation gaps, tendering problems, signs of collusion, and financial irregularities. Each step is linked to the audit's findings.",
+      "caption": "A timeline showing the order of events as recorded in the audit: implementation gaps, tendering problems, signs of collusion, and financial irregularities. Each step is linked to the audit's findings.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126269-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T19:57:37.766Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126269-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline is based only on the audit report and does not include dates or external verification.",
+      "claimIds": [
+        "claim-1",
+        "claim-3",
+        "claim-5",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126269"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126269-timeline",
+    "kind": "timeline",
+    "title": "Sequence of e-procurement system issues in Haryana",
+    "description": "A timeline showing the order of events as recorded in the audit: implementation gaps, tendering problems, signs of collusion, and financial irregularities. Each step is linked to the audit's findings.",
+    "limitation": "The timeline is based only on the audit report and does not include dates or external verification.",
+    "claimIds": [
+      "claim-1",
+      "claim-3",
+      "claim-5",
+      "claim-7"
+    ],
+    "sourceIds": [
+      "cag-126269"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-dodedl",
+      "publisher": "The Indian Express",
+      "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+      "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+      "publishedAt": "2026-08-31T16:37:09.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that the e-procurement system in Haryana was implemented with gaps that allowed irregular practices, but it does not establish who was responsible or what the full impact was."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.5",
+    "inputHash": "f7db71f8325136257c516495d00e52591d7d420ec9b0ddb2517602ae3a8a76c7",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T19:57:37.772Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "33 per cent of sentences are passive, which hides who acted."
+    ],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}
