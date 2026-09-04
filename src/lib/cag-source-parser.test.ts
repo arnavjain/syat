@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
-import { extractCagReportLinks, findCagJurisdiction, parseCagDate, parseCagReport } from "./cag-source-parser";
+import { extractCagReportLinks, findCagJurisdiction, hasUsableEvidence, parseCagDate, parseCagReport } from "./cag-source-parser";
 import { sourcePackSourceSchema } from "./source-pack";
 
 const detail = readFileSync(new URL("./__fixtures__/cag-report-detail.html", import.meta.url), "utf8");
@@ -56,7 +56,9 @@ describe("CAG report parser", () => {
     expect(() => parseCagReport(detail, "https://cag.gov.in/en/audit-report/details/", accessedAt)).toThrow(/report id/i);
     expect(() => parseCagReport(detail.replace(/singTitle/g, "otherTitle"), url, accessedAt)).toThrow(/title is missing/i);
     expect(() => parseCagReport(detail.replace(/Date on which Report Tabled/g, "Some other label"), url, accessedAt)).toThrow(/tabling date is missing/i);
-    expect(() => parseCagReport(detail.replace(/<h4[^>]*>\s*Overview\s*<\/h4>/i, "<h4>Nothing</h4>"), url, accessedAt)).toThrow(/missing|too thin/i);
+    // A thin overview is no longer fatal here; hasUsableEvidence is what gates a report.
+    expect(hasUsableEvidence(parseCagReport(detail.replace(/<h4[^>]*>\s*Overview\s*<\/h4>/i, "<h4>Nothing</h4>"), url, accessedAt).evidenceText)).toBe(false);
+    expect(hasUsableEvidence(parseCagReport(detail, url, accessedAt).evidenceText)).toBe(true);
   });
 
   it("reads CAG's own date format and rejects anything else", () => {

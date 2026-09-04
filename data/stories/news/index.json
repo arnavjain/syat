@@ -1,6 +1,6 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-09-04T20:10:36.674Z",
+  "generatedAt": "2026-09-04T20:32:17.961Z",
   "items": [
     {
       "slug": "cag-126269",
@@ -41,6 +41,34 @@
         "label": "Date not established in the supplied evidence"
       },
       "updatedAt": "2026-09-04T20:10:36.665Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-126059",
+      "format": "timeline",
+      "title": "Green India Mission funding shortfall leaves afforestation targets unmet",
+      "dek": "The national audit finds that the Green India Mission received less than half of its planned budget over ten years, and the record does not show how the gap affected the people who depend on forests.",
+      "theme": "Funding shortfall in a national afforestation programme",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-04T20:22:15.315Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-125712",
+      "format": "source_map",
+      "title": "Veterinary care in West Bengal faces shortages that the state's own audit record now documents",
+      "dek": "An audit of 12 West Bengal departments finds animal health centres without essential equipment, medicines, and waste disposal, leaving farmers and livestock owners without assured treatment.",
+      "theme": "Public veterinary infrastructure under strain",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-04T20:32:17.953Z",
       "readingMinutes": 2,
       "featured": true
     }

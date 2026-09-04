@@ -1,9 +1,17 @@
 import { findCloseCopySpansForRepair, type GeneratedStoryV2, type SourceDossierRecord } from "./generation-contract";
 
 function digits(text: string): string[] {
-  return (text.match(/\d[\d,.]*/g) ?? [])
+  const withFullYears = text
+    .replace(/\b(\d{2})(\d{2})\s*[-–/]\s*(\d{2})\b/g, (_match, century: string, year: string, next: string) => `${century}${year}-${century}${next}`)
+    .replace(/\bFY\s*(\d{2})\b/gi, (_match, year: string) => `20${year}`);
+
+  return (withFullYears.match(/\d[\d,.]*(?:\s*-\s*\d[\d,.]*)?/g) ?? [])
+    .map((value) => value.replace(/\s+/g, ""))
     .map((value) => value.replace(/[,.]+$/, ""))
     .map((value) => value.replace(/,/g, ""))
+    // A bare two-digit year and its four-digit form are the same fact.
+    .map((value) => (/^\d{2}$/.test(value) && Number(value) <= 99 ? `20${value}` : value))
+    .flatMap((value) => (value.includes("-") ? value.split("-") : [value]))
     .filter((value) => value.length > 0);
 }
 
@@ -180,7 +188,10 @@ export function applyRepairPatch(draft: GeneratedStoryV2, patch: unknown, target
     const before = digits(target.currentText).sort();
     const after = digits(text).sort();
     if (before.length !== after.length || before.some((value, index) => value !== after[index])) {
-      throw new Error(`Repair response changed the numbers in ${fieldId}; a rewrite may not alter or invent a figure.`);
+      const dropped = before.filter((value) => !after.includes(value));
+      const added = after.filter((value) => !before.includes(value));
+      const detail = [dropped.length > 0 ? `dropped ${dropped.join(", ")}` : "", added.length > 0 ? `added ${added.join(", ")}` : ""].filter(Boolean).join("; ");
+      throw new Error(`Repair response changed the numbers in ${fieldId} (${detail || "reordered"}); a rewrite may not alter or invent a figure.`);
     }
     const withoutDashes = text
       .replace(/(\d)\s*[–—]\s*(\d)/g, "$1 to $2")

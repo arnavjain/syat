@@ -189,3 +189,31 @@ describe("figure comparison", () => {
     expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method in 47 cases." }, targets)).toThrow(/changed the numbers/);
   });
 });
+
+describe("fiscal year forms", () => {
+  function withText(text: string) {
+    const draft = makeCopyingDraft();
+    draft.bodySections[0].paragraphs[0].text = text;
+    return { draft, targets: collectRepairTargets(draft, dossier) };
+  }
+
+  it("treats a two-digit year and its four-digit form as the same fact", () => {
+    // Indian fiscal years are written 2023-24, and splitting that on the hyphen made a rewrite
+    // spelling the year out look like it had changed a figure.
+    const { draft, targets } = withText("The report states that muster rolls were not maintained in the prescribed manner during 24 across the district.");
+
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method during 2024 across the district." }, targets)).not.toThrow();
+  });
+
+  it("accepts a range written as its endpoints", () => {
+    const { draft, targets } = withText("The report states that muster rolls were not maintained in the prescribed manner from 2016-24 onward.");
+
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method between 2016 and 2024." }, targets)).not.toThrow();
+  });
+
+  it("still rejects a changed amount", () => {
+    const { draft, targets } = withText("The report states that muster rolls were not maintained in the prescribed manner, leaving Rs 321 crore in arrears.");
+
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method, leaving Rs 322 crore in arrears." }, targets)).toThrow(/changed the numbers/);
+  });
+});

@@ -1,7 +1,7 @@
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-import { extractCagReportLinks, extractCagReportPdfUrl, findCagJurisdiction, parseCagReport, type CagReportLink } from "../src/lib/cag-source-parser";
+import { extractCagReportLinks, extractCagReportPdfUrl, findCagJurisdiction, hasUsableEvidence, parseCagReport, type CagReportLink } from "../src/lib/cag-source-parser";
 import { extractAuditSummary } from "../src/lib/cag-report-text";
 import { composeContestedPack, concentrationWarnings, deduplicateContestedPacks, type CoverageSignal } from "../src/lib/contested-pack";
 import { latestNewsSignals } from "../src/lib/news-signals";
@@ -110,7 +110,7 @@ async function main(): Promise<void> {
         const detail = await client.fetchHtml(link.url);
         const source = parseCagReport(detail, link.url, accessedAt);
 
-        // Replace the preface with the report's own findings where the PDF can be read.
+        // The report's own findings, which the listing page does not carry.
         const pdfUrl = extractCagReportPdfUrl(detail);
         if (pdfUrl) {
           try {
@@ -119,6 +119,9 @@ async function main(): Promise<void> {
           } catch (pdfError) {
             summaryFallbacks.push(`${link.id}: ${pdfError instanceof Error ? pdfError.message : String(pdfError)}`);
           }
+        }
+        if (!hasUsableEvidence(source.evidenceText)) {
+          throw new Error(`no readable findings: the report PDF could not be read and the listing overview is ${source.evidenceText.trim().length} characters.`);
         }
 
         packs.push(packFor(source, signals, accessedAt.toISOString()));
@@ -141,7 +144,7 @@ async function main(): Promise<void> {
   await rename(temporary, outputPath);
 
   if (skipped.length > 0) {
-    const thin = skipped.filter((line) => /too thin/.test(line)).length;
+    const thin = skipped.filter((line) => /too thin|no readable findings/.test(line)).length;
     console.error(`Skipped ${skipped.length} report(s): ${thin} had no publishable overview on the page, ${skipped.length - thin} were missing a required field.`);
   }
   if (summaryFallbacks.length > 0) console.error(`${summaryFallbacks.length} report(s) kept the listing preface because their PDF could not be read.`);

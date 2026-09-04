@@ -1,0 +1,427 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126059",
+  "slug": "cag-126059",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "timeline",
+  "title": "Green India Mission funding shortfall leaves afforestation targets unmet",
+  "dek": "The national audit finds that the Green India Mission received less than half of its planned budget over ten years, and the record does not show how the gap affected the people who depend on forests.",
+  "theme": "Funding shortfall in a national afforestation programme",
+  "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3"
+    ],
+    "sourceIds": [
+      "cag-126059"
+    ]
+  },
+  "collectedAt": "2026-09-04T20:19:33.184Z",
+  "generatedAt": "2026-09-04T20:22:15.315Z",
+  "updatedAt": "2026-09-04T20:22:15.315Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Forests in India support the livelihoods of millions of people, from fuelwood and fodder to non-timber products. The Green India Mission was designed to protect and restore this cover, but the audit record shows that the money actually provided was far less than what was planned. The people who rely on these forests are the ones who feel the difference, yet the audit does not say how they were affected.",
+      "section": {
+        "id": "section-1",
+        "title": "Who depends on the mission"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The mission aimed to improve ecosystem services and contribute to climate goals, but the record does not connect the funding shortfall to any specific change on the ground. It only shows that the planned amount was not released. The audit does not include the voices of the people who depend on the forests, so their experience remains outside the record.",
+      "claimIds": [
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The audit examined the mission across 16 states and union territories from 2015-16 to 2024-25. It found that only 1,149.14 crore rupees was provided, which is 47.88 per cent of the planned 13,000 crore rupees. The rest was to come from convergence with other schemes, but that convergence did not happen.",
+      "section": {
+        "id": "section-2",
+        "title": "What the audit shows"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The mission document of 2011 had set a target of 10 million hectares over ten years, but the Cabinet approval in 2014 narrowed it to 2.8 million hectares over four years. The audit does not say whether the reduced target was met, only that the funding was short. The record does not connect the funding gap to the output.",
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit notes that the country's forest and tree cover increased from 24.62 per cent to 25.17 per cent between 2021 and 2023, but it does not say that the mission caused that increase. It only says that the mission could not deliver commensurate output. The record does not establish a cause-and-effect link.",
+      "section": {
+        "id": "section-3",
+        "title": "The gap in the record"
+      },
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit is based on the ministry's own records, and it does not include independent measurement or the views of people affected. So the record can show the funding shortfall, but it cannot show what that meant for the forests or the people. That evidence is missing.",
+      "claimIds": [
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "In February 2014, the Cabinet Committee on Economic Affairs gave the go-ahead to the Green India Mission as a centrally sponsored scheme, aiming to treat 2.8 million hectares over a four-year span, with an estimated budget of 13,000 crore rupees.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report records the Cabinet approval and the scheme's parameters.",
+      "type": "documented",
+      "limits": "The report does not state whether the 2.8 million hectare target was achieved."
+    },
+    {
+      "id": "claim-2",
+      "text": "Only 1,149.14 crore rupees was provided for the mission during the ten years from 2015-16 to 2024-25, which is 47.88 per cent of the planned 13,000 crore rupees.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report provides the total funds released and the percentage of the planned amount.",
+      "type": "documented",
+      "limits": "The report does not explain why the funding was short or how the shortfall affected the mission's activities."
+    },
+    {
+      "id": "claim-3",
+      "text": "The funding shortfall likely affected the mission's ability to meet its objectives, but the audit record does not establish a direct link between the money gap and the outcomes.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit report notes the shortfall and the mission's inability to deliver commensurate output.",
+      "type": "interpreted",
+      "limits": "The report does not provide evidence of how the shortfall affected the people who depend on forests."
+    },
+    {
+      "id": "claim-4",
+      "text": "The audit looked into how the mission was carried out in 16 chosen states and union territories, covering the timeframe from 2015-16 through 2024-25.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report specifies the sample and the period covered.",
+      "type": "documented",
+      "limits": "The report does not cover the entire country or the period before 2015-16."
+    },
+    {
+      "id": "claim-5",
+      "text": "The 2011 mission document set a target of boosting and bettering forest cover across 10 million hectares, with a ten-year timeline and an overall expense of 46,000 crore rupees.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report quotes the 2011 mission document's targets.",
+      "type": "documented",
+      "limits": "The report does not state whether the 10 million hectare target was met."
+    },
+    {
+      "id": "claim-6",
+      "text": "The planned funding of 10,600 crore rupees from convergence with other schemes was not achieved, and all activities were financed through the ministry's annual budget.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report describes the convergence failure and the funding source.",
+      "type": "documented",
+      "limits": "The report does not detail the reasons for the convergence failure."
+    },
+    {
+      "id": "claim-7",
+      "text": "Although the nation's forest and tree cover went up slightly from 24.62 percent in 2021 to 25.17 percent in 2023, the mission fell short of delivering results that matched its scale.",
+      "sourceIds": [
+        "cag-126059"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report compares forest cover data from ISFR 2021 and ISFR 2023.",
+      "type": "documented",
+      "limits": "The report does not establish that the mission caused the increase or the lack of output."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The mission document of 2011 set a target of 10 million hectares over ten years at a cost of 46,000 crore rupees.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The Cabinet gave its approval to the mission in February 2014, designating it as a centrally sponsored scheme, with the goal of covering 2.8 million hectares within four years and a projected expense of 13,000 crore rupees.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit period runs from 2015-16 to 2024-25, covering 16 states and union territories.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "timeline-4",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Over the ten years, only 1,149.14 crore rupees was provided, which is 47.88 per cent of the planned amount.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor's perspective",
+      "rationale": "The audit is an independent examination of the ministry's records and is the only source in the dossier.",
+      "sees": "The audit sees the funding shortfall and the mission's inability to deliver output.",
+      "values": "The audit values accountability and the proper use of public funds.",
+      "uses": "The audit uses the ministry's records to compare planned and actual funding.",
+      "mayMiss": "The audit may miss the on-ground experience of people who depend on forests.",
+      "sourceIds": [
+        "cag-126059"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit body that produced the report on the Green India Mission.",
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Ministry of Environment, Forest and Climate Change",
+      "association": "The ministry that administers the Green India Mission.",
+      "sourceIds": [
+        "cag-126059"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What was the actual impact of the funding shortfall on the people who depend on the forests?",
+      "whatWouldHelp": "Independent reporting or measurement from the affected communities.",
+      "sourceIds": [
+        "cag-126059"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "Did the mission meet its target of 2.8 million hectares?",
+      "whatWouldHelp": "Evidence that tests the ministry's account, such as independent satellite data.",
+      "sourceIds": [
+        "cag-126059"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "forgotten-work",
+    "question": "How does a national programme's funding shortfall affect the people who depend on the service it is meant to provide?",
+    "connection": "The Green India Mission was meant to protect forests that many communities rely on, but the audit record shows a large gap between the planned and actual funding, leaving the impact on those communities unexamined."
+  },
+  "sources": [
+    {
+      "id": "cag-126059",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India on Green India Mission Report No. 4 of 2026 (Performance Audit - Civil) · Sector: - · Government: Union",
+      "url": "https://cag.gov.in/en/audit-report/details/126059",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-04T20:19:33.184Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7.",
+      "scope": "The audit report records the Cabinet approval and the scheme's parameters.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126059-timeline",
+      "kind": "chart",
+      "label": "Green India Mission: Planned vs actual funding",
+      "alt": "Green India Mission: Planned vs actual funding. A timeline showing the key milestones of the mission from the 2011 document to the audit period, with a bar indicating the planned 13,000 crore rupees and the actual 1,149.14 crore rupees.",
+      "caption": "A timeline showing the key milestones of the mission from the 2011 document to the audit period, with a bar indicating the planned 13,000 crore rupees and the actual 1,149.14 crore rupees.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126059-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T20:22:15.308Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126059-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The visual is based only on the audit report and does not include independent data.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126059"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126059-timeline",
+    "kind": "timeline",
+    "title": "Green India Mission: Planned vs actual funding",
+    "description": "A timeline showing the key milestones of the mission from the 2011 document to the audit period, with a bar indicating the planned 13,000 crore rupees and the actual 1,149.14 crore rupees.",
+    "limitation": "The visual is based only on the audit report and does not include independent data.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-5"
+    ],
+    "sourceIds": [
+      "cag-126059"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-1tau956",
+      "publisher": "The Hindu",
+      "title": "Gaganyaan Episode 1: Why India’s Human Spaceflight Mission Matters | The Scope",
+      "url": "https://www.thehindu.com/videos/gaganyaan-episode-1-why-indias-human-spaceflight-mission-matters-the-scope/article71318202.ece",
+      "publishedAt": "2026-08-31T11:43:44.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1y9y510",
+      "publisher": "The Indian Express",
+      "title": "Key suspect in Karnataka civil service jobs scam arrested at Delhi airport",
+      "url": "https://indianexpress.com/article/cities/bangalore/kpsc-veterinarian-recruitment-scam-middleman-arrested-delhi-airport-uzbekistan-10857682/",
+      "publishedAt": "2026-08-31T17:14:04.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows a large gap between the planned and actual funding for the Green India Mission, but it does not establish what that gap meant for the people who depend on the forests."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.15",
+    "inputHash": "67cb935fa41bc9bb7847e90546df01a2976338a00047bc7ecba2bd459b908559",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T20:22:15.315Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 5,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

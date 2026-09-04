@@ -1,0 +1,430 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-125712",
+  "slug": "cag-125712",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "source_map",
+  "title": "Veterinary care in West Bengal faces shortages that the state's own audit record now documents",
+  "dek": "An audit of 12 West Bengal departments finds animal health centres without essential equipment, medicines, and waste disposal, leaving farmers and livestock owners without assured treatment.",
+  "theme": "Public veterinary infrastructure under strain",
+  "indiaConnection": "This audit examines how a public programme in West Bengal was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-125712"
+    ]
+  },
+  "collectedAt": "2026-09-04T20:21:03.435Z",
+  "generatedAt": "2026-09-04T20:32:17.953Z",
+  "updatedAt": "2026-09-04T20:32:17.953Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Farmers and livestock owners in West Bengal rely on a network of veterinary hospitals, polyclinics, and block-level animal health centres for treatment of their animals. The state's Animal Resource Development Department runs these facilities, but the audit record shows that many of them are not equipped to provide adequate care. The record does not name the people who use these centres, nor does it describe their experiences, so the human cost of the shortages remains outside the audit's scope.",
+      "section": {
+        "id": "who-depends",
+        "title": "Who depends on the animal health centres"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit examined 12 government departments, including the Animal Resource Development Department, for the year ended 31 March 2024. It found that the department has no strategic plan or vision document for maintaining its veterinary infrastructure. Without such a plan, the audit used guidelines from other states and the Government of India as criteria. The record does not say whether the department agrees with this approach or what its own planning documents contain.",
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The audit noted that veterinary hospitals did not have separate rooms for examining large and small animals, nor did they have facilities for keeping animals overnight or backup power for operations. High-end tools like digital radiography systems, large-animal anesthesia machines, and centralized oxygen delivery were either missing, broken, or never replaced. Among the block-level animal health centers checked, 46 percent of surgical tools were found unusable. These issues are listed together in the audit, but no cause for the equipment failures is given.",
+      "section": {
+        "id": "what-record-shows",
+        "title": "What the audit record shows"
+      },
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "Every polyclinic, state animal health centre, block animal health centre, and additional block animal health centre that was examined did not receive enough medicines to provide proper care. The audit says that because medicines and vaccines were in short supply, animals could not be given adequate treatment. The report does not mention which specific medicines were lacking or the duration of the shortage, nor does it give figures on how many animals were affected.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit also found that no standard operating procedures had been created by the department for handling epidemics or disease outbreaks. Most facilities were missing the basic tools and supplies needed to investigate outbreaks quickly. The report does not describe any particular outbreak or its impact, so the connection between the missing procedures and actual disease events is not shown.",
+      "section": {
+        "id": "gaps-and-limits",
+        "title": "Gaps in the record"
+      },
+      "claimIds": [
+        "claim-9"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "Proper disposal of bio-medical waste is another issue. The audit found that there were no separate bins for different kinds of bio-medical waste, and equipment such as incinerators and autoclaves was not available. Out of the eight state animal health centres examined, five had no bio-waste disposal equipment at all. The report does not indicate where the waste ends up or what danger it poses to public health, leaving that matter unresolved.",
+      "claimIds": [
+        "claim-10"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The audit covers 12 government departments in West Bengal for the year ended 31 March 2024.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's executive summary lists the departments covered.",
+      "type": "documented",
+      "limits": "The report does not name the 12 departments or explain why these were selected."
+    },
+    {
+      "id": "claim-2",
+      "text": "The Animal Resource Development Department has no strategic plan or vision document for maintaining its veterinary infrastructure.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's findings on the ARDD's planning documents.",
+      "type": "documented",
+      "limits": "The report does not say whether the department has any informal plans or what its budget allocation is."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit used guidelines from other states and the Government of India as criteria due to the absence of state-level plans.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's methodology section for the ARDD.",
+      "type": "documented",
+      "limits": "The report does not specify which other states' guidelines were used or how they were adapted."
+    },
+    {
+      "id": "claim-4",
+      "text": "Veterinary hospitals did not have separate examination rooms, overnight care areas, or backup power for surgeries.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's findings on veterinary hospital infrastructure.",
+      "type": "documented",
+      "limits": "The report does not state how many hospitals were checked or the geographic spread."
+    },
+    {
+      "id": "claim-5",
+      "text": "Essential high-end equipment like radiographic digital systems, anaesthesia systems, and centralised oxygen supply were absent or non-functional.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's list of equipment deficiencies.",
+      "type": "documented",
+      "limits": "The report does not say when the equipment broke down or whether repairs were attempted."
+    },
+    {
+      "id": "claim-6",
+      "text": "In the block animal health centres that were checked, 46 percent of surgical tools were unusable.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's sample of block animal health centres.",
+      "type": "documented",
+      "limits": "The report does not define 'unserviceable' or say how many instruments were tested."
+    },
+    {
+      "id": "claim-7",
+      "text": "All the polyclinics and animal health centres at state, block, and additional block levels that were checked lacked enough medicines.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's check of medicine availability across facility types.",
+      "type": "documented",
+      "limits": "The report does not list the specific medicines that were short or the duration of the shortage."
+    },
+    {
+      "id": "claim-8",
+      "text": "Because medicines and vaccines were insufficient, animals could not receive proper treatment.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's conclusion on the impact of medicine shortages.",
+      "type": "documented",
+      "limits": "The report does not provide evidence of animals that went untreated or the health outcomes."
+    },
+    {
+      "id": "claim-9",
+      "text": "The department has not framed standard operating procedures to manage epidemics or outbreaks.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's review of outbreak preparedness.",
+      "type": "documented",
+      "limits": "The report does not describe any past outbreak or how the lack of SOPs affected response."
+    },
+    {
+      "id": "claim-10",
+      "text": "Five of eight test-checked state animal health centres had no bio-waste disposal equipment like incinerators or microwaves.",
+      "sourceIds": [
+        "cag-125712"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit's check of bio-medical waste management in SAHCs.",
+      "type": "documented",
+      "limits": "The report does not say where the bio-medical waste is currently disposed or the potential health risks."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit covers the year ended 31 March 2024, but the specific dates of the inspections are not given.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Audit perspective",
+      "rationale": "The audit is the only source in the dossier and provides the documented findings.",
+      "sees": "The audit sees the infrastructure and supply gaps in the animal health centres.",
+      "values": "It values compliance with standards and the availability of essential equipment and medicines.",
+      "uses": "It uses the department's own records and physical inspections to form its findings.",
+      "mayMiss": "It may miss the experiences of farmers and animals, and the reasons behind the shortages.",
+      "sourceIds": [
+        "cag-125712"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Animal Resource Development Department, West Bengal",
+      "association": "The department responsible for the veterinary infrastructure audited.",
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The independent audit institution that produced the report.",
+      "sourceIds": [
+        "cag-125712"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What are the specific reasons for the equipment failures and medicine shortages?",
+      "whatWouldHelp": "Maintenance logs, procurement records, and interviews with department staff.",
+      "sourceIds": [
+        "cag-125712"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "How do the shortages affect the health and livelihoods of animals and their owners?",
+      "whatWouldHelp": "Field surveys and case studies from affected communities.",
+      "sourceIds": [
+        "cag-125712"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "public-health",
+    "question": "How does the condition of public veterinary infrastructure affect the people who depend on it?",
+    "connection": "The audit record shows the state of animal health centres, but it does not capture the daily struggles of farmers who need these services."
+  },
+  "sources": [
+    {
+      "id": "cag-125712",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report No. 01 of 2026- Compliance Audit Report of Government of West Bengal for the year ended on 31 March 2024. · Sector: Environment and Sustainable Development,Finance,Agriculture and Rural Development,Social Welfare,Transport & Infrastructure · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/125712",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-07-25T00:00:00.000Z",
+      "accessedAt": "2026-09-04T20:21:03.435Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9, claim-10.",
+      "scope": "The audit report's executive summary lists the departments covered.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-125712-source-role-map",
+      "kind": "chart",
+      "label": "What the audit record covers and what it leaves out",
+      "alt": "What the audit record covers and what it leaves out. A diagram showing the audit's scope: the departments covered, the facilities checked, and the key findings on equipment, medicines, and waste disposal. It also highlights the missing voices of farmers and the lack of independent verification.",
+      "caption": "A diagram showing the audit's scope: the departments covered, the facilities checked, and the key findings on equipment, medicines, and waste disposal. It also highlights the missing voices of farmers and the lack of independent verification.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125712-source-role-map",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T20:32:17.948Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-125712-source-role-map",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The visual is based only on the audit report and cannot show the actual condition of facilities beyond what was inspected.",
+      "claimIds": [
+        "claim-1",
+        "claim-4",
+        "claim-7",
+        "claim-10"
+      ],
+      "sourceIds": [
+        "cag-125712"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-125712-source-role-map",
+    "kind": "source_role_map",
+    "title": "What the audit record covers and what it leaves out",
+    "description": "A diagram showing the audit's scope: the departments covered, the facilities checked, and the key findings on equipment, medicines, and waste disposal. It also highlights the missing voices of farmers and the lack of independent verification.",
+    "limitation": "The visual is based only on the audit report and cannot show the actual condition of facilities beyond what was inspected.",
+    "claimIds": [
+      "claim-1",
+      "claim-4",
+      "claim-7",
+      "claim-10"
+    ],
+    "sourceIds": [
+      "cag-125712"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-vtfisu",
+      "publisher": "OpIndia",
+      "title": "Who is Kajal Sheikh, TMC goon and sand mafia kingpin who was snubbed by West Bengal Chief Minister Suvendu Adhikari in Birbhum",
+      "url": "https://www.opindia.com/2026/08/who-is-kajal-sheikh-sand-mafia-tmc-goon-snubbed-by-suvendu-adhikari/",
+      "publishedAt": "2026-08-30T11:37:03.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1se0wrm",
+      "publisher": "Mongabay India",
+      "title": "Crime content on social media threatens wildlife safety",
+      "url": "https://india.mongabay.com/2026/08/crime-content-on-social-media-threatens-wildlife-safety/",
+      "publishedAt": "2026-08-27T17:58:48.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-g03gf4",
+      "publisher": "The Hindu",
+      "title": "Honda Motorcycle & Scooter India eyes sustainable growth as 2W market expands",
+      "url": "https://www.thehindu.com/business/honda-motorcycle-scooter-india-eyes-sustainable-growth-as-2w-market-expands/article71411903.ece",
+      "publishedAt": "2026-08-31T16:23:14.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that animal health centres in West Bengal lack basic infrastructure and supplies, but it does not establish when these shortages began or how they affect individual animals."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.19",
+    "inputHash": "48ee264702cec3d1351d7686147618383958e84bb03f6923b50149b0e74c5e69",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T20:32:17.953Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "Three or more sentences begin with the same four words."
+    ],
+    "scores": {
+      "clarity": 4,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

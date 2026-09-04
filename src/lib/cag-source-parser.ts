@@ -11,6 +11,11 @@ export function extractCagReportPdfUrl(html: string): string | undefined {
 /** Enough audit prose to support a 350-word article without padding. */
 export const MINIMUM_EVIDENCE_CHARACTERS = 1_500;
 
+/** A source is only usable once it carries evidence of at least this length. */
+export function hasUsableEvidence(evidenceText: string): boolean {
+  return evidenceText.trim().length >= MINIMUM_EVIDENCE_CHARACTERS;
+}
+
 const CAG_REPORT_URL = "https://cag.gov.in/en/audit-report/details";
 
 const namedEntities: Record<string, string> = {
@@ -95,7 +100,8 @@ export function parseCagReport(html: string, url: string, accessedAt: Date): Sou
   if (!tabled) throw new Error("CAG report tabling date is missing.");
 
   const evidenceText = overviewText(html);
-  if (evidenceText.length < MINIMUM_EVIDENCE_CHARACTERS) throw new Error(`CAG report overview is ${evidenceText.length} characters, too thin to write a grounded article from.`);
+  // Evidence is filled from the report PDF by the collector. A thin listing overview is not a
+  // reason to skip a report; only a report with no readable evidence at all is unusable.
 
   const sector = textFromHtml(/sectorSingleAudit[^>]*>\s*<span[^>]*>\s*<b>\s*Sector\s*<\/b>\s*<\/span>\s*<span[^>]*>([\s\S]*?)<\/span>/i.exec(html)?.[1] ?? "");
   const governmentType = labelledValue(html, "Government Type");
