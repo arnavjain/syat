@@ -9,7 +9,8 @@ export type DraftReviewFinding = {
     | "repeated-claim"
     | "media-rights-review-needed"
     | "source-date-missing"
-    | "india-context-missing";
+    | "india-context-missing"
+    | "unsupported-finding";
   severity: "blocker" | "warning" | "note";
   message: string;
   relatedId?: string;
@@ -32,12 +33,53 @@ export type DraftReview = {
 
 type ReviewContext = { indiaConnection: string };
 
+/**
+ * Comparative findings a story may only make if its evidence makes them.
+ *
+ * A CAG overview describes what a report's chapters cover, not what they found. A draft
+ * written from one can therefore describe scope honestly and still invent a result. The first
+ * article to pass every gate at full marks was headlined "a state budget that spent more than
+ * it planned" from evidence containing no comparison at all: not "exceeded", not "higher", not
+ * "more than". Inventing a finding about a real state's accounts is worse than writing dully,
+ * so a comparison absent from the evidence blocks the draft.
+ *
+ * Bare fiscal nouns like "deficit" are deliberately excluded: they occur as neutral terms.
+ */
+const comparativeFindings: readonly string[] = [
+  "exceeded", "overspent", "overspend", "underspent", "underspend",
+  "shortfall", "fell short", "short of",
+  "more than", "less than", "higher than", "lower than",
+  "increased", "decreased", "rose to", "fell to"
+];
+
 function normalise(text: string) {
   return text.toLocaleLowerCase("en-IN").normalize("NFKC").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 }
 
+function visibleClaimText(draft: GeneratedStoryV2): string {
+  return [
+    draft.story.title,
+    draft.story.dek,
+    ...draft.bodySections.flatMap((section) => section.paragraphs.map((paragraph) => paragraph.text)),
+    ...draft.statements.map((statement) => statement.text),
+    ...draft.timeline.map((entry) => entry.text)
+  ].join(" ").toLocaleLowerCase("en-IN");
+}
+
 export function reviewGeneratedDraft(draft: GeneratedStoryV2, sourceDossier: SourceDossierRecord[], context: ReviewContext): DraftReview {
   const findings: DraftReviewFinding[] = [];
+
+  const evidence = sourceDossier.map((source) => source.evidenceText).join(" ").toLocaleLowerCase("en-IN");
+  const visibleClaims = visibleClaimText(draft);
+  for (const comparison of comparativeFindings) {
+    if (visibleClaims.includes(comparison) && !evidence.includes(comparison)) {
+      findings.push({
+        code: "unsupported-finding",
+        severity: "blocker",
+        message: `The draft states "${comparison}" as a finding, but no supplied record makes that comparison. Describe what the record covers instead of a result it does not report.`
+      });
+    }
+  }
   const copyMatches = findCloseCopyMatches(draft, sourceDossier);
   for (const match of copyMatches) {
     findings.push({ code: "close-copying", severity: "blocker", relatedId: match.fieldId, message: `Visible field ${match.fieldId} closely copies source wording from ${match.sourceId}.` });

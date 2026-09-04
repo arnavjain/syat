@@ -14,7 +14,7 @@ describe("EditorialFeed", () => {
     expect(html).toContain('class="feed-story-row"');
     expect(html).toContain('class="context-bridge"');
     expect(html).toContain('class="feed-framing-trail"');
-    expect(html).toContain("without turning a publisher headline into a Syāt article");
+    expect(html).toContain("does not turn source signals into published Syāt reporting");
     expect(html).toContain("A framing trail names where to look next.");
   });
 });

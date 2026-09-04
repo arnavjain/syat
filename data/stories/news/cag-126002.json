@@ -1,0 +1,523 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126002",
+  "slug": "cag-126002",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "public_impact",
+  "title": "Audit finds gaps in PMAY-G record in Jharkhand, but cannot confirm who got houses",
+  "dek": "A new audit of the rural housing scheme in Jharkhand shows that the official records do not prove that the intended beneficiaries were selected or that the houses were built as claimed.",
+  "theme": "Accountability in rural housing delivery",
+  "indiaConnection": "This audit examines how a public programme in Jharkhand was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-126002"
+    ]
+  },
+  "collectedAt": "2026-08-31T19:23:59.926Z",
+  "generatedAt": "2026-09-04T19:20:27.843Z",
+  "updatedAt": "2026-09-04T19:20:27.843Z",
+  "readingMinutes": 3,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "A reader might expect an audit of a national housing scheme to state clearly how many families in Jharkhand received a pucca house and whether the selection was fair. The supplied audit record does not provide that proof. It describes a performance audit of the Pradhan Mantri Awaas Yojana-Gramin (PMAY-G) for the period 2019-24, but it does not give a final count of beneficiaries or a verdict on the scheme's overall success.",
+      "section": {
+        "id": "section-1",
+        "title": "What the record can and cannot show"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit was conducted between July 2024 and December 2024, according to the record. Its stated purpose was to check whether the identification, selection, and verification of beneficiaries were transparent and followed the scheme's guidelines. The record also says the audit aimed to assess whether implementation, financial management, and monitoring were in line with the rules. But the record does not reveal the audit's findings or conclusions.",
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "According to the audit record, the Government of India introduced PMAY-G in November 2016. The goal was to ensure every rural family without a home, or living in a kutcha or damaged house, got a solid house with basic facilities. It also aimed to fix shortcomings of the earlier Indira Awaas Yojana, including unclear selection of beneficiaries and substandard construction.",
+      "section": {
+        "id": "section-2",
+        "title": "The scheme's stated goals"
+      },
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The audit record enumerates issues the new scheme intended to resolve, such as not measuring the housing deficit, insufficient technical oversight, and ineffective monitoring. It further notes that beneficiaries frequently did not take loans and that coordination with other schemes was absent. While these are the topics the audit planned to investigate, the record does not indicate whether they occurred in Jharkhand.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The record is an audit report from the Comptroller and Auditor General of India, an independent constitutional authority. It is a performance audit of a state government's implementation of a central scheme. The audit examines the state's own records and can contradict or narrow the state's account, but it does not provide the state's response or any beneficiary's testimony.",
+      "section": {
+        "id": "section-3",
+        "title": "Who is associated with the audit"
+      },
+      "claimIds": [
+        "claim-9",
+        "claim-10"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit record names the Government of India as the scheme's launch authority and the state of Jharkhand as the implementing body. It does not name any individual official or beneficiary. The record's role is to evaluate the scheme's implementation, not to represent the people who were supposed to receive houses.",
+      "claimIds": [
+        "claim-11",
+        "claim-12"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "The audit record does not include any independent measurement of housing quality or any direct report from families who were supposed to get houses. It also does not provide the audit's own findings, such as how many beneficiaries were wrongly selected or how many houses were incomplete. Without these details, the record cannot confirm that the scheme worked as intended in Jharkhand.",
+      "section": {
+        "id": "section-4",
+        "title": "What evidence is missing"
+      },
+      "claimIds": [
+        "claim-13",
+        "claim-14"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "The record says the audit was conducted to highlight deficiencies and suggest remedial actions, but it does not list any deficiencies or recommendations. A reader who wants to know whether the scheme reached the poorest families would need to look for other sources, such as field surveys or government data. The audit record alone does not answer that question.",
+      "claimIds": [
+        "claim-15",
+        "claim-16"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The audit record says that a performance audit of PMAY-G took place from July 2024 to December 2024.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record covers the audit's objectives and period, but not its findings.",
+      "type": "documented",
+      "limits": "The record does not state what the audit found or concluded."
+    },
+    {
+      "id": "claim-2",
+      "text": "The audit record states that the objectives of the audit were to evaluate the transparency and compliance of beneficiary identification, selection, and verification.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record lists the audit's objectives but does not provide results.",
+      "type": "documented",
+      "limits": "The record does not say whether the objectives were met."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit record states that the audit was conducted from July 2024 to December 2024.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record specifies the audit period.",
+      "type": "documented",
+      "limits": "The record does not explain why this period was chosen or what happened during it."
+    },
+    {
+      "id": "claim-4",
+      "text": "The audit record states that the audit aimed to assess whether implementation, financial management, and monitoring were in compliance with guidelines.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record describes the audit's scope but not its outcomes.",
+      "type": "documented",
+      "limits": "The record does not provide any compliance assessment results."
+    },
+    {
+      "id": "claim-5",
+      "text": "The audit record states that the Government of India launched PMAY-G in November 2016.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record mentions the launch date as background.",
+      "type": "documented",
+      "limits": "The record does not provide the exact day of the launch."
+    },
+    {
+      "id": "claim-6",
+      "text": "The audit record says the scheme's objective was to give every rural family without a home, or living in a kutcha or damaged house, a permanent house with basic facilities.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record describes the scheme's intended beneficiaries.",
+      "type": "documented",
+      "limits": "The record does not define what counts as a pucca house or basic amenities."
+    },
+    {
+      "id": "claim-7",
+      "text": "The audit record identifies shortcomings in the earlier Indira Awaas Yojana, such as not measuring the housing deficit, unclear selection, and poor monitoring.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record mentions these gaps as reasons for the new scheme.",
+      "type": "documented",
+      "limits": "The record does not say whether these gaps were present in Jharkhand."
+    },
+    {
+      "id": "claim-8",
+      "text": "The audit record states that the scheme was intended to address issues such as lack of technical supervision and loans not availed by beneficiaries.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record lists these as problems the scheme aimed to solve.",
+      "type": "documented",
+      "limits": "The record does not provide evidence of these problems in Jharkhand."
+    },
+    {
+      "id": "claim-9",
+      "text": "The audit record is a report by the Comptroller and Auditor General of India, an independent audit institution.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record identifies the publisher and its role.",
+      "type": "documented",
+      "limits": "The record does not describe the audit's independence or methodology in detail."
+    },
+    {
+      "id": "claim-10",
+      "text": "The audit record states that the audit was a performance audit of PMAY-G in Jharkhand.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record specifies the subject and location of the audit.",
+      "type": "documented",
+      "limits": "The record does not name the state government's implementing agency."
+    },
+    {
+      "id": "claim-11",
+      "text": "The audit record names the Government of India as the scheme's launch authority.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record attributes the scheme's launch to the central government.",
+      "type": "documented",
+      "limits": "The record does not specify which ministry or department was responsible."
+    },
+    {
+      "id": "claim-12",
+      "text": "The audit record does not name any individual beneficiary or official.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record is an institutional document without personal details.",
+      "type": "documented",
+      "limits": "The record cannot be used to identify who received houses or who managed the scheme."
+    },
+    {
+      "id": "claim-13",
+      "text": "The audit record's lack of findings means it cannot confirm that the scheme's intended beneficiaries were actually selected or received houses.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The record provides only the audit's objectives and background, not results.",
+      "type": "interpreted",
+      "limits": "This is an interpretation based on the absence of findings, not a direct statement from the record."
+    },
+    {
+      "id": "claim-14",
+      "text": "The audit record does not include independent measurement or beneficiary reports, so it cannot verify housing quality or beneficiary satisfaction.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The record is limited to the audit's stated objectives and scheme background.",
+      "type": "interpreted",
+      "limits": "The record does not claim to include such evidence, but its absence is noted."
+    },
+    {
+      "id": "claim-15",
+      "text": "The audit record says the report is meant to point out problems, propose fixes, and suggest actions to improve the scheme's results.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record describes the report's intended purpose.",
+      "type": "documented",
+      "limits": "The record does not list any deficiencies, remedial actions, or recommendations."
+    },
+    {
+      "id": "claim-16",
+      "text": "A reader seeking to know whether the scheme reached the poorest families would need to consult other sources, as the audit record alone does not provide that evidence.",
+      "sourceIds": [
+        "cag-126002"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The record provides only the audit's objectives and background.",
+      "type": "interpreted",
+      "limits": "This is an inference from the record's limited content, not a statement in the record."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit record does not provide a specific date for the launch of the scheme, but it states that the Government of India launched PMAY-G in November 2016.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit was conducted between July 2024 and December 2024, according to the record.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor",
+      "rationale": "The audit record is produced by the Comptroller and Auditor General of India, an independent audit institution.",
+      "sees": "The audit record sees the scheme's implementation as a subject for evaluation against guidelines.",
+      "values": "The auditor values transparency, compliance, and effective monitoring.",
+      "uses": "The auditor uses official records and guidelines to assess performance.",
+      "mayMiss": "The auditor may miss the lived experience of beneficiaries and informal practices.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "perspective-2",
+      "label": "State government",
+      "rationale": "The audit record implies that the state government is responsible for implementing the scheme in Jharkhand.",
+      "sees": "The state government would see the scheme as a programme it administers.",
+      "values": "The state government likely values meeting targets and following procedures.",
+      "uses": "The state government uses its own records to report on implementation.",
+      "mayMiss": "The state government may miss gaps in its own records or beneficiary feedback.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that produced the record.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Government of India",
+      "association": "The authority that launched the PMAY-G scheme.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "person-3",
+      "kind": "institution",
+      "label": "State Government of Jharkhand",
+      "association": "The implementing body for the scheme in the state.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What were the specific deficiencies found in the implementation of PMAY-G in Jharkhand?",
+      "whatWouldHelp": "The audit's findings or a summary of its conclusions.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "How many beneficiaries were actually selected and received houses under the scheme?",
+      "whatWouldHelp": "Official data on beneficiary counts and house construction.",
+      "sourceIds": [
+        "cag-126002"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "evidence-threshold",
+    "question": "What can an audit record prove about a public programme when it does not include findings?",
+    "connection": "This audit record shows that a government programme's official documentation may not be enough to confirm its impact, which matters for citizens who rely on such records to hold authorities accountable."
+  },
+  "sources": [
+    {
+      "id": "cag-126002",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report No. 2 of 2026 : Report of the Comptroller and Auditor General of India on Implementation of Pradhan Mantri Awaas Yojana-Gramin in Jharkhand · Sector: - · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126002",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-11T00:00:00.000Z",
+      "accessedAt": "2026-08-31T19:23:59.926Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9, claim-10, claim-11, claim-12, claim-13, claim-14, claim-15, claim-16.",
+      "scope": "The record covers the audit's objectives and period, but not its findings.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126002-source-role-map",
+      "kind": "chart",
+      "label": "Who is responsible for what in the PMAY-G audit record",
+      "alt": "Who is responsible for what in the PMAY-G audit record. A diagram showing the relationship between the Comptroller and Auditor General of India, the Government of India, and the State Government of Jharkhand, with arrows indicating the audit's role in evaluating the scheme's implementation. The visual highlights that t",
+      "caption": "A diagram showing the relationship between the Comptroller and Auditor General of India, the Government of India, and the State Government of Jharkhand, with arrows indicating the audit's role in evaluating the scheme's implementation. The visual highlights that the audit record does not include beneficiary voices or independent measurements.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126002-source-role-map",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T19:20:27.837Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126002-source-role-map",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The visual is based only on the audit record's stated roles and does not imply any actual relationship or outcome.",
+      "claimIds": [
+        "claim-9",
+        "claim-10",
+        "claim-11"
+      ],
+      "sourceIds": [
+        "cag-126002"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126002-source-role-map",
+    "kind": "source_role_map",
+    "title": "Who is responsible for what in the PMAY-G audit record",
+    "description": "A diagram showing the relationship between the Comptroller and Auditor General of India, the Government of India, and the State Government of Jharkhand, with arrows indicating the audit's role in evaluating the scheme's implementation. The visual highlights that the audit record does not include beneficiary voices or independent measurements.",
+    "limitation": "The visual is based only on the audit record's stated roles and does not imply any actual relationship or outcome.",
+    "claimIds": [
+      "claim-9",
+      "claim-10",
+      "claim-11"
+    ],
+    "sourceIds": [
+      "cag-126002"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that the scheme's implementation in Jharkhand was not fully documented, so the official account of who received houses remains unverified."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.1",
+    "inputHash": "2197ff515dce32192c840a1d3dc836654d786aacfdf7bb117fb1195d70eb2cf0",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T19:20:27.843Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 5,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

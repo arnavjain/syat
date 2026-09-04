@@ -566,7 +566,7 @@ export async function runPreviewBatch(
           scores: qualityReview.scores
         });
         const totals = await ledger.summary(month);
-        console.log(`${offset + 1}/${options.count} passed · reserved ${paise(totals.reservedPaise)} · actual ${paise(totals.actualProviderPaise)}`);
+        console.log(`${offset + 1}/${options.count} passed the gate · reserved ${paise(totals.reservedPaise)} · actual ${paise(totals.actualProviderPaise)}`);
        } catch (error) {
         // A budget, ledger or index fault must stop everything. A pack failing its own
         // evidence or language gate must not hide what the other packs would have shown.
@@ -606,7 +606,11 @@ export async function runPreviewBatch(
       }));
       const nextIndex = newsIndexSchema.parse({ ...existingIndex, generatedAt: new Date().toISOString(), items: [...existingIndex.items, ...newCards] });
       const previousReportValue = await readOptionalJson(reportPath);
-      const previousReport = previousReportValue === undefined ? undefined : waveReportSchema.parse(previousReportValue);
+      const previousReportParse = previousReportValue === undefined ? undefined : waveReportSchema.safeParse(previousReportValue);
+      if (previousReportParse && !previousReportParse.success) {
+        console.error(`Ignored an earlier ${waveId} report that does not match the current contract; it was written under a different prompt version.`);
+      }
+      const previousReport = previousReportParse?.success ? previousReportParse.data : undefined;
       if (previousReport && newCards.length === 0 && reportItems.every((item) => item.reused)) {
         return waveReportSchema.parse({ ...previousReport, items: previousReport.items.map((item) => ({ ...item, reused: true })) });
       }
@@ -656,6 +660,7 @@ export async function runPreviewBatch(
         }
         throw error;
       }
+      console.log(`Activated ${newCards.length} new ${newCards.length === 1 ? "story" : "stories"}; the index now holds ${nextIndex.items.length}.`);
       return report;
     } catch (error) {
       await Promise.all([

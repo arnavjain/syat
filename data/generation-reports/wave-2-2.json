@@ -1,9 +1,9 @@
 {
   "contractVersion": "syat.generation-wave-report.v1",
-  "waveId": "wave-0-0",
-  "generatedAt": "2026-09-04T19:21:58.390Z",
+  "waveId": "wave-2-2",
+  "generatedAt": "2026-09-04T19:20:27.852Z",
   "status": "passed",
-  "start": 0,
+  "start": 2,
   "count": 1,
   "model": "deepseek/deepseek-v4-flash-0731",
   "promptVersion": "syat.story-draft.v4.1",
@@ -14,10 +14,10 @@
   "inrPerUsd": 100,
   "items": [
     {
-      "sourcePackId": "cag-126063",
-      "slug": "cag-126063",
-      "inputHash": "2e7981b53fe4b5b2e4f04e249eebae0ddaa2c4847b850c3a1bbe28b5604b3c8a",
-      "outputHash": "4d33d37a070e807689026e1310340445f01ba96cffaee1faed0dc87c870e49a9",
+      "sourcePackId": "cag-126002",
+      "slug": "cag-126002",
+      "inputHash": "2197ff515dce32192c840a1d3dc836654d786aacfdf7bb117fb1195d70eb2cf0",
+      "outputHash": "ed3d8f9be9dbe56ddfa8effa3b4f5b715ad9fd09e71976d7da0b32a7b9feefb6",
       "reused": true,
       "warnings": [
         "single-publisher-evidence"

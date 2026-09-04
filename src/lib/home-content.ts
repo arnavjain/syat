@@ -1,5 +1,5 @@
 import { getPreviewStory } from "./preview-content";
-import { getNewsStoryIndexProjection } from "./reader-stories";
+import { getNewsStory, getNewsStoryIndexProjection } from "./reader-stories";
 
 export type HomeMode = "news" | "timeless";
 
@@ -103,7 +103,8 @@ function newsContent(): HomeContent {
         intro: "Move across the News library by public question, not by an endless stream.",
         items: themes
       }
-    ]
+    ],
+    contextBridge: getNewsStory(lead.slug)?.contextBridge ?? getPreviewStory("street-plan-daily-realities")?.contextBridge
   };
 }
 
@@ -147,8 +148,10 @@ export function getHomeModeHref(mode: HomeMode) {
 }
 
 export function isCurrentFixtureDestination(href: string) {
-  if (href === "/en/studio" || href === "/en/news") return true;
-  const match = href.match(/^\/en\/(news|timeless)\/([^/#]+)$/);
+  // A theme anchor on the archive is a real destination, so compare the path without it.
+  const path = href.split("#")[0];
+  if (path === "/en/studio" || path === "/en/news") return true;
+  const match = path.match(/^\/en\/(news|timeless)\/([^/#]+)$/);
   if (!match) return false;
 
   const [, mode, slug] = match;

@@ -97,10 +97,21 @@ function useNewsCorpus(items: unknown[], stories: ReaderStoryFixture[]) {
 }
 
 describe("static news story loader", () => {
-  it("reads the explicitly empty private-preview index without loading a story corpus", () => {
+  it("reads an explicitly empty private-preview index without loading a story corpus", () => {
+    useNewsCorpus([], []);
+
     expect(getNewsStoryIndex()).toEqual([]);
     expect(getNewsStoryStaticParams()).toEqual([]);
     expect(getFeaturedNewsStories(6)).toEqual([]);
+  });
+
+  it("reflects whatever the committed index actually holds", () => {
+    // Deliberately not pinned to a count: accepted stories land here as the pilot proceeds.
+    const committed = getNewsStoryIndex();
+
+    expect(Array.isArray(committed)).toBe(true);
+    expect(getNewsStoryStaticParams().map((param) => param.slug)).toEqual(committed.map((item) => item.slug));
+    for (const item of committed) expect(getNewsStory(item.slug)?.publicationAllowed).toBe(false);
   });
 
   it("returns undefined when a requested story file is absent", () => {

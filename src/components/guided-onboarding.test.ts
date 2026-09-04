@@ -40,12 +40,19 @@ describe("guided onboarding storage", () => {
 });
 
 describe("guided onboarding page", () => {
-  it("teaches with the labelled teaching story while no accepted preview exists", async () => {
+  it("prefers a real accepted preview and falls back to the labelled teaching story", async () => {
     const { getOnboardingExample } = await import("../app/en/onboarding/page");
+    const { getNewsStoryIndexProjection } = await import("@/lib/reader-stories");
     const example = getOnboardingExample();
+    const accepted = getNewsStoryIndexProjection();
 
-    expect(example.slug).toBe("street-plan-daily-realities");
-    expect(example.isTeachingFixture).toBe(true);
+    if (accepted.length > 0) {
+      expect(example.isTeachingFixture).toBe(false);
+      expect(accepted.map((story) => story.slug)).toContain(example.slug);
+    } else {
+      expect(example.slug).toBe("street-plan-daily-realities");
+      expect(example.isTeachingFixture).toBe(true);
+    }
   });
 
   it("renders Back, Next and Skip with the story action for the supplied example", () => {

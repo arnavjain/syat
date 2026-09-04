@@ -1,6 +1,6 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-09-04T19:17:01.209Z",
+  "generatedAt": "2026-09-04T19:21:58.389Z",
   "items": [
     {
       "slug": "cag-126028",
@@ -13,6 +13,20 @@
         "label": "Date not established in the supplied evidence"
       },
       "updatedAt": "2026-09-04T19:17:01.201Z",
+      "readingMinutes": 3,
+      "featured": true
+    },
+    {
+      "slug": "cag-126002",
+      "format": "public_impact",
+      "title": "Audit finds gaps in PMAY-G record in Jharkhand, but cannot confirm who got houses",
+      "dek": "A new audit of the rural housing scheme in Jharkhand shows that the official records do not prove that the intended beneficiaries were selected or that the houses were built as claimed.",
+      "theme": "Accountability in rural housing delivery",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-04T19:20:27.843Z",
       "readingMinutes": 3,
       "featured": true
     }

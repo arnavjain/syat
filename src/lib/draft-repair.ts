@@ -1,6 +1,10 @@
 import { findCloseCopySpansForRepair, type GeneratedStoryV2, type SourceDossierRecord } from "./generation-contract";
 
-export type RepairTarget = { fieldId: string; sourceId: string; currentText: string; avoidWording: string; sourceText: string };
+function digits(text: string): string[] {
+  return (text.match(/\d[\d,.]*/g) ?? []).map((value) => value.replace(/[,.]$/, ""));
+}
+
+export type RepairTarget = { fieldId: string; sourceId: string; currentText: string; avoidWording: string; sourceText: string; figures: readonly string[] };
 
 /** A rewrite of one visible field, keyed by the field id the detector flagged. */
 export type RepairPatch = Record<string, string>;
@@ -20,7 +24,8 @@ export function collectRepairTargets(draft: GeneratedStoryV2, sourceDossier: Sou
       sourceId: span.sourceId,
       currentText: span.currentText,
       avoidWording: span.sharedText,
-      sourceText: (evidenceById.get(span.sourceId) ?? "").slice(0, MAXIMUM_SOURCE_EXCERPT)
+      sourceText: (evidenceById.get(span.sourceId) ?? "").slice(0, MAXIMUM_SOURCE_EXCERPT),
+      figures: digits(span.currentText)
     });
   }
   return [...byField.values()].slice(0, MAXIMUM_REPAIR_FIELDS);
@@ -37,7 +42,8 @@ export function buildRepairPrompt(targets: readonly RepairTarget[]): string {
     `field_id: ${target.fieldId}`,
     `cites_source: ${target.sourceId}`,
     `current_text: ${target.currentText}`,
-    `run_already_reused: ${target.avoidWording}`
+    `run_already_reused: ${target.avoidWording}`,
+    `figures_that_must_appear_unchanged: ${target.figures.length > 0 ? target.figures.join(", ") : "none"}`
   ].join("\n")).join("\n\n");
 
   return [
@@ -51,7 +57,7 @@ export function buildRepairPrompt(targets: readonly RepairTarget[]): string {
     "",
     "Rules:",
     "- No run of seven consecutive words may match the source text.",
-    "- Keep every number, quantity, amount and date exactly as it appears in current_text, and add none.",
+    "- Reproduce every figure listed for a field exactly, and introduce no figure that is not listed. A rewrite that alters or invents a number is rejected outright.",
     "- Do not add a new claim, name, place or cause. Only restate what current_text already says.",
     "- Keep roughly the same length as current_text.",
     "- Use plain words. No em dash, no en dash, and no official register such as \"inter alia\", \"the said\", \"vide\" or \"in this regard\".",
@@ -66,9 +72,7 @@ export function buildRepairPrompt(targets: readonly RepairTarget[]): string {
   ].join("\n");
 }
 
-function digits(text: string): string[] {
-  return (text.match(/\d[\d,.]*/g) ?? []).map((value) => value.replace(/[,.]$/, ""));
-}
+
 
 function assignField(draft: GeneratedStoryV2, fieldId: string, text: string): boolean {
   const [kind, ...rest] = fieldId.split(":");

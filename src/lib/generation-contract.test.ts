@@ -325,7 +325,7 @@ describe("syat.story-draft.v2", () => {
     expect(prompt).toContain("In a significant development");
     expect(prompt).toContain("syat.story-draft.v2");
     expect(prompt).toContain("modelInputAllowed");
-    expect(prompt).toContain("Prompt version: syat.story-draft.v4.0");
+    expect(prompt).toContain("Prompt version: syat.story-draft.v4.1");
     expect(prompt).toContain("Write the title and dek with fresh sentence structure");
     expect(prompt).toContain("do not reuse any six-token source span in the title or any seven-token source span in the dek");
     expect(prompt).toContain("Exact proper names and necessary technical labels may repeat");

@@ -471,7 +471,7 @@ export type SelectedExactTime = {
 
 // v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
 // input hash, so a pipeline change gives every pack a fresh identity to attempt.
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.0";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.1";
 
 type JsonObject = Record<string, unknown>;
 

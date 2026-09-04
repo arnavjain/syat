@@ -72,3 +72,43 @@ describe("reviewGeneratedDraft", () => {
     expect(result.findings).toContainEqual(expect.objectContaining({ code: "close-copying", severity: "blocker" }));
   });
 });
+
+describe("unsupported comparative findings", () => {
+  it("blocks a comparison the evidence never makes", () => {
+    // A CAG overview lists what a report's chapters cover. A draft can describe that scope
+    // honestly and still invent a result, which is how "spent more than it planned" passed
+    // every other gate at full marks from evidence containing no comparison at all.
+    const scopeOnly: SourceDossierRecord = {
+      ...dossier[0],
+      evidenceText: "This report provides an analytical review of the finances of the State based on the audited accounts for the year ended 31 March 2025. Chapter II reviews the appropriations and reports on deviations from Constitutional provisions relating to budgetary management."
+    };
+    const draft = makeDraft();
+    draft.story.title = "State accounts show a budget that exceeded its approved amounts";
+
+    const review = reviewGeneratedDraft(draft, [scopeOnly], { indiaConnection: draft.story.indiaConnection });
+    const unsupported = review.findings.filter((finding) => finding.code === "unsupported-finding");
+    expect(unsupported.length).toBeGreaterThan(0);
+    expect(unsupported[0].severity).toBe("blocker");
+    expect(review.status).toBe("blocked");
+  });
+
+  it("allows a comparison the evidence actually makes", () => {
+    const withFinding: SourceDossierRecord = {
+      ...dossier[0],
+      evidenceText: "The audit found that actual expenditure exceeded the budgeted figures in several grants during the year under review."
+    };
+    const draft = makeDraft();
+    draft.story.title = "State accounts show spending that exceeded approved amounts";
+
+    const review = reviewGeneratedDraft(draft, [withFinding], { indiaConnection: draft.story.indiaConnection });
+    expect(review.findings.filter((finding) => finding.code === "unsupported-finding")).toHaveLength(0);
+  });
+
+  it("leaves a purely descriptive draft alone", () => {
+    const draft = makeDraft();
+    draft.story.title = "What the audit examines, and what it leaves open";
+
+    const review = reviewGeneratedDraft(draft, dossier, { indiaConnection: draft.story.indiaConnection });
+    expect(review.findings.filter((finding) => finding.code === "unsupported-finding")).toHaveLength(0);
+  });
+});
