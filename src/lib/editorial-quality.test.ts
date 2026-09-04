@@ -245,3 +245,38 @@ describe("reviewEditorialQuality human voice", () => {
     expect(degraded.scores.clarity).toBe(clean.scores.clarity);
   });
 });
+
+describe("headline direction", () => {
+  it("blocks a headline that points the opposite way to its own body", () => {
+    // The first draft ever accepted claimed a budget "spent more than it planned" over a body
+    // reporting that spending came in lower, and scored full marks on every other dimension.
+    const story = makeStory([
+      "The audited accounts show that spending on several major schemes was lower than what the legislature approved, and the record does not say why.",
+      makeStory().bodySections[1].paragraphs[0].text,
+      makeStory().bodySections[2].paragraphs[0].text
+    ]);
+    story.story.title = "State accounts show a budget that spent more than it planned";
+
+    const report = reviewEditorialQuality(story, []);
+    expect(report.blockers.map((item) => item.code)).toContain("title-body-contradiction");
+    expect(report.scores.evidenceDiscipline).toBeLessThan(5);
+  });
+
+  it("allows a blunt headline that agrees with the body", () => {
+    const story = makeStory([
+      "The audited accounts show that spending on several major schemes was lower than what the legislature approved, and the record does not say why.",
+      makeStory().bodySections[1].paragraphs[0].text,
+      makeStory().bodySections[2].paragraphs[0].text
+    ]);
+    story.story.title = "State accounts show a budget that spent less than it planned";
+
+    expect(reviewEditorialQuality(story, []).blockers.map((item) => item.code)).not.toContain("title-body-contradiction");
+  });
+
+  it("stays quiet when the headline makes no directional claim", () => {
+    const story = makeStory();
+    story.story.title = "State accounts reach the legislature for scrutiny";
+
+    expect(reviewEditorialQuality(story, []).blockers.map((item) => item.code)).not.toContain("title-body-contradiction");
+  });
+});

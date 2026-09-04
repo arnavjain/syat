@@ -104,7 +104,7 @@ describe("promoteGeneratedStory", () => {
     expect(story.sources[0].rightsBasis).toBe("government_reproduction_policy");
     expect(story.relatedCoverage[0]).toMatchObject({ modelInputAllowed: false, mediaReuseAllowed: false });
     expect(story.generation.inputHash).toBe(generationInputHash);
-    expect(story.generation.promptVersion).toBe("syat.story-draft.v3.7");
+    expect(story.generation.promptVersion).toBe("syat.story-draft.v4.0");
     expect(story.media).toEqual([approvedVisual]);
     expect(story.statements[0]).toMatchObject({ basis: "official_claim", sourceScope: expect.any(String), limits: expect.any(String) });
     expect(story.statements[1]).toMatchObject({ basis: "evidence_gap", limits: "No independent observation or affected-person account is supplied." });
@@ -198,5 +198,17 @@ describe("promoteGeneratedStory", () => {
     const blockedQuality: EditorialQualityReport = { ...qualityReview, status: "blocked", blockers: [{ code: "generic-opening", message: "Opening is generic." }] };
     expect(() => promoteGeneratedStory({ draft: makeDraft(), draftReview: blockedDraft, qualityReview, sourcePack, approvedMedia: [approvedVisual] })).toThrow(/blocked draft/i);
     expect(() => promoteGeneratedStory({ draft: makeDraft(), draftReview, qualityReview: blockedQuality, sourcePack, approvedMedia: [approvedVisual] })).toThrow(/blocked draft/i);
+  });
+});
+
+describe("authored visual media id", () => {
+  it("accepts every visual kind, including the ones whose names carry underscores", () => {
+    // The media id must be a slug, so source_role_map becomes source-role-map. Promotion and
+    // the batch runner have to agree on that or a good draft is rejected at the last step.
+    for (const kind of ["timeline", "process", "relationship_map", "source_role_map", "number_stack", "comparison"] as const) {
+      const slug = `authored-bazaar-road-trial-${kind}`.replaceAll("_", "-");
+      expect(slug).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+      expect(slug).not.toContain("_");
+    }
   });
 });

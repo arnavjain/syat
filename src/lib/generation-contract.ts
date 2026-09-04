@@ -471,7 +471,7 @@ export type SelectedExactTime = {
 
 // v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
 // input hash, so a pipeline change gives every pack a fresh identity to attempt.
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v3.7";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.0";
 
 type JsonObject = Record<string, unknown>;
 
@@ -614,7 +614,10 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
     "An audit and the institution it audits are not the same voice. Keep the audit's finding and the institution's own account clearly apart.",
     "Do not open with the document's own framing, such as what a report relates to or contains. Open with the specific thing the record shows about a place, a service or a sum of money.",
     "Vary the opening. Do not begin with the institution's name or the document type.",
-    "A statement's limit must say something its source scope does not. Repeating the scope in other words is not a limit."
+    "A statement's limit must say something its source scope does not. Repeating the scope in other words is not a limit.",
+    "Write the source scope as what the record covers, and the limit as the specific question a reader would still have to answer some other way. They must not be paraphrases of each other.",
+    "Never write that one thing caused, led to, drove or resulted in another unless the record states it. Where the record only shows two facts together, say they appear together and that the record does not connect them.",
+    "The headline must point the same way as the body. If the body reports a shortfall, the headline may not say more; if the body reports an overrun, the headline may not say less."
   ];
 
   return `You are an editorial research assistant for Syāt. Prepare a cautious, source-scoped draft for a human editor. Return exactly one JSON object and nothing else.

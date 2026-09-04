@@ -30,7 +30,7 @@ export function assertSourcePackPromotionCompatible(sourcePack: unknown): Source
 function approvedMediaForPlans(draft: GeneratedStoryV2, approvedMedia: ApprovedMedia[]) {
   const parsedMedia = approvedMedia.map((media) => readerMediaSchema.parse(media));
   const expectedAuthoredKind = draft.authoredVisual.kind === "relationship_map" ? "illustration" : "chart";
-  const expectedAuthoredId = `authored-${draft.sourcePackId}-${draft.authoredVisual.kind}`;
+  const expectedAuthoredId = `authored-${draft.sourcePackId}-${draft.authoredVisual.kind}`.replaceAll("_", "-");
   const authoredMedia = parsedMedia.find((media) =>
     media.id === expectedAuthoredId
     && media.creator === "Syāt visual desk"

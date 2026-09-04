@@ -1,0 +1,569 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126028",
+  "slug": "cag-126028",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "timeline",
+  "title": "Jharkhand's rural job scheme and tap-water mission: what the audit record shows and leaves open",
+  "dek": "An audit of two public programmes in Jharkhand examines how funds moved and how work was recorded, but it does not settle what the people who depend on these schemes experienced on the ground.",
+  "theme": "Public programme implementation and record-keeping",
+  "indiaConnection": "This audit examines how a public programme in Jharkhand was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2"
+    ],
+    "sourceIds": [
+      "cag-126028"
+    ]
+  },
+  "collectedAt": "2026-08-31T19:23:58.202Z",
+  "generatedAt": "2026-09-04T19:17:01.201Z",
+  "updatedAt": "2026-09-04T19:17:01.201Z",
+  "readingMinutes": 3,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Rural households in Jharkhand depend on two national programmes for wage employment and drinking water. The Mahatma Gandhi National Rural Employment Guarantee Scheme promises at least 100 days of paid unskilled work per year to every rural household that volunteers. The Jal Jeevan Mission aims to give each rural household a functional tap connection for safe water. The audit record examined here looks at how these schemes were implemented in the state between 2019 and 2024.",
+      "section": {
+        "id": "section-1",
+        "title": "What the audit covers"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit covered the employment scheme by checking records at the state commissioner's office, six districts, twelve blocks, and forty-eight gram panchayats. It also physically verified 480 selected works and surveyed beneficiaries. For the water mission, the audit examined records from 2019-20 to 2023-24, focusing on planning, implementation, and sustainability of assets. The record does not include independent measurements of water quality or employment outcomes beyond what the audit itself observed.",
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The employment scheme is administered by the MGNREGA Commissioner in Jharkhand, with district, block, and gram panchayat offices responsible for implementation. The audit examined the planning process, the allocation and use of funds, and the monitoring and grievance redressal systems. The record shows that the scheme's design requires these layers to work together, but it does not say how effectively they did so in practice.",
+      "section": {
+        "id": "section-2",
+        "title": "How the schemes were run"
+      },
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "For the water mission, the State Water and Sanitation Mission led implementation with support from district missions and village committees. The Drinking Water and Sanitation Department of the state government was the nodal department. The audit assessed whether the institutional framework was efficient and whether financial resources were used economically. The record does not establish whether the village committees had the capacity to manage the systems after installation.",
+      "claimIds": [
+        "claim-6",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The review considered how money was assigned, given out, and spent for the job program. It also checked if the facilities built under the water initiative would last for the coming twenty to thirty years. The record gives information on money movement and facility building, but it doesn't link these to the real count of workdays offered or the number of homes that received water connections.",
+      "section": {
+        "id": "section-3",
+        "title": "What the record shows about funds and assets"
+      },
+      "claimIds": [
+        "claim-8",
+        "claim-9"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit's findings are based on test-checked records and physical verification of a sample of works. This means the record can show patterns in the sampled offices and sites, but it cannot say what happened in the many other gram panchayats and villages not covered. The record does not include data on whether the water assets continued to function after the audit period.",
+      "claimIds": [
+        "claim-10"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "The audit record is an independent examination of the institutions' own records. It can contradict or narrow the official account, but it does not include independent reporting or measurement from outside the audit. There is no evidence from people directly affected by the schemes about whether they received the promised work or water. The record also does not test the issuing institution's account with external data.",
+      "section": {
+        "id": "section-4",
+        "title": "What is missing from the record"
+      },
+      "claimIds": [
+        "claim-11"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "For the employment scheme, the audit surveyed beneficiaries, but the record does not say what those surveys found. For the water mission, the audit assessed whether assets were sustainable, but it does not provide evidence on the quality of water delivered. These gaps mean the record cannot settle what the schemes actually achieved for rural households in Jharkhand.",
+      "claimIds": [
+        "claim-12"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The 2005 National Rural Employment Guarantee Act, which was renamed in 2009, promises a minimum of 100 days of paid work each year to rural families willing to perform manual labor that doesn't require skills.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the legal mandate of the employment scheme.",
+      "type": "documented",
+      "limits": "The record does not state how many households actually received the guaranteed days of work in Jharkhand."
+    },
+    {
+      "id": "claim-2",
+      "text": "In August 2019, the Jal Jeevan Mission started with the goal of delivering adequate and clean drinking water to every rural home via functional taps by 2024.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the water mission's objective and launch.",
+      "type": "documented",
+      "limits": "The record does not state how many households in Jharkhand received functional tap connections by the end of 2024."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit of the employment scheme covered the period 2019-24 and test-checked records at the state commissioner's office, six districts, twelve blocks, and forty-eight gram panchayats.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the scope of the performance audit of the employment scheme.",
+      "type": "documented",
+      "limits": "The record does not say what happened in the many gram panchayats not included in the test-checked sample."
+    },
+    {
+      "id": "claim-4",
+      "text": "The water mission's audit took place between September and November 2024, covering the years 2019-20 to 2023-24.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the period and timing of the water mission audit.",
+      "type": "documented",
+      "limits": "The record does not include any data from after November 2024, so it cannot say whether the mission met its 2024 target."
+    },
+    {
+      "id": "claim-5",
+      "text": "The employment scheme is implemented by the MGNREGA Commissioner in Jharkhand, with district, block, and gram panchayat offices responsible for execution.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the administrative structure for the employment scheme.",
+      "type": "documented",
+      "limits": "The record does not assess the performance of individual offices or staff."
+    },
+    {
+      "id": "claim-6",
+      "text": "The State Water and Sanitation Mission led implementation of the water mission in Jharkhand, with support from district missions and village committees.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the institutional framework for the water mission.",
+      "type": "documented",
+      "limits": "The record does not state whether the village committees had the resources or training to manage the systems."
+    },
+    {
+      "id": "claim-7",
+      "text": "The Drinking Water and Sanitation Department of the Government of Jharkhand was the nodal department for the water mission.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the nodal department for the water mission.",
+      "type": "documented",
+      "limits": "The record does not detail the department's specific actions or decisions."
+    },
+    {
+      "id": "claim-8",
+      "text": "The review looked at how money was earmarked, distributed, and spent for the employment program.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the financial aspects covered in the employment scheme audit.",
+      "type": "documented",
+      "limits": "The record does not state whether the funds reached the intended beneficiaries."
+    },
+    {
+      "id": "claim-9",
+      "text": "The audit checked if the facilities built under the water mission would remain usable for the next twenty to thirty years.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the sustainability assessment for water mission assets.",
+      "type": "documented",
+      "limits": "The record does not provide evidence on the actual condition of the assets after the audit period."
+    },
+    {
+      "id": "claim-10",
+      "text": "The audit physically verified 480 selected works and surveyed beneficiaries of the employment scheme.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's description of the physical verification and beneficiary survey for the employment scheme.",
+      "type": "documented",
+      "limits": "The record does not include the results of the beneficiary survey or the physical verification findings."
+    },
+    {
+      "id": "claim-11",
+      "text": "The audit record is an independent examination of the institutions' own records, but it does not include independent reporting or measurement from outside the audit.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit report's role as an independent audit of institutional records.",
+      "type": "interpreted",
+      "limits": "The record does not contain any external data or independent verification beyond the audit's own checks."
+    },
+    {
+      "id": "claim-12",
+      "text": "The record does not establish what the schemes actually achieved for rural households, such as the number of days of work provided or the quality of water delivered.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "evidence_gap",
+      "sourceScope": "The audit report's coverage of the employment scheme and water mission implementation.",
+      "type": "unresolved",
+      "limits": "The record does not answer whether the schemes met their objectives for the people who depend on them."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The National Rural Employment Guarantee Act was enacted in 2005 and renamed in 2009, establishing the legal basis for the employment scheme.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The Jal Jeevan Mission was launched in August 2019 with the goal of providing functional tap connections to all rural households by 2024.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit of the employment scheme covered the period 2019-24, checking records at state, district, block, and gram panchayat levels.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "timeline-4",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "From September to November 2024, the water mission's audit covered the fiscal years 2019-20 through 2023-24.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Audit perspective",
+      "rationale": "The audit is the only source in the dossier, and it provides an independent examination of the schemes' implementation.",
+      "sees": "The audit sees the schemes through the lens of official records and its own physical verification.",
+      "values": "It values accountability and efficiency in the use of public funds.",
+      "uses": "It uses test-checked records and sample surveys to draw conclusions about the schemes.",
+      "mayMiss": "It may miss the actual experiences of beneficiaries and the quality of water or work on the ground.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that produced the report on the two schemes.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "MGNREGA Commissioner, Jharkhand",
+      "association": "The office responsible for implementing the employment scheme in the state.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "person-3",
+      "kind": "institution",
+      "label": "State Water and Sanitation Mission",
+      "association": "The body responsible for implementing the Jal Jeevan Mission in Jharkhand.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "person-4",
+      "kind": "institution",
+      "label": "Drinking Water and Sanitation Department, Government of Jharkhand",
+      "association": "The nodal department for the water mission in the state.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "How many rural households in Jharkhand actually received 100 days of wage employment under the scheme?",
+      "whatWouldHelp": "Beneficiary-level data from the scheme's management information system or an independent survey.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "Did the water mission provide functional tap connections to all rural households by 2024?",
+      "whatWouldHelp": "Official data on the number of connections installed and their functionality after installation.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "unresolved-3",
+      "question": "What was the quality of drinking water delivered through the new tap connections?",
+      "whatWouldHelp": "Water quality test results from the villages covered by the mission.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "public-place",
+    "question": "How do public programmes like rural employment and water supply affect the daily lives of people in Jharkhand?",
+    "connection": "This audit examines how two public programmes in Jharkhand were carried out and recorded, and it states what the audited record can and cannot establish for the people who depend on them."
+  },
+  "sources": [
+    {
+      "id": "cag-126028",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report No. 5 of 2026 : Report of the CAG on Implementation of Mahatma Gandhi National Rural Employment Guarantee Scheme in Jharkhand and Implementation of Jal Jeevan Mission in Jharkhand · Sector: - · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126028",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-11T00:00:00.000Z",
+      "accessedAt": "2026-08-31T19:23:58.202Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9, claim-10, claim-11, claim-12.",
+      "scope": "The audit report's description of the legal mandate of the employment scheme.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126028-timeline",
+      "kind": "chart",
+      "label": "Timeline of the audit's coverage of the two schemes",
+      "alt": "Timeline of the audit's coverage of the two schemes. A timeline showing the key dates and periods covered by the audit: the 2005 Act, the 2019 launch of the water mission, the 2019-24 audit period for the employment scheme, and the 2024 audit of the water mission.",
+      "caption": "A timeline showing the key dates and periods covered by the audit: the 2005 Act, the 2019 launch of the water mission, the 2019-24 audit period for the employment scheme, and the 2024 audit of the water mission.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126028-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T19:17:01.194Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126028-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline does not show actual implementation milestones or outcomes, only the periods the audit examined.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126028-timeline",
+    "kind": "timeline",
+    "title": "Timeline of the audit's coverage of the two schemes",
+    "description": "A timeline showing the key dates and periods covered by the audit: the 2005 Act, the 2019 launch of the water mission, the 2019-24 audit period for the employment scheme, and the 2024 audit of the water mission.",
+    "limitation": "The timeline does not show actual implementation milestones or outcomes, only the periods the audit examined.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3",
+      "claim-4"
+    ],
+    "sourceIds": [
+      "cag-126028"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-13ptuzf",
+      "publisher": "OpIndia",
+      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays ‘victim card’, publisher sets the record straight",
+      "url": "https://www.opindia.com/2026/08/what-is-the-sonia-gandhi-memoir-controversy-congress-vs-bjp-penguin-random-house-clarification-explained/",
+      "publishedAt": "2026-08-29T14:24:45.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1tau956",
+      "publisher": "The Hindu",
+      "title": "Gaganyaan Episode 1: Why India’s Human Spaceflight Mission Matters | The Scope",
+      "url": "https://www.thehindu.com/videos/gaganyaan-episode-1-why-indias-human-spaceflight-mission-matters-the-scope/article71318202.ece",
+      "publishedAt": "2026-08-31T11:43:44.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1gqpvvu",
+      "publisher": "Organiser",
+      "title": "Rahul Gandhi sees patriarchy in Hindutva, but remains silent on Islam: What does the Keralam directive on women reveal?",
+      "url": "https://organiser.org/2026/08/31/378023/bharat/rahul-gandhi-sees-patriarchy-in-hindutva-but-remains-silent-on-islam-what-does-the-keralam-directive-on-women-reveal/",
+      "publishedAt": "2026-08-31T13:30:02.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1jq35ce",
+      "publisher": "Hindustan Times",
+      "title": "Penguin India denies external pressure over Sonia Gandhi memoir: 'Impasse on particular issue'",
+      "url": "https://www.hindustantimes.com/india-news/penguin-india-denies-external-pressure-over-sonia-gandhi-memoir-impasse-on-particular-issue-101788185702126.html",
+      "publishedAt": "2026-08-31T15:12:29.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-to49ib",
+      "publisher": "The Times of India",
+      "title": "'Purification' row: Congress protests FIR against Rahul Gandhi, attacks BJP's 'casteist' behaviour",
+      "url": "https://timesofindia.indiatimes.com/india/purification-row-congress-protests-fir-against-rahul-gandhi-attacks-bjps-casteist-behaviour/articleshow/133658657.cms",
+      "publishedAt": "2026-08-31T16:54:58.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows how the schemes were administered, but it does not measure the actual benefit to rural households."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.0",
+    "inputHash": "20cae63a52782056ba9f8f98bc0168967667b84716b4018ecae0a58808e4fe51",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T19:17:01.201Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "Three or more sentences begin with the same four words."
+    ],
+    "scores": {
+      "clarity": 4,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

@@ -22,7 +22,8 @@ export type EditorialQualityCode =
   | "corpus-repeated-opening"
   | "perspective-sameness"
   | "boilerplate-limits"
-  | "hedge-stacking";
+  | "hedge-stacking"
+  | "title-body-contradiction";
 
 export type EditorialQualityFinding = { code: EditorialQualityCode; message: string; relatedId?: string };
 
@@ -66,6 +67,20 @@ const concreteSuffixNouns = new Set([
 const passiveVerb = /\b(?:was|were|is|are|be|been|being)\s+(?:\w+ly\s+)?\w+(?:ed|en)\b/i;
 const hedgeStack = /\b(?:may|might|could|would)\s+(?:possibly|potentially|perhaps|conceivably)\b|\b(?:possibly|potentially|perhaps)\s+(?:may|might|could)\b/i;
 const decorativeDash = /[\u2013\u2014]/;
+
+/**
+ * Directional opposites. A headline that claims a direction the body reverses is worse than a
+ * dull headline, because a reader who stops at the title leaves with the opposite of the truth.
+ * The first accepted draft said a budget "spent more than it planned" over a body reporting
+ * that spending came in lower, and every other check passed it at full marks.
+ */
+const directionalPairs: ReadonlyArray<readonly [RegExp, RegExp]> = [
+  [/\bspent more\b|\b(?:more|higher) than[^.]{0,40}\b(?:planned|budgeted|approved|projected|estimated)\b|\boverspen[dt]\b|\bexceeded\b|\bover budget\b/i,
+   /\bspent less\b|\b(?:less|lower) than[^.]{0,40}\b(?:planned|budgeted|approved|projected|estimated)\b|\bunderspen[dt]\b|\bshortfall\b|\bfell short\b/i],
+  [/\brose\b|\bincreased\b|\bgrew\b|\bwent up\b/i, /\bfell\b|\bdeclined\b|\bdecreased\b|\bwent down\b/i],
+  [/\bsurplus\b/i, /\bdeficit\b/i],
+  [/\babove\b|\bhigher than\b/i, /\bbelow\b|\blower than\b/i]
+];
 const concreteTerms = new Set(["road", "lane", "bus", "train", "school", "hospital", "court", "river", "village", "city", "district", "ministry", "office", "record", "report", "route", "street", "market", "worker", "farmer", "student", "household", "rupee", "kilometre", "hectare", "station"]);
 
 function words(text: string): string[] {
@@ -289,12 +304,26 @@ export function reviewEditorialQuality(story: GeneratedStoryV2, corpus: readonly
     addUnique(warnings, { code: "hedge-stacking", message: "A sentence stacks two hedges, which weakens a claim without making it more accurate." });
   }
 
+  // A headline may be blunter than the body, but it may not point the other way.
+  const headline = `${story.story.title} ${story.story.dek}`;
+  for (const [oneWay, otherWay] of directionalPairs) {
+    const titleSaysOne = oneWay.test(headline);
+    const titleSaysOther = otherWay.test(headline);
+    if (titleSaysOne === titleSaysOther) continue;
+    const claimed = titleSaysOne ? oneWay : otherWay;
+    const opposite = titleSaysOne ? otherWay : oneWay;
+    if (opposite.test(bodyText) && !claimed.test(bodyText)) {
+      addUnique(blockers, { code: "title-body-contradiction", message: "The headline claims a direction that the body reverses, so a reader who stops at the title leaves with the opposite of what the record says." });
+      break;
+    }
+  }
+
   const languageDeductions = Number(blockers.some((item) => ["generic-opening", "hype-language", "title-dek-overlap"].includes(item.code))) + Number(warnings.some((item) => ["repeated-opening", "sentence-length-monotony", "excessive-modal-language"].includes(item.code)));
   const voiceDeductions =
     Number(blockers.some((item) => ["officialese", "decorative-dash", "corpus-repeated-opening"].includes(item.code))) * 2
     + Number(warnings.some((item) => ["nominalisation-density", "passive-voice-density"].includes(item.code)))
     + Number(warnings.some((item) => ["paragraph-length-monotony", "hedge-stacking"].includes(item.code)));
-  const evidenceDeductions = Number(blockers.some((item) => ["unsupported-causal-language", "schema-traceability"].includes(item.code)));
+  const evidenceDeductions = Number(blockers.some((item) => ["unsupported-causal-language", "schema-traceability", "title-body-contradiction"].includes(item.code)));
   const usefulnessDeductions = Number(blockers.some((item) => ["missing-concrete-language", "article-word-count"].includes(item.code)));
   const duplicateDeductions = Number(blockers.some((item) => ["near-duplicate-paragraph", "near-duplicate-body"].includes(item.code)));
 

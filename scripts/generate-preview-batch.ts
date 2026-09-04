@@ -241,14 +241,25 @@ function sourceRoleFor(sourceKind: SourcePack["sources"][number]["sourceKind"]):
   return "Provides reusable public-record evidence within its recorded licence and scope.";
 }
 
+const leadAngles: readonly string[] = [
+  "Open on the single most specific thing the record establishes: name the place, the programme and what was found there.",
+  "Open on who depends on the thing being examined, then say what the record does and does not settle for them.",
+  "Open on the gap: state plainly what a reader might expect this record to prove and what it actually cannot.",
+  "Open on scale or scope as the record states it, without adding any figure that is not in the evidence.",
+  "Open on the sequence: what happened first, and what the record says followed.",
+  "Open on the disagreement between the records supplied, and attribute each account to the record that makes it.",
+  "Open on the institution's own words about itself, then set the audited or documented position beside them."
+];
+
 function draftInputFor(pack: SourcePack, position: number): StoryDraftV2PromptInput {
   const formats: StoryDraftV2PromptInput["format"][] = ["explainer", "timeline", "public_impact", "source_map", "news_brief"];
+  const angle = leadAngles[position % leadAngles.length];
   return {
     sourcePackId: pack.id,
     language: "en-IN",
     mode: "news",
     format: formats[position % formats.length],
-    editorialBrief: "Write a useful 350–800 word India-first private-preview story. Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.",
+    editorialBrief: `Write an India-first private-preview story about this subject: ${pack.title.slice(0, 200)}. Aim for 550 to 700 words of body text across four to six titled sections, each with at least two paragraphs. Anything under 350 words is rejected, so do not write a summary. ${angle} Do not begin with the document's own framing, the institution's name, or the words "this report". Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.`,
     indiaConnection: pack.indiaConnection,
     sourceRoles: pack.sources.map((source) => ({ sourceId: source.id, role: sourceRoleFor(source.sourceKind) })),
     missingVoices: ["Independent reporting or measurement", "People directly affected by the change", "Evidence that tests the issuing institution's account"],

@@ -1,5 +1,20 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-08-31T00:00:00.000Z",
-  "items": []
+  "generatedAt": "2026-09-04T19:17:01.209Z",
+  "items": [
+    {
+      "slug": "cag-126028",
+      "format": "timeline",
+      "title": "Jharkhand's rural job scheme and tap-water mission: what the audit record shows and leaves open",
+      "dek": "An audit of two public programmes in Jharkhand examines how funds moved and how work was recorded, but it does not settle what the people who depend on these schemes experienced on the ground.",
+      "theme": "Public programme implementation and record-keeping",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-04T19:17:01.201Z",
+      "readingMinutes": 3,
+      "featured": true
+    }
+  ]
 }
