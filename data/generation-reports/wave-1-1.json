@@ -1,14 +1,14 @@
 {
   "contractVersion": "syat.generation-wave-report.v1",
   "waveId": "wave-1-1",
-  "generatedAt": "2026-09-04T19:17:01.209Z",
+  "generatedAt": "2026-09-04T20:10:19.875Z",
   "status": "passed",
   "start": 1,
   "count": 1,
   "model": "deepseek/deepseek-v4-flash-0731",
-  "promptVersion": "syat.story-draft.v4.0",
-  "spentPaise": 0,
-  "actualPaise": 0,
+  "promptVersion": "syat.story-draft.v4.12",
+  "spentPaise": 10,
+  "actualPaise": 10,
   "conservativeFailedPaise": 0,
   "reservedPaise": 0,
   "inrPerUsd": 100,
@@ -16,9 +16,9 @@
     {
       "sourcePackId": "cag-126028",
       "slug": "cag-126028",
-      "inputHash": "20cae63a52782056ba9f8f98bc0168967667b84716b4018ecae0a58808e4fe51",
-      "outputHash": "666045e2bc858953b51366243d0fec5968b51f91abe476c4b84e5787d1ad3a53",
-      "reused": true,
+      "inputHash": "a39d901568686fb3fade553de7f5d042f576a7ad1c32f6476345c2fb7646c4a2",
+      "outputHash": "d3b17d569cfd00ca390cad41373dc7e8a0e6876ee8c4e91726109c0d36f5a54d",
+      "reused": false,
       "warnings": [
         "single-publisher-evidence",
         "repeated-opening"

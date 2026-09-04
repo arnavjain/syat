@@ -248,8 +248,20 @@ function allReferencedSourceIds(draft: GeneratedStoryV2) {
   ];
 }
 
+/**
+ * A grouped figure is one number.
+ *
+ * Splitting 27,96,044 into 27 / 96 / 044 spent three of a seven-token window on a single
+ * amount, so any sentence reporting a figure overlapped its source almost by construction.
+ * Keeping the figure whole makes the window seven real units, which both removes that false
+ * positive and makes a genuine seven-word overlap mean what it says.
+ */
 function textTokens(text: string) {
-  return text.toLocaleLowerCase("en-IN").normalize("NFKC").replace(/([\p{L}])['’]s\b/giu, "$1s").match(/[\p{L}\p{N}]+/gu) ?? [];
+  return text
+    .toLocaleLowerCase("en-IN")
+    .normalize("NFKC")
+    .replace(/([\p{L}])['’]s\b/giu, "$1s")
+    .match(/\p{L}+|\p{N}[\p{N},.]*\p{N}|\p{N}/gu) ?? [];
 }
 
 const nameConnectors = new Set(["and", "of", "for", "the", "in", "on", "to", "a", "an"]);
@@ -283,6 +295,24 @@ function runIsProperName(run: readonly string[], evidenceText: string): boolean 
   return false;
 }
 
+const quantityUnits = new Set(["rs", "inr", "crore", "crores", "lakh", "lakhs", "per", "cent", "percent", "percentage", "million", "billion", "thousand", "point", "of", "the", "to", "and", "in"]);
+
+/**
+ * A run that is mostly a quantity and its unit.
+ *
+ * "31,110 crore 20.61 per cent of the total" is seven tokens of pure number and unit. A story
+ * reporting that figure has to write it, and rephrasing it either changes the figure or pads
+ * around it. The guard exists to stop copied analysis, and a quantity is a fact rather than
+ * phrasing, so a run carrying no substantive words of its own is not evidence of copying.
+ *
+ * Like the proper-name exemption this narrows precision without lowering the bar: any words
+ * of analysis around the figure still form their own overlapping windows.
+ */
+function runIsQuantity(run: readonly string[]): boolean {
+  const substantive = run.filter((token) => !/^\p{N}[\p{N},.]*$/u.test(token) && !quantityUnits.has(token));
+  return substantive.length <= 1;
+}
+
 function sharedRun(text: string, evidenceText: string, size: number) {
   const visible = textTokens(text);
   const evidence = textTokens(evidenceText);
@@ -294,6 +324,7 @@ function sharedRun(text: string, evidenceText: string, size: number) {
     const normalisedRun = run.join(" ");
     if (!evidenceRuns.has(normalisedRun)) continue;
     if (runIsProperName(run, evidenceText)) continue;
+    if (runIsQuantity(run)) continue;
     return { tokenCount: size, matchHash: createHash("sha256").update(normalisedRun).digest("hex"), sharedText: normalisedRun };
   }
   return null;
@@ -471,7 +502,7 @@ export type SelectedExactTime = {
 
 // v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
 // input hash, so a pipeline change gives every pack a fresh identity to attempt.
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.5";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.14";
 
 type JsonObject = Record<string, unknown>;
 

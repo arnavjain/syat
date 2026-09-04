@@ -325,7 +325,7 @@ describe("syat.story-draft.v2", () => {
     expect(prompt).toContain("In a significant development");
     expect(prompt).toContain("syat.story-draft.v2");
     expect(prompt).toContain("modelInputAllowed");
-    expect(prompt).toContain("Prompt version: syat.story-draft.v4.5");
+    expect(prompt).toContain("Prompt version: syat.story-draft.v4.14");
     expect(prompt).toContain("Write the title and dek with fresh sentence structure");
     expect(prompt).toContain("do not reuse any six-token source span in the title or any seven-token source span in the dek");
     expect(prompt).toContain("Exact proper names and necessary technical labels may repeat");
@@ -362,6 +362,58 @@ describe("close-copy guard precision", () => {
     const officialSource: SourceDossierRecord = { ...sourceDossier[0], evidenceText: "The report contains compliance audit paragraphs and three general paragraphs on the department." };
     const draft = makeDraft();
     draft.bodySections[0].paragraphs[0].text = "It sets out compliance audit paragraphs and three general paragraphs, and it names the department each one concerns.";
+
+    expect(findCloseCopyMatches(draft, [officialSource]).length).toBeGreaterThan(0);
+  });
+});
+
+describe("quantities are facts, not phrasing", () => {
+  it("lets a story report a figure with its unit", () => {
+    // "31,110 crore 20.61 per cent of the total" is seven tokens of number and unit. A story
+    // reporting that amount has to write it, and rephrasing it changes the figure or pads it.
+    const officialSource: SourceDossierRecord = {
+      ...sourceDossier[0],
+      evidenceText: "Out of the total budget of the State, an amount of 31,110 crore 20.61 per cent of the total budget remained unutilised during the year."
+    };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "Auditors recorded that 31,110 crore 20.61 per cent of the total was never drawn down by departments, and the accounts do not explain it.";
+
+    expect(findCloseCopyMatches(draft, [officialSource])).toEqual([]);
+  });
+
+  it("still catches copied wording that merely contains a figure", () => {
+    const officialSource: SourceDossierRecord = {
+      ...sourceDossier[0],
+      evidenceText: "Supplementary provisions of 5,407 crore proved unnecessary as the expenditure did not even come up to original provisions."
+    };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "The audit notes that the expenditure did not even come up to original provisions, which it does not explain.";
+
+    expect(findCloseCopyMatches(draft, [officialSource]).length).toBeGreaterThan(0);
+  });
+});
+
+describe("grouped figures count as one token", () => {
+  it("does not spend a window on the parts of one Indian-grouped amount", () => {
+    // 27,96,044 used to tokenise as 27 / 96 / 044, so three of seven slots went to a single
+    // amount and any sentence quoting it overlapped its source by construction.
+    const officialSource: SourceDossierRecord = {
+      ...sourceDossier[0],
+      evidenceText: "Of the sanctioned houses, 27,96,044 (27 per cent) were completed during the period covered by audit."
+    };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "Auditors recorded that 27,96,044 (27 per cent) were completed, and the record does not say why the rest were not.";
+
+    expect(findCloseCopyMatches(draft, [officialSource])).toEqual([]);
+  });
+
+  it("still catches seven real words carried across with a figure", () => {
+    const officialSource: SourceDossierRecord = {
+      ...sourceDossier[0],
+      evidenceText: "Supplementary provisions of 5,407 crore proved unnecessary as the expenditure did not even come up to original provisions during the year."
+    };
+    const draft = makeDraft();
+    draft.bodySections[0].paragraphs[0].text = "It notes the expenditure did not even come up to original provisions during the year, without explaining that.";
 
     expect(findCloseCopyMatches(draft, [officialSource]).length).toBeGreaterThan(0);
   });

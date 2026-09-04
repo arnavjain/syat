@@ -1,0 +1,459 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126028",
+  "slug": "cag-126028",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "timeline",
+  "title": "Jharkhand wage delays and incomplete works shadow MGNREGS record",
+  "dek": "An audit of MGNREGS in Jharkhand shows wage arrears of over 321 crore rupees and a quarter of planned works never started, while the official record cannot confirm what workers actually received.",
+  "theme": "Wage arrears and incomplete works in Jharkhand's MGNREGS",
+  "indiaConnection": "This audit examines how a public programme in Jharkhand was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3"
+    ],
+    "sourceIds": [
+      "cag-126028"
+    ]
+  },
+  "collectedAt": "2026-09-04T19:47:07.908Z",
+  "generatedAt": "2026-09-04T20:10:19.865Z",
+  "updatedAt": "2026-09-04T20:10:19.865Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "In Jharkhand, rural families depend on MGNREGS for their daily income, and the scheme assures work within a set timeframe. According to the audit, the state government's fund releases for the scheme were delayed by 40 to 55 days, which the audit says undermined the goal of offering work to those needing daily wages. The report does not mention the number of households impacted by these delays or how they reacted.",
+      "section": {
+        "id": "section-1",
+        "title": "Who depends on the scheme"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit also noted that as of March 2025, unpaid wages for unskilled workers from 2019-20 to 2023-24 totalled 321.84 crore rupees. It says that failing to pay wages denied workers their rightful earnings and created financial strain, but it does not give individual examples of such hardship. The report does not specify how many workers were affected or the waiting period for each.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "For the years 2019-24, the audit looked at 1,02,68,484 planned works. It found that only 27 per cent were finished, 49 per cent remained unfinished as of March 2024, and 24 per cent were never started. Spending on these works reached 2,633 crore rupees, but the report does not indicate how much of that money led to usable assets. The audit does not tie the unfinished works to specific wage delays, nor does it explain why they were not completed.",
+      "section": {
+        "id": "section-2",
+        "title": "What the record shows about works"
+      },
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "In six test-checked districts, the audit scrutinised 480 works and found 139 lying incomplete as of January 2025. The audit also found that mandatory records like Measurement Books and Muster Rolls were not maintained, and that the NREGASoft portal lacked controls to prevent payments without validated data. The record shows cases of payments released even when measurements were not recorded or were incomplete, but it does not quantify how many such payments occurred across the state.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit identified mismatches between NREGASoft portal data and the department's certified financial accounts. In three test-checked districts, 32.62 lakh rupees were spent improperly on items like maintaining old vehicles and paying salaries for functionaries not covered by the scheme. The report does not state whether these were isolated cases or part of a broader issue, and it does not name the districts.",
+      "section": {
+        "id": "section-3",
+        "title": "Discrepancies and monitoring gaps"
+      },
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit further states that the State Employment Guarantee Council did not hold monitoring or steering meetings on a regular basis, and that staffing shortages ranged from 8.24 to 21.07 per cent. The report does not explain why the council failed to meet regularly or how the staffing gaps affected wage disbursements. It also does not directly link these monitoring lapses to the unpaid wages, leaving that connection unexamined.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "According to the audit, the state government's fund releases for MGNREGS were delayed by 40 to 55 days.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers fund release delays for MGNREGS in Jharkhand for the period 2019-24.",
+      "type": "documented",
+      "limits": "The record does not specify which districts or years experienced the longest delays."
+    },
+    {
+      "id": "claim-2",
+      "text": "As of March 2025, unpaid wages for unskilled workers from 2019-20 to 2023-24 stood at 321.84 crore rupees.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers wage arrears for unskilled labour in MGNREGS in Jharkhand for 2019-20 to 2023-24.",
+      "type": "documented",
+      "limits": "The record does not state how many workers were owed wages or the average waiting time."
+    },
+    {
+      "id": "claim-3",
+      "text": "Out of 1,02,68,484 works proposed during 2019-24, only 27 per cent were completed, 49 per cent were incomplete, and 24 per cent were not taken up.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers works proposed under MGNREGS in Jharkhand for 2019-24.",
+      "type": "documented",
+      "limits": "The record does not explain why works were not taken up or completed."
+    },
+    {
+      "id": "claim-4",
+      "text": "In six test-checked districts, 139 of 480 works remained unfinished as of January 2025, and records such as MBs and MRs were not maintained.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers 480 works in six test-checked districts in Jharkhand.",
+      "type": "documented",
+      "limits": "The record does not name the districts or specify which records were missing."
+    },
+    {
+      "id": "claim-5",
+      "text": "Expenditure of 32.62 lakh rupees was irregularly incurred on inadmissible items in three test-checked districts.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers expenditure in three test-checked districts in Jharkhand.",
+      "type": "documented",
+      "limits": "The record does not identify the districts or the exact items beyond examples."
+    },
+    {
+      "id": "claim-6",
+      "text": "Monitoring by the State Employment Guarantee Council was not regular, and manpower shortfalls ranged between 8.24 and 21.07 per cent.",
+      "sourceIds": [
+        "cag-126028"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers monitoring and manpower for MGNREGS in Jharkhand.",
+      "type": "documented",
+      "limits": "The record does not state how often the council met or the effect of shortfalls."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit's data covers wage arrears from 2019-20 to 2023-24, but the exact date of the audit's conclusions is not given in the provided material.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit examined works proposed during 2019-24 and found incomplete works as of March 2024, but the exact date of the audit's physical verification is not established.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit found 139 works incomplete as of January 2025 in six test-checked districts, but the exact date of the audit's scrutiny is not established.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Audit",
+      "rationale": "The audit is an independent examination of the institution's own records, and it can contradict or narrow the institution's account.",
+      "sees": "The audit sees discrepancies between portal data and financial accounts, and it sees wage arrears and incomplete works.",
+      "values": "The audit values accuracy in records and adherence to scheme rules.",
+      "uses": "The audit uses official records and physical verification to support its findings.",
+      "mayMiss": "The audit may miss the lived experience of workers and the reasons behind delays.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "perspective-2",
+      "label": "Workers",
+      "rationale": "Workers are the intended beneficiaries of the scheme, and their perspective is not directly represented in the audit record.",
+      "sees": "Workers would see the impact of wage delays on their daily lives.",
+      "values": "Workers value timely wages and reliable employment.",
+      "uses": "Workers use the scheme as a source of income.",
+      "mayMiss": "Workers may miss the systemic reasons for delays and the broader audit findings.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "people-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that produced the record.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "people-2",
+      "kind": "institution",
+      "label": "State Employment Guarantee Council",
+      "association": "The council responsible for monitoring the scheme, which the audit says did not meet regularly.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "people-3",
+      "kind": "community",
+      "label": "Rural households in Jharkhand",
+      "association": "The intended beneficiaries of MGNREGS who depend on daily wages.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "How many workers were affected by wage delays and what was the average waiting time?",
+      "whatWouldHelp": "Independent reporting or measurement from workers and local records.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "Why were 24 per cent of works not taken up at all?",
+      "whatWouldHelp": "Evidence that tests the issuing institution's account, such as field visits or interviews.",
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "wage-and-worth",
+    "question": "What does the audit record show about wage delays and incomplete works in Jharkhand's MGNREGS?",
+    "connection": "The audit record shows wage arrears and incomplete works, but it does not establish what workers experienced or why delays occurred."
+  },
+  "sources": [
+    {
+      "id": "cag-126028",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report No. 5 of 2026 : Report of the CAG on Implementation of Mahatma Gandhi National Rural Employment Guarantee Scheme in Jharkhand and Implementation of Jal Jeevan Mission in Jharkhand · Sector: - · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126028",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-11T00:00:00.000Z",
+      "accessedAt": "2026-09-04T19:47:07.908Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6.",
+      "scope": "The audit covers fund release delays for MGNREGS in Jharkhand for the period 2019-24.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126028-timeline",
+      "kind": "chart",
+      "label": "MGNREGS in Jharkhand: Key audit findings over time",
+      "alt": "MGNREGS in Jharkhand: Key audit findings over time. A timeline showing the audit's findings on wage arrears, incomplete works, and monitoring gaps, with markers for the period 2019-24 and the as-of dates March 2024 and January 2025.",
+      "caption": "A timeline showing the audit's findings on wage arrears, incomplete works, and monitoring gaps, with markers for the period 2019-24 and the as-of dates March 2024 and January 2025.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126028-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T20:10:19.857Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126028-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline cannot show exact dates for the audit's findings, as the record does not provide them.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-3",
+        "claim-4",
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126028"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126028-timeline",
+    "kind": "timeline",
+    "title": "MGNREGS in Jharkhand: Key audit findings over time",
+    "description": "A timeline showing the audit's findings on wage arrears, incomplete works, and monitoring gaps, with markers for the period 2019-24 and the as-of dates March 2024 and January 2025.",
+    "limitation": "The timeline cannot show exact dates for the audit's findings, as the record does not provide them.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3",
+      "claim-4",
+      "claim-5",
+      "claim-6"
+    ],
+    "sourceIds": [
+      "cag-126028"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-13ptuzf",
+      "publisher": "OpIndia",
+      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays ‘victim card’, publisher sets the record straight",
+      "url": "https://www.opindia.com/2026/08/what-is-the-sonia-gandhi-memoir-controversy-congress-vs-bjp-penguin-random-house-clarification-explained/",
+      "publishedAt": "2026-08-29T14:24:45.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1tau956",
+      "publisher": "The Hindu",
+      "title": "Gaganyaan Episode 1: Why India’s Human Spaceflight Mission Matters | The Scope",
+      "url": "https://www.thehindu.com/videos/gaganyaan-episode-1-why-indias-human-spaceflight-mission-matters-the-scope/article71318202.ece",
+      "publishedAt": "2026-08-31T11:43:44.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1gqpvvu",
+      "publisher": "Organiser",
+      "title": "Rahul Gandhi sees patriarchy in Hindutva, but remains silent on Islam: What does the Keralam directive on women reveal?",
+      "url": "https://organiser.org/2026/08/31/378023/bharat/rahul-gandhi-sees-patriarchy-in-hindutva-but-remains-silent-on-islam-what-does-the-keralam-directive-on-women-reveal/",
+      "publishedAt": "2026-08-31T13:30:02.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1jq35ce",
+      "publisher": "Hindustan Times",
+      "title": "Penguin India denies external pressure over Sonia Gandhi memoir: 'Impasse on particular issue'",
+      "url": "https://www.hindustantimes.com/india-news/penguin-india-denies-external-pressure-over-sonia-gandhi-memoir-impasse-on-particular-issue-101788185702126.html",
+      "publishedAt": "2026-08-31T15:12:29.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-to49ib",
+      "publisher": "The Times of India",
+      "title": "'Purification' row: Congress protests FIR against Rahul Gandhi, attacks BJP's 'casteist' behaviour",
+      "url": "https://timesofindia.indiatimes.com/india/purification-row-congress-protests-fir-against-rahul-gandhi-attacks-bjps-casteist-behaviour/articleshow/133658657.cms",
+      "publishedAt": "2026-08-31T16:54:58.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows wage arrears and incomplete works, but it does not establish what individual workers experienced or why the delays occurred."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.12",
+    "inputHash": "a39d901568686fb3fade553de7f5d042f576a7ad1c32f6476345c2fb7646c4a2",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T20:10:19.865Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "Three or more sentences begin with the same four words."
+    ],
+    "scores": {
+      "clarity": 4,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

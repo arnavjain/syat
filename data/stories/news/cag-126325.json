@@ -1,0 +1,422 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126325",
+  "slug": "cag-126325",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "public_impact",
+  "title": "Nagaland's fiscal deficit exceeded legal targets for the third straight year, audit finds",
+  "dek": "The state's own revenue grew, but grants from the Centre fell, and spending on committed costs left little room for capital investment, according to the latest audit of state finances.",
+  "theme": "Fiscal discipline and public spending in Nagaland",
+  "indiaConnection": "This audit examines how public money in Nagaland was accounted for and reported, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3"
+    ],
+    "sourceIds": [
+      "cag-126325"
+    ]
+  },
+  "collectedAt": "2026-09-04T19:46:21.736Z",
+  "generatedAt": "2026-09-04T20:10:36.665Z",
+  "updatedAt": "2026-09-04T20:10:36.665Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Nagaland's fiscal deficit has been above the limits set by its own Fiscal Responsibility and Budget Management Act for three consecutive years, according to the Comptroller and Auditor General of India's audit of state finances for 2024-25. The audit states that the state was not able to keep the deficit within the target levels from 2022-23 onwards, leaving little room for fiscal consolidation. The record does not provide a reason for this persistent breach.",
+      "section": {
+        "id": "section-1",
+        "title": "Fiscal deficit breach"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit also notes that outstanding liabilities stayed within numerical targets only in 2020-21, and that this must be seen alongside contingent liabilities from guarantees. The state carried forward undischarged liabilities of Rs 26.43 crore in 2024-25, which is 0.14 per cent of total expenditure. These liabilities relate to the State Road Safety Fund, interest payments, and grants from the State and Central Finance Commissions.",
+      "claimIds": [
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The state's economy grew moderately in 2024-25, with Gross State Domestic Product rising 9.39 per cent over the previous year. However, revenue receipts contracted by 0.42 per cent, driven by lower grants from the Centre, even though tax collections, especially GST, and central tax devolution increased. Non-tax revenue grew by 0.20 per cent during the same period.",
+      "section": {
+        "id": "section-2",
+        "title": "Revenue and spending trends"
+      },
+      "claimIds": [
+        "claim-4",
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "Expenditure was dominated by revenue spending, which grew 3.47 per cent, with committed costs and subsidies accounting for 75.01 per cent of revenue expenditure, 60.99 per cent of total expenditure, and 71.50 per cent of revenue receipts. This left limited fiscal space for capital investment, which remained volatile and below budgeted levels. The audit does not specify which capital projects were affected.",
+      "claimIds": [
+        "claim-6",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "During the fiscal year, the audit identified substantial savings and overruns across 79 grants, split into 78 revenue and 36 capital grants. The legislature must regularize the excess spending for 2024-25, as noted in the audit. There is no information on whether the legislature has acted on this matter.",
+      "section": {
+        "id": "section-3",
+        "title": "Excess expenditure and legislative approval"
+      },
+      "claimIds": [
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit also highlights that the state needs to improve tax arrears collection, reduce compliance risks, recycle capital investments in state public sector enterprises, and rationalise expenditure in line with revenue growth. These are recommendations from previous audit reports, and the current audit does not provide evidence on whether they have been implemented.",
+      "claimIds": [
+        "claim-9"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "Nagaland's fiscal deficit has been above the FRBM target since 2022-23.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covers the state's finances for the year 2024-25, including fiscal deficit and debt.",
+      "type": "documented",
+      "limits": "The audit does not explain why the deficit exceeded the target."
+    },
+    {
+      "id": "claim-2",
+      "text": "Outstanding liabilities stayed within numerical targets only in 2020-21.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit examines how the state borrows and its debt situation.",
+      "type": "documented",
+      "limits": "The audit does not provide details on the composition of these liabilities."
+    },
+    {
+      "id": "claim-3",
+      "text": "The state carried forward undischarged liabilities of Rs 26.43 crore in 2024-25.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit identifies specific undischarged liabilities in the state's accounts.",
+      "type": "documented",
+      "limits": "The audit does not state when these liabilities will be cleared."
+    },
+    {
+      "id": "claim-4",
+      "text": "GSDP grew by 9.39 per cent in 2024-25 compared to the previous year.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit analyses the state's economic growth for the fiscal year.",
+      "type": "documented",
+      "limits": "The audit does not provide sector-wise growth details."
+    },
+    {
+      "id": "claim-5",
+      "text": "Revenue receipts contracted by 0.42 per cent, despite higher tax collections and increased central tax devolution.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reviews revenue trends for the state.",
+      "type": "documented",
+      "limits": "The audit does not quantify the impact of reduced grants on specific schemes."
+    },
+    {
+      "id": "claim-6",
+      "text": "Committed costs and subsidies accounted for 75.01 per cent of revenue expenditure.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit examines expenditure patterns, including committed costs.",
+      "type": "documented",
+      "limits": "The audit does not list the specific subsidies included."
+    },
+    {
+      "id": "claim-7",
+      "text": "Capital spending was unstable and fell short of what was planned.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reviews capital investment trends.",
+      "type": "documented",
+      "limits": "The audit does not identify which projects were underfunded."
+    },
+    {
+      "id": "claim-8",
+      "text": "The legislature must regularize the excess spending for 2024-25.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reports on savings and excesses in grants.",
+      "type": "documented",
+      "limits": "The audit does not state whether the legislature has approved the excess."
+    },
+    {
+      "id": "claim-9",
+      "text": "The audit recommends improving tax arrears collection and rationalising expenditure.",
+      "sourceIds": [
+        "cag-126325"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit includes recommendations based on previous reports.",
+      "type": "interpreted",
+      "limits": "The audit does not provide evidence on implementation of these recommendations."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Nagaland's fiscal deficit exceeded the FRBM target for the third consecutive year in 2024-25.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Revenue receipts contracted by 0.42 per cent, while non-tax revenue grew by 0.20 per cent.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Committed costs and subsidies consumed 75.01 per cent of revenue expenditure.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "State government",
+      "rationale": "The state government is the subject of the audit and would have its own account of fiscal management.",
+      "sees": "The state may see the deficit as a result of external factors like reduced central grants.",
+      "values": "The state likely values fiscal autonomy and adequate funding for public services.",
+      "uses": "The state could use the audit to justify requests for more central funding.",
+      "mayMiss": "The state may not highlight inefficiencies in expenditure management.",
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "perspective-2",
+      "label": "Auditor (CAG)",
+      "rationale": "The audit is the source of the record and provides an independent assessment.",
+      "sees": "The auditor sees the deficit as a breach of legal targets and a sign of fiscal stress.",
+      "values": "The auditor values fiscal discipline and transparency.",
+      "uses": "The auditor uses the audit to hold the state accountable.",
+      "mayMiss": "The auditor may not capture the on-ground impact of spending cuts.",
+      "sourceIds": [
+        "cag-126325"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit body that produced the report on Nagaland's state finances.",
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Government of Nagaland",
+      "association": "The state government whose finances are audited.",
+      "sourceIds": [
+        "cag-126325"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "Why has Nagaland's fiscal deficit exceeded the FRBM target for three consecutive years?",
+      "whatWouldHelp": "A detailed explanation from the state government or an independent analysis of fiscal policy.",
+      "sourceIds": [
+        "cag-126325"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "What specific capital projects were affected by the volatile and below-budget capital expenditure?",
+      "whatWouldHelp": "A breakdown of capital spending by project or sector.",
+      "sourceIds": [
+        "cag-126325"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "evidence-threshold",
+    "question": "What can an audit of state finances actually prove about fiscal health, and what remains unknown?",
+    "connection": "This audit provides a detailed record of Nagaland's finances, but it also shows the limits of what such a record can establish, such as the reasons behind fiscal breaches."
+  },
+  "sources": [
+    {
+      "id": "cag-126325",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report No. 2 of 2026 - Report of the Comptroller and Auditor General of India on State Finances for the Year 2024-25 - Government of Nagaland · Sector: Finance · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126325",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-09-03T00:00:00.000Z",
+      "accessedAt": "2026-09-04T19:46:21.736Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9.",
+      "scope": "The audit covers the state's finances for the year 2024-25, including fiscal deficit and debt.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126325-number-stack",
+      "kind": "chart",
+      "label": "Key fiscal indicators for Nagaland, 2024-25",
+      "alt": "Key fiscal indicators for Nagaland, 2024-25. A stacked bar chart showing GSDP growth, revenue receipt contraction, non-tax revenue growth, and the share of committed costs in revenue expenditure, based on the audit's figures.",
+      "caption": "A stacked bar chart showing GSDP growth, revenue receipt contraction, non-tax revenue growth, and the share of committed costs in revenue expenditure, based on the audit's figures.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126325-number-stack",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-04T20:10:36.657Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126325-number-stack",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The chart only reflects the audit's reported numbers and does not include independent data.",
+      "claimIds": [
+        "claim-4",
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126325"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126325-number-stack",
+    "kind": "number_stack",
+    "title": "Key fiscal indicators for Nagaland, 2024-25",
+    "description": "A stacked bar chart showing GSDP growth, revenue receipt contraction, non-tax revenue growth, and the share of committed costs in revenue expenditure, based on the audit's figures.",
+    "limitation": "The chart only reflects the audit's reported numbers and does not include independent data.",
+    "claimIds": [
+      "claim-4",
+      "claim-5",
+      "claim-6"
+    ],
+    "sourceIds": [
+      "cag-126325"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit shows that Nagaland's fiscal deficit has been above the legal ceiling since 2022-23, but it does not explain why the state failed to meet the target."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.12",
+    "inputHash": "da26e799ce36606801e869d9021168fa91e9b2732be5bc89deb3e447aa3d45b5",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-04T20:10:36.665Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 5,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

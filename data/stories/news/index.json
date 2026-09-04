@@ -1,6 +1,6 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-09-04T19:57:37.781Z",
+  "generatedAt": "2026-09-04T20:10:36.674Z",
   "items": [
     {
       "slug": "cag-126269",
@@ -13,6 +13,34 @@
         "label": "Date not established in the supplied evidence"
       },
       "updatedAt": "2026-09-04T19:57:37.772Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-126028",
+      "format": "timeline",
+      "title": "Jharkhand wage delays and incomplete works shadow MGNREGS record",
+      "dek": "An audit of MGNREGS in Jharkhand shows wage arrears of over 321 crore rupees and a quarter of planned works never started, while the official record cannot confirm what workers actually received.",
+      "theme": "Wage arrears and incomplete works in Jharkhand's MGNREGS",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-04T20:10:19.865Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-126325",
+      "format": "public_impact",
+      "title": "Nagaland's fiscal deficit exceeded legal targets for the third straight year, audit finds",
+      "dek": "The state's own revenue grew, but grants from the Centre fell, and spending on committed costs left little room for capital investment, according to the latest audit of state finances.",
+      "theme": "Fiscal discipline and public spending in Nagaland",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-04T20:10:36.665Z",
       "readingMinutes": 2,
       "featured": true
     }
