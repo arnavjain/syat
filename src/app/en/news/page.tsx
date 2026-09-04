@@ -14,14 +14,20 @@ function groupByTheme(items: readonly ReaderStoryIndexItem[]) {
   return [...groups.entries()];
 }
 
-function StoryIndexRow({ story }: { story: ReaderStoryIndexItem }) {
+/** True once at least one theme has gathered more than one story. */
+function themeGroupingHelps(items: readonly ReaderStoryIndexItem[]) {
+  return groupByTheme(items).some(([, stories]) => stories.length > 1);
+}
+
+function StoryIndexRow({ story, showTheme = false }: { story: ReaderStoryIndexItem; showTheme?: boolean }) {
   return (
     <article className="news-index-row">
       <div className="news-index-meta">
+        {showTheme ? <span className="news-index-theme">{story.theme}</span> : null}
         <span>{story.format.replaceAll("_", " ")}</span>
         <time dateTime={story.updatedAt}>{new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeZone: "Asia/Kolkata" }).format(new Date(story.updatedAt))}</time>
         <span>{story.readingMinutes} min</span>
-        <span>AI-assisted private preview</span>
+        <span className="news-index-disclosure">AI-assisted private preview</span>
       </div>
       <h3><Link href={`/en/news/${story.slug}`}>{story.title}</Link></h3>
       <p>{story.dek}</p>
@@ -33,6 +39,7 @@ function StoryIndexRow({ story }: { story: ReaderStoryIndexItem }) {
 export default function NewsArchivePage() {
   const items = getNewsStoryIndexProjection();
   const groups = groupByTheme(items);
+  const grouped = themeGroupingHelps(items);
   const complete = items.length === 100;
 
   return (
@@ -45,12 +52,17 @@ export default function NewsArchivePage() {
           <dl><div><dt>Accepted</dt><dd>{items.length}</dd></div><div><dt>Target</dt><dd>100</dd></div><div><dt>Status</dt><dd>{complete ? "Preview set complete" : "Pilot in review"}</dd></div></dl>
         </header>
 
-        {groups.length > 0 ? groups.map(([theme, stories]) => (
+        {items.length > 0 && grouped ? groups.map(([theme, stories]) => (
           <section className="news-theme-section" id={themeId(theme)} aria-labelledby={`${themeId(theme)}-title`} key={theme}>
             <header><h2 id={`${themeId(theme)}-title`}>{theme}</h2><p>{stories.length} {stories.length === 1 ? "preview" : "previews"}</p></header>
             <div>{stories.map((story) => <StoryIndexRow story={story} key={story.slug} />)}</div>
           </section>
-        )) : (
+        )) : items.length > 0 ? (
+          <section className="news-flat-list" aria-labelledby="news-flat-title">
+            <h2 id="news-flat-title">Most recent first</h2>
+            <div>{items.map((story) => <StoryIndexRow showTheme story={story} key={story.slug} />)}</div>
+          </section>
+        ) : (
           <section className="news-archive-empty" aria-labelledby="news-empty-title">
             <h2 id="news-empty-title">The first pilot story is still being checked.</h2>
             <p>The archive stays empty when a generated draft fails its evidence gate. You can still learn the reading method through the clearly fictional teaching story.</p>

@@ -44,15 +44,31 @@ describe("News archive", () => {
     expect(html).not.toContain("One hundred News previews");
   });
 
-  it("files accepted previews under their theme and links each story page", () => {
+  it("reads as a flat list while every story has a theme of its own", () => {
+    // Generated stories invent their own theme, so grouping by it produced one heavy section
+    // heading per story, each reading "1 preview".
     projection.items = [card(), card({ slug: "trai-consultation", title: "TRAI extends a consultation window", theme: "Regulation" })];
+    const html = render();
+
+    expect(html).toContain('class="news-flat-list"');
+    expect(html).not.toContain('id="theme-public-services"');
+    expect(html).toContain("Public services");
+    expect(html).toContain('href="/en/news/delhi-water-review"');
+    expect(html).toContain('href="/en/news/trai-consultation"');
+  });
+
+  it("groups by theme once a theme actually gathers more than one story", () => {
+    projection.items = [
+      card(),
+      card({ slug: "delhi-water-two", title: "A second Delhi water record enters review" }),
+      card({ slug: "trai-consultation", title: "TRAI extends a consultation window", theme: "Regulation" })
+    ];
     const html = render();
 
     expect(html).toContain('id="theme-public-services"');
     expect(html).toContain('id="theme-regulation"');
-    expect(html).toContain('href="/en/news/delhi-water-review"');
-    expect(html).toContain('href="/en/news/trai-consultation"');
-    expect(html).not.toContain("The first pilot story is still being checked.");
+    expect(html).toContain("2 previews");
+    expect(html).not.toContain('class="news-flat-list"');
   });
 
   it("claims a complete preview set only at exactly one hundred accepted pages", () => {
