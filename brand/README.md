@@ -1,8 +1,9 @@
 # Syāt brand files
 
-The mark is three arcs around one centre, each covering a different sector and none
-completing the circle. "Syāt" means roughly "in some respect": an assertion offered from
-a standpoint rather than closed off. One subject, several partial views, nothing sealed.
+The mark is an S under a macron: the ā of "Syāt", which is the one letter that makes the
+name its own. An earlier abstract mark of three arcs was rejected by Google's brand
+review as not uniquely identifying the project, and it did read more like a loading
+spinner than like anything belonging here. Drawing it from the name fixes that.
 
 ## Which file to use
 

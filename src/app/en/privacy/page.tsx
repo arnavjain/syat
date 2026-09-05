@@ -67,9 +67,21 @@ export default function PrivacyPage() {
           <p>Nothing else is contacted when you read a page.</p>
         </section>
 
+        <section aria-labelledby="cookies-title">
+          <h2 id="cookies-title">Cookies</h2>
+          <p>Syāt sets no advertising cookies, no analytics cookies and no tracking cookies of any kind. Reading the site sets no cookie at all.</p>
+          <p>One cookie exists, and only if you sign in: a session cookie that keeps you signed in between pages. It is required for sign-in to work, is not used to follow you anywhere, and is removed when you sign out. The shelf and guide progress described above use your browser&rsquo;s local storage rather than cookies, which means they are never transmitted with a request.</p>
+        </section>
+
         <section aria-labelledby="rights-title">
-          <h2 id="rights-title">Removing what you sent</h2>
-          <p>Anything on your device you can clear yourself through your browser. For a proposal you sent, or an account you created, write to the contact address and say what you want removed. We will remove it. There is very little to remove, which is the point.</p>
+          <h2 id="rights-title">Deleting your data, and how long it is kept</h2>
+          <p>Anything stored on your device you can delete yourself by clearing your browser&rsquo;s data for this site. We cannot see it and it goes when you say so.</p>
+          <ul className="policy-list">
+            <li><strong>To delete your account,</strong> write to the contact address below from the address you signed in with, and it will be deleted along with the name, email and picture Google supplied. Nothing is retained afterwards.</li>
+            <li><strong>To delete a question you proposed,</strong> write to the same address describing it and it will be removed from the review queue.</li>
+            <li><strong>Retention.</strong> Proposals are kept only until they are reviewed and then either written up or deleted. Account details are kept until you ask for deletion or the preview ends. There is no archive of readers, because none is created.</li>
+          </ul>
+          <p>Requests are handled by one person and are usually done within a few days. There is very little to delete, which is the point.</p>
         </section>
 
         <section aria-labelledby="state-title">

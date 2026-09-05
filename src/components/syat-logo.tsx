@@ -1,22 +1,20 @@
 /**
  * The Syāt mark.
  *
- * "Syāt" means roughly "in some respect" — an assertion offered from a standpoint rather than
- * closed off. So the mark is three arcs around one centre, each covering a different sector and
- * none of them completing the circle. One subject, several partial views, nothing sealed shut.
+ * An S under a macron: the ā of "syāt", which is the one letter that makes the name its own.
+ * A purely abstract mark was tried first and read as a loading spinner rather than as anything
+ * belonging to this project, so the mark is drawn from the name instead.
  *
- * It is drawn rather than lettered so it survives being small: the arcs stay legible at 20px in a
- * browser tab, which a wordmark does not. Inline SVG, no request, no rights to clear.
+ * Drawn rather than lettered so it does not depend on a font being loaded, and so it stays legible
+ * at tab size. Inline SVG: no request, nothing to license.
  */
 export function SyatLogo({ className = "" }: { className?: string }) {
   return (
     <svg className={`syat-logo ${className}`} viewBox="0 0 40 40" role="img" aria-label="Syāt" focusable="false">
-      {/* Three standpoints on one question, each seeing a different arc of it. */}
-      <path d="M20 5.5 A14.5 14.5 0 0 1 33.6 15" fill="none" stroke="var(--marigold, #ffc63b)" strokeWidth="4" strokeLinecap="round" />
-      <path d="M33.1 26.5 A14.5 14.5 0 0 1 12.5 33.4" fill="none" stroke="var(--cobalt, #2b4bff)" strokeWidth="4" strokeLinecap="round" />
-      <path d="M7.4 27.6 A14.5 14.5 0 0 1 11.2 8.3" fill="none" stroke="var(--hibiscus, #b4144b)" strokeWidth="4" strokeLinecap="round" />
-      {/* The subject they are all looking at. */}
-      <circle cx="20" cy="20" r="4.6" fill="currentColor" />
+      <rect width="40" height="40" rx="9" fill="var(--ink, #241021)" />
+      <path d="M13.5 7.5 H26.5" stroke="var(--marigold, #ffc63b)" strokeWidth="3.6" strokeLinecap="round" fill="none" />
+      <path d="M26 16.5 C26 12.2 14 12.2 14 17.6 C14 22.6 26 22.6 26 27.8 C26 33.2 14 33.2 14 28.6"
+        stroke="var(--paper, #f4eddd)" strokeWidth="4.2" strokeLinecap="round" fill="none" />
     </svg>
   );
 }
