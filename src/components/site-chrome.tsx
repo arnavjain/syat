@@ -9,7 +9,7 @@ const links: Array<{ section: Exclude<Section, "about" | "studio">; href: string
   { section: "home", href: "/", label: "Home" },
   { section: "explore", href: "/en/explore", label: "Explore" },
   { section: "search", href: "/en/search", label: "Search" },
-  { section: "reframe", href: "/en/reframe", label: "Bring" },
+  { section: "reframe", href: "/en/reframe", label: "Reframe" },
   { section: "saved", href: "/en/saved", label: "Saved" },
   { section: "you", href: "/en/you", label: "You" }
 ];

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { makeReframePlan, resolveReframeInitialInput } from "@/lib/reframe-plan";
@@ -12,6 +12,16 @@ export function ReframeWorkbench() {
   const [submitted, setSubmitted] = useState(false);
   const [slotValues, setSlotValues] = useState<Record<string, string>>({});
   const plan = submitted ? makeReframePlan(value) : undefined;
+  const resultRef = useRef<HTMLElement | null>(null);
+
+  // The plan renders beside the form on a wide screen and below it on a phone. Without moving to
+  // it, pressing the button looked like it had done nothing, which is what made this feel broken.
+  useEffect(() => {
+    if (!submitted || !resultRef.current) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    resultRef.current.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    resultRef.current.focus({ preventScroll: true });
+  }, [submitted, value]);
 
   function submitPlan() {
     setSlotValues({});
@@ -29,7 +39,7 @@ export function ReframeWorkbench() {
           <button className="primary-action" type="submit">Make a reading plan <span aria-hidden="true">↗</span></button>
         </fieldset>
       </form>
-      <aside className="reframe-result" aria-live="polite">
+      <aside className="reframe-result" aria-live="polite" ref={resultRef} tabIndex={-1}>
         {!plan && <p>Nothing is sent anywhere while you are preparing a reading plan.</p>}
         {plan?.state === "needs_input" && <p>Add a little text first. A good Reframe begins with the original close at hand.</p>}
         {plan?.state === "ready_for_review" && <>
