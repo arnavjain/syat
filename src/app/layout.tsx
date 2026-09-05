@@ -13,7 +13,9 @@ import "@fontsource/ibm-plex-mono/500.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://syat.vercel.app"),
+  // syat.vercel.app belongs to an unrelated project. Pointing at it would have sent every
+  // canonical and share URL to someone else's site.
+  metadataBase: new URL("https://syat-seven.vercel.app"),
   title: {
     default: "Syāt — questions that keep opening",
     template: "%s"
