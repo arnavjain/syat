@@ -502,7 +502,7 @@ export type SelectedExactTime = {
 
 // v2.7 adds the bounded in-memory close-copy repair. The version is part of the durable
 // input hash, so a pipeline change gives every pack a fresh identity to attempt.
-export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.23";
+export const STORY_DRAFT_PROMPT_VERSION = "syat.story-draft.v4.30";
 
 type JsonObject = Record<string, unknown>;
 
@@ -649,7 +649,9 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
     "Write the source scope as what the record covers, and the limit as the specific question a reader would still have to answer some other way. They must not be paraphrases of each other.",
     "Never write that one thing caused, led to, drove or resulted in another unless the record states it. Where the record only shows two facts together, say they appear together and that the record does not connect them.",
     "The headline must point the same way as the body. If the body reports a shortfall, the headline may not say more; if the body reports an overrun, the headline may not say less.",
-    "Figures and named schemes may be repeated exactly, but the sentence around them must be yours. Put the figure in a different position in the sentence from where the record puts it, and never carry across the record's phrasing on either side of it."
+    "Figures and named schemes may be repeated exactly, but the sentence around them must be yours. Put the figure in a different position in the sentence from where the record puts it, and never carry across the record's phrasing on either side of it.",
+    "The article body must run between 450 and 700 words across all sections. Count only paragraph text. A shorter draft is rejected outright, so work through every finding the dossier supports rather than stopping at the first one.",
+    "Reaching that length by repeating a finding, restating the dek, or padding with what the record does not say is a failure. If the dossier genuinely cannot carry 450 words, say so in the unresolved questions rather than inventing material."
   ];
 
   return `You are an editorial research assistant for Syāt. Prepare a cautious, source-scoped draft for a human editor. Return exactly one JSON object and nothing else.
