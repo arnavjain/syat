@@ -12,7 +12,9 @@ const REQUEST_TIMEOUT_MS = 20_000;
 const PDF_TIMEOUT_MS = 90_000;
 const MINIMUM_START_GAP_MS = 700;
 const DEFAULT_OUTPUT = "data/source-packs/cag-candidates.json";
-const MAXIMUM_LISTING_PAGES = 32;
+// The listing runs to roughly 282 pages. This bounds one collection run without
+// pretending the archive is smaller than it is.
+const MAXIMUM_LISTING_PAGES = 90;
 
 // One request at a time with a gap between starts. This is a small research queue, not a crawl.
 class PoliteHtmlClient {
@@ -95,6 +97,7 @@ async function main(): Promise<void> {
   for (let page = 0; packs.length < wanted && page < MAXIMUM_LISTING_PAGES; page += 1) {
     const listing = await client.fetchHtml(page === 0 ? CAG_LIST_URL : `${CAG_LIST_URL}?page=${page}`);
     const links: CagReportLink[] = extractCagReportLinks(listing).filter((link) => !seen.has(link.id));
+    console.error(`  listing page ${page}: ${links.length} new report(s), ${packs.length} pack(s) so far`);
     if (links.length === 0) {
       emptyPages += 1;
       if (emptyPages >= 3) break;

@@ -86,7 +86,12 @@ export function validatePreviewSourcePack(pack: unknown): SourcePack {
   return parsed;
 }
 
-const titleStopWords = new Set(["a", "an", "and", "at", "by", "for", "from", "in", "into", "of", "on", "the", "to", "with"]);
+const titleStopWords = new Set([
+  "a", "an", "and", "at", "by", "for", "from", "in", "into", "of", "on", "the", "to", "with",
+  // Institutional boilerplate shared by every report in a single archive.
+  "report", "reports", "audit", "comptroller", "auditor", "general", "india", "government",
+  "no", "year", "ended", "state", "union", "compliance", "performance", "financial", "sector"
+]);
 
 function normalisedTitleTokens(title: string): Set<string> {
   return new Set(
