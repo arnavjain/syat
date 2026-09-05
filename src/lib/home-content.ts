@@ -1,5 +1,6 @@
 import { getPreviewStory } from "./preview-content";
 import type { ReaderStoryIndexItem } from "./reader-story-schema";
+import { getTimelessTopic } from "./timeless-topics";
 import { getNewsStory, getNewsStoryIndexProjection } from "./reader-stories";
 
 export type HomeMode = "news" | "timeless";
@@ -76,13 +77,21 @@ function newsContent(): HomeContent {
     type: "story"
   }));
 
-  const themes = [...new Set(index.map((story) => story.theme))].slice(0, 5).map<StoryTeaser>((theme) => ({
-    title: theme,
-    dek: `Read accepted previews filed under ${theme.toLocaleLowerCase("en-IN")}.`,
-    href: `/en/news#theme-${theme.toLocaleLowerCase("en-IN").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
-    label: "Theme",
-    type: "story"
-  }));
+  // Every News story currently carries its own theme, so grouping by theme listed five headings
+  // with one story each and read like a bug. The useful move across the library is not sideways
+  // into a near-duplicate but downwards, into the enduring question the event is an instance of.
+  const bridgedTopicSlugs = [...new Set(index.map((story) => getNewsStory(story.slug)?.contextBridge?.topicSlug).filter((slug): slug is string => typeof slug === "string"))];
+  const questions = bridgedTopicSlugs
+    .map((slug) => getTimelessTopic(slug))
+    .filter((topic): topic is NonNullable<typeof topic> => Boolean(topic))
+    .slice(0, 5)
+    .map<StoryTeaser>((topic) => ({
+      title: topic.title,
+      dek: `${topic.theme}. Read the standpoints that genuinely disagree about it.`,
+      href: `/en/timeless/topic/${topic.slug}`,
+      label: "The question underneath",
+      type: "subject"
+    }));
 
   return {
     modeLabel: "News",
@@ -103,9 +112,9 @@ function newsContent(): HomeContent {
         items: [...latestItems, { title: index.length === 100 ? "Browse all 100 News previews" : "Browse the pilot", dek: "Open the complete News archive by theme and date.", href: "/en/news", label: `${index.length} accepted ${index.length === 1 ? "preview" : "previews"}`, type: "story" }]
       },
       {
-        title: "Follow a subject",
-        intro: "Move across the News library by public question, not by an endless stream.",
-        items: themes
+        title: "The questions underneath",
+        intro: "Every story here is one instance of something older. These are the questions they belong to.",
+        items: questions
       }
     ],
     contextBridge: getNewsStory(lead.slug)?.contextBridge ?? getPreviewStory("street-plan-daily-realities")?.contextBridge
@@ -155,6 +164,9 @@ export function isCurrentFixtureDestination(href: string) {
   // A theme anchor on the archive is a real destination, so compare the path without it.
   const path = href.split("#")[0];
   if (path === "/en/studio" || path === "/en/news") return true;
+  // A Timeless topic route is a real published page, not a preview fixture.
+  const topicMatch = path.match(/^\/en\/timeless\/topic\/([^/#]+)$/);
+  if (topicMatch) return Boolean(getTimelessTopic(topicMatch[1]));
   const match = path.match(/^\/en\/(news|timeless)\/([^/#]+)$/);
   if (!match) return false;
 

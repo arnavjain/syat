@@ -106,3 +106,14 @@ export function getFeaturedNewsStories(limit: number): readonly ReaderStoryIndex
   if (!Number.isFinite(limit) || limit <= 0) return [];
   return getNewsStoryIndex().filter((story) => story.featured).slice(0, Math.floor(limit));
 }
+
+/**
+ * News previews that bridge to a given enduring question.
+ *
+ * The Context Bridge already carries a reader from an event down to the question it belongs to.
+ * Without the reverse, the two libraries read as two products: a question can be the subject of a
+ * story and show no sign of it. This is that reverse link.
+ */
+export function storiesIllustrating(topicSlug: string): ReaderStoryIndexItem[] {
+  return getNewsStoryIndexProjection().filter((item) => getNewsStory(item.slug)?.contextBridge?.topicSlug === topicSlug);
+}

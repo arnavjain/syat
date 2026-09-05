@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { SaveButton } from "@/components/save-button";
 import { SiteChrome } from "@/components/site-chrome";
 import { TopicVisual } from "@/components/topic-visual";
+import { storiesIllustrating } from "@/lib/reader-stories";
 import { getTopicContent } from "@/lib/timeless-content";
 import { getTimelessTopic, themeSlug, timelessTopics, topicsInTheme } from "@/lib/timeless-topics";
 
@@ -27,6 +28,7 @@ export default async function TimelessTopicPage({ params }: { params: Promise<{ 
   if (!content) notFound();
 
   const siblings = topicsInTheme(topic.theme).filter((item) => item.slug !== topic.slug).slice(0, 4);
+  const illustrations = storiesIllustrating(topic.slug);
 
   return (
     <SiteChrome active="explore">
@@ -73,6 +75,24 @@ export default async function TimelessTopicPage({ params }: { params: Promise<{ 
           <h2 id="change-title">What would change your mind</h2>
           <p>{content.changeYourMind}</p>
         </section>
+
+        {illustrations.length > 0 ? (
+          <section className="topic-instances" aria-labelledby="instances-title">
+            <div>
+              <p className="micro-copy">Where this question turns up</p>
+              <h2 id="instances-title">{illustrations.length === 1 ? "A documented instance." : `${illustrations.length} documented instances.`}</h2>
+              <p>These News previews were written from public records and bridge to this question. The question came first and outlives them.</p>
+            </div>
+            <ul>
+              {illustrations.map((story) => (
+                <li key={story.slug}>
+                  <Link href={`/en/news/${story.slug}`}>{story.title}</Link>
+                  <small>{story.dek}</small>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <section className="topic-next" aria-labelledby="next-title">
           <h2 id="next-title">Keep reading</h2>
