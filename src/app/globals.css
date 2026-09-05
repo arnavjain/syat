@@ -1141,3 +1141,131 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 }
 .standpoint-rationale { max-width: 44ch; margin: 10px 0 0; color: var(--ink); font-size: .9rem; line-height: 1.5; }
 .standpoint-sources { margin-top: 14px; }
+
+/* ============================================================================
+   Link system.
+
+   Everything clickable had become the same blue underlined link: headlines,
+   footer items, "read more" controls and prose references all styled alike. That
+   flattens the page, because a headline and a footnote are not the same kind of
+   thing, and it makes a page of links look like a list of errors.
+
+   Five kinds, each with its own treatment. Cobalt is kept for what it means in
+   this palette, which is documented material and source references, rather than
+   used as a default for anything with an href.
+   ============================================================================ */
+
+/* 1. Headline links. A headline is a headline first; it reveals itself as a link
+      on hover rather than announcing it in blue. */
+.news-index-row h3 a,
+.reader-source-list h3 a,
+.theme-topic-card h2 a,
+.theme-other li a,
+.topic-search-results li a,
+.topic-instances li a,
+.feed-lead-strip h2 a,
+.feed-story-row h3 a,
+.feed-framing-trail h3 a {
+  color: var(--ink);
+  text-decoration: none;
+  background-image: linear-gradient(var(--marigold), var(--marigold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 2px;
+  transition: background-size 220ms var(--press-ease), color 160ms var(--press-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .news-index-row h3 a:hover,
+  .reader-source-list h3 a:hover,
+  .theme-topic-card h2 a:hover,
+  .theme-other li a:hover,
+  .topic-search-results li a:hover,
+  .topic-instances li a:hover,
+  .feed-lead-strip h2 a:hover,
+  .feed-story-row h3 a:hover,
+  .feed-framing-trail h3 a:hover {
+    color: var(--ink);
+    background-size: 100% 2px;
+  }
+}
+
+/* 2. Forward controls. These are actions, so they read as a small label with an
+      arrow that moves, not as prose that happens to be blue. */
+.news-index-read,
+.first-read-link,
+.topic-next-links a,
+.syat-frame-footer a,
+.propose-saved a {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  font: 700 .74rem/1 var(--font-source);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 2px solid var(--marigold);
+  transition: color 160ms var(--press-ease), border-color 160ms var(--press-ease);
+}
+.news-index-read span[aria-hidden],
+.first-read-link span[aria-hidden],
+.topic-next-links a span[aria-hidden] { transition: transform 200ms var(--press-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .news-index-read:hover, .first-read-link:hover, .topic-next-links a:hover,
+  .syat-frame-footer a:hover, .propose-saved a:hover { color: var(--hibiscus-text); border-color: var(--hibiscus-text); }
+  .news-index-read:hover span[aria-hidden], .first-read-link:hover span[aria-hidden] { transform: translateX(3px); }
+}
+.topic-next-links { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+
+/* 3. Prose links, inside sentences. They stay legible as links without shouting:
+      the sentence keeps its colour and the underline carries the signal. */
+.policy-page a,
+.topic-instances > div p a,
+.how-it-works a:not(.primary-action),
+.about-page a:not(.text-action),
+.propose-page p a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cobalt);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: background-color 160ms var(--press-ease), text-decoration-color 160ms var(--press-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .policy-page a:hover,
+  .topic-instances > div p a:hover,
+  .how-it-works a:not(.primary-action):hover,
+  .about-page a:not(.text-action):hover,
+  .propose-page p a:hover { background: color-mix(in srgb, var(--marigold) 42%, transparent); text-decoration-color: var(--ink); }
+}
+
+/* 4. Source references. Cobalt earns its meaning here and nowhere else: these
+      point at documented evidence, so they are chips rather than prose links. */
+.reader-related-coverage a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 3px 11px;
+  color: var(--cobalt);
+  background: color-mix(in srgb, var(--cobalt) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cobalt) 26%, transparent);
+  border-radius: var(--radius-control);
+  font-size: .82rem;
+  text-decoration: none;
+  transition: color 160ms var(--press-ease), background-color 160ms var(--press-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .reader-related-coverage a:hover { color: var(--paper); background: var(--cobalt); border-color: var(--cobalt); }
+}
+
+/* 5. Footer and eyebrow links. Quiet by default, definite on hover. */
+.site-footer a, .topic-eyebrow a {
+  color: var(--soft-ink);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 26%, transparent);
+  transition: color 160ms var(--press-ease), border-color 160ms var(--press-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-footer a:hover, .topic-eyebrow a:hover { color: var(--ink); border-color: var(--marigold); }
+}
