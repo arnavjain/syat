@@ -1193,6 +1193,7 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
       arrow that moves, not as prose that happens to be blue. */
 .news-index-read,
 .first-read-link,
+.feed-action,
 .topic-next-links a,
 .syat-frame-footer a,
 .propose-saved a {
@@ -1210,11 +1211,12 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 }
 .news-index-read span[aria-hidden],
 .first-read-link span[aria-hidden],
+.feed-action span[aria-hidden],
 .topic-next-links a span[aria-hidden] { transition: transform 200ms var(--press-ease); }
 @media (hover: hover) and (pointer: fine) {
-  .news-index-read:hover, .first-read-link:hover, .topic-next-links a:hover,
+  .news-index-read:hover, .first-read-link:hover, .feed-action:hover, .topic-next-links a:hover,
   .syat-frame-footer a:hover, .propose-saved a:hover { color: var(--hibiscus-text); border-color: var(--hibiscus-text); }
-  .news-index-read:hover span[aria-hidden], .first-read-link:hover span[aria-hidden] { transform: translateX(3px); }
+  .news-index-read:hover span[aria-hidden], .first-read-link:hover span[aria-hidden], .feed-action:hover span[aria-hidden] { transform: translateX(3px); }
 }
 .topic-next-links { display: flex; flex-wrap: wrap; gap: 10px 26px; }
 
