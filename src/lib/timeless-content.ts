@@ -1337,6 +1337,546 @@ export const timelessContent: Readonly<Record<string, TopicContent>> = {
     contested: "Whether the Constitution is best understood as a completed settlement or as a warning about a task barely begun, and whether treating it as the former is what the speech was cautioning against.",
     changeYourMind: "Read the closing speech in full rather than in quotation. If most of it is about social and economic conditions rather than institutions, the warning reading is the correct one and the celebratory use is a misreading."
   },
+
+  // Science, where it is genuinely open
+  "replication-failure": {
+    opening: "A result does not reproduce. That sentence is treated as a verdict, but it is closer to the start of an argument. Failure to replicate is consistent with the original being wrong, with the replication being wrong, and with both being right about different conditions.",
+    standpoints: [
+      { label: "The replicator", sees: "A published claim that will not appear again under the stated method, and a literature built on things nobody rechecked.", values: "Findings that hold when someone else does the work.", mayMiss: "That a method described in a paper is never the whole of what was done in the room." },
+      { label: "The original author", sees: "A protocol followed on paper and not in substance, in a different population, with a sample chosen for cost.", values: "Conditions being part of the claim.", mayMiss: "That if the effect only appears in one lab, the effect claimed was broader than the evidence." },
+      { label: "The statistician", sees: "Both studies underpowered, and a field treating a threshold as a decision procedure.", values: "Effect sizes and intervals rather than a verdict.", mayMiss: "That practitioners need a decision even when the estimate is uncertain." },
+      { label: "The reader of the news report", sees: "One year a finding, the next a debunking, and no way to tell which stage this is.", values: "Knowing how settled something is before acting on it.", mayMiss: "That the visible churn is a field checking itself, which is what it is supposed to do." }
+    ],
+    contested: "Whether a replication failure should lower confidence in the original claim, in the field's methods, or in the replication itself, and who gets to decide which. The answer differs by discipline and is rarely stated.",
+    changeYourMind: "Look at whether the replication was pre-registered and adequately powered, and whether the original authors were consulted on the protocol. Those three facts usually settle which reading is available."
+  },
+  "dual-use-research": {
+    opening: "Some findings make people safer by being known and more dangerous by being known, and it is the same finding. Publication norms were built for a world where the second effect was rare, and are being asked to carry cases where it is not.",
+    standpoints: [
+      { label: "The researcher", sees: "That withheld findings cannot be checked, that secrecy concentrates knowledge among those with clearance, and that the defensive value usually requires the detail.", values: "Open verification as the thing that makes science reliable at all.", mayMiss: "That the defensive use may take years and the offensive use may take weeks." },
+      { label: "The biosecurity official", sees: "A method reproducible by a competent graduate, published irreversibly, against a threat that needs to succeed once.", values: "Not handing over the last hard step.", mayMiss: "That review boards leak, delay, and reliably fail to define the line in advance." },
+      { label: "The journal editor", sees: "A decision with no expertise to make it, no mandate, and a competitor who will publish if he does not.", values: "A rule that does not depend on his individual judgement.", mayMiss: "That declining to decide is a decision with the same consequences." },
+      { label: "The researcher in a country with no such review", sees: "A norm written by a few institutions that also determines whose work counts as legitimate.", values: "Not being governed by a committee he cannot appeal to.", mayMiss: "That the risk does not respect the same borders as the norm." }
+    ],
+    contested: "Whether openness is a founding commitment of science that admits no exceptions, or an instrument valued for its results and therefore reviewable when the results turn.",
+    changeYourMind: "Find a case where publication was withheld and see whether the defensive work still happened. If it did, the openness argument weakens; if it stalled, it strengthens."
+  },
+  "gene-editing-line": {
+    opening: "Editing a person's cells to treat their disease is broadly accepted. Editing an embryo so the change passes to their descendants is broadly prohibited. Both use the same tool, and the line between them is doing enormous moral work for a distinction that is technical.",
+    standpoints: [
+      { label: "The clinician treating a fatal inherited disease", sees: "Families who will pass on a condition they have watched kill relatives, and a fix that exists.", values: "Preventing suffering that is entirely foreseeable.", mayMiss: "That prevention at the embryo stage often has alternatives that do not edit anyone." },
+      { label: "The disability rights advocate", sees: "A programme that describes people alive now as conditions to be prevented.", values: "That a life with the condition is a life, not an outcome to be designed out.", mayMiss: "That some conditions cause suffering that no amount of accommodation reaches." },
+      { label: "The regulator", sees: "A change to people who cannot consent, that spreads through a population, with unknown interactions and no recall.", values: "Reversibility, or failing that, extreme caution.", mayMiss: "That prohibition in regulated countries relocates the work rather than stopping it." },
+      { label: "The parent", sees: "A specific child and a specific risk, and an ethical debate conducted about her in the abstract.", values: "The decision resting with those who will live with it.", mayMiss: "That the person most affected is not yet there to be consulted." }
+    ],
+    contested: "Whether the heritable line marks a real moral difference or a convenient stopping point, and whether treating and enhancing can be distinguished once a condition is defined by what a society will accommodate.",
+    changeYourMind: "Ask whether the same reasoning would have prohibited an accepted intervention when it was new. If it would have, the line is doing less principled work than it appears to."
+  },
+  "machine-understanding": {
+    opening: "A system produces answers that look like understanding. Whether anything is understood is either the deepest question in the field or a confusion about words, and which of those it is has itself been argued for seventy years without resolution.",
+    standpoints: [
+      { label: "The behaviourist about minds", sees: "That understanding was never observable in humans either, and that we grant it on performance.", values: "Applying one standard to people and machines.", mayMiss: "That we grant it to humans partly because we know what we are and assume similarity." },
+      { label: "The sceptic", sees: "Statistical continuation of text with no reference to a world, producing fluent answers and confident errors of a kind understanding would not make.", values: "Not mistaking the appearance for the thing.", mayMiss: "That the errors may be evidence about this system rather than about the possibility." },
+      { label: "The engineer", sees: "A question that changes no decision he has to make about testing, deployment or failure modes.", values: "Working on what can be measured.", mayMiss: "That the question determines what obligations, if any, are owed." },
+      { label: "The person on the other end of the system", sees: "Something that answered her question, and a debate about whether it meant it.", values: "Knowing whether to trust it.", mayMiss: "That trust and understanding are separable; a calculator is trustworthy and understands nothing." }
+    ],
+    contested: "Whether there is a fact about understanding that observation could settle, or whether the disagreement is about which concept to extend and to what, in which case no experiment resolves it.",
+    changeYourMind: "State in advance what result would change your view. If you cannot, the disagreement is about words rather than about the world, and that is worth knowing."
+  },
+  "research-animal": {
+    opening: "Almost every medicine in use passed through animals first. The practice is regulated, reduced where possible, and defended on the grounds that the alternative is worse. Whether that defence works depends on a comparison nobody can run.",
+    standpoints: [
+      { label: "The researcher", sees: "Regulation, review, and a genuine reduction in numbers, against diseases that kill people now.", values: "Weighing a real harm against a real benefit rather than against an imagined method.", mayMiss: "That the benefit is probabilistic and distant while the harm is certain and immediate." },
+      { label: "The abolitionist", sees: "A creature that can suffer, used for someone else's benefit, with its consent structurally impossible.", values: "That capacity to suffer is what grounds the claim, and it does not vary by species.", mayMiss: "That ending the practice now would stop lines of research with no replacement ready." },
+      { label: "The methodologist", sees: "Poor translation rates from animal models to human outcomes in several fields, and studies run because they are expected rather than because they inform.", values: "Asking whether the harm buys the knowledge claimed.", mayMiss: "That translation failures are also how a model gets refined." },
+      { label: "The patient waiting", sees: "A debate about method conducted while her condition progresses.", values: "Something that works, arriving in time.", mayMiss: "That the same urgency has justified a great deal of research that helped nobody." }
+    ],
+    contested: "Whether the justification is consequentialist, in which case poor translation rates undermine it directly, or whether it rests on a difference in moral status that makes the calculation unnecessary.",
+    changeYourMind: "Look at translation rates in the specific field in question rather than in general. If the model predicts human outcomes well, the consequentialist defence holds there even where it fails elsewhere."
+  },
+  "trial-equipoise": {
+    opening: "A trial is only ethical while genuine uncertainty remains about which arm is better. The moment the evidence tips, continuing means knowingly giving some participants the worse option. Deciding when that moment arrived is the hardest judgement in clinical research.",
+    standpoints: [
+      { label: "The trial statistician", sees: "Interim results that will look decisive and then reverse, and a stopping rule set in advance precisely to resist that pull.", values: "A result strong enough to change practice.", mayMiss: "That the people in the control arm are not a statistical population." },
+      { label: "The participant", sees: "That she consented to uncertainty, not to continuing after it resolved.", values: "Being told what the researchers now believe.", mayMiss: "That an early impression is often wrong and acting on it has killed people before." },
+      { label: "The clinician enrolling patients", sees: "A duty to this patient that does not obviously bend to future patients she will never meet.", values: "The person in front of her.", mayMiss: "That every established treatment exists because earlier patients were enrolled under the same tension." },
+      { label: "The regulator", sees: "Trials stopped early that overstate effects, and a literature skewed by them.", values: "Evidence that will not have to be redone.", mayMiss: "That the cost of the extra certainty is paid by identifiable people." }
+    ],
+    contested: "Whether equipoise is about the individual clinician's uncertainty or the professional community's, and whether a participant is owed the researchers' current belief or only the protocol she agreed to.",
+    changeYourMind: "Compare effect sizes in trials stopped early for benefit against those that ran to completion. A consistent gap tells you the early stops were reading noise."
+  },
+  "deference-to-consensus": {
+    opening: "A non-expert cannot evaluate the evidence directly, so deferring to consensus is usually the rational move. It is also how every historical error was sustained. Both halves are true, which is why the question is about conditions rather than about a rule.",
+    standpoints: [
+      { label: "The advocate of deference", sees: "That the alternative is not independent judgement but susceptibility to whoever argues most confidently.", values: "Recognising the limits of one's own competence.", mayMiss: "That consensus can be an artefact of funding, training and who was allowed to publish." },
+      { label: "The dissenting specialist", sees: "That real revisions come from inside, and that a field's confidence is not evidence about the world.", values: "Keeping the disagreement open where it is genuine.", mayMiss: "That the same posture is used to manufacture doubt about things that are not in doubt." },
+      { label: "The science communicator", sees: "That explaining uncertainty honestly is read as weakness and exploited.", values: "Being trusted enough to be useful.", mayMiss: "That overstating certainty is what destroys the trust when the estimate later moves." },
+      { label: "The policymaker", sees: "That he must act before the science settles, and that waiting is also a choice with consequences.", values: "Decisions robust to being wrong.", mayMiss: "That framing a decision as scientific hides the values in it." }
+    ],
+    contested: "Whether the public is being asked to defer to findings, which is reasonable, or to the policy conclusions drawn from them, which are value judgements that expertise does not settle.",
+    changeYourMind: "Separate the empirical claim from the policy recommendation in a specific case. If the disagreement survives that separation, it was never about the science."
+  },
+  "intelligence-measure": {
+    opening: "Tests of intelligence predict outcomes reliably enough to be used in selection, and what they are measuring is unresolved. Predictive power and construct validity are different things, and the argument has run for a century without the two being reconciled.",
+    standpoints: [
+      { label: "The psychometrician", sees: "Scores that correlate across domains and predict performance, stably, across many populations.", values: "A measure that does what a measure is for.", mayMiss: "That predicting an outcome shaped by the same schooling is a weaker result than it appears." },
+      { label: "The critic of the construct", sees: "A test built by a group, validated against outcomes that group defines as success, then treated as measuring a property of the person.", values: "Asking what the instrument was calibrated on.", mayMiss: "That the correlations persist across very different systems, which a purely cultural account struggles with." },
+      { label: "The teacher", sees: "Children whose scores move with nutrition, sleep, language of instruction and whether anyone read to them.", values: "The conditions rather than the ranking.", mayMiss: "That variation with conditions does not show the measure is empty." },
+      { label: "The person tested", sees: "A number that will follow her into decisions made about her by people who never meet her.", values: "Not being reduced to it.", mayMiss: "That the alternative selection methods have their own, less visible biases." }
+    ],
+    contested: "Whether a test that predicts well but cannot say what it measures is a useful instrument or a circular one, and whether its use in selection makes its predictions partly self-fulfilling.",
+    changeYourMind: "Look at what happens to the predictive power when the outcome measured is chosen by someone outside the tradition that built the test. If it holds, the construct is doing more than the critics allow."
+  },
+
+  // Philosophy, unresolved
+  "free-will-and-blame": {
+    opening: "Everything about a choice appears to have causes reaching back before the chooser existed. We nonetheless hold people responsible, and every legal system depends on doing so. Whether that practice survives the causal picture is the oldest live question in philosophy.",
+    standpoints: [
+      { label: "The compatibilist", sees: "That freedom was never the absence of causes but the absence of coercion, and that acting on your own reasons is all it ever meant.", values: "Keeping responsibility without needing a gap in nature.", mayMiss: "That it redefines the term rather than answering the worry that motivated it." },
+      { label: "The hard determinist", sees: "That nobody chose their genes, upbringing or the reasons that appeal to them, and that blame is therefore never fully deserved.", values: "Following the argument where it goes.", mayMiss: "That a practice can be justified by what it does rather than by desert." },
+      { label: "The judge", sees: "That the system needs a workable line, and that it already draws one at capacity and coercion rather than at metaphysics.", values: "A rule that can be applied consistently.", mayMiss: "That the line is doing moral work the law does not examine." },
+      { label: "The person who was wronged", sees: "That an account explaining why it happened does not dissolve what happened to her.", values: "The wrong being acknowledged as a wrong.", mayMiss: "That acknowledgement and punishment are separable, and only one of them requires desert." }
+    ],
+    contested: "Whether blame is justified because it is deserved or because it works, and whether a society that adopted the second answer wholesale could still be said to be holding anyone responsible.",
+    changeYourMind: "Ask what you would want done if the person who harmed you were shown to have had a brain tumour. If your answer changes, desert is doing real work in your view. If it does not, it is not."
+  },
+  "explaining-experience": {
+    opening: "A complete physical account of a brain seeing red would describe wavelengths, receptors, and every downstream state. Whether it would have explained what seeing red is like is the question, and it has resisted every attempt to dissolve it.",
+    standpoints: [
+      { label: "The physicalist", sees: "A pattern in the history of science, where phenomena resisted explanation until they did, and no reason to expect this one to be different.", values: "Not multiplying kinds of things on the strength of an intuition.", mayMiss: "That the intuition here is unusually stable and survives being explained away." },
+      { label: "The one who presses the gap", sees: "That you could know every physical fact and still learn something on first seeing colour.", values: "Taking the first-person case seriously as data.", mayMiss: "That knowing-what-it-is-like may be a different kind of knowing rather than knowing a further fact." },
+      { label: "The neuroscientist", sees: "Steady progress in mapping which processes correlate with which reports, and a question that never becomes tractable.", values: "Work that produces findings.", mayMiss: "That correlation with reports is what the question was asking about." },
+      { label: "The clinician", sees: "Patients whose experience must be inferred from behaviour, where being wrong has consequences.", values: "A workable standard for attributing experience.", mayMiss: "That a workable standard is not the same as an account of what is being attributed." }
+    ],
+    contested: "Whether the explanatory gap reveals something about the world or something about the limits of the concepts we are using to describe it from the outside.",
+    changeYourMind: "Consider whether an analogous gap once existed for life itself, and whether its dissolution felt like an answer or like a change of subject. Honest answers here differ."
+  },
+  "moral-discovery": {
+    opening: "When two societies disagree about whether something is wrong, one of them may be mistaken, or the question may have no answer independent of the asking. Almost everyone talks as though the first is true and struggles to say what would make it so.",
+    standpoints: [
+      { label: "The realist", sees: "That moral progress is a coherent idea, that we say earlier societies were wrong about slavery and mean it, and that this requires something to be wrong about.", values: "Taking moral claims at face value.", mayMiss: "That it must then explain what moral facts are and how anyone detects them." },
+      { label: "The constructivist", sees: "Standards built by agreement among people who have to live together, which is enough to make claims binding without making them cosmic.", values: "An account with nothing spooky in it.", mayMiss: "That it struggles to condemn a society whose agreement is internally consistent and monstrous." },
+      { label: "The anthropologist", sees: "Enormous variation in practice sitting on top of surprising convergence in the underlying concerns.", values: "Describing what is actually there before theorising it.", mayMiss: "That convergence is compatible with both accounts and settles neither." },
+      { label: "The person facing the decision", sees: "That she must act, and that the metaethics does not tell her what to do.", values: "Getting it right in this case.", mayMiss: "That what getting it right means is exactly what is in dispute." }
+    ],
+    contested: "Whether the phrase moral progress can be defended by anyone who denies moral facts, and whether the realist can say what those facts are without simply naming the ones already believed.",
+    changeYourMind: "Find a moral claim you hold that you did not inherit and cannot trace to your interests. If none survives the search, the constructivist has the better of it."
+  },
+  "same-person": {
+    opening: "The cells, the memories, the beliefs and much of the personality change. We nonetheless hold people to promises made decades earlier and punish them for acts they no longer remember. What survives to be held responsible is not obvious.",
+    standpoints: [
+      { label: "The psychological continuity view", sees: "Overlapping chains of memory and intention linking today's person to yesterday's.", values: "Locating identity in what the person is like rather than in the matter.", mayMiss: "That the chain can fork, and that two branches cannot both be the original." },
+      { label: "The bodily view", sees: "One organism, continuous, however much its contents change.", values: "A criterion that never produces two answers.", mayMiss: "That it makes severe amnesia irrelevant to identity, which few people accept in practice." },
+      { label: "The narrative view", sees: "A person as an account she tells and revises, and identity as the coherence of that account.", values: "Matching how people actually experience being themselves.", mayMiss: "That someone with no such narrative is not thereby nobody." },
+      { label: "The person with the earlier debt", sees: "That the question is not academic when the obligation is enforced.", values: "A settled rule.", mayMiss: "That the rule chosen determines who is being asked to pay." }
+    ],
+    contested: "Whether identity is what matters, or whether the practical questions about responsibility and obligation can be answered without settling it.",
+    changeYourMind: "Ask whether you would keep a promise made by a version of yourself you now find alien. Where you draw that line tells you which criterion you actually hold."
+  },
+  "moral-status": {
+    opening: "We treat some things as having claims on us and others as available for use. The line has moved repeatedly and every movement was resisted. Whatever grounds it, it is not species membership alone, because almost nobody defends that when pressed.",
+    standpoints: [
+      { label: "The sentientist", sees: "Capacity to suffer as the relevant fact, and every other criterion as arbitrary once stated plainly.", values: "One principle applied without exception.", mayMiss: "That it gives no account of why a person matters more than an equally sentient animal, if that is what one believes." },
+      { label: "The relational view", sees: "Status arising from relationships and dependence rather than from an intrinsic property.", values: "Matching how obligations are actually felt and discharged.", mayMiss: "That it leaves strangers, and the distant, with weak claims." },
+      { label: "The one who defends a species line", sees: "That moral life runs on categories that can be applied without a philosophy seminar.", values: "Rules that function.", mayMiss: "That the same argument was used for every earlier exclusion." },
+      { label: "The person at the edge of the category", sees: "Criteria being proposed that would exclude her or someone she cares for.", values: "Not having status made conditional on a capacity.", mayMiss: "That an unconditional criterion has to be grounded in something, or it will not hold." }
+    ],
+    contested: "Whether moral status is an intrinsic property that we detect or a status we confer, and whether anything follows differently in practice depending on which is true.",
+    changeYourMind: "State your criterion, then check who it excludes. If it excludes someone you are unwilling to exclude, the criterion is not the one you are using."
+  },
+  "owing-the-unborn": {
+    opening: "Decisions about climate, debt and infrastructure are justified by reference to future generations. Those people do not exist, have no preferences, and their very identities depend on what we decide. Whether they can be wronged is genuinely unclear.",
+    standpoints: [
+      { label: "The long-termist", sees: "Vastly more people in the future than the present, and no reason their interests should count less for being later.", values: "Consistency across time.", mayMiss: "That obligations to people who exist now are being weighed against a number that can be made arbitrarily large." },
+      { label: "The one pressing the non-identity problem", sees: "That different policies produce different people, so nobody who exists in the worse future is worse off than they would have been.", values: "Following the logic rather than the sentiment.", mayMiss: "That most people's judgement that the worse future is worse survives the argument intact." },
+      { label: "The present poor", sees: "Sacrifices being asked of those with least, on behalf of people who will almost certainly be richer.", values: "Not discounting the certain for the speculative.", mayMiss: "That some harms compound past the point of repair." },
+      { label: "The parent", sees: "That the obligation is not abstract and does not need a theory.", values: "Acting on it.", mayMiss: "That the intuition covers descendants and thins out fast beyond them." }
+    ],
+    contested: "Whether obligations to future people are owed to specific individuals, which the non-identity problem makes difficult, or to states of the world, which requires a different kind of moral theory entirely.",
+    changeYourMind: "Ask whether you think a policy leaving a devastated planet is wrong even though the people living on it would not otherwise have existed. If you do, impersonal value is doing the work."
+  },
+  "honest-lie": {
+    opening: "Almost every moral tradition condemns lying and almost every person tells lies they would defend. The interesting cases are not the self-serving ones but the ones where telling the truth would be the act of aggression.",
+    standpoints: [
+      { label: "The absolutist", sees: "That once exceptions are permitted, the exception is claimed by everyone who wants it, and that trust cannot be built on a rule with a discretionary override.", values: "A commitment that holds when it costs.", mayMiss: "That the rule's most famous defence produced conclusions almost nobody accepts." },
+      { label: "The consequentialist", sees: "Speech as an act with effects, to be judged like any other.", values: "Not privileging one act type over its results.", mayMiss: "That the value of an assertion depends on a general practice the calculation quietly relies on." },
+      { label: "The person lied to", sees: "That being deceived for her own good treats her as someone to be managed.", values: "Deciding for herself with accurate information.", mayMiss: "That some information arrives when she has no capacity to use it and every capacity to be harmed by it." },
+      { label: "The doctor", sees: "That the question is rarely whether to lie and usually how much to say, in what order, at whose pace.", values: "Truth as a process rather than a disclosure.", mayMiss: "That pacing can slide into deciding what she never needs to know." }
+    ],
+    contested: "Whether there is a duty to volunteer truth or only a duty not to assert falsehood, since almost all real cases live in the gap between those two.",
+    changeYourMind: "Ask whether the person you would deceive would endorse the deception afterwards. Their answer is not decisive, but a confident prediction that they would not is close to one."
+  },
+  "luck-and-desert": {
+    opening: "Where you were born, to whom, with what health and what aptitudes, you did not choose. What remains after subtracting all of it is what you can be said to have earned, and it is much smaller than most systems of reward assume.",
+    standpoints: [
+      { label: "The luck egalitarian", sees: "That inequality traceable to circumstance is unjust, and almost all of it is.", values: "Distinguishing choice from circumstance rigorously.", mayMiss: "That the distinction requires judging which of someone's choices were really theirs, which is intrusive and often impossible." },
+      { label: "The defender of desert", sees: "That effort is real, felt from the inside, and that a system denying it destroys the reason to make any.", values: "Agency taken seriously.", mayMiss: "That the capacity for sustained effort is itself substantially unchosen." },
+      { label: "The institutional designer", sees: "That whatever the truth about desert, incentives change behaviour and a system has to function.", values: "Outcomes over metaphysics.", mayMiss: "That justifying rewards by their incentive effect concedes they are not deserved." },
+      { label: "The person who worked and has little", sees: "That the account explaining her position does not change it, and that being told her effort was luck is its own insult.", values: "Recognition of what she actually did.", mayMiss: "That the argument is directed at those who claim their advantages were earned." }
+    ],
+    contested: "Whether desert can survive the observation that the capacity to deserve is itself unearned, and whether a society could organise reward on any other basis without losing something it needs.",
+    changeYourMind: "Try to specify one achievement of your own that owes nothing to circumstance. The difficulty of the exercise is the argument."
+  },
+
+  // Environment and its trade-offs
+  "conservation-and-livelihood": {
+    opening: "A forest is protected and the people who lived from it are compensated, relocated, or told to stop. The species recover or they do not. Both outcomes are reported nationally; the second half of the arrangement is usually reported locally if at all.",
+    standpoints: [
+      { label: "The conservation biologist", sees: "Populations that will not recover with continued extraction, and a window that closes.", values: "Irreversibility as the deciding fact.", mayMiss: "That protection enforced without consent tends to be protection enforced badly." },
+      { label: "The forest-dwelling household", sees: "Rights recognised in law, a livelihood built over generations, and an eviction described as voluntary.", values: "Not being the cheapest available input into someone else's conservation.", mayMiss: "That some extraction genuinely does not scale to the population now depending on it." },
+      { label: "The forest official", sees: "A mandate, a budget, and a boundary he is judged on.", values: "Enforceable lines.", mayMiss: "That the people he excludes were often the reason there was a forest to protect." },
+      { label: "The urban supporter", sees: "A species he will never encounter and wants to continue existing.", values: "Something preserved beyond its use.", mayMiss: "That he is not being asked to pay any part of the cost." }
+    ],
+    contested: "Whether conservation works better with people inside protected areas or outside them. The evidence is genuinely mixed and varies by ecosystem, which is why both sides can cite studies indefinitely.",
+    changeYourMind: "Compare outcomes in areas with recognised community forest rights against strictly protected areas in comparable terrain. Where community-managed areas hold up, exclusion is a choice rather than a necessity."
+  },
+  "nuclear-question": {
+    opening: "Nuclear power produces very little carbon and concentrates its risk into rare, severe, long-lived events. Almost every argument about it is really an argument about how to compare a large number of small harms with a small number of enormous ones.",
+    standpoints: [
+      { label: "The climate engineer", sees: "Deaths per unit of energy far below coal even counting the accidents, and a grid that needs something firm.", values: "Counting the harm that is happening now rather than the one that is vivid.", mayMiss: "That public consent is a real constraint, not an irrationality to be corrected." },
+      { label: "The person living near the site", sees: "A risk she did not choose, concentrated where she lives, benefiting a grid that is mostly elsewhere.", values: "Consent from those who carry it.", mayMiss: "That the alternative sited somewhere else also lands on someone." },
+      { label: "The finance analyst", sees: "Cost overruns, decade-long build times, and renewables falling in price faster than nuclear can be commissioned.", values: "What can actually be delivered in the time available.", mayMiss: "That storage at the scale required is not yet demonstrated either." },
+      { label: "The waste regulator", sees: "Material requiring custody longer than any institution has existed.", values: "Honesty about a commitment across geological time.", mayMiss: "That carbon released now also commits the future, with no custody arrangement at all." }
+    ],
+    contested: "Whether risk should be assessed by expected harm, which favours nuclear strongly, or by the character of the harm, since a catastrophic tail is not the same as its arithmetic equivalent spread thin.",
+    changeYourMind: "Look at build times and final costs for plants commissioned in the last twenty years rather than at the technology in principle. Delivery record is the argument that moves fastest."
+  },
+  "growth-and-emissions": {
+    opening: "A country with widespread energy poverty is asked to decarbonise on a timetable set by the emissions of countries that industrialised without constraint. Whether that is unfair, or simply the situation, is disputed on grounds that are not only about fairness.",
+    standpoints: [
+      { label: "The development economist", sees: "Energy as the input to everything that lifts people out of poverty, and per capita emissions still a fraction of the rich world's.", values: "Not asking the poor to pay for a problem they did not make.", mayMiss: "That the physics does not adjust for fairness." },
+      { label: "The climate scientist", sees: "A carbon budget that is nearly spent regardless of who spent it.", values: "The constraint as it is.", mayMiss: "That a plan ignoring legitimacy will not be adopted by the countries it needs." },
+      { label: "The industrial minister", sees: "That leapfrogging requires capital and technology that were promised and largely not delivered.", values: "Commitments honoured before new ones are demanded.", mayMiss: "That waiting for delivery locks in infrastructure lasting forty years." },
+      { label: "The household without reliable power", sees: "Load shedding, and a debate about her country's trajectory conducted in terms she is never offered.", values: "Electricity that works.", mayMiss: "That she is also among the most exposed to the heat and the floods." }
+    ],
+    contested: "Whether historical responsibility generates an enforceable claim or only a moral one, and whether a development path can be both fast enough to matter and clean enough to count.",
+    changeYourMind: "Track the finance actually transferred against what was pledged. If the gap is large, the fairness objection is a description of the record rather than a rhetorical position."
+  },
+  "historical-emissions": {
+    opening: "Most of the carbon in the atmosphere was released by a small number of countries over two centuries, mostly before the consequences were understood. Whether that generates a debt, and to whom, is the question that has stalled every negotiation.",
+    standpoints: [
+      { label: "The claimant country", sees: "Damage occurring now, caused by emissions elsewhere, with the beneficiaries identifiable.", values: "Cause and consequence connected.", mayMiss: "That the people who emitted are largely dead and the ones being asked to pay did not choose it." },
+      { label: "The country asked to pay", sees: "Liability for acts that were lawful and whose effects were unknown at the time.", values: "Not being held to a standard that did not exist.", mayMiss: "That the benefits of those acts were inherited along with everything else." },
+      { label: "The economist", sees: "A transfer that could be justified on forward-looking grounds without settling blame at all.", values: "An agreement that can actually be reached.", mayMiss: "That parties who feel wronged do not accept being told the wrong is irrelevant." },
+      { label: "The person losing land to the sea", sees: "A negotiation about attribution while the ground goes.", values: "Money arriving.", mayMiss: "That the framing chosen determines whether it arrives as aid or as owed." }
+    ],
+    contested: "Whether responsibility follows emissions, wealth accumulated from them, or present capacity to pay. Each produces a different bill and each has a serious argument behind it.",
+    changeYourMind: "Ask whether you would accept the same principle applied to a domestic case of inherited advantage. Consistency between the two is rare and revealing."
+  },
+  "river-linking": {
+    opening: "Moving water from a basin defined as surplus to one defined as deficit sounds like arithmetic. Surplus and deficit are the whole argument: they are defined against an assumed use, in an assumed year, before the climate that produced the assumption changed.",
+    standpoints: [
+      { label: "The water engineer", sees: "Predictable flooding in one basin and predictable scarcity in another, and a transfer that has been proposed for over a century.", values: "Using water that currently reaches the sea.", mayMiss: "That water reaching the sea is doing work in the estuary and the delta." },
+      { label: "The downstream farmer in the donor basin", sees: "A surplus declared upstream, on data he cannot check, about a river he depends on.", values: "Whose calculation counts.", mayMiss: "That his own extraction is also part of what has made the system tight." },
+      { label: "The ecologist", sees: "Species, sediment and salinity regimes that the transfer treats as absent.", values: "A river as a system rather than a channel.", mayMiss: "That the alternative is not the river as it was but the river under continued extraction." },
+      { label: "The receiving state's minister", sees: "Constituents without irrigation, and a project promised across governments.", values: "Water arriving in his constituency within a political lifetime.", mayMiss: "That demand tends to expand to meet supply, returning the deficit in a decade." }
+    ],
+    contested: "Whether a river basin is a resource to be balanced across a country or a system whose integrity is itself the thing being valued, and who is entitled to define a surplus.",
+    changeYourMind: "Examine how surplus was calculated and in which years. If the baseline predates the last two decades of rainfall variability, the arithmetic is not describing the present river."
+  },
+  "stubble-burning": {
+    opening: "Every year the same fields burn, the same cities choke, the same measures are announced. Treating it as a failure of enforcement or of farmer responsibility has not worked for a decade, which suggests the description is wrong.",
+    standpoints: [
+      { label: "The farmer", sees: "About three weeks between harvest and sowing, machinery he cannot afford, and a cost he is asked to absorb for air he does not breathe.", values: "A window that closes whatever anyone announces.", mayMiss: "That the practice became widespread only after mechanised harvesting changed what was left in the field." },
+      { label: "The city resident", sees: "Air that measurably shortens lives, from a cause identified and legal to prohibit.", values: "Not paying with her lungs for someone else's schedule.", mayMiss: "That crop burning is one contributor among several she is less willing to discuss." },
+      { label: "The agricultural policymaker", sees: "Groundwater rules that shifted the sowing date, a procurement system rewarding this crop rotation, and a burning window that policy created.", values: "Treating it as the downstream effect it is.", mayMiss: "That unwinding the incentives touches food security and farm incomes at once." },
+      { label: "The machinery supplier", sees: "Equipment subsidised, distributed and underused, because it costs to run and saves nobody money.", values: "Whether the subsidy addressed the actual constraint.", mayMiss: "That the equipment does work where the operating cost is covered." }
+    ],
+    contested: "Whether this is a compliance problem, a technology problem, or the predictable output of a water and procurement policy that nobody wants to reopen.",
+    changeYourMind: "Look at when the burning window became compressed and what changed in groundwater regulation just before. If the timing lines up, enforcement was never going to be the answer."
+  },
+  "carbon-offset": {
+    opening: "An offset claims that an emission somewhere was cancelled by a reduction elsewhere. The claim depends on additionality, permanence and accurate baselines, each of which is a counterfactual, and counterfactuals cannot be measured.",
+    standpoints: [
+      { label: "The market designer", sees: "A mechanism directing money to cheap abatement wherever it is, which is where it does most good per rupee.", values: "Efficiency in a problem defined by total quantity.", mayMiss: "That the price signal only works if the underlying reductions are real." },
+      { label: "The auditor of projects", sees: "Baselines chosen by the seller, forests counted as saved that were never threatened, and permanence claimed for a plantation that burns.", values: "Verification that does not rely on the interested party.", mayMiss: "That some projects do check out, and blanket dismissal removes their funding too." },
+      { label: "The community on the project land", sees: "Access restricted so that a distant emitter can continue, with the benefit sharing negotiated on their behalf.", values: "Being a party to the transaction.", mayMiss: "That the payment is real income where alternatives are few." },
+      { label: "The company buying", sees: "Emissions it cannot yet eliminate and a way to act now rather than in a decade.", values: "Doing something rather than waiting.", mayMiss: "That the something may license continuing the thing it was meant to reduce." }
+    ],
+    contested: "Whether offsets are a transitional tool that has been implemented badly, or an instrument whose central claim is unverifiable in principle and therefore always exploitable.",
+    changeYourMind: "Look at what fraction of credits from a given registry survive independent re-analysis. If most do not, the problem is structural rather than a matter of bad actors."
+  },
+  "wildlife-and-neighbour": {
+    opening: "Conservation succeeds and populations recover. Where they recover, they meet people. Crops are destroyed, livestock taken, and sometimes people are killed. The success and the conflict are the same fact seen from two distances.",
+    standpoints: [
+      { label: "The farmer beside the boundary", sees: "A season's crop taken overnight, compensation that arrives late or not at all, and a legal protection that does not extend to him.", values: "Bearing a national commitment at household scale.", mayMiss: "That retaliatory killing removes the animal and not the conflict." },
+      { label: "The conservationist", sees: "A recovering population in a landscape that has been fragmented around it.", values: "Not losing what was nearly lost.", mayMiss: "That tolerance is the actual limiting resource and it is being spent." },
+      { label: "The compensation officer", sees: "Claims he cannot verify, a budget that runs out, and rules requiring evidence that a lost animal does not leave.", values: "A scheme that survives audit.", mayMiss: "That an unpaid claim teaches people not to report." },
+      { label: "The person who lost a family member", sees: "A death, and an official account balancing it against a population figure.", values: "The loss named as a loss.", mayMiss: "Nothing. This is the standpoint the policy is least equipped to answer." }
+    ],
+    contested: "Whether coexistence is a realistic goal in landscapes at Indian population densities, or whether separation is the honest policy and the argument is about who moves.",
+    changeYourMind: "Compare compensation paid against assessed loss, and how fast. Where payment is prompt and adequate, tolerance holds; where it is not, no amount of awareness work substitutes."
+  },
+
+  // Economics, argued
+  "growth-or-distribution": {
+    opening: "One account says you cannot distribute what has not been produced. The other says growth without distribution concentrates and stalls. Both are supported by real cases, which suggests the sequence matters less than what kind of growth it is.",
+    standpoints: [
+      { label: "The growth-first economist", sees: "That no country has redistributed its way out of poverty, and that the pie's size is the binding constraint.", values: "Aggregate expansion.", mayMiss: "That growth concentrated in capital-intensive sectors employs few and raises little at the bottom." },
+      { label: "The distribution-first economist", sees: "That health, schooling and land reform raised living standards where growth alone did not, and that they also produce the workforce growth needs.", values: "Capability as both end and input.", mayMiss: "That sustaining them requires revenue that has to come from somewhere." },
+      { label: "The finance ministry official", sees: "A fiscal position that will not carry both at once, and a political cycle shorter than either takes to work.", values: "What can be funded.", mayMiss: "That deferring the second indefinitely is a decision presented as a sequence." },
+      { label: "The worker in a growing economy", sees: "Output rising, wages not, and a share of value added that has been falling for years.", values: "The gain reaching her.", mayMiss: "That the sectors paying most are the ones her state is competing to attract." }
+    ],
+    contested: "Whether the trade-off is real at all, or whether the cases usually cited differ in the composition of growth rather than in the sequencing of policy.",
+    changeYourMind: "Compare states within one country, holding national policy constant. Where similar growth rates produce very different poverty outcomes, composition rather than sequence is doing the work."
+  },
+  "formalising-work": {
+    opening: "Most Indian workers are informal: no contract, no benefits, no record. Formalisation is a near-universal policy goal. What formalisation actually delivers to the worker, as opposed to the state, is less examined than how much of it has been achieved.",
+    standpoints: [
+      { label: "The labour ministry", sees: "Workers outside every protection, unable to prove employment or claim a pension.", values: "Bringing people inside the system.", mayMiss: "That registration and protection are different things, and only one of them is being counted." },
+      { label: "The informal worker", sees: "Flexibility she depends on, an employer who will shed her if costs rise, and compliance she cannot navigate.", values: "Income continuing next month.", mayMiss: "That the same flexibility is what leaves her with nothing when she cannot work." },
+      { label: "The small employer", sees: "Thresholds that make the tenth employee far more expensive than the ninth.", values: "Staying under the line.", mayMiss: "That the threshold structure is a policy choice, not a fact about employment." },
+      { label: "The economist", sees: "Formal-sector employment barely moving for decades while output moved a great deal.", values: "Asking whether the target is reachable by the means chosen.", mayMiss: "That measured informality has fallen where social protection was decoupled from the employer." }
+    ],
+    contested: "Whether informality is a transitional stage that development ends, or a stable equilibrium that policy has to build protection around rather than through.",
+    changeYourMind: "Look at whether formalisation drives changed anyone's access to benefits, or only their presence on a register. If the second, the policy was measuring itself."
+  },
+  "subsidy-question": {
+    opening: "A subsidy names a beneficiary. Whether the benefit reaches them depends on how it is delivered, who administers it, and whether the price effect is captured before it arrives. Most arguments about subsidies are actually arguments about that chain.",
+    standpoints: [
+      { label: "The targeting advocate", sees: "Universal schemes spending most of their money on people who do not need it.", values: "Money reaching the poorest.", mayMiss: "That targeting costs money, excludes by error, and creates a constituency for cutting the scheme." },
+      { label: "The universalist", sees: "Exclusion errors that fall on exactly the people least able to appeal them, and universal schemes that survive politically because everyone has a stake.", values: "Nobody wrongly left out.", mayMiss: "That fiscal space is finite and universal coverage lowers per-head generosity." },
+      { label: "The intended beneficiary", sees: "Documentation requirements, a portal that fails, and an entitlement she is told she has.", values: "Receiving the thing.", mayMiss: "That the verification she resents also removed a layer of diversion." },
+      { label: "The producer receiving the price support", sees: "A subsidy described as reaching consumers that has become a floor under his own planning.", values: "Predictability.", mayMiss: "That the support is shaping what gets grown, and increasingly what water gets used." }
+    ],
+    contested: "Whether the leakage that dominates subsidy debate is a delivery problem to be engineered away, or the predictable result of any transfer administered by people with discretion.",
+    changeYourMind: "Compare exclusion error against inclusion error in a given scheme. Most debate assumes inclusion error is the larger; where it is not, the targeting case collapses."
+  },
+  "minimum-wage-effect": {
+    opening: "The textbook says a price floor above the market rate reduces quantity demanded. A large body of empirical work finds employment effects near zero across a wide range. Both cannot be straightforwardly right, and the reconciliation is the interesting part.",
+    standpoints: [
+      { label: "The standard-model economist", sees: "A constraint on price with predictable consequences, and studies whose null results reflect small increases and short horizons.", values: "Theory that generalises.", mayMiss: "That the model assumes a competitive labour market that often is not there." },
+      { label: "The empirical labour economist", sees: "Employers with wage-setting power, where a floor can raise pay without cutting jobs, and evidence across many settings.", values: "What the data show.", mayMiss: "That evidence from moderate increases says little about large ones." },
+      { label: "The worker at the floor", sees: "A statutory rate widely ignored, and enforcement that depends on complaining about the employer she needs.", values: "The wage actually paid.", mayMiss: "That a rate set well above local conditions makes non-compliance the norm and enforcement hopeless." },
+      { label: "The small employer", sees: "Margins that cannot absorb it and competitors who will not comply.", values: "A level field.", mayMiss: "That his position depends on the same non-compliance he objects to." }
+    ],
+    contested: "Whether the near-zero employment effects found for moderate increases extend to the larger increases now proposed, and whether in an economy this informal the statutory rate is the operative variable at all.",
+    changeYourMind: "Look at compliance rates rather than employment effects. Where most covered workers are paid below the floor, the debate about disemployment is about a policy that is not in force."
+  },
+  "land-acquisition": {
+    opening: "Compulsory acquisition assumes land has a market price and that paying it, plus a premium, makes the owner whole. For a household whose land is also its occupation, collateral, address and social position, that assumption is doing a great deal of work.",
+    standpoints: [
+      { label: "The project authority", sees: "Infrastructure with wide public benefit, blocked by a small number of holdouts who can capture the entire surplus.", values: "The many over the few.", mayMiss: "That the many are diffuse and the few lose everything at once." },
+      { label: "The landholder", sees: "A price set by recorded transactions that are systematically understated, for an asset she cannot replace nearby.", values: "Replacement rather than compensation.", mayMiss: "That holding out is also a strategy, and everyone doing it stops the project." },
+      { label: "The landless labourer on that land", sees: "A compensation framework keyed to title, and no title.", values: "Loss of livelihood counting as loss.", mayMiss: "That including him makes the entitlement list contestable and slow." },
+      { label: "The economist", sees: "That consent thresholds and social impact assessment raise cost and time, and that this is the point rather than a defect.", values: "Prices that include what was previously externalised.", mayMiss: "That projects abandoned on cost also had beneficiaries." }
+    ],
+    contested: "Whether fair compensation is calculable at all where the asset is not fungible for its owner, and whether consent requirements protect the vulnerable or empower the best organised.",
+    changeYourMind: "Follow compensated households for five years. If most are worse off despite payment at or above market rate, the monetary framing is the problem rather than the amount."
+  },
+  "cash-or-kind": {
+    opening: "The state can hand over money or hand over the thing. Cash respects the recipient's judgement and is cheaper to administer. In-kind transfers survive inflation, cannot be captured by whoever controls the household's money, and build a supply chain. The choice is not obvious.",
+    standpoints: [
+      { label: "The cash advocate", sees: "That poor people are the best judges of their own needs, and that procurement and storage waste much of an in-kind transfer.", values: "Autonomy plus efficiency.", mayMiss: "That cash requires functioning markets nearby, which is exactly what is missing in the poorest places." },
+      { label: "The in-kind advocate", sees: "Food arriving whatever the price does, and a ration that a woman can access without negotiating for the money.", values: "Reaching the person inside the household.", mayMiss: "That the same system delivers what the state procured rather than what the household eats." },
+      { label: "The recipient", sees: "A queue, a fixed basket, and a shop that is closed or short.", values: "Reliability first, choice second.", mayMiss: "That her preference between the two depends heavily on whether her local market functions." },
+      { label: "The finance ministry", sees: "That cash is far cheaper to run and easier to cut.", values: "Fiscal control.", mayMiss: "That ease of cutting is a feature to the ministry and a risk to the recipient." }
+    ],
+    contested: "Whether transfers should maximise recipient autonomy or reliability of a specific outcome, and whether the answer changes with how well local markets and intra-household bargaining work.",
+    changeYourMind: "Look at what happens to the real value of cash transfers during a local price shock. If they are not indexed and prices move, the in-kind case is stronger than the efficiency comparison suggests."
+  },
+  "trade-and-jobs": {
+    opening: "Opening to trade raises total income and concentrates the losses. Economists have said the second half for as long as the first, and the compensation that would make the argument complete has almost never been delivered.",
+    standpoints: [
+      { label: "The trade economist", sees: "Consumers better off, exporters growing, and aggregate gains that exceed the losses.", values: "Total welfare.", mayMiss: "That an aggregate gain is not experienced by anyone, while a concentrated loss is." },
+      { label: "The displaced worker", sees: "A plant closed, a skill with no local market, and retraining that leads to lower-paid work.", values: "Not being the adjustment mechanism.", mayMiss: "That protecting the plant taxes everyone else, including workers poorer than him." },
+      { label: "The consumer", sees: "Prices lower across a whole basket, a benefit spread so thin nobody attributes it.", values: "Real income.", mayMiss: "That the diffuse benefit is why the losers organise and the winners do not." },
+      { label: "The industrial policy advocate", sees: "That comparative advantage is built rather than found, and that every country now advising openness protected while it developed.", values: "The historical record of the advisers.", mayMiss: "That most protection produced neither competitiveness nor an exit." }
+    ],
+    contested: "Whether the standard case for trade is incomplete without the compensation it assumes, and whether a policy whose precondition is never met should still be recommended.",
+    changeYourMind: "Look at adjustment assistance actually spent per displaced worker. Where it is negligible, the theoretical case is being made for a policy that was not implemented."
+  },
+  "inflation-target": {
+    opening: "A central bank targets a single number. That number is an average across a basket, and no household consumes the average. Whose basket it approximates is a distributional decision made by a technical body.",
+    standpoints: [
+      { label: "The central banker", sees: "Expectations that must be anchored, and a single credible target as the instrument that anchors them.", values: "Credibility, which is destroyed by discretion.", mayMiss: "That the basket's weights encode a distributional choice presented as measurement." },
+      { label: "The poor household", sees: "Food and fuel, which move more than the index and dominate her spending.", values: "The prices she actually faces.", mayMiss: "That monetary policy is a poor instrument against supply-driven food price shocks." },
+      { label: "The employment-focused economist", sees: "Rates raised against inflation the rate cannot reach, with the cost paid in jobs.", values: "Not treating unemployment as the acceptable side of the mandate.", mayMiss: "That unanchored inflation also falls hardest on the same households." },
+      { label: "The saver", sees: "Returns below inflation for years, and a policy that quietly transfers from savers to borrowers.", values: "The real value of what he set aside.", mayMiss: "That the alternative rate path may have cost him his income instead." }
+    ],
+    contested: "Whether an inflation target is a technical parameter or a distributional policy, and whether a body insulated from politics should be setting it if it is the second.",
+    changeYourMind: "Compare inflation for the bottom decile's basket against the headline index over a decade. A persistent gap means the target is not measuring the experience it is defended by."
+  },
+
+  // Polity and power in India
+  "judicial-appointments": {
+    opening: "A court that reviews the government's actions is appointed through a process the government cannot control, by judges accountable to no electorate. Every arrangement on offer breaks one principle to protect another, and India has now tried more than one.",
+    standpoints: [
+      { label: "The defender of judicial primacy", sees: "That a government which picks its own reviewers will not be reviewed, and that this was the experience before the change.", values: "Independence as the precondition for everything else the court does.", mayMiss: "That the alternative concentrates power in a small group with no external check and no published criteria." },
+      { label: "The advocate of executive voice", sees: "Judges selecting judges, with no transparency and a striking narrowness in who is chosen.", values: "Democratic accountability reaching every institution.", mayMiss: "That the executive is the largest litigant before the court it would help staff." },
+      { label: "The litigant", sees: "Vacancies, delay, and a process whose disputes are conducted between institutions while cases wait.", values: "A functioning court.", mayMiss: "That speed obtained by weakening independence buys a court that decides faster and matters less." },
+      { label: "The lawyer from outside the usual pool", sees: "Selection running through networks she is not in, under either system.", values: "A bench that resembles the country.", mayMiss: "That formal criteria have not, elsewhere, reliably produced that either." }
+    ],
+    contested: "Whether judicial independence requires judicial control over appointments, or whether independence is secured by tenure and process and the appointment stage can safely be shared.",
+    changeYourMind: "Compare the composition and the government's success rate before and after the collegium. If neither shifted much, the argument is about legitimacy rather than outcomes."
+  },
+  "governor-role": {
+    opening: "A governor is appointed by the centre, holds office at its pleasure, and exercises discretion over an elected state government at exactly the moments that matter most: assembly formation, assent to bills, and the recommendation for central rule.",
+    standpoints: [
+      { label: "The constitutional designer", sees: "A federal safety valve, and a link holding a union together that had just been assembled from very different pieces.", values: "A mechanism for when a state's institutions fail.", mayMiss: "That an office defended by its emergency use will be occupied continuously." },
+      { label: "The state government", sees: "Bills held without decision, a majority questioned, and discretion exercised in a pattern that tracks which party holds Delhi.", values: "The mandate it was given.", mayMiss: "That state governments have also acted in ways that made an external check look necessary." },
+      { label: "The constitutional lawyer", sees: "Discretion narrowed repeatedly by courts, and the remaining discretion concentrated in acts with no deadline attached.", values: "Judicially enforceable limits.", mayMiss: "That a limit without a timetable can be defeated by delay alone." },
+      { label: "The voter in the state", sees: "An outcome she did not vote for, arranged by an office she has never voted on.", values: "The result standing.", mayMiss: "That the same office has occasionally prevented a result being manufactured." }
+    ],
+    contested: "Whether the office is a federal check that has been misused by successive governments of every party, or an instrument that was always going to be used this way and is functioning as designed.",
+    changeYourMind: "Chart the use of gubernatorial discretion against whether the state and central governments shared a party. If the correlation is strong across many decades and parties, the design is the issue rather than the occupant."
+  },
+  "speech-and-the-state": {
+    opening: "Indian law permits restriction of speech on grounds including public order, decency and the security of the state. Almost every serious dispute about free expression is a dispute about how far those words reach, not about whether the right exists.",
+    standpoints: [
+      { label: "The civil libertarian", sees: "Provisions used far more often against critics than against genuine incitement, with the process itself the punishment.", values: "A right that protects speech the government dislikes.", mayMiss: "That in a plural society, some speech does reliably produce violence." },
+      { label: "The police officer", sees: "A specific crowd, a specific rumour, and a duty to prevent something that has happened before in that town.", values: "Preventing harm that has already been demonstrated.", mayMiss: "That anticipating disorder gives whoever threatens it a veto over what may be said." },
+      { label: "The person the speech is about", sees: "Being targeted at scale, with the harm real and the remedy theoretical.", values: "Not being told to argue back against a mob.", mayMiss: "That broad powers acquired for her protection will be used elsewhere." },
+      { label: "The publisher", sees: "Cases filed in distant jurisdictions, and the cost of defending them being the actual deterrent.", values: "Being able to publish without litigating everywhere at once.", mayMiss: "That the same reach lets a person with no resources sue a large publisher." }
+    ],
+    contested: "Whether restriction should turn on the likelihood of imminent harm, which protects most speech and some genuinely dangerous speech, or on the tendency of speech to cause harm, which protects far less.",
+    changeYourMind: "Look at how many cases under these provisions end in conviction. A low rate combined with long pre-trial process means the mechanism is operating as deterrence rather than as law."
+  },
+  "anti-defection": {
+    opening: "A legislator who votes against the party that got her elected loses her seat. This was enacted to stop governments being bought. It also means a member cannot dissent on any matter the party whips, which is most of them.",
+    standpoints: [
+      { label: "The reformer who wrote it", sees: "Governments falling to purchased defections, and voters' mandates being resold between elections.", values: "The mandate holding for its term.", mayMiss: "That it transfers the member's independence to the party leadership rather than to the voter." },
+      { label: "The backbench member", sees: "No ability to vote her constituency's interest against her party's instruction, on any question that matters.", values: "Representing the people who elected her.", mayMiss: "That voters largely chose the party symbol rather than her." },
+      { label: "The party leader", sees: "Discipline that makes a legislative programme possible at all.", values: "A government that can govern.", mayMiss: "That discipline this complete removes the internal check on the leadership." },
+      { label: "The scholar of legislatures", sees: "Committees weakened, debate reduced to positions declared in advance, and the chamber's scrutiny function largely gone.", values: "A legislature that examines rather than ratifies.", mayMiss: "That the instability it replaced also prevented scrutiny." }
+    ],
+    contested: "Whether the law should apply only to votes of confidence and money bills, preserving dissent elsewhere, or whether a party that cannot enforce its whip generally cannot enforce it at all.",
+    changeYourMind: "Look at how often the exemption for a split has been used and how it was structured. If wholesale defections continue through the exemption while individual dissent is punished, the law is not doing the job it was written for."
+  },
+  "reservation-horizon": {
+    opening: "Reservation was designed as a remedy. A remedy implies a condition that could be cured, and therefore an endpoint. Seventy-five years on, there is no agreed measure of what the endpoint would look like, and proposing one is itself politically costly.",
+    standpoints: [
+      { label: "The advocate of continuation", sees: "Representation still far from proportionate at senior levels, and the barriers that produced it substantially intact.", values: "Ending the remedy when the harm ends, not before.", mayMiss: "That without a stated measure, the argument cannot ever be settled by evidence." },
+      { label: "The advocate of a sunset", sees: "A policy with no exit criterion becoming permanent by default, and a politics organised around expanding rather than completing it.", values: "A remedy that is answerable to a standard.", mayMiss: "That fixing a date rather than a condition would end it while the condition persists." },
+      { label: "The beneficiary within the category", sees: "That the benefit concentrates among those in the category who were already best placed.", values: "The remedy reaching the worst off inside it.", mayMiss: "That sub-classification splits the political coalition holding the policy in place." },
+      { label: "The applicant outside it", sees: "Competing for a smaller share on a criterion he did not choose either.", values: "Assessment on what he did.", mayMiss: "That the unreserved share still substantially exceeds the unreserved population." }
+    ],
+    contested: "Whether the goal is proportionate representation, in which case the measure is arithmetic, or the dismantling of caste as a determinant of life chances, in which case representation is an indicator and not the target.",
+    changeYourMind: "Look at representation at the most senior levels, where reservation has applied longest. If the gap persists there, an argument that the remedy has run its course has to explain why."
+  },
+  "personal-law-question": {
+    opening: "India applies different family law depending on religious community, an arrangement written into the settlement of 1947 and revisited constantly since. A uniform code is a directive principle of the Constitution and has never been enacted. Both the demand and the resistance contain more than one motive.",
+    standpoints: [
+      { label: "The advocate of uniformity", sees: "Citizens with different rights in marriage, inheritance and maintenance according to community, and women worse off under several of the systems.", values: "One law for one citizenship.", mayMiss: "That uniformity drafted by a majority tends to resemble the majority's practice." },
+      { label: "The defender of plurality", sees: "Communities whose practices were guaranteed at a moment when that guarantee was the condition of staying, and a demand that arrives loudest from those least concerned with the rights it invokes.", values: "Promises kept.", mayMiss: "That defending the system as a whole defends its worst provisions too." },
+      { label: "The woman within a personal law system", sees: "Her rights determined by the community she was born into, and reform proposals that speak for her in an argument between men.", values: "The specific entitlement, from whichever direction it comes.", mayMiss: "That reform delivered as an attack on her community may cost her its support." },
+      { label: "The law reformer", sees: "That most concrete gains have come through targeted reform and litigation rather than through a comprehensive code.", values: "What has actually moved.", mayMiss: "That incremental reform leaves the underlying differentiation intact." }
+    ],
+    contested: "Whether equality before the law requires identical family law, or whether it requires a floor of rights that every system must meet while remaining different above it.",
+    changeYourMind: "Examine which specific inequalities a proposed code would remove and whether existing reforms have already removed them. If most are already addressed, the code is doing symbolic rather than legal work."
+  },
+  "electoral-funding": {
+    opening: "Money is necessary to contest an election and creates an obligation to whoever supplies it. Every design choice trades disclosure against the risk of retaliation, and India has moved between them more than once.",
+    standpoints: [
+      { label: "The transparency advocate", sees: "A voter entitled to know who has an interest in the person she is electing.", values: "Disclosure as the precondition for informed consent.", mayMiss: "That full disclosure exposes donors to retaliation by whoever wins, which favours the incumbent." },
+      { label: "The defender of donor anonymity", sees: "Businesses that will be punished for backing the losing side, and a system that already runs largely on cash it cannot see.", values: "Getting money into the banking system at all.", mayMiss: "That anonymity from the public is not anonymity from a government that can see the banking record." },
+      { label: "The smaller party", sees: "Funding concentrating on whoever is expected to win, and a structural advantage compounding.", values: "A contest that is not decided before it starts.", mayMiss: "That state funding fixes the field in place around whoever currently qualifies." },
+      { label: "The voter", sees: "Expenditure limits per candidate and no limit on the party spending around her.", values: "A rule that describes the actual spending.", mayMiss: "That a genuinely enforced limit would need a scale of audit nobody has built." }
+    ],
+    contested: "Whether the harm to be prevented is the purchase of policy, which requires disclosure, or the coercion of donors, which anonymity addresses at the cost of the first.",
+    changeYourMind: "Ask whether the anonymity in question is symmetric. If the government can identify donors and the public cannot, the design does not address coercion; it relocates it."
+  },
+  "centre-state-money": {
+    opening: "Some states raise far more revenue than they receive back; others receive far more than they raise. Both facts are true simultaneously and both are used as grievances. What a shared fiscal pool is for has never been settled in public.",
+    standpoints: [
+      { label: "The higher-contributing state", sees: "Revenue raised locally, transferred elsewhere, with its own share falling as it succeeds.", values: "A return related to contribution.", mayMiss: "That its revenue base partly reflects national investment and migration from the states it is comparing itself to." },
+      { label: "The receiving state", sees: "Historical underinvestment, weaker infrastructure, and a formula that is the mechanism by which a union means anything.", values: "Comparable services regardless of birthplace.", mayMiss: "That transfers not tied to outcomes can preserve the conditions they compensate for." },
+      { label: "The finance commission member", sees: "A formula weighing need, equity and effort, where every weight is contested and any choice creates a losing group.", values: "A defensible rule applied consistently.", mayMiss: "That devolution has been increasingly bypassed by centrally sponsored schemes the formula does not reach." },
+      { label: "The citizen", sees: "Services that vary enormously by state and no clear line of accountability between the two governments funding them.", values: "Knowing who to hold responsible.", mayMiss: "That the ambiguity suits both governments." }
+    ],
+    contested: "Whether transfers should equalise capacity, which rewards need, or reward performance, which compounds advantage. The formula does both partially and satisfies nobody.",
+    changeYourMind: "Look at how much of central transfer now flows outside the finance commission formula. If the share is large and growing, the argument about the formula is about a shrinking part of the money."
+  },
+
+  // India and the world
+  "non-alignment-now": {
+    opening: "Non-alignment was a position taken when the choice was between two blocs. The blocs went, the term stayed, and what it now describes ranges from a principled refusal to a practice of taking from several sides at once.",
+    standpoints: [
+      { label: "The continuity view", sees: "A consistent refusal to subordinate national decisions to another capital, surviving every change in the international system.", values: "Judgement retained.", mayMiss: "That refusing alignment is cheap when nobody is asking and expensive when someone is." },
+      { label: "The critic", sees: "A doctrine used to avoid choosing while accepting the benefits of choices others make, including the security order that keeps trade routes open.", values: "Costs acknowledged where they are borne.", mayMiss: "That the alternative on offer has usually been alignment on someone else's terms." },
+      { label: "The strategist", sees: "Multiple partnerships, none exclusive, as a rational hedge for a country large enough to matter and not large enough to dictate.", values: "Options preserved.", mayMiss: "That partners eventually price the hedging in." },
+      { label: "The smaller country watching", sees: "A large state claiming a principle that, applied by everyone, would leave it with no protection at all.", values: "Rules that also work for the weak.", mayMiss: "That alignment has not reliably protected small states either." }
+    ],
+    contested: "Whether non-alignment is a principle about how a country should decide, which survives the end of the blocs, or a strategy for a specific configuration that no longer exists.",
+    changeYourMind: "Identify a case where the position cost something material. If the record is mostly of positions taken when they were free, it is describing a preference rather than a principle."
+  },
+  "strategic-autonomy": {
+    opening: "A country can supply its own defence, buy from several suppliers, or accept a security guarantee. The first is expensive and slow, the second leaves it dependent on continued goodwill from each, and the third requires giving up decisions. There is no fourth option.",
+    standpoints: [
+      { label: "The advocate of indigenous capability", sees: "Supply cut off at the moment it is needed, which has happened, and a domestic industrial base as the only real independence.", values: "Not being deliverable.", mayMiss: "That building it takes decades and the capability gap in the meantime is real." },
+      { label: "The advocate of diversified purchase", sees: "Multiple suppliers as insurance against any one of them, and access to technology no domestic programme will match soon.", values: "Capability now.", mayMiss: "That multiple dependencies are still dependencies, with interoperability costs on top." },
+      { label: "The treasury", sees: "Defence spending against health and education, in a country where both are underfunded.", values: "The opportunity cost stated out loud.", mayMiss: "That the cost of being unable to defend a position is not on the same ledger." },
+      { label: "The partner state", sees: "A country wanting technology transfer, joint development and no commitment.", values: "Reciprocity.", mayMiss: "That its own reliability has been the reason for the hedging." }
+    ],
+    contested: "Whether autonomy is achievable at acceptable cost for a country of this size and income, or whether the honest choice is which dependencies to accept and how to spread them.",
+    changeYourMind: "Look at the import content of systems described as indigenous. If critical components remain foreign, autonomy is being measured at the wrong point in the supply chain."
+  },
+  "neighbourhood-first": {
+    opening: "India shares borders and rivers with most of South Asia and is larger than all of them combined. That asymmetry means the same act reads as generosity from one side and as pressure from the other, whatever was intended.",
+    standpoints: [
+      { label: "The Indian policymaker", sees: "Assistance, credit lines and infrastructure extended, and neighbours hedging toward other partners regardless.", values: "Being credited for what is given.", mayMiss: "That a much larger neighbour's help is never received as help alone." },
+      { label: "The smaller neighbour", sees: "Dependence on one country for trade routes, fuel and rivers, and domestic politics in which distance from it is always available as a platform.", values: "Room that does not require a patron.", mayMiss: "That the alternative partner also expects something and is further away." },
+      { label: "The border community", sees: "Kinship, language and trade running across a line that policy treats as the unit.", values: "The crossing staying open.", mayMiss: "That open crossings are the first casualty of any dispute above them." },
+      { label: "The strategic analyst", sees: "Another large power extending credit and infrastructure, and a competition for influence neither neighbour asked for.", values: "Position maintained.", mayMiss: "That framing the region as a competition invites the smaller states to auction it." }
+    ],
+    contested: "Whether asymmetry can be offset by generosity, or whether it is structural and the realistic goal is predictability rather than affection.",
+    changeYourMind: "Compare announced assistance with disbursed assistance and delivery timelines. Where the gap is large, the reception may be a response to the record rather than to the size."
+  },
+  "migration-and-remittance": {
+    opening: "Workers leave, send money home, and that money exceeds most forms of foreign investment. It arrives directly in households rather than through a state. What it costs the place they left is harder to see and rarely counted.",
+    standpoints: [
+      { label: "The economist", sees: "Transfers that are stable in downturns, untied to conditions, and spent on schooling and health.", values: "Income reaching households directly.", mayMiss: "That the same flow raises local prices and can reduce the pressure to fix what made leaving necessary." },
+      { label: "The migrant worker", sees: "Wages several times what was available, and conditions, isolation and legal status that the remittance figure does not record.", values: "The family's position changing.", mayMiss: "That the arrangement depends on his continued absence." },
+      { label: "The family that stayed", sees: "Money arriving and a person not, across years, with the household reorganised around it.", values: "The person.", mayMiss: "That the alternative was the same absence without the money." },
+      { label: "The sending state", sees: "A trained workforce departing after public investment in its education.", values: "A return on what it paid for.", mayMiss: "That the training was often undertaken precisely because it enabled leaving." }
+    ],
+    contested: "Whether remittances are a development success or a symptom of a failure to create work at home, and whether a policy of encouraging emigration is a strategy or an admission.",
+    changeYourMind: "Look at what remittances are spent on over time. Sustained shifts into land and consumption rather than enterprise suggest they are compensating rather than developing."
+  },
+  "diaspora-claim": {
+    opening: "People who left, and their descendants, retain attachments to the country they came from and are increasingly courted by it. What either party may ask of the other, when one no longer lives with the consequences, is unresolved.",
+    standpoints: [
+      { label: "The diaspora member", sees: "Family, property and identity still there, and remittances and investment that continue.", values: "A relationship that did not end at the airport.", mayMiss: "That influence exercised from outside is not accountable to anyone inside." },
+      { label: "The resident citizen", sees: "Strong opinions about her country's politics held by people who do not live under the results.", values: "Decisions resting with those who bear them.", mayMiss: "That the diaspora often funds institutions that resident citizens rely on." },
+      { label: "The government courting them", sees: "Capital, expertise, and a constituency abroad that advances its position in other capitals.", values: "A resource that costs little to cultivate.", mayMiss: "That mobilising a diaspora politically can make its position in its host country harder." },
+      { label: "The host country", sees: "Citizens with an active political attachment elsewhere, and periodic questions about where loyalty sits.", values: "Integration.", mayMiss: "That divided attachment is the normal condition of migration and rarely the problem it is described as." }
+    ],
+    contested: "Whether political voice should follow citizenship, residence, or contribution, since the diaspora often has the first and third without the second.",
+    changeYourMind: "Ask whether you would extend the same voice to a diaspora whose politics you dislike. If not, the principle being defended is the outcome."
+  },
+  "multilateral-reform": {
+    opening: "The institutions governing security, trade and finance were designed in 1945 by the states that had just won a war. Almost everyone agrees they no longer represent the distribution of power or population. Nothing changes, and the reason is not mysterious.",
+    standpoints: [
+      { label: "The claimant for a seat", sees: "Population, economic weight and contribution unrepresented at the table where decisions bind it.", values: "Representation tracking reality.", mayMiss: "That every claimant is opposed by a regional rival with the same argument." },
+      { label: "The permanent member", sees: "An arrangement that has held for eighty years, and a veto it will not be voted out of.", values: "Stability, and its own position.", mayMiss: "That legitimacy lost slowly is still lost." },
+      { label: "The small state", sees: "Reform proposals that would add more large states above it while changing nothing about its own position.", values: "Not trading one hierarchy for a larger one.", mayMiss: "That the current arrangement is not serving it either." },
+      { label: "The institutionalist", sees: "Bodies that still do a great deal of unglamorous work that nothing would replace.", values: "Not breaking what functions while arguing about the part that does not.", mayMiss: "That the functioning parts are increasingly bypassed by arrangements made elsewhere." }
+    ],
+    contested: "Whether the blockage is the veto, which is a rule, or the absence of any coalition that agrees on an alternative, which is a fact about interests.",
+    changeYourMind: "Look at whether reform proposals have ever failed at the veto stage, or earlier. If they die before reaching it, the veto is not the binding constraint."
+  },
+  "border-lives": {
+    opening: "A border is drawn as a line on a map and lived as a condition. For people whose fields, kin and markets are on both sides of it, the questions are about permits, access and documentation rather than about where sovereignty sits.",
+    standpoints: [
+      { label: "The person living at the line", sees: "Land divided from the village, movement dependent on permission, and infrastructure that stops short because of where it is.", values: "Continuing to live the life the place supported.", mayMiss: "That the security concerns cited are sometimes real and have costs of their own." },
+      { label: "The security establishment", sees: "A frontier requiring surveillance, and movement that cannot be distinguished case by case at scale.", values: "A controllable perimeter.", mayMiss: "That treating a population as a risk removes the cooperation that actually produces information." },
+      { label: "The trader", sees: "Historic routes closed and goods travelling ten times the distance through a sanctioned crossing.", values: "Exchange that predates the line.", mayMiss: "That open trade routes are used for more than trade." },
+      { label: "The national public", sees: "A border as an emblem, discussed in terms of firmness.", values: "Territorial integrity.", mayMiss: "That the cost of firmness is paid entirely by people they will never meet." }
+    ],
+    contested: "Whether border management should optimise for security, which means restricting movement, or for the viability of border communities, whose cooperation is itself a security asset.",
+    changeYourMind: "Compare development indicators in border districts against state averages. A persistent gap means the security framing has a measurable price and someone specific is paying it."
+  },
+  "aid-and-influence": {
+    opening: "Assistance between states is given for reasons, and the reasons include influence. Calling it a gift obscures that; calling it purely instrumental ignores that some of it does exactly what it says. The distinction matters most to the recipient.",
+    standpoints: [
+      { label: "The donor government", sees: "Public money that must be justified to its own taxpayers, and interests that are not shameful for being interests.", values: "Honesty about mixed motives.", mayMiss: "That conditions attached in good faith still restrict a sovereign decision." },
+      { label: "The recipient government", sees: "Assistance arriving with procurement requirements, advisers and reporting that shape policy well beyond the project.", values: "Deciding its own priorities.", mayMiss: "That it sought the funding and can decline the conditions." },
+      { label: "The intended beneficiary", sees: "A clinic that exists, and a debate about motives conducted above it.", values: "The thing being built.", mayMiss: "That projects chosen for donor visibility often do not survive the funding cycle." },
+      { label: "The competing donor", sees: "Infrastructure offered without governance conditions, and recipients who prefer it.", values: "Speed and non-interference.", mayMiss: "That debt without conditions is still debt, and the terms surface later." }
+    ],
+    contested: "Whether assistance can be evaluated by its effect regardless of motive, or whether the influence purchased is itself part of the effect and belongs in the assessment.",
+    changeYourMind: "Track what happens to a funded programme when the donor's strategic interest moves elsewhere. Continuation suggests it was development; abandonment suggests it was position."
+  },
 };
 
 export function getTopicContent(slug: string): TopicContent | undefined {
