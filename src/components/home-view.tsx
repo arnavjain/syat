@@ -2,9 +2,13 @@ import Link from "next/link";
 
 import { designDirections, type DesignDirection } from "@/lib/design-direction";
 import { getHomeContent, getHomeModeHref, type HomeMode } from "@/lib/home-content";
+import { publisherRegistry } from "@/lib/publisher-registry";
+import { getNewsStoryIndexProjection } from "@/lib/reader-stories";
+import { timelessTopics } from "@/lib/timeless-topics";
 
 import { DirectionSignature } from "./direction-signature";
 import { EditorialFeed } from "./editorial-feed";
+import { HowSyatWorks } from "./how-syat-works";
 import { SiteChrome } from "./site-chrome";
 import { SyatFrame } from "./syat-frame";
 
@@ -50,6 +54,8 @@ export function HomeView({ mode, direction, isDesignReview = false }: { mode: Ho
       </section> : null}
 
       <EditorialFeed content={content} />
+
+      <HowSyatWorks newsCount={getNewsStoryIndexProjection().length} topicCount={timelessTopics.length} publisherCount={publisherRegistry.filter((publisher) => publisher.kind !== "public record").length} />
 
       <section className="reading-promise" aria-label="How Syāt labels a story">
         <div><span className="legend-mark documented" /><strong>Documented</strong><p>What a source directly supports.</p></div>

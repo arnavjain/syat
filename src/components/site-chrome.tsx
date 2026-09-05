@@ -26,7 +26,7 @@ export function SiteChrome({ active, children, compact = false, className = "" }
       <main id="main-content">{children}</main>
       <footer className="site-footer">
         <p>Syāt writes its own questions and draws its own artwork. Links to other newsrooms are credited and belong to them.</p>
-        <div><Link href="/en/about">About the method</Link><Link href="/en/onboarding">How to read Syāt</Link><Link href="/en/studio">Review Studio</Link></div>
+        <div><Link href="/en/about">About the method</Link><Link href="/en/onboarding">How to read Syāt</Link><Link href="/en/propose">Propose a question</Link><Link href="/en/studio">Review Studio</Link></div>
       </footer>
       <nav className="mobile-nav" aria-label="Mobile navigation">
         {links.map((link) => <Link aria-current={active === link.section ? "page" : undefined} className={`mobile-nav-link ${active === link.section ? "active" : ""}`} href={link.href} key={link.section}>{link.label}</Link>)}

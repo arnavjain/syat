@@ -493,6 +493,13 @@ export type StoryDraftV2PromptInput = {
   missingVoices: string[];
   sourceDossier: SourceDossierRecord[];
   selectedExactTime?: SelectedExactTime;
+  /**
+   * Timeless mode only. A Timeless story is written about one enduring question, so the topic is
+   * chosen before the call and pinned in the schema. Left open, the model picks whichever of the
+   * hundred topics its own draft drifted towards, which is how two stories end up on one question
+   * and eleven topics end up with none.
+   */
+  topicSlug?: string;
 };
 
 export type SelectedExactTime = {
@@ -607,6 +614,7 @@ export function buildStoryDraftProviderJsonSchema(input: StoryDraftV2PromptInput
   setJsonSchemaConst(schema, ["properties", "format"], input.format);
   setJsonSchemaConst(schema, ["properties", "story", "properties", "mode"], input.mode);
   setJsonSchemaConst(schema, ["properties", "story", "properties", "indiaConnection"], input.indiaConnection);
+  if (input.topicSlug) setJsonSchemaConst(schema, ["properties", "contextBridge", "properties", "topicSlug"], input.topicSlug);
   const properties = schema.properties;
   if (!isJsonObject(properties) || !isJsonObject(properties.story) || !isJsonObject(properties.story.properties) || !isJsonObject(properties.timeline) || !isJsonObject(properties.timeline.items) || !isJsonObject(properties.timeline.items.properties)) {
     throw new Error("Story draft provider schema is missing expected time binding paths.");
@@ -653,6 +661,23 @@ export function buildStoryDraftV2Prompt(input: StoryDraftV2PromptInput) {
     "The article body must run between 450 and 700 words across all sections. Count only paragraph text. A shorter draft is rejected outright, so work through every finding the dossier supports rather than stopping at the first one.",
     "Reaching that length by repeating a finding, restating the dek, or padding with what the record does not say is a failure. If the dossier genuinely cannot carry 450 words, say so in the unresolved questions rather than inventing material."
   ];
+
+  // Timeless is a different job from News. The record stops being the subject and becomes one
+  // grounded instance of a question that was open before it and stays open after it. Without
+  // these rules the model writes the same audit brief and simply files it under a topic.
+  if (input.mode === "timeless" && input.topicSlug) {
+    const topic = getTimelessTopic(input.topicSlug);
+    if (!topic) throw new Error(`Unknown Timeless topic slug: ${input.topicSlug}`);
+    editorialRules.push(
+      `This is a Timeless story about one enduring question: "${topic.title}" (theme: ${topic.theme}).`,
+      "The supplied record is evidence, not the subject. Use it as one concrete Indian instance of the question, and never write as though the question exists only because this record does.",
+      "The question must stay open at the end. If the piece resolves it, you have written a news brief with a topic label on it.",
+      "Give at least three standpoints that genuinely disagree, and say for each what it sees clearly and what it is placed to miss. A standpoint that agrees with every other standpoint is not one.",
+      "Do not invent a person, a quote or a constituency. A standpoint is a position a reader can occupy, not a character you have made up.",
+      "Every factual assertion still needs the dossier behind it. Reasoning about the question is yours; facts are the record's.",
+      "Do not date the piece to the record. It should read as well in five years, so avoid \"recently\", \"currently\" and \"this year\" except where the record's own period is the point."
+    );
+  }
 
   return `You are an editorial research assistant for Syāt. Prepare a cautious, source-scoped draft for a human editor. Return exactly one JSON object and nothing else.
 

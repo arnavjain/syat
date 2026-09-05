@@ -322,7 +322,7 @@ describe("preview wave transaction", () => {
       let metadataCalls = 0;
       let providerCalls = 0;
       await expect(runPreviewBatch(
-        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, mode: "news" as const, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => {
             metadataCalls += 1;
@@ -341,7 +341,7 @@ describe("preview wave transaction", () => {
       expect(findCloseCopyMatches(draft, sourcePack.sources)).toEqual([]);
       expect(reviewEditorialQuality(draft, []).blockers).toEqual([]);
       const report = await runPreviewBatch(
-        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, mode: "news" as const, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 }),
           createDraft: async ({ reserveAttempt }) => {
@@ -364,7 +364,7 @@ describe("preview wave transaction", () => {
       expect(report!.items[0].outputHash).not.toBe(durableInputHash);
 
       const resumed = await runPreviewBatch(
-        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, mode: "news" as const, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 }),
           createDraft: async () => { throw new Error("A completed input must not call the provider again."); }
@@ -379,7 +379,7 @@ describe("preview wave transaction", () => {
       await writeFile(join(directory, "data/source-packs/approved-preview.json"), JSON.stringify([failingPack]), "utf8");
       const previousExitCode = process.exitCode;
       const blockedRun = await runPreviewBatch(
-        { pilot: false, dryRun: false, start: 0, count: 1, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
+        { pilot: false, dryRun: false, start: 0, count: 1, mode: "news" as const, sourcePackPath: "data/source-packs/approved-preview.json", ledgerPath: ".syat-private/generation-ledger.json" },
         {
           fetchImpl: async () => new Response(JSON.stringify({ data: [{ id: "deepseek/deepseek-v4-flash-0731", context_length: 163_840, supported_parameters: ["structured_outputs"], pricing: { prompt: "0.000000065", completion: "0.00000018" } }] }), { status: 200 }),
           createDraft: async ({ reserveAttempt }) => {
