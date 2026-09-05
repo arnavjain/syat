@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+import { SyatLogo } from "./syat-logo";
 import type { ReactNode } from "react";
 
 type Section = "home" | "explore" | "search" | "reframe" | "saved" | "you" | "about" | "studio";
@@ -18,7 +20,7 @@ export function SiteChrome({ active, children, compact = false, className = "" }
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="preview-ribbon">Timeless questions are published. News is still in private review, and every draft is labelled.</div>
       <header className="masthead">
-        <Link className="wordmark" href="/" aria-label="Syāt home">Syāt<span aria-hidden="true">.</span></Link>
+        <Link className="wordmark" href="/" aria-label="Syāt home"><SyatLogo /><span className="wordmark-text">Syāt<span aria-hidden="true">.</span></span></Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {links.map((link) => <Link aria-current={active === link.section ? "page" : undefined} className={`nav-link ${active === link.section ? "is-active" : ""}`} href={link.href} key={link.section}>{link.label}</Link>)}
         </nav>
