@@ -27,3 +27,6 @@ data/source-packs/*.next
 # Downloaded OAuth client credentials. Never commit these.
 client_secret_*.json
 *.apps.googleusercontent.com.json
+
+# Playwright review screenshots land in the working directory.
+/*.png

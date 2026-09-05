@@ -13,7 +13,7 @@ export default function SearchPage() {
   const entries = buildCombinedSearchIndex(getNewsStoryIndexProjection().map((story) => ({ slug: story.slug, title: story.title, dek: story.dek, theme: story.theme })));
 
   return (
-    <SiteChrome active="explore">
+    <SiteChrome active="search">
       <div className="search-page">
         <header>
           <p className="micro-copy">Search</p>
