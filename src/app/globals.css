@@ -1269,3 +1269,12 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 @media (hover: hover) and (pointer: fine) {
   .site-footer a:hover, .topic-eyebrow a:hover { color: var(--ink); border-color: var(--marigold); }
 }
+
+/* On a phone the side-by-side row gave a decorative mark a quarter of the width and left
+   the headline in a 263px column running to three lines. The mark becomes a short banner
+   above instead, so the headline gets the full measure. */
+@media (max-width: 560px) {
+  .news-index-row { grid-template-columns: 1fr; gap: 12px; }
+  .news-index-row > .story-motif { width: 100%; height: 72px; padding: 8px 10px; }
+  .news-index-row > .story-motif svg { height: 100%; }
+}
