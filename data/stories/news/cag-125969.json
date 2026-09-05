@@ -1,0 +1,456 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-125969",
+  "slug": "cag-125969",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "timeline",
+  "title": "Central government's stake in state-run firms grows, but losses erode net worth of many",
+  "dek": "An audit of central public sector enterprises for the year ending March 2024 shows rising government investment and dividends, alongside mounting accumulated losses that have wiped out the net worth of 91 companies.",
+  "theme": "Public sector finances and accountability",
+  "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3",
+      "claim-4",
+      "claim-5",
+      "claim-6",
+      "claim-7",
+      "claim-8"
+    ],
+    "sourceIds": [
+      "cag-125969"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:23:24.470Z",
+  "generatedAt": "2026-09-05T00:25:28.953Z",
+  "updatedAt": "2026-09-05T00:25:28.953Z",
+  "readingMinutes": 3,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Millions of Indians rely on central public sector enterprises for essential services such as petroleum, power, and coal. The financial health of these companies directly affects the availability and affordability of these services. The audit record provides a snapshot of their financial position as of March 2024, but it does not capture the experiences of the people who use these services.",
+      "section": {
+        "id": "section-1",
+        "title": "Who depends on these companies"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The record shows that the central government holds significant equity and loans in these enterprises. As of March 2024, long-term loans from the central government to these companies stood at ₹2,87,678 crore. The government's equity holding increased by ₹2,68,767 crore during the year, and long-term loans rose by ₹1,63,332 crore. These figures indicate a growing financial commitment, but the record does not explain how this investment translates into improved services for citizens.",
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The audit record presents a mixed picture of financial performance. In 2023-24, 282 government companies and corporations earned a combined profit of ₹3,58,385 crore. Of this, 70.46 percent, or ₹2,52,535 crore, came from just 79 companies in the petroleum, power, and coal sectors. The return on equity for these 282 companies was 16.28 percent, up from 13.75 percent in the previous year. However, the record does not specify how these profits were distributed or reinvested.",
+      "section": {
+        "id": "section-2",
+        "title": "What the audit record shows"
+      },
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "For the year, dividends from 134 government companies and corporations came to ₹1,38,138 crore. The central government's share, either received or pending, was ₹65,071 crore, equating to a 5.45% yield on its ₹11,93,439 crore equity stake across all 479 such entities. Eleven firms under the Petroleum and Natural Gas ministry added ₹50,469 crore, making up 36.54% of the total dividend pool. How these payouts were utilized or whether they matched expectations is not mentioned in the record.",
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit also notes heavy financial setbacks. During 2023-24, 182 government companies posted losses summing to ₹34,908 crore. By March 2024, accumulated losses at 214 companies had reached ₹2,47,181 crore. According to the record, losses had wiped out the entire net worth of 91 firms, pushing their combined net worth to a negative ₹58,175 crore. Thus, for these firms, debts surpass assets, yet the audit does not delve into the causes of this erosion.",
+      "section": {
+        "id": "section-3",
+        "title": "Losses and eroded net worth"
+      },
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "Strikingly, 21 out of those 91 firms still turned a profit of ₹961 crore in that year. The record lists these figures side by side but draws no causal link between them. It neither claims the profits offset the losses nor attributes the losses to any particular reason. The audit simply presents the data, leaving readers to draw their own conclusions.",
+      "claimIds": [
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "The audit record covers only the period ending March 2024 and does not include independent measurements or the perspectives of people directly affected by these companies' performance. It does not provide evidence on how the financial results impact service delivery, employment, or the broader economy. The record is based on the companies' own financial reports, which the audit examines but does not independently verify beyond the scope of its sample.",
+      "section": {
+        "id": "section-4",
+        "title": "What remains unknown"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-3",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "The audit record does not establish a timeline for when these financial changes occurred during the year, nor does it provide a clear picture of the future outlook. It does not state whether the losses are likely to continue or whether the government's increased investment will lead to improved performance. These questions remain unanswered, and the record itself does not claim to resolve them.",
+      "claimIds": [
+        "claim-2",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "As of 31 March 2024, long-term loans given by the Central Government to central public sector enterprises amounted to ₹2,87,678 crore.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report covers the financial position of central public sector enterprises for the period ended March 2024.",
+      "type": "documented",
+      "limits": "The record does not specify which enterprises received these loans or the terms of the loans."
+    },
+    {
+      "id": "claim-2",
+      "text": "In 2023-24, the Centre's equity stake in these enterprises rose by ₹2,68,767 crore, while outstanding long-term loans climbed by ₹1,63,332 crore.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report provides figures for changes in equity and loans during the financial year 2023-24.",
+      "type": "documented",
+      "limits": "The record does not explain the reasons for these increases or how they were funded."
+    },
+    {
+      "id": "claim-3",
+      "text": "In 2023-24, 282 government companies and corporations earned a profit of ₹3,58,385 crore, with 70.46 percent contributed by 79 CPSEs in petroleum, power, and coal sectors.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report includes profit figures for government companies and corporations for the year 2023-24.",
+      "type": "documented",
+      "limits": "The record does not detail how these profits were distributed or whether they were sustainable."
+    },
+    {
+      "id": "claim-4",
+      "text": "The return on equity for these 282 CPSEs was 16.28 percent in 2023-24, compared to 13.75 percent for 259 CPSEs in 2022-23.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report provides return on equity figures for the years 2023-24 and 2022-23.",
+      "type": "documented",
+      "limits": "The record does not explain the factors behind the change in return on equity."
+    },
+    {
+      "id": "claim-5",
+      "text": "In 2023-24, 134 government companies and corporations declared dividends totaling ₹1,38,138 crore, with the Central Government receiving or due to receive ₹65,071 crore.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report includes dividend declarations and government receipts for the year 2023-24.",
+      "type": "documented",
+      "limits": "The record does not specify which companies declared dividends or the timing of payments."
+    },
+    {
+      "id": "claim-6",
+      "text": "The central government's dividend earnings represented a 5.45% return on its ₹11,93,439 crore investment in the equity of all 479 government companies and corporations.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report calculates the return on the government's total equity investment based on dividend receipts.",
+      "type": "documented",
+      "limits": "The record does not compare this return to other investment options or assess adequacy."
+    },
+    {
+      "id": "claim-7",
+      "text": "In 2023-24, 182 government companies incurred losses totaling ₹34,908 crore, and 214 companies had accumulated losses of ₹2,47,181 crore as of 31 March 2024.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report provides loss figures for government companies for the year 2023-24 and accumulated losses as of March 2024.",
+      "type": "documented",
+      "limits": "The record does not identify the companies with the largest losses or the reasons for their losses."
+    },
+    {
+      "id": "claim-8",
+      "text": "As of 31 March 2024, accumulated losses had fully eroded the net worth of 91 companies, leaving their combined net worth at a negative ₹58,175 crore.",
+      "sourceIds": [
+        "cag-125969"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report includes data on net worth erosion for a subset of companies as of March 2024.",
+      "type": "documented",
+      "limits": "The record does not state whether these companies are still operational or what steps are being taken to address their negative net worth."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit record presents financial data for the year ending March 2024, but it does not provide specific dates for when changes occurred.",
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Profits and dividends for 2023-24 are reported, but the record does not specify when during the year these were earned or declared.",
+      "claimIds": [
+        "claim-3",
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Losses and accumulated losses are recorded as of March 2024, but the record does not indicate when these losses were incurred.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor's perspective",
+      "rationale": "The audit report is an independent examination of the financial records of central public sector enterprises.",
+      "sees": "The auditor sees the financial data as presented by the companies and checks it for accuracy and compliance.",
+      "values": "The auditor values transparency and accountability in the use of public funds.",
+      "uses": "The auditor uses the financial statements to assess the performance and financial health of the enterprises.",
+      "mayMiss": "The auditor may miss the on-ground impact of these financial results on citizens and the quality of services.",
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "perspective-2",
+      "label": "Government's perspective",
+      "rationale": "The government is the owner of these enterprises and is responsible for their oversight.",
+      "sees": "The government sees the increased investment and dividends as a sign of successful public sector performance.",
+      "values": "The government values the contribution of these enterprises to the economy and public welfare.",
+      "uses": "The government uses the financial results to justify its investment decisions and policy directions.",
+      "mayMiss": "The government may miss the inefficiencies and losses that are not highlighted in the summary figures.",
+      "sourceIds": [
+        "cag-125969"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that prepared the report on central public sector enterprises.",
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Central Government of India",
+      "association": "The government that holds equity and provides loans to the central public sector enterprises.",
+      "sourceIds": [
+        "cag-125969"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What are the specific reasons for the accumulated losses and net worth erosion of the 91 companies?",
+      "whatWouldHelp": "Detailed financial statements and management explanations for each company would help answer this.",
+      "sourceIds": [
+        "cag-125969"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "How do the financial results of these enterprises affect the daily lives of citizens who depend on their services?",
+      "whatWouldHelp": "Independent surveys and interviews with service users would provide this perspective.",
+      "sourceIds": [
+        "cag-125969"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "public-place",
+    "question": "How does the financial health of state-run enterprises affect the public services that citizens rely on?",
+    "connection": "The audit record provides a financial snapshot of these enterprises, but it does not capture the lived experience of citizens who depend on their services."
+  },
+  "sources": [
+    {
+      "id": "cag-125969",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India General Purpose Financial Reports of Central Public Sector Enterprises for the period ended March 2024 Union Government (Commercial) Report No. 21 of 2026 (Compliance Audit) · Sector: Finance · Government: Union",
+      "url": "https://cag.gov.in/en/audit-report/details/125969",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:23:24.470Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8.",
+      "scope": "The audit report covers the financial position of central public sector enterprises for the period ended March 2024.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-125969-timeline",
+      "kind": "chart",
+      "label": "Financial trends in central public sector enterprises",
+      "alt": "Financial trends in central public sector enterprises. A timeline showing key financial figures from the audit report, including loans, equity, profits, dividends, and losses for the period ending March 2024.",
+      "caption": "A timeline showing key financial figures from the audit report, including loans, equity, profits, dividends, and losses for the period ending March 2024.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125969-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T00:25:28.946Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-125969-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline is based solely on the audit report and does not include independent data or future projections.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-3",
+        "claim-5",
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125969"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-125969-timeline",
+    "kind": "timeline",
+    "title": "Financial trends in central public sector enterprises",
+    "description": "A timeline showing key financial figures from the audit report, including loans, equity, profits, dividends, and losses for the period ending March 2024.",
+    "limitation": "The timeline is based solely on the audit report and does not include independent data or future projections.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3",
+      "claim-5",
+      "claim-7",
+      "claim-8"
+    ],
+    "sourceIds": [
+      "cag-125969"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that while the central government increased its financial stake in state-run companies, a significant number of these companies have accumulated losses that exceed their net worth, raising questions about the sustainability of public investment."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.24",
+    "inputHash": "f3f81ddfc0a01ce62ec445732af4abc17d91c05ec052a1c6317033ccbaa29b9d",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T00:25:28.953Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 5,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

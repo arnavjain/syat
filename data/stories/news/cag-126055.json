@@ -1,0 +1,496 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126055",
+  "slug": "cag-126055",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "timeline",
+  "title": "Tata Memorial Centre's IT systems lack policy and security controls, audit finds",
+  "dek": "An audit of Tata Memorial Centre's computer systems found no approved IT policy, weak password controls, and missing data backup plans, leaving patient data vulnerable.",
+  "theme": "IT security gaps in a public cancer hospital",
+  "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-126055"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:22:37.686Z",
+  "generatedAt": "2026-09-05T01:01:10.726Z",
+  "updatedAt": "2026-09-05T01:01:10.726Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Tata Memorial Centre, a major cancer treatment institution, operated its computer systems without an approved IT policy, according to an audit by the Comptroller and Auditor General of India. The audit, which examined the centre's information technology management, found no IT Steering Committee to oversee software development. This meant there was no structured guidance for IT operations or security.",
+      "section": {
+        "id": "section-1",
+        "title": "IT policy and governance gaps"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The centre also lacked a comprehensive data retention and archival policy. The audit noted that without such policies, the institution had no clear rules for how long to keep patient records or how to protect them. The absence of a formal governance structure is a documented finding, but the audit does not say whether this led to any specific data loss.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The audit reported that the centre's password rules were lax and its login checks were not strong enough. It was also observed that security reviews were not carried out on a regular basis. Because of these shortcomings, stopping online attacks and safeguarding confidential information such as patients' Aadhaar numbers proved challenging.",
+      "section": {
+        "id": "section-2",
+        "title": "Security controls and password weaknesses"
+      },
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "Cryptographic security was not maintained while storing passwords and Aadhaar numbers, the audit states. Additionally, there was no Business Continuity and Disaster Recovery Plan. The audit does not provide evidence that any cyber-attack actually occurred, only that the conditions made such an attack more likely.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "Across the Tata Memorial Centre's various locations, putting the Hospital Information System into operation ran into major holdups, and a number of its components stayed inactive. The audit also pointed out that no compulsory unique identifier existed for patients who registered, so it was possible for one person to be listed under several different registration numbers.",
+      "section": {
+        "id": "section-3",
+        "title": "System implementation and patient data issues"
+      },
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "When details of patients from other countries were entered, there were no checks to verify the information. Also, the Patient Scheme Management system offered no way to apply for a change in category. The Material Management System lacked proper follow-up and notification features, which led to a supply of medicines that had passed their expiry date. In addition, the Financial Management System was unable to produce key financial reports.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "According to the audit, formal Service Level Agreements were never signed with the vendors. As a result, payments kept being made even though technical problems and system failures were still not sorted out. The audit does not mention how much money was paid or how long these issues lasted.",
+      "section": {
+        "id": "section-4",
+        "title": "Vendor agreements and unresolved issues"
+      },
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "The audit's findings are based on its review of the centre's records and systems. It does not include independent testing of the security measures or interviews with patients. The record cannot establish whether any patient data was actually accessed by unauthorized persons, nor does it provide a timeline for when these deficiencies began.",
+      "claimIds": [
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "No approved IT policy existed at Tata Memorial Centre, and there was no IT Steering Committee to oversee software development.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report covers the centre's IT management practices as observed during the audit period.",
+      "type": "documented",
+      "limits": "The report does not specify when the policy was last reviewed or whether a draft policy existed."
+    },
+    {
+      "id": "claim-2",
+      "text": "The centre lacked a comprehensive Data Retention and Archival Policy.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reviewed the centre's policies and procedures for data management.",
+      "type": "documented",
+      "limits": "It does not state what data was at risk or how long records were actually kept."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit found that password controls were weak, authentication methods were not strong enough, and security audits were not performed regularly.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit examined the centre's security controls and authentication practices.",
+      "type": "documented",
+      "limits": "It does not provide examples of any security incidents that occurred."
+    },
+    {
+      "id": "claim-4",
+      "text": "Passwords and patients' Aadhaar numbers were stored without cryptographic security, and the centre also had no Business Continuity and Disaster Recovery Plan.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit assessed the storage and backup mechanisms for sensitive data.",
+      "type": "documented",
+      "limits": "It does not confirm whether any data was actually exposed or lost."
+    },
+    {
+      "id": "claim-5",
+      "text": "The Hospital Information System faced significant delays, with several modules non-functional, and there was no mandatory unique patient identifier, leading to multiple registration numbers for a single patient.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reviewed the implementation and functionality of the Hospital Information System.",
+      "type": "documented",
+      "limits": "It does not quantify the delay or the number of patients affected."
+    },
+    {
+      "id": "claim-6",
+      "text": "The Material Management System did not provide timely tracking or alerts, which resulted in expired medicines being kept in stock, and the Financial Management System failed to produce essential financial reports.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit examined the material and financial management systems at the centre.",
+      "type": "documented",
+      "limits": "It does not specify the value of expired medicines or which financial reports were missing."
+    },
+    {
+      "id": "claim-7",
+      "text": "Formal Service Level Agreements were not executed with vendors, so payments continued even though technical issues remained unresolved.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reviewed vendor contracts and payment records.",
+      "type": "documented",
+      "limits": "It does not state the amount paid or the duration of the unresolved issues."
+    },
+    {
+      "id": "claim-8",
+      "text": "The audit's findings indicate that the centre's IT systems were vulnerable, but the record does not establish that any actual breach or data loss occurred.",
+      "sourceIds": [
+        "cag-126055"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit report provides observations on system deficiencies but does not include evidence of exploitation.",
+      "type": "interpreted",
+      "limits": "It cannot rule out that breaches happened but were not detected."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Tata Memorial Centre operated without an approved IT policy and IT Steering Committee.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The centre lacked data retention and archival policies.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Weak password controls and no periodic security audits were noted.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "timeline-4",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "No cryptographic security for passwords and Aadhaar numbers, and no disaster recovery plan.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "timeline-5",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Hospital Information System implementation delayed; multiple registration numbers for single patients.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "timeline-6",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Material Management System lacked tracking, leading to expired medicines; financial reports not generated.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "timeline-7",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "No formal Service Level Agreements with vendors; payments continued despite unresolved issues.",
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor's perspective",
+      "rationale": "The audit is an independent examination of the institution's records and systems.",
+      "sees": "The audit sees gaps in policy, security, and system implementation.",
+      "values": "It values compliance with formal procedures and security best practices.",
+      "uses": "It uses the institution's own records and system observations to form its findings.",
+      "mayMiss": "It may miss the operational realities that led to these gaps or the impact on patients.",
+      "sourceIds": [
+        "cag-126055"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Tata Memorial Centre",
+      "association": "The institution audited for its IT management practices.",
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The independent audit body that conducted the review.",
+      "sourceIds": [
+        "cag-126055"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "Did any actual cyber-attack or data breach occur at Tata Memorial Centre?",
+      "whatWouldHelp": "Independent security testing or incident reports would help establish whether the vulnerabilities were exploited.",
+      "sourceIds": [
+        "cag-126055"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "What was the financial impact of continued payments to vendors despite unresolved issues?",
+      "whatWouldHelp": "Detailed payment records and vendor contracts would clarify the amount involved.",
+      "sourceIds": [
+        "cag-126055"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "data-gap",
+    "question": "What does the audit record show about the security of patient data at a major public cancer hospital?",
+    "connection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it."
+  },
+  "sources": [
+    {
+      "id": "cag-126055",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Scientific and Environmental Ministries/Departments Report No. 17 of 2026 (Compliance Audit) · Sector: Science and Technology · Government: Union",
+      "url": "https://cag.gov.in/en/audit-report/details/126055",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:22:37.686Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8.",
+      "scope": "The audit report covers the centre's IT management practices as observed during the audit period.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126055-timeline",
+      "kind": "chart",
+      "label": "Key IT deficiencies at Tata Memorial Centre as per audit",
+      "alt": "Key IT deficiencies at Tata Memorial Centre as per audit. A timeline showing the sequence of documented IT policy and security gaps at Tata Memorial Centre, based on the audit findings. Each entry highlights a specific deficiency, from missing policies to system implementation delays.",
+      "caption": "A timeline showing the sequence of documented IT policy and security gaps at Tata Memorial Centre, based on the audit findings. Each entry highlights a specific deficiency, from missing policies to system implementation delays.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126055-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T01:01:10.719Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126055-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline does not indicate dates because the audit record does not provide them. It only shows the order in which the findings were reported.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-3",
+        "claim-4",
+        "claim-5",
+        "claim-6",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126055"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126055-timeline",
+    "kind": "timeline",
+    "title": "Key IT deficiencies at Tata Memorial Centre as per audit",
+    "description": "A timeline showing the sequence of documented IT policy and security gaps at Tata Memorial Centre, based on the audit findings. Each entry highlights a specific deficiency, from missing policies to system implementation delays.",
+    "limitation": "The timeline does not indicate dates because the audit record does not provide them. It only shows the order in which the findings were reported.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3",
+      "claim-4",
+      "claim-5",
+      "claim-6",
+      "claim-7"
+    ],
+    "sourceIds": [
+      "cag-126055"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-m0nrwu",
+      "publisher": "The Hindu",
+      "title": "We need more mega-science projects, says CERN Director-General",
+      "url": "https://www.thehindu.com/sci-tech/science/we-need-more-mega-science-projects-says-cern-director-general/article71411734.ece",
+      "publishedAt": "2026-08-31T16:59:02.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that Tata Memorial Centre's IT systems lacked formal policies and security measures, but it does not establish that any patient data was actually breached."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.31",
+    "inputHash": "ee75deedc877c71a34dc4b89c09b9c46843987ee90abf953ddd8948c57c269ea",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T01:01:10.726Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 5,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-125942",
+  "slug": "cag-125942",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "explainer",
+  "title": "SC/ST apprenticeship funds diverted to general trainees in Mumbai board",
+  "dek": "An audit of the Board of Apprenticeship Training in Mumbai finds that grants meant for Scheduled Caste and Scheduled Tribe apprentices were used for general category trainees, leaving the intended beneficiaries without the promised support.",
+  "theme": "Misuse of reserved category funds in apprenticeship training",
+  "indiaConnection": "This audit examines how a public programme in Tamil Nadu was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-125942"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:23:50.286Z",
+  "generatedAt": "2026-09-05T00:52:38.736Z",
+  "updatedAt": "2026-09-05T00:52:38.736Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "Apprentices from Scheduled Castes and Scheduled Tribes rely on grants-in-aid from the Board of Apprenticeship Training in Mumbai to complete their training. The Comptroller and Auditor General of India examined the board's records for the year ended March 2023 and found that Rs 17.34 crore of these reserved funds were used for apprentices belonging to the General category. The audit record states this as an irregular utilisation, but it does not name the apprentices who were affected or say how many of them there were.",
+      "section": {
+        "id": "section-1",
+        "title": "Who depends on the funds"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The board's own account of how the funds were allocated is not included in the audit record. The audit report only provides the finding of irregular utilisation, without the board's explanation or any response from the board. This means that for the apprentices who were supposed to receive the funds, the record does not settle whether the money reached them or whether they were denied training support.",
+      "claimIds": [
+        "claim-1",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "The audit record identifies the Board of Apprenticeship Training, Mumbai, as the institution responsible for the irregular utilisation. It states that the grants-in-aid meant for SC/ST apprentices were instead used for General category apprentices. The record does not provide details of the specific transactions or the period over which this occurred, beyond the year ended March 2023.",
+      "section": {
+        "id": "section-2",
+        "title": "What the audit record shows"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The audit's finding is based on the board's own records, which the auditors examined. The record does not include any independent verification of the apprentices' backgrounds or the actual use of the funds. Therefore, while the audit states the irregularity, it does not establish the full extent of the diversion or whether any funds were recovered.",
+      "claimIds": [
+        "claim-1",
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit record does not say who authorised the use of SC/ST funds for General category apprentices. It also does not say whether the apprentices who were meant to benefit from the funds were aware of the diversion or whether they received any alternative support. These questions remain unanswered in the supplied evidence.",
+      "section": {
+        "id": "section-3",
+        "title": "What remains unknown"
+      },
+      "claimIds": [
+        "claim-3",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "For people in India who depend on such apprenticeship programmes, the audit record confirms that a significant sum of reserved funds was not used for its intended purpose. However, it does not provide a timeline for when the irregularity occurred or the names of the officials involved. The record also does not indicate whether any corrective action has been taken since the audit.",
+      "claimIds": [
+        "claim-1",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The audit record states that the Board of Apprenticeship Training, Mumbai, irregularly utilised Rs 17.34 crore of SC/ST grants-in-aid for apprentices belonging to the General category.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report covers the board's utilisation of grants-in-aid for the year ended March 2023.",
+      "type": "documented",
+      "limits": "The record does not specify the number of apprentices affected or the exact transactions involved."
+    },
+    {
+      "id": "claim-2",
+      "text": "The use of reserved funds for general category apprentices means that the intended SC/ST beneficiaries may not have received the full support they were entitled to.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit report documents the irregular utilisation but does not describe the impact on individual apprentices.",
+      "type": "interpreted",
+      "limits": "The record does not confirm whether any SC/ST apprentice actually lost training support."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit record does not include the board's explanation or any response from the board regarding the irregular utilisation.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "evidence_gap",
+      "sourceScope": "The audit report presents the finding without a board response.",
+      "type": "unresolved",
+      "limits": "The record does not reveal the board's own account of why the funds were used differently."
+    },
+    {
+      "id": "claim-4",
+      "text": "The audit identifies the Board of Apprenticeship Training, Mumbai, as the institution responsible for the irregular utilisation.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report names the board in its findings.",
+      "type": "documented",
+      "limits": "The record does not name any individual officials responsible."
+    },
+    {
+      "id": "claim-5",
+      "text": "The audit finding is based on the board's own records, which the auditors examined.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report states that it examined the board's records.",
+      "type": "documented",
+      "limits": "The record does not include independent verification of the apprentices' categories or the actual use of funds."
+    },
+    {
+      "id": "claim-6",
+      "text": "The audit record does not state who authorised the use of SC/ST funds for General category apprentices.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "evidence_gap",
+      "sourceScope": "The audit report does not mention any authorisation details.",
+      "type": "unresolved",
+      "limits": "The record does not provide the names or positions of the decision-makers."
+    },
+    {
+      "id": "claim-7",
+      "text": "The audit record does not indicate whether any corrective action has been taken since the audit.",
+      "sourceIds": [
+        "cag-125942"
+      ],
+      "basis": "evidence_gap",
+      "sourceScope": "The audit report does not include follow-up actions.",
+      "type": "unresolved",
+      "limits": "The record does not say whether the funds were recovered or the irregularity was rectified."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit examined the board's records for the year ended March 2023 and found the irregular utilisation.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor's perspective",
+      "rationale": "The audit record is the only source provided, and it explains the basis for its findings.",
+      "sees": "The auditor sees the irregular utilisation as a compliance failure.",
+      "values": "The auditor values adherence to the intended use of reserved funds.",
+      "uses": "The auditor uses the board's records to identify the irregularity.",
+      "mayMiss": "The auditor may miss the human impact on apprentices or the board's operational constraints.",
+      "sourceIds": [
+        "cag-125942"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Board of Apprenticeship Training, Mumbai",
+      "association": "The Mumbai-based Board of Apprenticeship Training is the entity that misused funds meant for SC/ST apprentices.",
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that examined the board's records and reported the finding.",
+      "sourceIds": [
+        "cag-125942"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "Who authorised the use of SC/ST funds for General category apprentices?",
+      "whatWouldHelp": "Board records or testimony from officials that name the decision-makers.",
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "What was the impact on the SC/ST apprentices who were meant to receive the funds?",
+      "whatWouldHelp": "Interviews with affected apprentices or independent verification of their training support.",
+      "sourceIds": [
+        "cag-125942"
+      ]
+    },
+    {
+      "id": "unresolved-3",
+      "question": "Has any corrective action been taken to recover the funds or prevent future diversion?",
+      "whatWouldHelp": "Follow-up audit reports or board responses detailing remedial measures.",
+      "sourceIds": [
+        "cag-125942"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "forgotten-work",
+    "question": "How do audit records reveal the treatment of funds meant for marginalised groups in public programmes?",
+    "connection": "This audit shows how a public programme in Tamil Nadu was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it."
+  },
+  "sources": [
+    {
+      "id": "cag-125942",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2023 -Union Government – Central Autonomous Bodies - Report No. 9 of 2026 (Compliance Audit - Civil) · Sector: General Sector Ministries and Constitutional Bodies · Government: Union",
+      "url": "https://cag.gov.in/en/audit-report/details/125942",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:23:50.286Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7.",
+      "scope": "The audit report covers the board's utilisation of grants-in-aid for the year ended March 2023.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-125942-number-stack",
+      "kind": "chart",
+      "label": "Rs 17.34 crore diverted from SC/ST apprentices",
+      "alt": "Rs 17.34 crore diverted from SC/ST apprentices. A visual showing the amount of Rs 17.34 crore as a stack of currency notes, with a label indicating it was meant for SC/ST apprentices but used for General category apprentices.",
+      "caption": "A visual showing the amount of Rs 17.34 crore as a stack of currency notes, with a label indicating it was meant for SC/ST apprentices but used for General category apprentices.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125942-number-stack",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T00:52:38.731Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-125942-number-stack",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The visual is based solely on the audit record and does not show the number of apprentices affected or the timeline of the diversion.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125942"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-125942-number-stack",
+    "kind": "number_stack",
+    "title": "Rs 17.34 crore diverted from SC/ST apprentices",
+    "description": "A visual showing the amount of Rs 17.34 crore as a stack of currency notes, with a label indicating it was meant for SC/ST apprentices but used for General category apprentices.",
+    "limitation": "The visual is based solely on the audit record and does not show the number of apprentices affected or the timeline of the diversion.",
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-125942"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-1y9y510",
+      "publisher": "The Indian Express",
+      "title": "Key suspect in Karnataka civil service jobs scam arrested at Delhi airport",
+      "url": "https://indianexpress.com/article/cities/bangalore/kpsc-veterinarian-recruitment-scam-middleman-arrested-delhi-airport-uzbekistan-10857682/",
+      "publishedAt": "2026-08-31T17:14:04.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that funds reserved for SC/ST apprentices were spent on general category apprentices, but it does not establish who authorised the shift or what happened to the intended beneficiaries."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.30",
+    "inputHash": "3e4b9bbaf9632bc0efcd1c4485f01eea9eab07077e5ef8e83202cf2ea180f658",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T00:52:38.736Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "39 per cent of sentences are passive, which hides who acted."
+    ],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

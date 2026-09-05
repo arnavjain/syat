@@ -1,0 +1,431 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-125968",
+  "slug": "cag-125968",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "public_impact",
+  "title": "Audit flags ₹13,678 crore in defective planning across central public sector firms",
+  "dek": "The CAG's compliance audit for 2024-25 identifies ₹20,539.40 crore in financial implications, with the largest share attributed to planning failures, while the managements' replies remain partly unincorporated.",
+  "theme": "Defective planning in central public sector enterprises",
+  "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-125968"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:23:27.205Z",
+  "generatedAt": "2026-09-05T00:42:28.296Z",
+  "updatedAt": "2026-09-05T00:42:28.296Z",
+  "readingMinutes": 3,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "For the fiscal year ending 31 March 2025, the Comptroller and Auditor General of India's compliance audit found total financial effects of ₹20,539.40 crore across 15 observations. The biggest share, ₹13,678.68 crore, stems from flawed or insufficient planning as detailed in eight paragraphs. Additionally, the audit highlighted ₹609.70 crore in seven paragraphs for failing to protect organisational financial interests, ₹5,900.81 crore in four paragraphs for weak or insufficient oversight, and ₹350.21 crore in four paragraphs for breaching rules and contract terms.",
+      "section": {
+        "id": "section-1",
+        "title": "The audit's central finding"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit's breakdown acknowledges that a single paragraph can include issues from several groups, meaning the sums are not exclusive. No breakdown is offered to show how much of the overall total belongs to each group without double-counting. Consequently, these numbers reflect the audit's own grouping rather than a strict separation of distinct concerns.",
+      "claimIds": [
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "According to the audit report, preliminary observations were forwarded to the relevant central public sector enterprises, and their feedback was properly integrated. Yet, the report notes four paragraphs where the concerned ministry or department had not yet given its response, with one each from the Coal, Tourism, and Petroleum and Natural Gas sectors, and one from Power. This suggests that some managements had not replied by the time the report was prepared.",
+      "section": {
+        "id": "section-2",
+        "title": "The managements' replies and the audit's response"
+      },
+      "claimIds": [
+        "claim-4",
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The audit does not disclose the content of the managements' replies or how they were incorporated. It only states that the replies were suitably incorporated, without specifying whether they were accepted, rejected, or partially addressed. This leaves the reader unable to assess the validity of the audit's findings against the managements' own accounts.",
+      "claimIds": [
+        "claim-4",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit report includes a chapter on recoveries and corrections made by the CPSEs at the instance of audit. It states that managements of 11 CPSEs recovered an amount of ₹60.02 crore during 2024-25, and that three CPSEs carried out corrections or rectifications in five cases. These actions are presented as a positive outcome of the audit process, but the report does not provide details on the nature of the corrections or the specific cases.",
+      "section": {
+        "id": "section-3",
+        "title": "Recoveries and corrections at the instance of audit"
+      },
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit does not connect these recoveries and corrections to the specific observations in the report. It is unclear whether the recovered amounts relate to the financial implications identified in the audit observations or to other issues. The report also does not state whether the corrections were made in response to the draft observations or were initiated independently.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "The audit report covers only the period and sample it names, and it does not provide independent verification of the managements' claims. The report's findings are based on the audit's examination of the CPSEs' records, but it does not include external evidence or testimony from people affected by the issues. This limits the ability to confirm the accuracy of the audit's categorisations or the effectiveness of the corrective actions.",
+      "section": {
+        "id": "section-4",
+        "title": "What the record does not establish"
+      },
+      "claimIds": [
+        "claim-9"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "The report does not specify the timeline for when the audit observations were made or when the managements' replies were received. It also does not provide a breakdown of the financial implications by individual CPSE or by ministry, beyond the aggregate figures. This makes it difficult to assess the distribution of the problems across the public sector.",
+      "claimIds": [
+        "claim-10"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The audit report states a total financial implication of ₹20,539.40 crore across 15 audit observations.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The report covers the compliance audit of central public sector enterprises for the year ended 31 March 2025.",
+      "type": "documented",
+      "limits": "The report does not provide a breakdown of the total by individual observation or by CPSE."
+    },
+    {
+      "id": "claim-2",
+      "text": "The audit categorises ₹13,678.68 crore as defective or deficient planning in eight paragraphs.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The report's classification of audit observations by nature of issue.",
+      "type": "documented",
+      "limits": "The report does not explain how the categories are defined or how overlapping observations are counted."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit points out that a single paragraph can include observations from more than one group, so the amounts are not exclusive.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The report's methodology section on classification of observations.",
+      "type": "documented",
+      "limits": "The report does not provide a re-categorised total that avoids double-counting."
+    },
+    {
+      "id": "claim-4",
+      "text": "The audit says preliminary observations were sent to the CPSEs, and their feedback was properly included.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The report's introductory section on the audit process.",
+      "type": "documented",
+      "limits": "The report does not disclose the content of the replies or how they were incorporated."
+    },
+    {
+      "id": "claim-5",
+      "text": "The audit lists four paragraphs where the ministry or department's reply was awaited, including one each from Coal, Tourism, Petroleum and Natural Gas, and Power clusters.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The report's table of paragraphs by ministry and reply status.",
+      "type": "documented",
+      "limits": "The report does not specify which CPSEs or which observations are affected."
+    },
+    {
+      "id": "claim-6",
+      "text": "The lack of disclosed replies means the reader cannot assess the validity of the audit's findings against the managements' own accounts.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The report's silence on the content of the replies.",
+      "type": "interpreted",
+      "limits": "This is an interpretation based on the absence of information, not a direct statement from the report."
+    },
+    {
+      "id": "claim-7",
+      "text": "According to the audit, 11 CPSEs recouped ₹60.02 crore as a result of audit intervention during 2024-25, and three CPSEs implemented corrections across five instances.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The report's chapter on recoveries and corrections.",
+      "type": "documented",
+      "limits": "The report does not provide details on the nature of the corrections or the specific cases."
+    },
+    {
+      "id": "claim-8",
+      "text": "The report does not connect the recoveries and corrections to the specific audit observations, leaving their relationship unclear.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The report's separate presentation of recoveries and observations.",
+      "type": "interpreted",
+      "limits": "This is an interpretation based on the lack of explicit linkage in the report."
+    },
+    {
+      "id": "claim-9",
+      "text": "The audit does not include independent verification or external evidence to confirm the accuracy of its categorisations or the effectiveness of corrective actions.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "evidence_gap",
+      "sourceScope": "The report's reliance on CPSE records and managements' replies.",
+      "type": "unresolved",
+      "limits": "The report does not provide independent reporting or measurement to validate its findings."
+    },
+    {
+      "id": "claim-10",
+      "text": "The report does not specify the timeline for when the audit observations were made or when the managements' replies were received.",
+      "sourceIds": [
+        "cag-125968"
+      ],
+      "basis": "evidence_gap",
+      "sourceScope": "The report's lack of a detailed chronology.",
+      "type": "unresolved",
+      "limits": "The report does not provide dates for the audit process or the replies."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit report was published on 12 August 2026, covering the year ended 31 March 2025.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Audit perspective",
+      "rationale": "The audit is the source of the report and provides the findings.",
+      "sees": "The audit sees the financial implications as a result of planning, monitoring, and compliance failures.",
+      "values": "The audit values accountability and corrective action.",
+      "uses": "The audit uses its examination of records to identify issues.",
+      "mayMiss": "The audit may miss the managements' operational constraints or external factors.",
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "perspective-2",
+      "label": "CPSE managements",
+      "rationale": "The managements are the subjects of the audit and provided replies.",
+      "sees": "The managements see their actions as compliant and their replies as addressing the audit's concerns.",
+      "values": "The managements value operational efficiency and regulatory compliance.",
+      "uses": "The managements use their replies to explain their actions.",
+      "mayMiss": "The managements may miss the broader systemic issues identified by the audit.",
+      "sourceIds": [
+        "cag-125968"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that produced the report.",
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Central Public Sector Enterprises (CPSEs)",
+      "association": "The entities audited, including those under various ministries.",
+      "sourceIds": [
+        "cag-125968"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What were the specific contents of the managements' replies and how were they incorporated?",
+      "whatWouldHelp": "Disclosure of the replies or a summary of the audit's response to them.",
+      "sourceIds": [
+        "cag-125968"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "What is the breakdown of the financial implications by individual CPSE or ministry?",
+      "whatWouldHelp": "A detailed table of observations by entity and amount.",
+      "sourceIds": [
+        "cag-125968"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "public-trust",
+    "question": "How can the public trust an audit when the audited entities' replies are not fully disclosed?",
+    "connection": "This audit's findings on public sector enterprises directly affect public trust in how government funds are managed, and the lack of full disclosure on replies leaves questions about accountability."
+  },
+  "sources": [
+    {
+      "id": "cag-125968",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 Union Government (Commercial) No. 22 of 2026 (Compliance Audit Observations) · Sector: - · Government: Union",
+      "url": "https://cag.gov.in/en/audit-report/details/125968",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:23:27.205Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9, claim-10.",
+      "scope": "The report covers the compliance audit of central public sector enterprises for the year ended 31 March 2025.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-125968-number-stack",
+      "kind": "chart",
+      "label": "Financial implications by audit category",
+      "alt": "Financial implications by audit category. A stacked bar chart showing the total financial implication of ₹20,539.40 crore, broken down by category: defective planning (₹13,678.68 crore), inadequate monitoring (₹5,900.81 crore), non-safeguarding of financial interest (₹609.70 crore), and non-compliance (₹350.21 crore).",
+      "caption": "A stacked bar chart showing the total financial implication of ₹20,539.40 crore, broken down by category: defective planning (₹13,678.68 crore), inadequate monitoring (₹5,900.81 crore), non-safeguarding of financial interest (₹609.70 crore), and non-compliance (₹350.21 crore).",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125968-number-stack",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T00:42:28.289Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-125968-number-stack",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The categories may overlap, so the sum of the parts may exceed the total.",
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125968"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-125968-number-stack",
+    "kind": "number_stack",
+    "title": "Financial implications by audit category",
+    "description": "A stacked bar chart showing the total financial implication of ₹20,539.40 crore, broken down by category: defective planning (₹13,678.68 crore), inadequate monitoring (₹5,900.81 crore), non-safeguarding of financial interest (₹609.70 crore), and non-compliance (₹350.21 crore).",
+    "limitation": "The categories may overlap, so the sum of the parts may exceed the total.",
+    "claimIds": [
+      "claim-1",
+      "claim-2"
+    ],
+    "sourceIds": [
+      "cag-125968"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit's finding of ₹13,678.68 crore in defective planning is a claim from the CAG's review, not a proven outcome, and it appears alongside the managements' replies that the report says were incorporated."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.27",
+    "inputHash": "77bcb1fbc518f6f9ec7fdac1b849f6a03ccbea1f8bab561b72666165ed7a2a89",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T00:42:28.296Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "38 per cent of sentences are passive, which hides who acted."
+    ],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

@@ -1,0 +1,396 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126219",
+  "slug": "cag-126219",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "news_brief",
+  "title": "Haryana audit finds suspected embezzlement and incomplete works in state departments",
+  "dek": "The CAG's composite audit for the year ended March 2024 records suspected embezzlement of ₹40.51 lakh and payment of ₹6.37 crore for incomplete work, among other findings.",
+  "theme": "Public audit and accountability",
+  "indiaConnection": "This audit examines how a public programme in Haryana was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-126219"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:21:39.400Z",
+  "generatedAt": "2026-09-05T00:33:28.463Z",
+  "updatedAt": "2026-09-05T00:33:28.463Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "The audit record for the year ended March 2024 reports suspected embezzlement of ₹40.51 lakh in the Information, Public Relations and Languages Department. It also reports that the Directorate of Secondary Education used the same vouchers twice, leading to suspected embezzlement of ₹3.95 lakh. These figures appear in the audit's compliance observations, but the record does not state who is alleged to have committed the embezzlement or how the amounts were detected.",
+      "section": {
+        "id": "section-1",
+        "title": "Suspected embezzlement in two departments"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The audit does not provide a narrative of events leading to these suspected embezzlements. It only records the amounts and the departments involved. A reader cannot infer from this record whether any disciplinary action was taken or whether the amounts were recovered.",
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "At Chaudhary Charan Singh Haryana Agricultural University in Hisar, the audit notes a ₹6.37 crore payment for work that was not completed. It also mentions that a bank guarantee's terms were relaxed, causing the bio-gas plant's goal to be missed. These two items are listed together in the audit, yet no causal link is drawn between them.",
+      "section": {
+        "id": "section-2",
+        "title": "Payments for incomplete work and other lapses"
+      },
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The Higher Education Department is said to have spent money wastefully on equipment and services because procurement happened without checking what users actually needed. The audit also says that payments went out without confirming the expected results of start-up incubators and the e-karma project. These are distinct observations with their own backgrounds, but the total wasteful spending is not quantified.",
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The audit is a composite report for the year ended March 2024, covering civil departments of the Government of Haryana. It includes a chapter on sewage and sewerage management in urban areas, but the supplied evidence does not include details of that chapter. The record's scope is limited to the period and sample it names, and it does not claim to cover all departments or all transactions.",
+      "section": {
+        "id": "section-3",
+        "title": "What the audit covers and what it does not"
+      },
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The audit also notes non-verification of bills and vouchers at worksites, non-constitution of a vigilance cell and quality monitors, and issues with social audits and mandatory records. These observations are listed in the table of contents, but the supplied evidence does not include the detailed findings. Therefore, the record supports the existence of these observations but not their full content.",
+      "claimIds": [
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The audit records suspected embezzlement of ₹40.51 lakh in the Information, Public Relations and Languages Department.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's compliance observations section for the year ended March 2024.",
+      "type": "documented",
+      "limits": "The record does not identify the individuals involved or the method of embezzlement."
+    },
+    {
+      "id": "claim-2",
+      "text": "The audit records that the Directorate of Secondary Education used the same vouchers twice, leading to suspected embezzlement of ₹3.95 lakh.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's compliance observations for the Department of School Education.",
+      "type": "documented",
+      "limits": "The record does not state whether the duplicate vouchers were detected by the department or by the audit."
+    },
+    {
+      "id": "claim-3",
+      "text": "The audit records a payment of ₹6.37 crore for incomplete work at Chaudhary Charan Singh Haryana Agricultural University, Hisar.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's compliance observations for the Department of Agriculture & Farmers Welfare.",
+      "type": "documented",
+      "limits": "The record does not specify which work was incomplete or the timeline of the payment."
+    },
+    {
+      "id": "claim-4",
+      "text": "According to the audit, relaxing the terms of a bank guarantee meant the bio-gas plant's objective was not achieved.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's compliance observations for CCSHAU, Hisar.",
+      "type": "documented",
+      "limits": "The record does not explain what the original bank guarantee conditions were or how they were diluted."
+    },
+    {
+      "id": "claim-5",
+      "text": "The audit records wasteful expenditure on equipment and services due to procurement without ensuring user requirement in the Higher Education Department.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's compliance observations for the Higher Education Department.",
+      "type": "documented",
+      "limits": "The record does not quantify the amount of wasteful expenditure."
+    },
+    {
+      "id": "claim-6",
+      "text": "The audit says payments were made without checking the expected outcomes of start-up incubators and the e-karma project.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's compliance observations for the Higher Education Department.",
+      "type": "documented",
+      "limits": "The record does not state what the envisaged outcomes were or whether they were later achieved."
+    },
+    {
+      "id": "claim-7",
+      "text": "The audit report covers the year ended March 2024 and includes compliance observations for several departments of the Government of Haryana.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's title and table of contents.",
+      "type": "documented",
+      "limits": "The record does not provide details of the sewage and sewerage management chapter in the supplied evidence."
+    },
+    {
+      "id": "claim-8",
+      "text": "The audit's table of contents lists observations on non-verification of bills, non-constitution of vigilance cell and quality monitors, and issues with social audits and mandatory records.",
+      "sourceIds": [
+        "cag-126219"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's table of contents.",
+      "type": "documented",
+      "limits": "The supplied evidence does not include the detailed findings for these observations."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Audit report for the year ended March 2024 is published by the Comptroller and Auditor General of India.",
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor",
+      "rationale": "The audit is an independent examination of the institution's records, and its perspective is to identify deviations from rules and procedures.",
+      "sees": "The audit sees specific instances of suspected embezzlement, incomplete work, and procedural lapses.",
+      "values": "It values adherence to financial rules and proper documentation.",
+      "uses": "It uses the institution's own records to identify discrepancies.",
+      "mayMiss": "It may miss the operational reasons behind the lapses or the impact on beneficiaries.",
+      "sourceIds": [
+        "cag-126219"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit body that prepared and published the report.",
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Government of Haryana",
+      "association": "The state government whose departments were audited.",
+      "sourceIds": [
+        "cag-126219"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What actions were taken by the departments in response to the audit findings?",
+      "whatWouldHelp": "Departmental replies or follow-up audit reports would clarify the response.",
+      "sourceIds": [
+        "cag-126219"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "What were the actual outcomes of the bio-gas plant and the start-up incubators?",
+      "whatWouldHelp": "Project completion reports or outcome assessments would provide this information.",
+      "sourceIds": [
+        "cag-126219"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "public-trust",
+    "question": "How do audit findings shape public trust in government spending?",
+    "connection": "This audit record provides a basis for citizens to question whether public funds are being used as intended, but it does not by itself establish the full picture of accountability."
+  },
+  "sources": [
+    {
+      "id": "cag-126219",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India on Composite Audit Report--Civil for the year ended March 2024 (Government of Haryana Report No. 4 of 2026) · Sector: Social Welfare · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126219",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-09-01T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:21:39.400Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8.",
+      "scope": "The audit report's compliance observations section for the year ended March 2024.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126219-number-stack",
+      "kind": "chart",
+      "label": "Financial irregularities recorded in the audit",
+      "alt": "Financial irregularities recorded in the audit. A stacked bar chart showing the amounts of suspected embezzlement and payment for incomplete work, with labels for each department.",
+      "caption": "A stacked bar chart showing the amounts of suspected embezzlement and payment for incomplete work, with labels for each department.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126219-number-stack",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T00:33:28.459Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126219-number-stack",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The chart only reflects amounts explicitly stated in the audit; it does not include unquantified wasteful expenditure.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126219"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126219-number-stack",
+    "kind": "number_stack",
+    "title": "Financial irregularities recorded in the audit",
+    "description": "A stacked bar chart showing the amounts of suspected embezzlement and payment for incomplete work, with labels for each department.",
+    "limitation": "The chart only reflects amounts explicitly stated in the audit; it does not include unquantified wasteful expenditure.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3"
+    ],
+    "sourceIds": [
+      "cag-126219"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-1se0wrm",
+      "publisher": "Mongabay India",
+      "title": "Crime content on social media threatens wildlife safety",
+      "url": "https://india.mongabay.com/2026/08/crime-content-on-social-media-threatens-wildlife-safety/",
+      "publishedAt": "2026-08-27T17:58:48.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-dodedl",
+      "publisher": "The Indian Express",
+      "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+      "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+      "publishedAt": "2026-08-31T16:37:09.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows specific financial irregularities and incomplete works, but it does not establish causes or outcomes beyond what the records state."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.24",
+    "inputHash": "842813ab1bde34195ce17e4c953d136ec072bae2c788069e1085cb7a42d8070b",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T00:33:28.463Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "Abstract nouns make up 6.2 per cent of the body, so the prose reads like a form rather than a sentence.",
+      "33 per cent of sentences are passive, which hides who acted."
+    ],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

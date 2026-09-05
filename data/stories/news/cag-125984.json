@@ -1,0 +1,383 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-125984",
+  "slug": "cag-125984",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "explainer",
+  "title": "Railways' coal freight share and asset renewal backlog stand out in CAG's 2023-24 finances audit",
+  "dek": "The audit of Indian Railways' finances for 2023-24 shows coal's dominant share in freight earnings, a thin operating surplus, and a large backlog of renewal works for over-aged assets.",
+  "theme": "Railway finances and asset renewal",
+  "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-3"
+    ],
+    "sourceIds": [
+      "cag-125984"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:22:56.868Z",
+  "generatedAt": "2026-09-05T00:47:55.234Z",
+  "updatedAt": "2026-09-05T00:47:55.234Z",
+  "readingMinutes": 3,
+  "body": [
+    {
+      "id": "coal-freight-para-1",
+      "kind": "paragraph",
+      "text": "Coal accounted for 51.32 per cent of Indian Railways' freight earnings in 2023-24, according to the Comptroller and Auditor General of India's audit of the ministry's finances. This means more than half of the revenue from carrying goods came from a single commodity. The audit does not explain why this share is high or what it means for the railway's overall financial health.",
+      "section": {
+        "id": "coal-freight-dominance",
+        "title": "Coal's share in freight earnings"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "coal-freight-para-2",
+      "kind": "paragraph",
+      "text": "The audit recommends that the Ministry of Railways diversify its freight basket to increase earnings. This suggests that relying on coal is seen as a risk, but the record does not state what other commodities could be carried or how diversification might be achieved. The recommendation is an official claim, not a finding of fact.",
+      "claimIds": [
+        "claim-1",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "operating-para-1",
+      "kind": "paragraph",
+      "text": "Indian Railways recorded a net surplus of 3,259.68 crore rupees in 2023-24, up from 2,517.38 crore rupees in the previous year. The operating ratio, which measures how much of revenue is spent on operating expenses, was 98.43 per cent in 2023-24, slightly worse than the 98.10 per cent in 2022-23. A higher operating ratio means less money is left after covering day-to-day costs.",
+      "section": {
+        "id": "operating-surplus-and-ratio",
+        "title": "Thin surplus and operating ratio"
+      },
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "operating-para-2",
+      "kind": "paragraph",
+      "text": "The audit does not explain the reasons behind the larger surplus or the decline in the operating ratio; it merely lists the numbers side by side. There is also no mention of whether the surplus would cover future requirements. The report advises the ministry to examine passenger operation costs closely and cut losses, yet it fails to specify the exact amounts of those losses.",
+      "claimIds": [
+        "claim-2",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "asset-para-1",
+      "kind": "paragraph",
+      "text": "The audit found that under-provisioning for depreciation has led to a pile-up of 'throw forward' works, which are renewals and replacements of over-aged assets. These works were estimated at 30,921 crore rupees up to 2023-24. This means the railway has not set aside enough money to replace old tracks, bridges, and other assets, creating a large backlog.",
+      "section": {
+        "id": "asset-renewal-backlog",
+        "title": "Backlog of renewal works"
+      },
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "asset-para-2",
+      "kind": "paragraph",
+      "text": "The audit recommends that the ministry address this backlog to ensure safe running of trains. However, the record does not specify which assets are over-aged or how long it will take to clear the backlog. The audit does not state whether any accidents or safety incidents have occurred due to this backlog, only that it is a risk.",
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "budget-para-1",
+      "kind": "paragraph",
+      "text": "The audit reports that the Ministry of Railways spent 9,797.26 crore rupees more than the sanctioned budget of 1,28,852.28 crore rupees under Revenue Grant (3002-03) in 2023-24. At the same time, there were savings of 50,694.82 crore rupees in five cases where savings exceeded 100 crore rupees each. The record does not explain why these excesses and savings occurred.",
+      "section": {
+        "id": "budget-excess-and-savings",
+        "title": "Budget excess and savings"
+      },
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "budget-para-2",
+      "kind": "paragraph",
+      "text": "The audit also flagged spending of 9,122.24 crore rupees across 1,999 instances without proper approval, amounting to 1.24 per cent of the year's total outlay. This indicates that funds were used without the necessary authorization. The report does not elaborate on the nature of these instances or their causes. It suggests that the ministry should work on boosting internal revenues, but offers no concrete actions.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "In 2023-24, coal made up 51.32 per cent of the revenue from freight.",
+      "sourceIds": [
+        "cag-125984"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report covers Indian Railways' finances for the year ended March 2024, including freight earnings.",
+      "type": "documented",
+      "limits": "The report does not state why coal's share is high or what the impact of this concentration is."
+    },
+    {
+      "id": "claim-2",
+      "text": "For 2023-24, the net surplus stood at 3,259.68 crore rupees, up from 2,517.38 crore rupees the preceding year, while the operating ratio came in at 98.43 per cent versus 98.10 per cent earlier.",
+      "sourceIds": [
+        "cag-125984"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report includes financial figures for the year 2023-24 and the previous year.",
+      "type": "documented",
+      "limits": "The report does not explain the reasons for the change in surplus or operating ratio."
+    },
+    {
+      "id": "claim-3",
+      "text": "Under-provisioning for depreciation resulted in a backlog of renewal and replacement works estimated at 30,921 crore rupees up to 2023-24.",
+      "sourceIds": [
+        "cag-125984"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report discusses depreciation provisioning and the resulting backlog of works.",
+      "type": "documented",
+      "limits": "The report does not specify which assets are over-aged or the timeline for clearing the backlog."
+    },
+    {
+      "id": "claim-4",
+      "text": "The audit recommends that the Ministry of Railways diversify its freight basket, reduce passenger operation losses, address the asset renewal backlog, and augment internal revenues.",
+      "sourceIds": [
+        "cag-125984"
+      ],
+      "basis": "official_claim",
+      "sourceScope": "The audit report includes recommendations to the Ministry of Railways.",
+      "type": "interpreted",
+      "limits": "The report does not provide details on how these recommendations should be implemented."
+    },
+    {
+      "id": "claim-5",
+      "text": "The Ministry of Railways incurred additional expenditure of 9,797.26 crore rupees in excess of the sanctioned budget under Revenue Grant (3002-03), and there were savings of 50,694.82 crore rupees in five cases.",
+      "sourceIds": [
+        "cag-125984"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report covers appropriation accounts up to 31 March 2024.",
+      "type": "documented",
+      "limits": "The report does not explain the reasons for the excess or the savings."
+    },
+    {
+      "id": "claim-6",
+      "text": "During 2023-24, unsanctioned spending reached 9,122.24 crore rupees across 1,999 cases, representing 1.24 per cent of all expenditure that year.",
+      "sourceIds": [
+        "cag-125984"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report includes findings on unsanctioned expenditure.",
+      "type": "documented",
+      "limits": "The report does not detail what these cases were or why they occurred."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit covers the financial year 2023-24, but the exact date of the findings is not established in the supplied evidence.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Auditor's perspective",
+      "rationale": "The audit is an independent examination of the ministry's records and provides a critical view of financial management.",
+      "sees": "The audit sees the financial figures and identifies areas of concern such as coal dependence and asset backlog.",
+      "values": "It values accountability and prudent financial management.",
+      "uses": "It uses official records and financial data to form its findings.",
+      "mayMiss": "It may miss the operational realities and challenges faced by the ministry.",
+      "sourceIds": [
+        "cag-125984"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit body that produced the report on Indian Railways' finances.",
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Ministry of Railways",
+      "association": "The government ministry responsible for Indian Railways, which is the subject of the audit.",
+      "sourceIds": [
+        "cag-125984"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What are the specific reasons for the high share of coal in freight earnings and the increase in operating ratio?",
+      "whatWouldHelp": "Independent analysis of freight composition and cost structures would help answer this.",
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "Which over-aged assets are included in the renewal backlog, and what is the timeline for clearing it?",
+      "whatWouldHelp": "A detailed asset register and renewal plan from the ministry would clarify this.",
+      "sourceIds": [
+        "cag-125984"
+      ]
+    },
+    {
+      "id": "unresolved-3",
+      "question": "What were the specific cases of unsanctioned expenditure, and why did they occur?",
+      "whatWouldHelp": "A breakdown of the 1,999 cases and the ministry's explanation would be needed.",
+      "sourceIds": [
+        "cag-125984"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "public-place",
+    "question": "How does the financial management of Indian Railways affect the public's experience of train travel?",
+    "connection": "The audit of railway finances reveals how money is spent on maintaining the network, which directly impacts the safety and reliability of public transport."
+  },
+  "sources": [
+    {
+      "id": "cag-125984",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Ministry of Railways Report No. 3 of 2026 (Railway Finances) · Sector: Finance · Government: Union",
+      "url": "https://cag.gov.in/en/audit-report/details/125984",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:22:56.868Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6.",
+      "scope": "The audit report covers Indian Railways' finances for the year ended March 2024, including freight earnings.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-125984-comparison",
+      "kind": "chart",
+      "label": "Coal's share vs other freight earnings",
+      "alt": "Coal's share vs other freight earnings. A bar chart comparing the percentage of freight earnings from coal (51.32%) with the remaining percentage from other commodities (48.68%) for the year 2023-24.",
+      "caption": "A bar chart comparing the percentage of freight earnings from coal (51.32%) with the remaining percentage from other commodities (48.68%) for the year 2023-24.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125984-comparison",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T00:47:55.228Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-125984-comparison",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The chart only shows the share of coal and does not break down the other commodities.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125984"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-125984-comparison",
+    "kind": "comparison",
+    "title": "Coal's share vs other freight earnings",
+    "description": "A bar chart comparing the percentage of freight earnings from coal (51.32%) with the remaining percentage from other commodities (48.68%) for the year 2023-24.",
+    "limitation": "The chart only shows the share of coal and does not break down the other commodities.",
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-125984"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that coal freight earnings and asset renewal backlog are central to Indian Railways' financial position, but it does not establish the causes or the full impact on passengers."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.30",
+    "inputHash": "1f7635b8ffb6a1758032ccc1afa43317524270d52d1df82e0093ccbf301320c8",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T00:47:55.234Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "Three or more sentences begin with the same four words."
+    ],
+    "scores": {
+      "clarity": 4,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

@@ -1,30 +1,30 @@
 {
   "contractVersion": "syat.generation-wave-report.v1",
-  "waveId": "wave-0-0",
-  "generatedAt": "2026-09-05T00:47:55.245Z",
+  "waveId": "wave-12-12",
+  "generatedAt": "2026-09-05T00:42:28.304Z",
   "status": "passed",
-  "start": 0,
+  "start": 12,
   "count": 1,
   "model": "deepseek/deepseek-v4-flash-0731",
-  "promptVersion": "syat.story-draft.v4.30",
-  "spentPaise": 10,
-  "actualPaise": 10,
+  "promptVersion": "syat.story-draft.v4.27",
+  "spentPaise": 9,
+  "actualPaise": 9,
   "conservativeFailedPaise": 0,
   "reservedPaise": 0,
   "inrPerUsd": 100,
   "items": [
     {
-      "sourcePackId": "cag-125984",
-      "slug": "cag-125984",
-      "inputHash": "1f7635b8ffb6a1758032ccc1afa43317524270d52d1df82e0093ccbf301320c8",
-      "outputHash": "29a43fed7203cb7f882ed5f05968db644b6d77a0ccacd8da19e7f5896776fcd3",
+      "sourcePackId": "cag-125968",
+      "slug": "cag-125968",
+      "inputHash": "77bcb1fbc518f6f9ec7fdac1b849f6a03ccbea1f8bab561b72666165ed7a2a89",
+      "outputHash": "439ba80a4ff22d3f8cd2e6f3b360c54a23d627dc2f376308932a8190cf2cd0b9",
       "reused": false,
       "warnings": [
         "single-publisher-evidence",
-        "repeated-opening"
+        "passive-voice-density"
       ],
       "scores": {
-        "clarity": 4,
+        "clarity": 5,
         "usefulness": 5,
         "evidenceDiscipline": 5,
         "indiaRelevance": 5,

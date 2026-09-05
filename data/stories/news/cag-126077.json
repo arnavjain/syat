@@ -1,0 +1,429 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-126077",
+  "slug": "cag-126077",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "explainer",
+  "title": "Rajasthan's rural job scheme lacked baseline surveys and district plans, audit finds",
+  "dek": "An audit of the Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan says planning was not grounded in local demand, and it points to staff shortages and missing technical support.",
+  "theme": "Planning gaps in Rajasthan's rural employment scheme",
+  "indiaConnection": "This audit examines how a public programme in Rajasthan was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2"
+    ],
+    "sourceIds": [
+      "cag-126077"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:22:24.638Z",
+  "generatedAt": "2026-09-05T01:00:48.207Z",
+  "updatedAt": "2026-09-05T01:00:48.207Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "planning-gaps-p1",
+      "kind": "paragraph",
+      "text": "Between 2019-20 and 2023-24, none of the gram panchayats examined by the Comptroller and Auditor General of India in Rajasthan had carried out a baseline survey. As a result, the audit found, it was impossible to determine the nature, volume, or timing of work demand, and no realistic development plan could be drawn up at the grassroots.",
+      "section": {
+        "id": "planning-gaps",
+        "title": "Planning steps skipped"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "planning-gaps-p2",
+      "kind": "paragraph",
+      "text": "No District Perspective Plan had been drawn up in any of the districts that were checked, so the audit could not identify the needs and gaps across all sectors there. Furthermore, in seven selected panchayat samitis, the annual work plans for 16 gram panchayats were made without setting work priorities in the Gram Sabha during the audit period.",
+      "claimIds": [
+        "claim-2",
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "support-and-staff-p1",
+      "kind": "paragraph",
+      "text": "The audit says that Block Resource Centres, which were required to provide technical inputs for planning, maintain a database for planning, and ensure convergence between the scheme and other production-oriented programmes, were not set up in any of the selected blocks. This left the gram panchayats without the support system required for planning.",
+      "section": {
+        "id": "support-and-staff",
+        "title": "Missing support and staff"
+      },
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "support-and-staff-p2",
+      "kind": "paragraph",
+      "text": "Manpower shortages were found at all levels of the scheme's implementation. The audit reports that regular staff vacancies ranged between 3 per cent and 64 per cent, while contractual staff vacancies ranged between 31 per cent and 80 per cent. It also notes that 100 per cent of the regular Block Resource Persons and Village Resource Persons posts for conducting social audit were vacant, which affected the efficiency of social audits.",
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "audit-scope-p1",
+      "kind": "paragraph",
+      "text": "The audit looked at the years 2019-20 through 2023-24. Records from 33 districts in Rajasthan were reviewed, but only five were selected for detailed examination, along with 10 panchayat samitis and 40 gram panchayats. In each of those gram panchayats, seven works were chosen for joint physical verification, making 280 in total, and 10 beneficiaries per gram panchayat were surveyed, adding up to 400.",
+      "section": {
+        "id": "audit-scope",
+        "title": "What the audit covered"
+      },
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "audit-scope-p2",
+      "kind": "paragraph",
+      "text": "The review aimed to check whether planning and financial management were adequate, how much employment was generated, whether durable and useful assets were created and maintained, and how well the scheme aligned with other initiatives. It also looked at monitoring, social audits, and grievance handling. The audit relied solely on state records, without independent measurements or input from those directly affected.",
+      "claimIds": [
+        "claim-8"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "No baseline survey was conducted in any test-checked gram panchayat during 2019-24.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit examined records in 40 gram panchayats across five districts in Rajasthan for the period 2019-20 to 2023-24.",
+      "type": "documented",
+      "limits": "The audit does not say whether any baseline survey was done outside the test-checked gram panchayats."
+    },
+    {
+      "id": "claim-2",
+      "text": "No District Perspective Plan was prepared in any test-checked district.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covered five districts in Rajasthan for the period 2019-20 to 2023-24.",
+      "type": "documented",
+      "limits": "The audit does not establish whether district plans existed in other districts or in other years."
+    },
+    {
+      "id": "claim-3",
+      "text": "Annual work plans of 16 selected gram panchayats were prepared without determining priorities in Gram Sabha.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit selected 16 gram panchayats from seven panchayat samitis for this review.",
+      "type": "documented",
+      "limits": "The audit does not show how priorities were set in the remaining 24 gram panchayats."
+    },
+    {
+      "id": "claim-4",
+      "text": "Block Resource Centres were not set up in any selected block.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit covered 10 panchayat samitis in five districts.",
+      "type": "documented",
+      "limits": "The audit does not state whether BRCs existed in other blocks or what impact their absence had on specific works."
+    },
+    {
+      "id": "claim-5",
+      "text": "Regular staff vacancies ranged from 3 per cent to 64 per cent, and contractual staff vacancies from 31 per cent to 80 per cent.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit assessed manpower at state, district, panchayat samiti, and gram panchayat levels during 2019-24.",
+      "type": "documented",
+      "limits": "The audit does not specify which posts had which vacancy rates or how these vacancies affected individual scheme outcomes."
+    },
+    {
+      "id": "claim-6",
+      "text": "All regular Block Resource Persons and Village Resource Persons posts for social audit were vacant.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit reviewed social audit staffing in the selected districts and blocks.",
+      "type": "documented",
+      "limits": "The audit does not say whether any alternative arrangements were made for social audits."
+    },
+    {
+      "id": "claim-7",
+      "text": "The audit covered five districts, 10 panchayat samitis, 40 gram panchayats, 280 works, and 400 beneficiaries.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit period was 2019-20 to 2023-24, with records examined in the named sample.",
+      "type": "documented",
+      "limits": "The audit does not cover all 33 districts of Rajasthan, so findings may not apply statewide."
+    },
+    {
+      "id": "claim-8",
+      "text": "The audit's findings are based on the state's records and do not include independent measurement or beneficiary perspectives.",
+      "sourceIds": [
+        "cag-126077"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit relied on official records and physical verification of selected works.",
+      "type": "interpreted",
+      "limits": "The audit does not provide evidence from independent surveys or direct beneficiary interviews beyond the selected sample."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit examined records from 2019-20 to 2023-24, but the exact dates of the planning failures are not established in the supplied evidence.",
+      "claimIds": [
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-auditor",
+      "label": "Auditor's perspective",
+      "rationale": "The audit is the only source in the dossier and it explains its own role as an independent examination of the state's records.",
+      "sees": "The audit sees gaps in planning and staffing based on record examination and physical verification.",
+      "values": "It values adherence to the Act's requirements for planning and social audit.",
+      "uses": "It uses official records and joint physical verification to support its findings.",
+      "mayMiss": "It may miss the lived experience of workers and the reasons behind the gaps.",
+      "sourceIds": [
+        "cag-126077"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "cag",
+      "kind": "institution",
+      "label": "Comptroller and Auditor General of India",
+      "association": "The audit institution that prepared the report on MGNREGA implementation in Rajasthan.",
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "government-rajasthan",
+      "kind": "institution",
+      "label": "Government of Rajasthan",
+      "association": "The state government responsible for implementing the scheme, whose records were audited.",
+      "sourceIds": [
+        "cag-126077"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What were the actual effects of the missing baseline surveys and district plans on employment and asset creation?",
+      "whatWouldHelp": "Independent reporting or measurement of scheme outcomes in the affected areas.",
+      "sourceIds": [
+        "cag-126077"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "How did the staff shortages affect the delivery of work and wages to beneficiaries?",
+      "whatWouldHelp": "Evidence from people directly affected by the scheme, such as workers and local officials.",
+      "sourceIds": [
+        "cag-126077"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "data-gap",
+    "question": "What does the audit record show about the gaps in planning and staffing for a rural employment scheme?",
+    "connection": "The audit record shows that key planning steps were not done, but it does not establish what this meant for the people who depend on the scheme."
+  },
+  "sources": [
+    {
+      "id": "cag-126077",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India on Implementation of Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan (Report No.2 of the year 2026) · Sector: Agriculture and Rural Development · Government: State",
+      "url": "https://cag.gov.in/en/audit-report/details/126077",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-21T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:22:24.638Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8.",
+      "scope": "The audit examined records in 40 gram panchayats across five districts in Rajasthan for the period 2019-20 to 2023-24.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-126077-timeline",
+      "kind": "chart",
+      "label": "Audit period and key planning gaps",
+      "alt": "Audit period and key planning gaps. A timeline from 2019-20 to 2023-24 marks the audit period. It highlights the absence of baseline surveys, district plans, and Block Resource Centres, as noted in the audit.",
+      "caption": "A timeline from 2019-20 to 2023-24 marks the audit period. It highlights the absence of baseline surveys, district plans, and Block Resource Centres, as noted in the audit.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126077-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T01:00:48.201Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-126077-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline cannot show exact dates for the gaps because the audit does not provide them.",
+      "claimIds": [
+        "claim-1",
+        "claim-2",
+        "claim-4",
+        "claim-7"
+      ],
+      "sourceIds": [
+        "cag-126077"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-126077-timeline",
+    "kind": "timeline",
+    "title": "Audit period and key planning gaps",
+    "description": "A timeline from 2019-20 to 2023-24 marks the audit period. It highlights the absence of baseline surveys, district plans, and Block Resource Centres, as noted in the audit.",
+    "limitation": "The timeline cannot show exact dates for the gaps because the audit does not provide them.",
+    "claimIds": [
+      "claim-1",
+      "claim-2",
+      "claim-4",
+      "claim-7"
+    ],
+    "sourceIds": [
+      "cag-126077"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-13ptuzf",
+      "publisher": "OpIndia",
+      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays ‘victim card’, publisher sets the record straight",
+      "url": "https://www.opindia.com/2026/08/what-is-the-sonia-gandhi-memoir-controversy-congress-vs-bjp-penguin-random-house-clarification-explained/",
+      "publishedAt": "2026-08-29T14:24:45.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1gqpvvu",
+      "publisher": "Organiser",
+      "title": "Rahul Gandhi sees patriarchy in Hindutva, but remains silent on Islam: What does the Keralam directive on women reveal?",
+      "url": "https://organiser.org/2026/08/31/378023/bharat/rahul-gandhi-sees-patriarchy-in-hindutva-but-remains-silent-on-islam-what-does-the-keralam-directive-on-women-reveal/",
+      "publishedAt": "2026-08-31T13:30:02.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-1jq35ce",
+      "publisher": "Hindustan Times",
+      "title": "Penguin India denies external pressure over Sonia Gandhi memoir: 'Impasse on particular issue'",
+      "url": "https://www.hindustantimes.com/india-news/penguin-india-denies-external-pressure-over-sonia-gandhi-memoir-impasse-on-particular-issue-101788185702126.html",
+      "publishedAt": "2026-08-31T15:12:29.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-ndiq2y",
+      "publisher": "The Indian Express",
+      "title": "Supreme Court Collegium recommends new Chief Justice for Rajasthan High Court",
+      "url": "https://indianexpress.com/article/india/rajasthan-high-court-acting-chief-justice-sanjeev-prakash-sharma-opts-out-cases-10857624/",
+      "publishedAt": "2026-08-31T16:27:15.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-to49ib",
+      "publisher": "The Times of India",
+      "title": "'Purification' row: Congress protests FIR against Rahul Gandhi, attacks BJP's 'casteist' behaviour",
+      "url": "https://timesofindia.indiatimes.com/india/purification-row-congress-protests-fir-against-rahul-gandhi-attacks-bjps-casteist-behaviour/articleshow/133658657.cms",
+      "publishedAt": "2026-08-31T16:54:58.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows that core planning steps were not done, but it does not establish what this meant for actual work or wages."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.31",
+    "inputHash": "fe14608aa1d75789381b725b42c68058bc9ca3474450f0cb2ba31e917bbf2b35",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T01:00:48.207Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "33 per cent of sentences are passive, which hides who acted."
+    ],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

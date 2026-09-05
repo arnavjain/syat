@@ -1,10 +1,38 @@
 [
   {
     "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125984",
+    "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Ministry of Railways Report No. 3 of 2026 (Railway Finances) \u00b7 Sector: Finance \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:22:56.868Z",
+    "sources": [
+      {
+        "id": "cag-125984",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Ministry of Railways Report No. 3 of 2026 (Railway Finances) \u00b7 Sector: Finance \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125984",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:22:56.868Z",
+        "evidenceText": "Transportation of coal constituted 51.32 per cent of freight earnings. c) There was a net surplus of \u20b9 3,259.68 crore in 2023-24 as compared to net surplus of \u20b9 2,517.38 crore during the previous year. The Operating Ratio (OR) was 98.43 per cent in 2023-24 against 98.10 per cent in 2022-23. d) Under-provisioning for depreciation resulted in piling up of \u2018throw forward\u2019 (renewal and replacement of over-aged assets) works estimated at \u20b9 30,921 crore up to 2023-24. Recommendations: Ministry of Railways may - i. Critically analyse cost of passenger operations and take steps to reduce its losses. ii. Take steps to diversify their freight basket to enhance freight earnings. iii. Address the backlog of renewal of over-aged assets for safe running of trains. Executive Summary ii Report No. 3 of 2026 iv. Take steps to augment internal revenues. Chapter 2 of the Report contains the audit findings on the Appropriation Accounts of Indian Railways. This chapter also analyses the reasons for savings/excesses against the authorisation given by Parliament for the year ended 31 March 2024. The major observations are as follows: a) MoR incurred additional expenditure of \u20b9 9,797.26 crore in excess of the sanctioned budget of \u20b9 1,28,852.28 crore under Revenue Grant (3002-03). b) There were savings of \u20b9 50,694.82 crore in 5 cases (under Revenue Grants 3002-03 and Capital Grant-5002-03) where the savings was more than \u20b9100 crore in each case during the year 2023-24. c) Inspite of supplementary provisions of \u20b9 17.48 crore under MH 3002-03 - (07) (Charged), \u20b9 64.62 crore under MH 3002-03 - (10) (Charged) and \u20b9 0.01 crore obtained under MH 3075 (60)-102 (Voted), there was excess expenditure of \u20b9 28.86 crore, savings of \u20b9 25.57 crore and excess of \u20b9 1,945.15 crore respectively under the said Revenue Major Heads. d) Inspite of supplementary provisions of \u20b9 69.84 crore and \u20b9 619.54 crore obtained under Voted and Charged sections respectively of Capital Grant (5002-03), there was savings of \u20b9 10,326.13 crore and excess of \u20b9 95.84 crore respectively under the said Capital Major Heads. e) There were cases of misclassification of expenditure between Revenue to Capital Grant and vice-versa, Voted to Charged and vice-versa and other mistakes like Revenue to Revenue Grants (among Sub Major Heads), Capital to Capital Grants (among Railway Funds) and Revenue Grants to Earnings. f) Unsanctioned expenditure of \u20b9 9,122.24 crore involving 1,999 cases was incurred by MoR, which was 1.24 per cent of total expenditure during the year 2023-24.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": []
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
     "id": "cag-125969",
     "title": "Report of the Comptroller and Auditor General of India General Purpose Financial Reports of Central Public Sector Enterprises for the period ended March 2024 Union Government (Commercial) Report No. 21 of 2026 (Compliance Audit) \u00b7 Sector: Finance \u00b7 Government: Union",
     "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:20:19.257Z",
+    "collectedAt": "2026-09-05T00:23:24.470Z",
     "sources": [
       {
         "id": "cag-125969",
@@ -14,7 +42,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/125969",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-12T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:20:19.257Z",
+        "accessedAt": "2026-09-05T00:23:24.470Z",
         "evidenceText": "The long term loans given by Central Government to such CPSEs outstanding as on 31 March 2024 amounted to \u20b92,87,678 crore. Compared to the previous year, holding of the Central Government in equity of such CPSEs registered a net increase of \u20b92,68,767 crore and long term loans outstanding increased by \u20b91,63,332 crore during 2023-24. (Para 1.2, 1.2.1 and 1.2.2.1) Market Capitalisation The total market value of shares of 66 listed Government companies (including nine subsidiary companies and excluding three newly listed CPSEs during the year), the shares of which were traded during 2023-24, stood at \u20b937,92,736 crore as on 31 March, 2024. Market value of shares held by the Central Government in these 66 listed Government companies (including nine subsidiary companies) stood at \u20b923,51,459 crore as on 31 March, 2024. (Para 1.2.4) Returns from Government companies and Corporations 282 Government companies and Corporations earned profit of \u20b93,58,385 crore during 2023-24 of which, 70.46 per cent (\u20b92,52,535 crore) was contributed by 79 CPSEs in three sectors viz., Petroleum, Power and Coal & Lignite. Return on Equity (ROE) of these 282 CPSEs was 16.28 per cent in 2023-24 as compared to 13.75 per cent of 259 CPSEs in 2022-23. (Para 1.3.1) 134 Government companies and Corporations declared a dividend of \u20b91,38,138 crore for the year 2023-24. Out of this, the dividend received/receivable by Central Government amounted to \u20b965,071 Executive Summary I. Summary of financial performance of Central Public Sector Enterprises vii crore which represented 5.45 per cent return on the total investment by the Central Government (\u20b911,93,439 crore) in equity capital of all the 479 Government companies and Corporations. Eleven Government companies under the Ministry of Petroleum and Natural Gas contributed \u20b950,469 crore representing 36.54 per cent of the total dividend declared by all the Government companies and Corporations. (Para 1.3.4) Losses/Accumulated Losses 182 Government companies incurred losses amounting to \u20b934,908 crore during the year 2023-24. There were 214 Government companies with accumulated losses of \u20b92,47,181 crore as on 31 March, 2024. Of these, the net worth of 91 companies had been completely eroded by their accumulated losses. As a result, the aggregate net worth of these companies had become negative to the extent of \u20b958,175 crore as on 31 March 2024. Twenty-One out of these 91 CPSEs earned profit of \u20b9961 crore during the year 2023-24.",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -29,20 +57,114 @@
   },
   {
     "contractVersion": "syat.source-pack.v1",
-    "id": "cag-126059",
-    "title": "Report of the Comptroller and Auditor General of India on Green India Mission Report No. 4 of 2026 (Performance Audit - Civil) \u00b7 Sector: - \u00b7 Government: Union",
-    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:19:33.184Z",
+    "id": "cag-126283",
+    "title": "Report of the Comptroller and Auditor General of India for the period ended March 2024 Government of Haryana Report No. 5 of 2026 (Compliance Audit- Revenue) \u00b7 Sector: Taxes and Duties \u00b7 Government: State",
+    "indiaConnection": "This audit examines how a public programme in Haryana was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:21:31.612Z",
     "sources": [
       {
-        "id": "cag-126059",
+        "id": "cag-126283",
         "publisherId": "cag",
         "publisher": "Comptroller and Auditor General of India",
-        "title": "Report of the Comptroller and Auditor General of India on Green India Mission Report No. 4 of 2026 (Performance Audit - Civil) \u00b7 Sector: - \u00b7 Government: Union",
-        "url": "https://cag.gov.in/en/audit-report/details/126059",
+        "title": "Report of the Comptroller and Auditor General of India for the period ended March 2024 Government of Haryana Report No. 5 of 2026 (Compliance Audit- Revenue) \u00b7 Sector: Taxes and Duties \u00b7 Government: State",
+        "url": "https://cag.gov.in/en/audit-report/details/126283",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-09-01T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:21:31.612Z",
+        "evidenceText": "vii OVERVIEW This Report contains 21 audit paragraphs, relating to non/short levy of taxes, interest, stamp duty, non/short realisation of motor vehicle tax etc., one Subject Specific Compliance Audit (SSCA) on Works Contract/Construction services under Goods and Services Tax with revenue implications of ` 509.22 crore. Chapter-1 General The revenue receipts of the State increased by 49.30 per cent during the period 2019-20 to 2023-24. State\u2019s own tax revenue increased by 69.32 per cent, the grants-in-aid from Government of India (GoI) decreased by 20.59 per cent and the share of net proceeds of divisible Union taxes and duties increased by 73.60 per cent during the same period. During the year 2023-24, the revenue raised by the State Government (\u20b9 80,614.12 crore) was 79.57 per cent of the total revenue receipts. The balance 20.43 per cent of the receipts during the year 2023-24 was from the GoI as State\u2019s share of net proceeds of divisible Union taxes and duties and of grants-in-aid. (Paragraph 1.1.1) Test check of the records of 143 units pertaining to Sales Tax/Value Added Tax, Stamp Duty and Registration fee, Excise and Transport conducted during the year 2023-24 revealed under assessment/short levy of tax/loss of revenue aggregating to \u20b9 998.85 crore in 7,144 cases. During the course of the year, the Departments concerned acknowledged under assessment and other deficiencies of \u20b9 814.62 crore involved in 5,769 cases. The departments recovered \u20b9 0.24 crore in 41 cases during the year 2023-24 of which 41 cases amounting to \u20b9 0.20 crore pertain to earlier years. (Paragraph 1.10) Chapter-2 State Excise/ Taxes/Value Added Tax on sales, trade Subject Specific Compliance Audit on Works Contract/Construction services under Goods and Services Tax revealed instances of incorrect availing of exemptions and concessional rates, and non-payment of tax on advances and fixed assets and short payment of interest cumulatively leading to compliance irregularities of \u20b9 389.07 crore. Further, granular records of 18 cases out of 30 taxpayers were not produced to audit due to which identified risks relating to irregular/mismatch of \u20b9 37.69 crore in ITC availment and undischarged tax liability could not be examined in detail by Audit. Audit also observed instances of improper scrutiny, which had resulted in short payment of tax, suppression of turnover, mismatch of ITC and short levy of interest in functional audits, amounting to \u20b9 4.83 crore.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-dodedl",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+        "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:37:09.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-126237",
+    "title": "Report of the Comptroller and Auditor General of India on Local Bodies for the period ended March 2024 (Government of Haryana Report No.6 of 2026) \u00b7 Sector: Local Bodies \u00b7 Government: State",
+    "indiaConnection": "This audit examines how a public programme in Haryana was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:21:37.812Z",
+    "sources": [
+      {
+        "id": "cag-126237",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Local Bodies for the period ended March 2024 (Government of Haryana Report No.6 of 2026) \u00b7 Sector: Local Bodies \u00b7 Government: State",
+        "url": "https://cag.gov.in/en/audit-report/details/126237",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-09-01T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:21:37.812Z",
+        "evidenceText": "(Paragraph 1.1.3) \u2022 Audit observed that the receipts of PRIs from various sources ranged from \u20b9 3,687.12 crore to \u20b9 5,528.40 crore during 2019-20 to 2023-24, whereas the overall expenditure varied between \u20b9 2,024.86 crore to \u20b9 4,532.82 crore during the same period. This highlighted the expenditure incurred by the PRIs was less than their receipts. (Paragraph 1.1.4) \u2022 Accounts of PRIs are largely maintained manually under single-entry system, with Zila Parishads completing accounts but Gram Panchayats showing major shortfalls. Audit coverage by Director, Local Audit remains negligible with no audits for Zila Parishad and Panchayat Local Bodies Audit Report for the period ended 31 March 2024 viii Samitis, and only 22 to 30 per cent of Gram Panchayats audited, undermining transparency and governance. (Paragraph 1.1.6) \u2022 Out of 18 functions enlisted in the Twelfth Schedule, the ULBs have full jurisdiction over only four functions. They have overlapping role with other Departments/authorities in three functions, act as Implementing Agency in four functions, perform a limited role in five functions and have virtually no role in two functions. (Paragraphs 1.2.2) \u2022 There is substantial shortage of manpower in ULBs as against the sanctioned posts of 30,991, only 7,398 (23.87 per cent) regular posts were filled in, as of March 2024. Further, to meet the shortfall in manpower requirement, ULBs were largely depending on the contractual and outsourced employees. (Paragraphs 1.2.3) \u2022 During 2019-24, ULBs received total funds ranging from \u20b9 5,576.26 crore to \u20b9 8,286.92 crore, with expenditure varying from \u20b9 5,597.56 crore to \u20b9 7,856.51 crore. Substantial portion of the ULBs resources came from the grants provided by the Central and State Governments. (Paragraph 1.2.4) Chapter II: Subject Specific Compliance Audit on Utilisation of Fifteenth Finance Commission grants by PRIs This chapter provides an overview of the utilisation of Fifteenth Finance Commission (XV-FC) grants by the PRIs. The audit objectives were to assess compliance, with the prescribed codal provisions, of the utilisation of the FFC grants for the delivery of services by PRIs. The audit covered a sample of 77 Panchayati Raj Institutions (PRIs) comprising five Zila Parishads, 12 Panchayat Samitis and 60 Gram Panchayats. The major audit findings are as follows: \u2022 During 2021-24, the Government of Haryana (GoH) received \u20b9 2,468.71 crore from the Government of India as XV-FC grants for PRIs, of which \u20b9 2,278.95 crore were transferred to the PRIs.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-dodedl",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+        "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:37:09.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-126057",
+    "title": "Report of the Comptroller and Auditor General of India on Green India Mission Union Government Ministry of Environment, Forest and Climate Change Report No. 4 of 2026 (Performance Audit) \u00b7 Sector: Environment and Sustainable Development \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:22:35.476Z",
+    "sources": [
+      {
+        "id": "cag-126057",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Green India Mission Union Government Ministry of Environment, Forest and Climate Change Report No. 4 of 2026 (Performance Audit) \u00b7 Sector: Environment and Sustainable Development \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/126057",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-12T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:19:33.184Z",
+        "accessedAt": "2026-09-05T00:22:35.476Z",
         "evidenceText": "As a key component of India\u2019s climate strategy, GIM aims to protect, restore and enhance forest and tree cover, improve ecosystem services and contribute meaningfully to the country\u2019s climate mitigation and adaptation efforts. As per Mission Document of 2011, the GIM aimed to increase and improve forest cover along with improved ecosystem services in 10 million hectare (mha) of land in a period of 10 years (2011-2020) at a total cost of \u20b946,000 crore. In alignment with its global climate responsibilities, India has also committed, under the Paris Agreement, to creating an additional carbon sink of 2.5 to 3 billion tonnes of CO\u2082 equivalent by 2030, an objective in which GIM was envisaged to play a pivotal role. This Performance Audit examines the implementation of the GIM, administered by the Ministry of Environment, Forest and Climate Change (MoEF&CC), across 16 sampled States and Union Territories during the period 2015-16 to 2024-25. GIM was approved by the Cabinet Committee on Economic Affairs in February 2014 as a Centrally Sponsored Scheme with an ambitious target of undertaking afforestation activities over 2.8 million hectare within four years (2014-15 to 2017-18) at an estimated cost of \u20b913,000 crore, which was a subset of the targets envisaged under the 2011 Mission Document of GIM. Out of \u20b913,000 crore, a total of \u20b910,600 crore was to be sourced through convergence with schemes like Compensatory Afforestation Fund Management and Planning Authority (\u20b96,000 crore), Mahatma Gandhi National Rural Employment Guarantee Scheme (\u20b94,000 crore) and National Afforestation Programme (\u20b9600 crore). However, it was observed that the convergence of activities of GIM with other afforestation schemes amounting to \u20b910,600 crore could not be achieved and the proposed funding support could not be attained. Consequently, all the activities for GIM were financed by MoEF&CC through the limited annual budgetary support received from the Government of India. Only \u20b91,149.14 crore (47.88 per cent) had been provided during 10 years of implementation (2015-16 to 2024-25), leaving the Mission significantly short of the funding projected to meet its objectives. Report No. 4 of 2026 vi Audit scrutiny reveals that while the country\u2019s overall forest and tree cover marginally increased from 24.62 per cent (ISFR 2021) to 25.17 per cent (ISFR 2023), GIM, despite being the flagship afforestation programme of MoEF&CC, could not deliver commensurate output.",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -71,6 +193,100 @@
         "policyUrl": "https://www.thehindu.com/",
         "reviewedAt": "2026-08-31T00:00:00.000Z",
         "creditLine": "The Hindu"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125960",
+    "title": "Report of the Comptroller and Auditor General of India on Performance Audit on BharatNet Union Government Ministry of Communications Department of Telecommunications Report No. 19 of 2026 (Performance Audit - Civil) \u00b7 Sector: Information and Communication \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:39.333Z",
+    "sources": [
+      {
+        "id": "cag-125960",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Performance Audit on BharatNet Union Government Ministry of Communications Department of Telecommunications Report No. 19 of 2026 (Performance Audit - Civil) \u00b7 Sector: Information and Communication \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125960",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:39.333Z",
+        "evidenceText": "BBNL steered the project in Phase-I and Phase-II. The project is funded by the Universal Service Obligation Fund (USOF) now called Digital Bharat Nidhi (DBN). As of November 2025, an expenditure of \u20b939,888 crore has been incurred against an approved budget of \u20b942,068 crore (\u20b911,148 crore in Phase-I and \u20b930,920 crore1 in Phase-II). As of November 2025, BharatNet had achieved service ready status in 2.19 lakh GPs (96.70 per cent) against the revised scope of 2.26 lakh GPs. (Para 1.1, 1.5,3.3.2) The audit mainly focusses on Phase-II of the project and aims to seek an assurance on two aspects of the project: the capability of the project to deliver effective last mile connectivity with optimal utilisation and the robustness of its governance structure in identifying and overcoming implementation challenges. We audited Bharat Broadband Network Limited and Bharat Sanchar Nigam Limited (BSNL) Corporate offices, USOF, Department of Telecommunications and field units across eight selected States and one Union Territory. (Para 2.1, 2.2, 2.3) We found deficiencies in the project\u2019s planning and implementation. Though Phase-II was planned in 20 states (21 Circles) through three implementation models \u2013 Central Public Sector Undertaking (CPSU) led model, State-led model and Private led model, it could be implemented in 13 States (14 Circles) only. Detailed Project Report (DPR) preparation, the starting point of project commencement, was carried out on the basis of desktop surveys although physical surveys were mandated. BBNL implemented projects in Punjab and Bihar without preparing DPRs under Private-led model. In the satellite component meant to provide connectivity in remote areas, BBNL did not install Wi-Fi Access Points even in service-ready GPs, thereby preventing end-users from accessing the intended broadband services. Further, as on November 2025, only six States (seven Circles) achieved 100 per cent service-ready status with delays ranging from two to six years across all the Implementation models. The delayed roll-out deferred the availability of broadband connectivity in rural areas envisaged to enable access to services such as education, healthcare, business, entertainment, e-governance to the rural population thereby undermining the objective of early socio-economic transformation. (Para 3.1, 3.2) 1 Comprising CAPEX - \u20b918,792 crore (Phase-II), OPEX - \u20b96,046 crore, Last Mile connectivity through viability Gap funding- \u20b94,066 crore & Replacement of poor-quality BSNL fibre- \u20b92,016 crore.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1y9y510",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Key suspect in Karnataka civil service jobs scam arrested at Delhi airport",
+        "url": "https://indianexpress.com/article/cities/bangalore/kpsc-veterinarian-recruitment-scam-middleman-arrested-delhi-airport-uzbekistan-10857682/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T17:14:04.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125970",
+    "title": "Report of the Comptroller and Auditor General of India on Key Entities and Schemes in Pension Sector Union Government Department of Financial Services Report No. 15 of 2026 (Performance Audit - Civil) \u00b7 Sector: - \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:22.213Z",
+    "sources": [
+      {
+        "id": "cag-125970",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Key Entities and Schemes in Pension Sector Union Government Department of Financial Services Report No. 15 of 2026 (Performance Audit - Civil) \u00b7 Sector: - \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125970",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:22.213Z",
+        "evidenceText": "(Paras 3.3.3.3, 4.7.1.1, 4.8.1.1 and 4.8.1.3) (b) Fund Management \uf0b7 In the National Pension System, there were instances of breaches of prescribed investment limits by Pension Fund Managers (PFMs). ATEPFO made investments without adherence to the criteria of safety first, resulting in financial losses. CCIL did not meet the minimum required threshold in equity and related investments during 2018-19 and 2019-20. In RINL managed trusts, there was shortfall in investments in equities and related instruments during 2018-19, 2020-21 and 2021-22. IIFT invested 85 per cent of funds in term deposits of banks and debt securities, as against the ceiling of 45 per cent of total amount of investment. (Paras 2.3.3, 3.4.2.1, 4.3.2.2, 4.5.2.1 and 4.8.2.1) \uf0b7 Few pension fund managers did not formulate stop loss limits for certain investments like Corporate Bonds and other securities. The exit policy for exit from securities below Report No. 15 of 2026 ix investment grade in EPFO portfolio was under formulation. The investment framework of SPFO and CCIL did not provide for a stop-loss policy. Also, CPCL lacked an internal investment policy to guide selection and monitoring of investments. (Paras 2.3.1.1, 3.1.2.1, 3.3.2.2, 4.3.2.1 and 4.4.2.4) \uf0b7 As on 31 March 2024, PFRDA and NPS Trust had accumulated a corpus of \u20b9415.25 crore and \u20b994.19 crore respectively, while EPFO\u2019s Administration Fund Account held an amount of \u20b933,117.46 crore (as of 31 March 2023). This apart, the PF Earning and Distribution account in ATEPFO, used to account for income and expenses under the scheme, recorded a rising deficit from \u20b99.45 crore in 2019-20 to \u20b9268.40 crore in 2023- 24. (Paras 2.4.2.1, 2.4.2.2, 3.1.1.3 and 3.4.2.3) \uf0b7 EPFO\u2019s actuarial valuation as of 31 March 2017, 31 March 2018 and 31 March 2019 did not account for the minimum pension liability of \u20b91,000 per month, thereby underreporting potential deficits. Further, the actuarial valuation in case of ATEPFO was in process since January 2019 but was not yet finalised as of April 2025. (Paras 3.1.2.2 and 3.4.2.2) \uf0b7 CMPFO\u2019s pension fund faced actuarial deficit being driven by decrease in the number of subscribers and increase in the number of pensioners. In CPCL, rates earned on investment for the period from 2019-20 to 2023-24 were lower than the rates of return declared to the subscribers except for 2021-22. CDLB operated without a dedicated pension fund and pension was being paid from earnings, with arrear liability being \u20b9967.38 crore as on 31 March 2023.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1a06ctl",
+        "publisherId": "economic-times",
+        "publisher": "The Economic Times",
+        "title": "India's services exports rise 13.4% in July",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/indias-services-exports-rise-13-4-to-usd-38-25-billion-in-july-rbi/articleshow/133657778.cms",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:09:18.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://economictimes.indiatimes.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Economic Times"
       },
       {
         "id": "coverage-1y9y510",
@@ -94,10 +310,66 @@
   },
   {
     "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125971",
+    "title": "Report of the Comptroller and Auditor General of India on Compliance of the Fiscal Responsibility and Budget Management Act, 2003 for the year 2024-25 Union Government Department of Economic Affairs (Ministry of Finance) Report No. 29 of 2026 \u00b7 Sector: Finance \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:20.122Z",
+    "sources": [
+      {
+        "id": "cag-125971",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Compliance of the Fiscal Responsibility and Budget Management Act, 2003 for the year 2024-25 Union Government Department of Economic Affairs (Ministry of Finance) Report No. 29 of 2026 \u00b7 Sector: Finance \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125971",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:20.122Z",
+        "evidenceText": "Report No. 29 of 2026 Executive Summary The Fiscal Responsibility and Budget Management Act, 2003 was enacted with a view to provide a legislative framework for reduction of deficit and thereby debt, of the Central Government to a sustainable level over a medium term so as to ensure inter- generational equity in fiscal management and long term macro-economic stability. The present Report is an annual review conducted by the Comptroller and Auditor General (C&AG) of India on the compliance of the provisions of the Fiscal Responsibility and Budget Management (FRBM) Act by the Central Government for the FY 2024-25. Analysis with reference to GDP in this Report has been limited to three financial years i.e., 2022-23 to 2024-25, based on the new base year 2022-23. Through an amendment in 2018, the target for reduction in Central Government Debt and General Government Debt was set to be achieved over a period of seven years. The targets being limiting the General Government debt to 60 per cent of GDP and the Central Government debt to 40 per cent of GDP by the end of FY 2024-2025. Our review showed that the Central Government debt as a percentage of GDP, though decreased over the last two years to 58.46 per cent by the end of FY 2024-25, the sunset target of 40 per cent could not be met. The Central Government Debt, in absolute terms, increased by \u20b914.24 lakh crore or 8.29 per cent over the previous year, primarily due to increase of internal debt. At the end of FY 2024-25, an amount of \u20b938.40 lakh crore was reportedly raised as taxes but was yet to be realised (Statement D1 Tax raised but not realised). This unrealised amount registered an increase by \u20b97.29 lakh crore over the previous year, of which \u20b94.80 lakh crore was not under dispute. Some issues were noticed in D2 Statement (Arrears of interest), where the figures varied from those figures in the Union Government Finance Accounts. Also, the amount of financial assets (loan to Foreign Government and States & UTs) disclosed in D4 Statement, varied within the Receipt Budget. Finally, we found variations in Budget Estimate figures of various fiscal parameters used in Half Yearly Statements (H1, H2), and Medium-Term Fiscal Policy Statement with reference to the Annual Financial Statement 2024-25. vii",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": []
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-126203",
+    "title": "State Finances Audit Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 (Report No. 1 of 2026) \u00b7 Sector: Finance \u00b7 Government: State",
+    "indiaConnection": "This audit examines how public money in Haryana was accounted for and reported, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:21:46.226Z",
+    "sources": [
+      {
+        "id": "cag-126203",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "State Finances Audit Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 (Report No. 1 of 2026) \u00b7 Sector: Finance \u00b7 Government: State",
+        "url": "https://cag.gov.in/en/audit-report/details/126203",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-09-01T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:21:46.226Z",
+        "evidenceText": "Haryana\u2019s economy showed moderate growth during the FY 2024-25, with Gross State Domestic Product (GSDP) registering growth of 11.83 per cent as against the previous financial year. The State contributed 3.67 per cent to the national GDP. Over the last five years, Haryana\u2019s share in the national economy has remained stable, indicating consistency in its contribution to overall GDP. We observed that Revenue receipts of the state grew (5.05 per cent) over the previous year, driven by higher tax collections, notably GST and increased central tax devolution. However, non-tax revenue decreased by seven per cent and grants from the Centre declined by 17.6 per cent. The major contributor to these receipts is the State\u2019s Own Tax Revenue, accounting for nearly two-thirds of these receipts, followed by the State\u2019s share in Union taxes, non-tax revenues and Grants-in-aid from GoI. The State\u2019s reliance on its own sources is thus quite high, showing fiscal self -reliance. Expenditure of the State was dominated by higher growth of revenue spending (88.94 per cent of Total Expenditure) particularly committed costs and subsidies (64 per cent of Revenue Expenditure, 57 per cent of Total Expenditure and 76 per cent of Revenue Receipts), leaving limited fiscal space for capital investment. Capital expenditure remained volatile and below budgeted levels, reflecting constraints in infrastructure investment. Capital Expenditure was only 17.67 per cent of the borrowings. Thus, the borrowed funds were being used mainly for meeting current consumption and repayment of Borrowings instead of capital creation/development activities. The State was not able to arrest the revenue deficit within the target levels of the State FRBM Act, thereby rendering little room for fiscal consolidation. The total liabilities of the State had been on rise during the past five years and grew by 10.52 per cent over the previous year. Higher outstanding liabilities increase future repayment and interest obligations, further constraining fiscal flexibility in the medium term. Further, returns on investments was alarmingly low in comparison to the average rate of interest on the Government borrowings. Besides, the State Government also carried forward significant undischarged liabilities in respect of non-transfer of State and Central Finance Commission grants to local bodies (\u20b9 1,170.27 crore), pending refund cases (\u20b9 827.54 crore), energy charges liabilities of DISCOMs against various",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": []
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
     "id": "cag-125907",
     "title": "Government of National Capital Territory of Delhi Report No 1 of 2026 \u00b7 Sector: Finance,Social Welfare,Social Infrastructure,Education, Health & Family Welfare,Taxes and Duties \u00b7 Government: State",
     "indiaConnection": "This audit examines how a public programme in Delhi was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:20:52.212Z",
+    "collectedAt": "2026-09-05T00:23:58.644Z",
     "sources": [
       {
         "id": "cag-125907",
@@ -107,7 +379,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/125907",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-07T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:20:52.212Z",
+        "accessedAt": "2026-09-05T00:23:58.644Z",
         "evidenceText": "ix OVERVIEW This Report comprises two chapters containing audit findings pertaining to Revenue and Economic, Social and General Sectors. Chapter I relating to Revenue Sector contains one Performance Audit on \u201cElectronic-Way Bills (E-Way Bills) System under Goods and Services Tax\u201d and one Subject Specific Compliance Audit on \u201cDepartment\u2019s Oversight on Goods and Services Tax Payment and Returns Filing for the years 2018-19 to 2020-21\u201d and two compliance audit paragraphs involving aggregate monetary value of \u20b9 1985.04 crore. Chapter II relating to Social, General and Economic Sectors contains two Subject Specific Compliance Audit-- one on \u201cAdministration of Electricity Subsidy by Government of NCT of Delhi\u201d and another on \u201cImplementation of e-Procurement System by Government of NCT of Delhi\u201d and also has six compliance audit paragraphs with monetary value ` 45.12 crore. Some of the major findings detailed in the Report are summarised below: Chapter I: Revenue Sector Introduction The total revenue receipts of the Government of National Capital Territory of Delhi (GNCTD) for the year 2022-23 were ` 62,703 crore as compared to ` 43,112.60 crore in the year 2018-19. Out of the total revenue in 2022-23, ` 47,363 crore (75.53 per cent) was tax revenue with non-tax revenue of ` 581 crore (0.93 per cent) and Grants-in-Aid from the Government of India of ` 14759 crore (23.54 per cent). (Paragraph 1.1.1)/Page-1 Test-check of the records of 22 units relating to Goods and Services Tax, Value Added Tax, Stamp Duty and Registration Fees, Motor Vehicles Tax and State Excise conducted during the year 2023-24 revealed non/short levy of tax/fees and other irregularities involving ` 220.59 crore in 145 cases. The Departments concerned did not provide any reply to these audit findings. (Paragraph 1.1.6)/Page-6 Compliance Audit Paragraphs Department of Revenue Short payment of Stamp Duty and Registration Fee of ` 1.91 crore - Short payment of Stamp Duty and Registration Fee of ` 1.91 crore due to incorrect application of Agricultural rate instead of Industrial/Residential rates. (Paragraph 1.2)/Page-7 Audit Report of the Comptroller and Auditor General of India for the year ended 31 March 2023 x Performance Audit Department of Trade and Taxes E-Way Bills System under Goods and Services Tax Electronic-Way Bill (EWB) introduced with effect from 1 April 2018, is a document required for movement of goods and is designed to capture details of goods before being moved.",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -231,10 +503,511 @@
   },
   {
     "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125956",
+    "title": "Report of the Comptroller and Auditor General of India on Project Imports Scheme Union Government Department of Revenue (Indirect Taxes - Customs) Report No. 27 of 2026 (Performance Audit \u2013 Civil) \u00b7 Sector: Taxes and Duties \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:46.272Z",
+    "sources": [
+      {
+        "id": "cag-125956",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Project Imports Scheme Union Government Department of Revenue (Indirect Taxes - Customs) Report No. 27 of 2026 (Performance Audit \u2013 Civil) \u00b7 Sector: Taxes and Duties \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125956",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:46.272Z",
+        "evidenceText": "The scheme of project imports is mainly governed by the Customs Tariff Heading (CTH) 9801 and Notes to Chapter 98 of the Customs Tariff Act, 1975; Project Import Regulations (PIR), 1986; General Exemption Notification Nos. 12/2012-Customs dated 17 March 2012 and 21/2012-Customs dated 17 March 2012. The performance audit was conducted to assess adequacy of statutory provisions to support simplified procedures for project imports, compliance with procedural requirements and effectiveness of internal controls. The audit covered various aspects relating to registration, importation and finalisation of contracts of project import scheme at the port level. The audit was carried out for the period of five years from FY 2019-20 to FY 2023- 24. As per the DG Systems\u2019 data, during this period, a total of 485 contracts were registered under the Project Import Scheme with CIF value of `1.34 Lakh crore. The total revenue collected under the scheme amounted to ` 10,567.09 crore and duty foregone on account of concessional assessment under the scheme stood at ` 6,704.55 crore. Out of the total 1,467 PI registrations across 34 Customs Commissionerates, a sample of 915 cases (62.37 per cent) were drawn from three categories, viz., Finalised (421 cases), Ongoing (449 cases), Registration done but no imports made (45 cases) from 18 Commissionerates. Out of the total 915 selected cases, 139 cases involving a CIF value of \u20b915,818.11 crore pertaining to nine Commissionerates were not made available to Audit. Executive Summary ivReport No. 27 of 2026 - Union Government (Indirect Taxes-Customs) A declining trend was observed in both the number of contracts registered and the CIF value of the contracts during the period from FY 19-20 to FY 23-24. Over these years, the proportion of new contracts registered under the scheme decreased significantly by 78.10 per cent and the value of the contracts by 77.45 per cent mainly due to simplification/revision in duty structure during last 15 years and lesser rate of duty in categories of goods required for setting up of an industrial plant or project. Among all eligible sectors, the power sector accounted for the largest share of project imports during this period. Structure of the Report This report contains 36 audit observations and 11 recommendations. The performance audit has revenue implication of \u20b9128.58 crore along with procedural irregularities involving \u20b92,979.33 crore. Responses were received from CBIC and its field formations for 28 paras, which have fully/partially accepted the audit findings.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1y9y510",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Key suspect in Karnataka civil service jobs scam arrested at Delhi airport",
+        "url": "https://indianexpress.com/article/cities/bangalore/kpsc-veterinarian-recruitment-scam-middleman-arrested-delhi-airport-uzbekistan-10857682/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T17:14:04.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125921",
+    "title": "Report of the Comptroller and Auditor General of India on Implementation of Phase 1 and Phase 2 of Bangalore Metro Rail Project by Bangalore Metro Rail Corporation Limited Union Government Ministry of Housing and Urban Affairs No. 7 of 2026 (Performance Audit - Commercial) \u00b7 Sector: Transport & Infrastructure \u00b7 Governm",
+    "indiaConnection": "This audit examines how a public programme in Karnataka was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:54.784Z",
+    "sources": [
+      {
+        "id": "cag-125921",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Implementation of Phase 1 and Phase 2 of Bangalore Metro Rail Project by Bangalore Metro Rail Corporation Limited Union Government Ministry of Housing and Urban Affairs No. 7 of 2026 (Performance Audit - Commercial) \u00b7 Sector: Transport & Infrastructure \u00b7 Governm",
+        "url": "https://cag.gov.in/en/audit-report/details/125921",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-10T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:54.784Z",
+        "evidenceText": "As Elevated Light Rail Transit System (ELRTS) under Build Own Operate Transfer model did not materialize, Bangalore Metro Rail Project was initiated in July 2002 in place of ELRTS. BMRTL, renamed (September 2005) as Bangalore Metro Rail Corporation Limited (BMRCL), is a 50:50 Joint Venture of Government of India (GoI) and Government of Karnataka (GoK). BMRCL was entrusted with the responsibility of construction, operation and maintenance of Metro Rail Project in Bengaluru. Detailed Project Report (DPR) of Bangalore Metro Rail Project for Phase 1 was prepared and submitted (May 2003) by Delhi Metro Rail Corporation Limited (DMRCL) for a route length of 33 km. Phase 1 extension DPRs were also prepared and submitted by DMRCL during October 2007 and June 2008 for a route length of 9.30 km. DPRs of Phase 2 were prepared and submitted by DMRCL during May 2011 to September 2011 for a route length of 72.10 km. The commercial operations of Phase 1 commenced in a phased manner from October 2011 and was completely operational in June 2017 for a total length of 42.30 km. The commercial operations of Phase 2 were partly commenced during January 2021 to March 2023 for a length of 27.36 km and balance network length is planned to be completed by December 2026. The Performance Audit was conducted covering planning, implementation, monitoring and operations of Phase 1 and Phase 2 (excluding 2A and 2B) of Bangalore Metro Rail Project by BMRCL since inception up to March 2021. The physical and financial progress of selected contracts were reviewed up to 31 March 2023. The objectives of the Performance Audit were to assess whether: (i) Planning was done in a rational manner to ensure economic viability and selection of the most appropriate technologies; (ii) Implementation in terms of project execution and contract management was done with due care, economy and in a timely and transparent manner and adequate mechanism was in existence to monitor the project execution; and (iii) Operation and Maintenance (O&M) was efficient and the planned benefits were achieved after commercial operation of completed Reaches in respective Phases. Audit scrutinized 117 project contracts valuing \u20b927,472.85 crore out of 538 contracts valuing \u20b930,982.35 crore (covering 89 per cent in terms of value and 22 per cent in terms of number of contracts) and 75 O&M contracts valuing \u20b9348.12 crore out of 2,279 contracts valuing of \u20b9476.83 crore (73 per cent in terms of value and 3 per cent in terms of number of contracts).",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1x17iv7",
+        "publisherId": "opindia",
+        "publisher": "OpIndia",
+        "title": "Rahul Gandhi portrays himself as messiah of Dalit community; Karnataka\u2019s Rs 89 crore Valmiki Corporation scam exposes Congress hypocrisy",
+        "url": "https://www.opindia.com/2026/08/rahul-gandhi-portrays-himself-as-messiah-of-dalit-community-karnatakas-rs-89-crore-valmiki-corporation-scam-exposes-congress-hypocrisy/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-30T13:54:09.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://www.opindia.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "OpIndia"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125968",
+    "title": "Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 Union Government (Commercial) No. 22 of 2026 (Compliance Audit Observations) \u00b7 Sector: - \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:27.205Z",
+    "sources": [
+      {
+        "id": "cag-125968",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 Union Government (Commercial) No. 22 of 2026 (Compliance Audit Observations) \u00b7 Sector: - \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125968",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:27.205Z",
+        "evidenceText": "Earlier, the draft observations were sent to the Managements of the CPSEs concerned, whose replies have been suitably incorporated in the report. 3. The paragraphs included in this Report relate to the CPSEs under the administrative control of the following Ministries/ Departments of the Government of India: Sl. No. Ministry/ Department (CPSEs involved) Number of paragraphs Number of paragraphs in respect of which Ministry/ Department\u2019s reply was awaited Energy Cluster 1. Coal (Central Coalfields Limited, NLC India Limited and South Eastern Coalfields Limited) 3 1 2. Petroleum and Natural Gas (Indian Oil Corporation Limited and Oil India Limited) 2 2 3 Power (Damodar Valley Corporation) 1 0 Industry Cluster 5 Finance (ASREC (India) Limited, Oriental Insurance Company Limited, National Insurance Company Limited, United India Insurance Company Limited and New India Assurance Company Limited) 2 0 Report No. 22 of 2026vi Sl. No. Ministry/ Department (CPSEs involved) Number of paragraphs Number of paragraphs in respect of which Ministry/ Department\u2019s reply was awaited 6 Heavy Industry (Andrew Yule and Company Limited) 1 0 7 Steel (Steel Authority of India Limited) 4 0 8 Tourism (Indian Tourism Development Corporation) 1 1 Infrastructure Cluster 9 Road Transport and Highways (National Highways Authority of India) 1 0 Total 15 4 4. Total financial implication of individual audit observations is \u20b920,539.40 crore. Individual audit observations in this Report are broadly of the following nature: \u2022 Non-compliance with rules, directives, procedure, terms and conditions of the contract etc., involving \u20b9350.21 crore in four paragraphs1. \u2022 Non-safeguarding of financial interest of organisations involving \u20b9609.70 crore in seven Audit paragraphs2. \u2022 Defective/deficient planning involving \u20b913,678.68 crore in eight Audit paragraphs3. \u2022 Inadequate/deficient monitoring involving \u20b95,900.81 crore in four Audit paragraphs4. It is pertinent to mention that the compliance audit paragraphs, contain observations of more than one category and accordingly, the amount under the observations have been classified. 5. The Report also contains a Chapter on \u201cRecoveries & corrections/ rectifications\u201d by CPSEs at the instance of Audit. The Chapter contains two paragraphs viz., (a) Management of 11 CPSEs have recovered an amount of \u20b960.02 crore at the instance of Audit, during 2024-25, and (b) corrections/ rectifications carried out by three CPSEs in five cases at the instance of Audit. 1 Para no. 1.1, 1.3, 4.1 and 4.2 2 Para no.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": []
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125967",
+    "title": "Report of the Comptroller and Auditor General of India for the period ended March 2024 Union Government Economic and Service Ministries Report No. 11 of 2026 (Compliance Audit - Civil) \u00b7 Sector: - \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:30.295Z",
+    "sources": [
+      {
+        "id": "cag-125967",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India for the period ended March 2024 Union Government Economic and Service Ministries Report No. 11 of 2026 (Compliance Audit - Civil) \u00b7 Sector: - \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125967",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:30.295Z",
+        "evidenceText": "Violation of the terms and conditions of IIUS guidelines while entering the agreements by ACCDS with sub-SPVs resulted in non-recovery of user fee charges of \u20b91.69 crore from sub-SPVs and was detrimental to the financial interest of Government of India and ACCDS in the assets acquired out of grants amounting to \u20b95.45 crore. (Para 2.1) EXECUTIVE SUMMARY Report No. 11 of 2026 vi Export Inspection Council of India and Export Inspection Agency, Chennai Export Inspection Agency (EIA), Chennai was set up under Section 7 of the Export (Quality Control and Inspection) Act, 1963 to provide certificates for export of various food items. Comparison of Bank Payment Vouchers with the Bank Statement of EIA Chennai revealed that cheques were drawn in favour of private parties though no goods or services were received by EIA Chennai from these private parties. This resulted in misappropriation of public money to the tune of \u20b921.41 crore. (Para 2.2) Spices Board, Kochi Spices Board, Kochi established eight Spices Parks across the country to provide common infrastructure facilities for post-harvest and processing operations of spices and spice products. Due to fixation of higher contract demand for power in these Spices Parks and not maintaining the Average Power Factor, Spices Board incurred an avoidable expenditure of \u20b92.41 crore including penalty for low Power Factor. (Para 2.3) Footwear Design and Development Institute, Chennai The Executive Director (ED), who joined Footwear Design and Development Institute Chennai on deputation during 26 September 2022 to 17 February 2023, approved reimbursements claimed through fake invoices and forged air tickets. Besides these fraudulent and unjustified claims, claims of unauthorised purchases and claims without invoices were also approved by the ED. Advance taken by contract employees were transferred to the ED\u2019s Account which are pending settlement. These irregularities resulted in undue benefit of \u20b97.69 lakh to the ED. (Para 2.4) Ministry of Housing and Urban Affairs Central Public Works Department Despite a constitutional provision regarding exemption in payment of electricity duty by the establishment of the Central Government, Central Public Works Department (CPWD), Ghaziabad Electrical Division had made payment of \u20b96.91 crore to Paschimanchal Vidyut Vitran Nigam Ltd (i.e., DISCOM) on account of electricity duty during the period from May 2011 to November 2019.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1y9y510",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Key suspect in Karnataka civil service jobs scam arrested at Delhi airport",
+        "url": "https://indianexpress.com/article/cities/bangalore/kpsc-veterinarian-recruitment-scam-middleman-arrested-delhi-airport-uzbekistan-10857682/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T17:14:04.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125966",
+    "title": "Report of the Comptroller and Auditor General of India on Scheme for Faster Adoption and Manufacturing of (Hybrid &) Electric Vehicles in India Union Government Ministry of Heavy Industries Report No. 10 of 2026 (Performance Audit - Civil) \u00b7 Sector: Environment and Sustainable Development,Power & Energy,Transport & Inf",
+    "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:33.090Z",
+    "sources": [
+      {
+        "id": "cag-125966",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Scheme for Faster Adoption and Manufacturing of (Hybrid &) Electric Vehicles in India Union Government Ministry of Heavy Industries Report No. 10 of 2026 (Performance Audit - Civil) \u00b7 Sector: Environment and Sustainable Development,Power & Energy,Transport & Inf",
+        "url": "https://cag.gov.in/en/audit-report/details/125966",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:33.090Z",
+        "evidenceText": "viiReport No. 10 of 2026 Executive Summary The Ministry of Heavy Industries (erstwhile Department of Heavy Industry) launched the Scheme for Faster Adoption and Manufacturing of (Hybrid &) Electric Vehicles in India (FAME-I), for promotion of electric and hybrid vehicles with an outlay of \u20b9795 crore for a period of two years, commencing from April 2015. The scheme was subsequently extended up to March 2019 with an enhancement in outlay from \u20b9795 crore to \u20b9895 crore. Phase II of the scheme (FAME-II) was formulated with an outlay of \u20b910,000 crore which was subsequently enhanced to \u20b911,500 crore for the period from April 2019 to March 2024. The scheme was implemented through five components, viz. Demand Incentive; Charging Infrastructure; Technology Platform (R&D); Pilot Projects; and Information, Education and Communication. The Performance Audit of the Scheme covered the period from March 2015 to March 2024 with the objectives to assess whether: (i) implementation of the various components of the Scheme was done economically, efficiently and effectively as envisaged in the Scheme guidelines, in order to promote the use of electric vehicles; and (ii) there was synergy amongst different Ministries/Departments for the growth of e-mobility and its ecosystem. The Performance Audit covered various aspects of planning, implementation and monitoring of the Scheme by the Ministry of Heavy Industries, testing agencies viz. Automotive Research Association of India, International Centre for Automotive Technology and Global Automotive Research Centre; Bureau of Energy Efficiency (under Ministry of Power), selected State Transport Undertakings, and project implementing agencies in respect of technology platform/R&D projects and pilot projects. The main audit findings are as under: Demand Incentives There were discrepancies in the Demand Incentive Delivery Mechanism (DIDM) portal (Phase I & II) such as non-preparation of Detailed Project Report and non-signing of Service Level Agreement for portal development. As such, important aspects such as key deliverables, timelines, testing protocols, data/system integrity requirements, defects management and change management procedures were not contractually defined. Also, the Portal did not have functionalities for end-to-end online processing of claims by the Ministry, and there was lack of validation controls in the Portal. (Paras 2.3, 2.5 and 2.6) There were discrepancies in the information/data contained in the physical/e-files and data dump of the Portal (Phase-I) i.e.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-g03gf4",
+        "publisherId": "the-hindu",
+        "publisher": "The Hindu",
+        "title": "Honda Motorcycle & Scooter India eyes sustainable growth as 2W market expands",
+        "url": "https://www.thehindu.com/business/honda-motorcycle-scooter-india-eyes-sustainable-growth-as-2w-market-expands/article71411903.ece",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:23:14.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://www.thehindu.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Hindu"
+      },
+      {
+        "id": "coverage-dodedl",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+        "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:37:09.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      },
+      {
+        "id": "coverage-upyni4",
+        "publisherId": "mongabay-india",
+        "publisher": "Mongabay India",
+        "title": "Groundwater study flags localised heavy metal concerns in a coastal district",
+        "url": "https://india.mongabay.com/2026/08/groundwater-study-flags-localised-heavy-metal-concerns-in-a-coastal-district/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:37:12.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://india.mongabay.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "Mongabay India"
+      },
+      {
+        "id": "coverage-18z0h1a",
+        "publisherId": "times-of-india",
+        "publisher": "The Times of India",
+        "title": "Scientists find eggshells make clay bricks reduce energy consumption by blocking heat",
+        "url": "https://timesofindia.indiatimes.com/technology/tech-news/in-2025-researchers-used-fired-clay-bricks-and-eggshell-waste-reducing-energy-consumption-for-heating-and-cooling-by-50-turning-food-waste-into-useful-building-material/articleshow/133658882.cms",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:58:04.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://timesofindia.indiatimes.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Times of India"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-125942",
+    "title": "Report of the Comptroller and Auditor General of India for the year ended March 2023 -Union Government \u2013 Central Autonomous Bodies - Report No. 9 of 2026 (Compliance Audit - Civil) \u00b7 Sector: General Sector Ministries and Constitutional Bodies \u00b7 Government: Union",
+    "indiaConnection": "This audit examines how a public programme in Tamil Nadu was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:23:50.286Z",
+    "sources": [
+      {
+        "id": "cag-125942",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India for the year ended March 2023 -Union Government \u2013 Central Autonomous Bodies - Report No. 9 of 2026 (Compliance Audit - Civil) \u00b7 Sector: General Sector Ministries and Constitutional Bodies \u00b7 Government: Union",
+        "url": "https://cag.gov.in/en/audit-report/details/125942",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-12T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:23:50.286Z",
+        "evidenceText": "Report No. 9 of 2026 ii Description Paragraph Page CHAPTER-III: MINISTRY OF EDUCATION Department of Higher Education Board of Apprenticeship Training, Mumbai Irregular utilisation of SC/ST grants-in-aid to the apprentices belonging to General category - \u20b9 17.34 crore 3.1 25 Central Institute of Technology, Kokrajhar, Indian Institute of Technology, Guwahati and Indian Institute of Technology, Bombay Irregular utilization of Cumulative Professional Development Allowance by faculty members 3.2 26 Central University of Kashmir, Ganderbal Irregular reimbursement of leave encashment 3.3 28 Central University of Tamil Nadu, Thiruvarur Irregularities in Procurement of Goods / Execution of Work of \u20b9 8.16 crore 3.4 29 Gandhigram Rural Institute, Dindigul Unauthorised expenditure on creation of a Centre at New Delhi -\u20b9 3.20 crore 3.5 31 Indian Institute of Management, Mumbai Loss of interest of \u20b9 58.71 lakh due to non- investment of escrowed amount of HEFA Principal Repayment Account in Short Term fixed deposits 3.6 34 Indian Institute of Science Education and Research, Kolkata Undue benefits were given to a private party 3.7 35 Indira Gandhi National Open University Deficiencies in the functioning of Gyan Vani FM Radio Stations 3.8 37 National Assessment and Accreditation Council (NAAC), Bengaluru Audit of grant of accreditations by National Assessment and Accreditations Council and Information System Audit of National Assessment and Accreditations Management System 3.9 46 National Testing Agency Avoidable payment of penal interest on delayed deposit of TDS - \u20b9 54.24 lakh 3.10 72 University of Delhi Ram Lal Anand College, Shivaji College and Shaheed Bhagat Singh (Evening) College Short collection of University Development Fee of \u20b9 2.01 crore 3.11 73 Report No.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1y9y510",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Key suspect in Karnataka civil service jobs scam arrested at Delhi airport",
+        "url": "https://indianexpress.com/article/cities/bangalore/kpsc-veterinarian-recruitment-scam-middleman-arrested-delhi-airport-uzbekistan-10857682/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T17:14:04.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-126309",
+    "title": "Report No. 1 of 2026 - Report of the Comptroller and Auditor General of India on Social (including Local Governments Audit), Economic, General and Revenue Sectors for the year ended 31 March 2024 \u00b7 Sector: Local Bodies,Finance,Social Infrastructure,Education, Health & Family Welfare,Power & Energy \u00b7 Government: State",
+    "indiaConnection": "This audit examines how a public programme in Nagaland was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:21:17.953Z",
+    "sources": [
+      {
+        "id": "cag-126309",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report No. 1 of 2026 - Report of the Comptroller and Auditor General of India on Social (including Local Governments Audit), Economic, General and Revenue Sectors for the year ended 31 March 2024 \u00b7 Sector: Local Bodies,Finance,Social Infrastructure,Education, Health & Family Welfare,Power & Energy \u00b7 Government: State",
+        "url": "https://cag.gov.in/en/audit-report/details/126309",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-09-03T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:21:17.953Z",
+        "evidenceText": "The mission\u2019s goal was to ensure that by the end of 2024, each of the 19 crore rural households in the country receives piped water supply through Functional Household Tap Connections (FHTCs). A Performance Audit on JJM in Nagaland was carried out covering the period from 2019-2024. x Executive Summary Executive Summary x The significant findings of audit are highlighted below: \uf0b7 The Village Action Plans were prepared without conducting baseline surveys and none of the 34 test-checked habitations prepared VAPs incorporating information such as the history of water supply schemes implemented in the village, the infrastructure created and an assessment of the existing water supply infrastructure by the DWSM. \uf0b7 The number of FHTCs initially proposed for 34 villages in the four test-checked districts decreased from 16,400 to 16,288 in the finalised DPRs and was further reduced to 14,835 as reported in IMIS. \uf0b7 The supply order for materials was awarded without inviting tenders, resulting in an avoidable extra expenditure of \u20b9288.12 crore and a corresponding financial benefit to the supplier. \uf0b7 Delays in release of Central as well as State share by GoN to the Department ranging between 39 and 107 days (Central Share) and 10 and 255 days (State Share). \uf0b7 Three out of the five PIUs did not use any HGM Maps even though 40 groundwater-based schemes were planned for implementation by these three PIUs. \uf0b7 An expenditure of \u20b923.05 lakh was incurred on the construction of a deep tube well, iron removal plant and an RCC tank. When attempts were made to connect individual households from the tube wells, no water could be drawn. Both the tube well and the submersible pump remained idle and non- functional. \uf0b7 There was shortfall ranging from 64 to 95 per cent in conducting laboratory tests over the last five years. The district laboratories of the four test-checked districts did not conduct tests for sulphate, total arsenic, fluoride, nitrate, total coliform bacteria, and E. coli or thermo tolerant coliform bacteria. While out of the target of 71,448 tests of water sources in the four test-checked districts through usage of FTKs, only 14,231 tests (19.92 per cent) were conducted. \uf0b7 Out of 34 test-checked WATSAN Committees, 30 had not opened any bank accounts for the deposit of community contributions towards the required five per cent of the capital cost. \uf0b7 10 villages out of 34 test-checked villages across the four test-checked districts, had conducted social audits.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1se0wrm",
+        "publisherId": "mongabay-india",
+        "publisher": "Mongabay India",
+        "title": "Crime content on social media threatens wildlife safety",
+        "url": "https://india.mongabay.com/2026/08/crime-content-on-social-media-threatens-wildlife-safety/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-27T17:58:48.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://india.mongabay.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "Mongabay India"
+      },
+      {
+        "id": "coverage-oueygl",
+        "publisherId": "opindia",
+        "publisher": "OpIndia",
+        "title": "Sergio Gor briefed Marco Rubio: Family of US mercenary Matthew VanDyke seeks US diplomatic intervention for his return to \u2018home\u2019, read what they said, and about VanDyke\u2019s \u2018NGO operations\u2019",
+        "url": "https://www.opindia.com/2026/08/family-soli-us-mercenary-matthew-vandyke-seek-us-diplomatic-intervention/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T04:53:28.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://www.opindia.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "OpIndia"
+      },
+      {
+        "id": "coverage-ghy3sx",
+        "publisherId": "frontline",
+        "publisher": "Frontline",
+        "title": "Adhithi: The 1974 film that put the \u2018happy\u2019 out of the Malayali family",
+        "url": "https://frontline.thehindu.com/arts-and-culture/cinema/kp-kumaran-films-adithi-rugmini-malayalam-new-wave/article71410813.ece",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T15:26:15.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://frontline.thehindu.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "Frontline"
+      },
+      {
+        "id": "coverage-dodedl",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+        "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:37:09.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      },
+      {
+        "id": "coverage-18z0h1a",
+        "publisherId": "times-of-india",
+        "publisher": "The Times of India",
+        "title": "Scientists find eggshells make clay bricks reduce energy consumption by blocking heat",
+        "url": "https://timesofindia.indiatimes.com/technology/tech-news/in-2025-researchers-used-fired-clay-bricks-and-eggshell-waste-reducing-energy-consumption-for-heating-and-cooling-by-50-turning-food-waste-into-useful-building-material/articleshow/133658882.cms",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:58:04.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://timesofindia.indiatimes.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Times of India"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
+    "id": "cag-126063",
+    "title": "Report of the Comptroller and Auditor General of India on State Finances for the year 2024-2025 (Government of Rajasthan) (Report No. 05 of the year 2026) \u00b7 Sector: Finance \u00b7 Government: State",
+    "indiaConnection": "This audit examines how public money in Rajasthan was accounted for and reported, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:22:27.679Z",
+    "sources": [
+      {
+        "id": "cag-126063",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on State Finances for the year 2024-2025 (Government of Rajasthan) (Report No. 05 of the year 2026) \u00b7 Sector: Finance \u00b7 Government: State",
+        "url": "https://cag.gov.in/en/audit-report/details/126063",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-08-21T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:22:27.679Z",
+        "evidenceText": "Executive Summary This Report on the Finances of the State of Rajasthan provides an independent assessment of the Fiscal position of Rajasthan for FY 2024-25. 1800000 1600000 1400000 1200000 1000000 800000 600000 400000 200000 0 2021 GSDP ofRajasthan (2011-12 series) \ufffd in crore 2022 2023 2024 \u25a0GSDP(2011-12 series) \u25a0 Total Expenditure 1704339 300194 2025 During FY 2024-2025, Rajasthan's GSDP grew at 12.02 per cent over the previous year as compared to 12.17 per cent in FY 2023-24. The State's GSDP constituted 5.15 per cent of lndia's GDP. Snapshot of State Finances Actuals of FY 2025 compares with Actuals of FY 2024 ( \ufffd in crore) FY 2025 FY 2024 J0994 \u25a0 Capital Expenditure 27044 269200 \u25a0 Revenue Expenditure 242231 \u25a0 Capital Receipt 58687 59622 \u25a0 Revenue Receipt 203276 227250 Revenue Receipts have increased by 11.79 per cent, attributed to the increase in tax revenue, non-tax revenue and Grants-in-Aid from Gol. Expenditure of the State was dominated by higher growth of revenue expenditure, due to increase in committed expenditure and subsidies. lX Executive Summary Revenue Deficit(-)/Surplus (+) Target as per Rajasthan Fiscal Responsibility Act 2005, Revenue deficit (fin crore) 0 -10000 -20000 -30000 -40000 -50000 FY2021 ,,,,,,,,,,1,,,,,,,,,,,,,, FY2022 t FY2023 FY2024 \u25a0 Revenue Deficit(-) /Surplus(+) FY2025 The 7.69 per cent increase in Revenue Deficit was due to < 26,969 crore increase in revenue expenditure and < 23,974 crore increase in Revenue Receipt as compared to FY 2024. This tightened the fiscal space and thus market borrowings increased to finance the capital expenditure.",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-ndiq2y",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Supreme Court Collegium recommends new Chief Justice for Rajasthan High Court",
+        "url": "https://indianexpress.com/article/india/rajasthan-high-court-acting-chief-justice-sanjeev-prakash-sharma-opts-out-cases-10857624/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:27:15.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      },
+      {
+        "id": "coverage-135ylou",
+        "publisherId": "hindustan-times",
+        "publisher": "Hindustan Times",
+        "title": "SC panel picks new Rajasthan HC chief justice amid allegations against acting CJ",
+        "url": "https://www.hindustantimes.com/india-news/raj-hc-acting-cj-opts-out-of-judicial-work-till-sept-5-amid-allegations-101788195222307.html",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:53:41.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://www.hindustantimes.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "Hindustan Times"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
     "id": "cag-126002",
     "title": "Report No. 2 of 2026 : Report of the Comptroller and Auditor General of India on Implementation of Pradhan Mantri Awaas Yojana-Gramin in Jharkhand \u00b7 Sector: - \u00b7 Government: State",
     "indiaConnection": "This audit examines how a public programme in Jharkhand was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:19:49.772Z",
+    "collectedAt": "2026-09-05T00:22:49.854Z",
     "sources": [
       {
         "id": "cag-126002",
@@ -244,7 +1017,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/126002",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-11T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:19:49.772Z",
+        "accessedAt": "2026-09-05T00:22:49.854Z",
         "evidenceText": "Objectives of taking up the audit Considering the criticality of the Scheme in achieving its intended objectives and its impact on rural beneficiaries, Performance Audit (PA) of PMAY-G (2019-24) was conducted during July 2024 to December 2024. The objectives of carrying out the PA were to evaluate whether the mechanism for identification, selection and verification of beneficiaries was transparent, adequate and in compliance with the guidelines of PMAY-G; implementation of the Scheme, including convergence with other schemes, was in compliance with the guidelines; financial management of the Scheme was in compliance with the guidelines of PMAY-G and other financial rules as applicable; and the mechanism for monitoring and evaluation of the Scheme was adequate and effective. The Performance Audit Report aims to highlight deficiencies, suggest remedial actions, and recommend measures to strengthen the outcomes of the Scheme. Main audit conclusions Planning under PMAY-G was deficient, as the system generated SECC- Priority List/Permanent Wait List (PWL) was not properly verified/finalised by the Gram Sabhas and District Appellate Committees, leading to inclusion of 2.90 lakh ineligible beneficiaries who had to be subsequently remanded/removed by the Gram Sabhas in the course of implementation of the Scheme (2017-18 to 2023-24). Notably, none of the selected 60 Gram Panchayats (GPs) in the six test-checked districts were able to furnish any records relating to the preparation of the final PWL during 2016-2024. The State identified 22.34 lakh eligible households by November 2022 under the Scheme. However, inaccuracies in the SECC Priority List/PWL, inability of the State to utilise the targets and a two-year delay in finalising Awaas+ Implementation of Pradhan Mantri Awaas Yojana-Gramin in Jharkhand [2] beneficiaries resulted in the Government of India allocating only 16.02 lakh houses. As a consequence, 6.32 lakh eligible households (28 per cent) could not be covered under the Scheme. Against this curtailed target, the State sanctioned 15,92,124 houses during 2016-24 and constructed 15,62,249 houses (98 per cent) as of January 2025. The State did not prepare and submit proposals under Special Projects to obtain additional release of funds for providing land to eligible persons residing in mining or leased areas. Further, the status of land was not verified by the GP/Block/District level authorities at the time of selection of beneficiaries/sanction of houses.",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -259,10 +1032,75 @@
   },
   {
     "contractVersion": "syat.source-pack.v1",
+    "id": "cag-126219",
+    "title": "Report of the Comptroller and Auditor General of India on Composite Audit Report--Civil for the year ended March 2024 (Government of Haryana Report No. 4 of 2026) \u00b7 Sector: Social Welfare \u00b7 Government: State",
+    "indiaConnection": "This audit examines how a public programme in Haryana was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+    "collectedAt": "2026-09-05T00:21:39.400Z",
+    "sources": [
+      {
+        "id": "cag-126219",
+        "publisherId": "cag",
+        "publisher": "Comptroller and Auditor General of India",
+        "title": "Report of the Comptroller and Auditor General of India on Composite Audit Report--Civil for the year ended March 2024 (Government of Haryana Report No. 4 of 2026) \u00b7 Sector: Social Welfare \u00b7 Government: State",
+        "url": "https://cag.gov.in/en/audit-report/details/126219",
+        "sourceKind": "audit_report",
+        "publishedAt": "2026-09-01T00:00:00.000Z",
+        "accessedAt": "2026-09-05T00:21:39.400Z",
+        "evidenceText": "Composite Audit Report (Civil) for the period ended March 2024 ii Particulars Reference to Paragraph Page Non-verification of the bills/vouchers at the worksite 2.22 31-32 State Employment Guarantee Council 2.23 32 Existence of grievance redressal mechanism 2.24 32-34 Non-constitution of Vigilance Cell and State/District Quality Monitors 2.25 34 Social Audit 2.26 34-37 Mandatory records and their maintenance 2.27 37 Conclusion 2.28 37-38 Recommendations 2.29 38 Chapter 3 Subject Specific Compliance Audit Sewage and Sewerage Management System in Urban Areas of Haryana Introduction 3.1 39-40 Audit Objectives 3.2 40 Audit Criteria 3.3 40 Audit Scope, Sample and Methodology 3.4 41 Management of wastewater 3.5 41-61 Monitoring Mechanism 3.6 61-63 Re-use of Treated Wastewater 3.7 63-65 Conclusion 3.8 65 Recommendation 3.9 66 Chapter 4 Compliance Audit Observations Information, Public Relations and Languages Department Suspected embezzlement of \u20b9 40.51 lakh 4.1 67-68 Department of Agriculture & Farmers Welfare, Haryana Chaudhary Charan Singh Haryana Agricultural University (CCSHAU), Hisar Dilution of conditions of Bank Guarantee resulted in non- realisation of objective of Bio-gas plant 4.2 68-69 Payment of \u20b9 6.37 crore on incomplete work 4.3 70-71 Department of School Education, Haryana Directorate of Secondary Education Utilisation of same vouchers twice resulting in suspected embezzlement of \u20b9 3.95 lakh 4.4 72-74 Higher Education Department Wasteful expenditure on equipment/services due to procurement of equipment without ensuring user requirement 4.5 74-78 Release of payment without verifying envisaged outcomes of start- up incubators and e-karma project 4.6 78-81",
+        "linkAllowed": true,
+        "modelInputAllowed": true,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "government_reproduction_policy",
+        "policyUrl": "https://cag.gov.in/en/page-copyright",
+        "reviewedAt": "2026-09-01T00:00:00.000Z",
+        "creditLine": "Comptroller and Auditor General of India"
+      }
+    ],
+    "relatedCoverage": [
+      {
+        "id": "coverage-1se0wrm",
+        "publisherId": "mongabay-india",
+        "publisher": "Mongabay India",
+        "title": "Crime content on social media threatens wildlife safety",
+        "url": "https://india.mongabay.com/2026/08/crime-content-on-social-media-threatens-wildlife-safety/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-27T17:58:48.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://india.mongabay.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "Mongabay India"
+      },
+      {
+        "id": "coverage-dodedl",
+        "publisherId": "indian-express",
+        "publisher": "The Indian Express",
+        "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+        "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+        "sourceKind": "reputable_reporting",
+        "publishedAt": "2026-08-31T16:37:09.000Z",
+        "accessedAt": "2026-08-31T18:38:23.900Z",
+        "evidenceText": "",
+        "linkAllowed": true,
+        "modelInputAllowed": false,
+        "mediaReuseAllowed": false,
+        "rightsBasis": "link_only",
+        "policyUrl": "https://indianexpress.com/",
+        "reviewedAt": "2026-08-31T00:00:00.000Z",
+        "creditLine": "The Indian Express"
+      }
+    ]
+  },
+  {
+    "contractVersion": "syat.source-pack.v1",
     "id": "cag-126077",
     "title": "Report of the Comptroller and Auditor General of India on Implementation of Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan (Report No.2 of the year 2026) \u00b7 Sector: Agriculture and Rural Development \u00b7 Government: State",
     "indiaConnection": "This audit examines how a public programme in Rajasthan was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:19:25.765Z",
+    "collectedAt": "2026-09-05T00:22:24.638Z",
     "sources": [
       {
         "id": "cag-126077",
@@ -272,7 +1110,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/126077",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-21T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:19:25.765Z",
+        "accessedAt": "2026-09-05T00:22:24.638Z",
         "evidenceText": "Under the Act, Government of Rajasthan notified 'Rajasthan Rural Employment Guarantee Scheme' in July 2006 and renamed as \"National Rural Employment Guarantee Scheme\" in May 2007. This Performance audit covering the period from 2019-20 to 2023-24 was conducted with the objective to review the adequacy of planning process and financial management practices, employment generated, creation and maintenance of durable and useful assets while ensuring convergence with other programmes/schemes. The Performance Audit also assessed the adequacy of monitoring, social audit and grievance redressal system. Audit examined the records in five out of 33 districts in the State, 10 Panchayat Samitis (PSs) and 40 Gram Panchayts (GPs). Besides, in each selected Gram Panchayat, seven works for Joint Physical Verification (total 280 works) and 10 Beneficiaries for Survey (total 400 beneficiaries) were also selected. I Major Audit Observations Planning and Financial Management The baseline survey was not conducted in any of the test checked GP during 2019-24 due to which the nature, quantum and timing of the demand of work for employment could not be ascertained and a realistic development plan could not be prepared at the grass root level. District Perspective Plan was also not prepared in any of the test-checked districts due to which needs and gaps of all the sectors in the districts could not be identified. Further, Annual work plans of the selected 16 GPs of seven selected PSs were prepared without determining the priorities of works in Gram Sabha in different years during 2019-24. Block Resource Centre (BRC) was required to be set up for providing technical inputs for planning, maintaining database for planning, ensuring convergence between MGNREGS and other production-oriented schemes of the government. Non-setting up of BRC in any of the selected block had left the GPs without any support system required for planning. Shortage of manpower in the State at all levels i.e. State, Districts, Panchayat Samitis and Gram panchayats level, ranging between 3 per cent to 64 per cent in regular staff and 31 per cent to 80 per cent in contractual staff adversely affected the implementation of the scheme. Vacancy in regular trained staff for conducting social audit affected the efficiency in conducting social audit as 100 per cent posts of regular Block Resource Persons (BRPs) and Village Resource vii",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -381,7 +1219,7 @@
     "id": "cag-126055",
     "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Scientific and Environmental Ministries/Departments Report No. 17 of 2026 (Compliance Audit) \u00b7 Sector: Science and Technology \u00b7 Government: Union",
     "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:19:37.626Z",
+    "collectedAt": "2026-09-05T00:22:37.686Z",
     "sources": [
       {
         "id": "cag-126055",
@@ -391,7 +1229,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/126055",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-12T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:19:37.626Z",
+        "accessedAt": "2026-09-05T00:22:37.686Z",
         "evidenceText": "\u2022 DAE may formulate and implement Uniform Departmental Pool Residential Accommodation Rules applicable to all its constituent units and Aided Institutions on priority. \u2022 DAE may formulate suitable guidelines for the allotment of residential quarters to PSUs so that it may either recover HRA component from PSUs or assess amount of contribution to be claimed from respective PSUs towards construction cost of additional quarters occupied by them. \u2022 DAE may undertake comprehensive review towards fixation of licence fee for providing space/building to Banks/Post offices with the approval of Member (Finance). \u2022 DAE may institute a robust mechanism for monitoring timely renewal of the respective lease/licence agreements before their expiry, with revised lease rent/licence fee/ground rent. Report No. 17 of 2026 vii Information Technology Audit of Tata Memorial Centre TMC did not have an approved IT Policy, leading to a lack of structured guidance for IT operations and security. Further, no IT Steering Committee was in place to monitor the software development life cycle process in different IT applications. The Centre also lacked any comprehensive Data Retention and Archival Policy. Weak password controls and inadequate authentication mechanisms, coupled with non-conduct of periodic Security Audit resulted in inability to prevent cyber-attacks and protect sensitive data. The Centre did not maintain cryptographic security while storing passwords and patients\u2019 Aadhaar card numbers. Systemic deficiencies included the absence of a Business Continuity and Disaster Recovery Plan, alongside critical gaps in logical access controls. Furthermore, TMC did not execute formal Service Level Agreements with vendors, resulting in continued payments despite unresolved technical issues and system malfunctions. The Centre lacked any mandatory unique identifier for registered patients and Audit also noted cases of multiple registration numbers against single patient. Absence of validation controls was observed while entering foreign patient details. Significant delays were observed in the implementation of the Hospital Information System, with several modules remaining non-functional across centres. Patient Scheme Management did not have any provision to apply for category conversion. Material Management System developed at the Centre lacked timely tracking and alert mechanisms, resulting in a stock of expired medicines. Financial Management System also did not generate essential financial reports.",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -428,7 +1266,7 @@
     "id": "cag-126302",
     "title": "Report of the Comptroller and Auditor General of India for the period ended March 2023 Government of Himachal Pradesh Report No. 1 of 2026 (Composite Audit Report) \u00b7 Sector: - \u00b7 Government: State",
     "indiaConnection": "This audit examines how a public programme in Himachal Pradesh was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:18:36.333Z",
+    "collectedAt": "2026-09-05T00:21:26.522Z",
     "sources": [
       {
         "id": "cag-126302",
@@ -438,7 +1276,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/126302",
         "sourceKind": "audit_report",
         "publishedAt": "2026-09-03T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:18:36.333Z",
+        "accessedAt": "2026-09-05T00:21:26.522Z",
         "evidenceText": "Information Technology Audit Chapter II \u2013 E-Procurement in Himachal Pradesh The Information Technology Audit of the e-Procurement system in Himachal Pradesh was conducted to evaluate the effectiveness, transparency, and accountability of the digital tendering processes implemented across Government Departments. Initiated in 2011 as a pilot under the National e-Governance Plan (NeGP), the e-Procurement system aimed to streamline procurement through internet-based technologies and ensure fair competition. Although a State Government notification (June 2018) mandated all Departments and Government Bodies to use the e-Procurement portal for tenders above \u20b9 five lakh, the audit revealed critical gaps in implementation and system usage. The audit covered the period from April 2018 to March 2023 and analysed the data in respect of 77,152 tenders across 83 procuring entities. Using a combination of data analytics, application control reviews, and scrutiny of manual and online records, the Audit identified significant deficiencies. Stratified random sampling was employed to select three districts, nine Departments, 51 units, and 783 tenders for detailed examination. Key findings: Incomplete implementation: Audit had highlighted the non-implementation of various modules of the e-Procurement system in Audit Report \u2013 Social, General and Economic Sectors (Non-PSUs) for the year ended 31 March 2017. At that time, only one module \u2013 e-Tendering was functioning. However, even after seven years, the e-Procurement system was limited to partial implementation of three more modules (vendor management, e-Auction and e-Payment), while three modules, such as indent management, catalogue management, and contract management were not implemented (September 2024). Overview Composite Audit Report for the period ended March 2023 vi The absence of a formal Service Level Agreement (SLA) with National Informatics Centre (NIC) and irregular meetings of the Core Committee impeded monitoring and effective roll-out. Sub-optimal utilisation: The system\u2019s full potential remains untapped, as 16 out of 100 procuring entities, such as Dr. Rajendra Prasad Government Medical College Tanda, Directorate of Youth Services and Sports, Himachal Pradesh Vidhan Sabha, Himachal Pradesh Institute of Public Administration, etc. did not use the e-Procurement portal since inception and 15 others published fewer than ten contracts as of March 2023.",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -456,7 +1294,7 @@
     "id": "cag-125975",
     "title": "Report of the Comptroller and Auditor General of India on Passenger amenities and sanitation at non-suburban railway stations in Indian Railways Union Government Ministry of Railways Report No. 31 of 2026 (Compliance Audit - Railways) \u00b7 Sector: Transport & Infrastructure \u00b7 Government: Union",
     "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:20:08.413Z",
+    "collectedAt": "2026-09-05T00:23:12.417Z",
     "sources": [
       {
         "id": "cag-125975",
@@ -466,7 +1304,7 @@
         "url": "https://cag.gov.in/en/audit-report/details/125975",
         "sourceKind": "audit_report",
         "publishedAt": "2026-08-12T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:20:08.413Z",
+        "accessedAt": "2026-09-05T00:23:12.417Z",
         "evidenceText": "Even high-revenue, high-footfall NSG-1 to NSG-3 stations exhibited significant shortfalls. (Para 2.1.1.1 and Para 2.1.1.3) \uf0b7 Analysis of Passenger Amenities Management System (PAMS) data (February 2025) confirmed that deficiencies persisted across all station categories and Zones, indicating systemic gaps rather than isolated cases. Audit further observed that no time-bound action plans were Report No. 31 of 2026 (Railways) Executive Summaryvi Executive Summary Report No. 31 of 2026 (Railways) vi prepared for bridging gaps in recommended and desirable amenities, contrary to Railway Board instructions. (Para 2.1.1.5, Para 2.1.2 and Para 2.1.3) \uf0b7 Provision of amenities for Divyangjans was found to be inadequate and non-compliant with the Rights of Persons with Disabilities Act, 2016, with substantial deficiencies in accessibility infrastructure, information systems, toilets, ramps, tactile pathways, lifts and announcements, including at NSG-1 stations. (Para 2.2 and Para 2.2.1) \uf0b7 Medical care arrangements at stations were largely inadequate, with emergency medical rooms and AIIMS-recommended medical boxes absent at a majority of stations, posing risks to passenger safety. (Para 2.3) \uf0b7 Sanitation infrastructure also remained deficient, marked by non- functional toilets, inadequate facilities in pay-and-use and continued existence of unauthorised entry points affecting cleanliness and safety. (Para 2.4 and Para 2.5) \uf0b7 Audit observed non-compliance with National Green Tribunal (NGT) directions regarding maintenance of station-wise webpages for dissemination of information on amenities, sanitation practices and action plans. As of March 2024, no Zone had operationalised such webpages. (Para 2.6) \uf0b7 A review of 395 passenger amenity works undertaken during 2019\u201320 to 2023\u201324 showed that 59 per cent of works were delayed, with delays ranging from one to over four years, and only 41 per cent completed within stipulated timelines, depriving passengers of timely access to essential facilities. Several works suffered inordinate delays exceeding three years due to defective planning, non-availability of material/skilled labour and contractor failures. (Para 2.7.1 and Para 2.7.2) \uf0b7 Despite repeated assurances and availability of funds, there was persistent underutilisation of Budget Grant for provision of passenger amenities, ranging between 36 per cent and 44 per cent during 2019\u201320 to 2023\u201324, even in non-COVID years, highlighting deficiencies in planning and execution rather than financial constraints. (Para 2.7.4)",
         "linkAllowed": true,
         "modelInputAllowed": true,
@@ -478,88 +1316,5 @@
       }
     ],
     "relatedCoverage": []
-  },
-  {
-    "contractVersion": "syat.source-pack.v1",
-    "id": "cag-125712",
-    "title": "Report No. 01 of 2026- Compliance Audit Report of Government of West Bengal for the year ended on 31 March 2024. \u00b7 Sector: Environment and Sustainable Development,Finance,Agriculture and Rural Development,Social Welfare,Transport & Infrastructure \u00b7 Government: State",
-    "indiaConnection": "This audit examines how a public programme in West Bengal was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
-    "collectedAt": "2026-09-04T20:21:03.435Z",
-    "sources": [
-      {
-        "id": "cag-125712",
-        "publisherId": "cag",
-        "publisher": "Comptroller and Auditor General of India",
-        "title": "Report No. 01 of 2026- Compliance Audit Report of Government of West Bengal for the year ended on 31 March 2024. \u00b7 Sector: Environment and Sustainable Development,Finance,Agriculture and Rural Development,Social Welfare,Transport & Infrastructure \u00b7 Government: State",
-        "url": "https://cag.gov.in/en/audit-report/details/125712",
-        "sourceKind": "audit_report",
-        "publishedAt": "2026-07-25T00:00:00.000Z",
-        "accessedAt": "2026-09-04T20:21:03.435Z",
-        "evidenceText": "(vii) EXECUTIVE SUMMARY Out of 24 Departments under the jurisdiction of Office of the Principal Accountant General (Audit-II), West Bengal, this Report covers matters arising from compliance audit of 12 Government Departments. The significant Audit observations of this Report are as follows: Significant Audit Observations Subject Specific Compliance Audit Report (SSCA) on Adequacy and Efficacy of Infrastructure of Animal Resource Development Department The ARDD does not have a Strategic Plan or Vision Document for the maintenance/upkeep of infrastructure of the Veterinary Units/laboratories/ Poultry and Livestock farms of the State. The Directorate has also not formulated a policy for strengthening the existing veterinary infrastructure of the State nor does it have any standard or norms for equipping Veterinary Hospitals, Laboratories etc., under its control. In the absence of plans, policy, norms and guidelines of ARDD, documented policies/best practices of other States along with existing guidelines, notifications, orders and Circulars issued by the Government of India (GoI) and GoWB were used as audit criteria. The Veterinary Hospitals lacked separate large and small animal examination rooms, in-patient facilities, and power backup for surgeries. Essential high-end equipment (e.g., Radiographic Digital System, anaesthesia system for large animals, centralised oxygen supply system) were either absent or, non-functional and had not been repaired or replaced. In test-checked BAHCs, 46 per cent of surgical instruments were found to be unserviceable. (Paragraph 2.8.1.1) All the test checked polyclinics, State Animal Health Centres (SAHCs), Block Animal Health Centres (BAHCs) and Additional Block Animal Health Centres (ABAHCs) were not provided with sufficient medicines for adequate treatment. Due to the shortage of medicines and vaccines in the animal health care centres and hospitals in the State, adequate treatment for animals could not be ensured. (Paragraph 2.8.1.2) The Department has not framed any Standard Operating Procedures (SOPs) to manage epidemics or outbreaks. Most facilities lacked basic equipment and consumables required for the timely investigation of disease outbreaks. (Paragraph 2.8.2.1) There were no segregated bins to collect different types of bio-medical wastes and equipment like incinerator, autoclave etc. Five of the eight test checked SAHCs were not provided with any bio-waste disposal equipment like incinerator or microwaves.",
-        "linkAllowed": true,
-        "modelInputAllowed": true,
-        "mediaReuseAllowed": false,
-        "rightsBasis": "government_reproduction_policy",
-        "policyUrl": "https://cag.gov.in/en/page-copyright",
-        "reviewedAt": "2026-09-01T00:00:00.000Z",
-        "creditLine": "Comptroller and Auditor General of India"
-      }
-    ],
-    "relatedCoverage": [
-      {
-        "id": "coverage-vtfisu",
-        "publisherId": "opindia",
-        "publisher": "OpIndia",
-        "title": "Who is Kajal Sheikh, TMC goon and sand mafia kingpin who was snubbed by West Bengal Chief Minister Suvendu Adhikari in Birbhum",
-        "url": "https://www.opindia.com/2026/08/who-is-kajal-sheikh-sand-mafia-tmc-goon-snubbed-by-suvendu-adhikari/",
-        "sourceKind": "reputable_reporting",
-        "publishedAt": "2026-08-30T11:37:03.000Z",
-        "accessedAt": "2026-08-31T18:38:23.900Z",
-        "evidenceText": "",
-        "linkAllowed": true,
-        "modelInputAllowed": false,
-        "mediaReuseAllowed": false,
-        "rightsBasis": "link_only",
-        "policyUrl": "https://www.opindia.com/",
-        "reviewedAt": "2026-08-31T00:00:00.000Z",
-        "creditLine": "OpIndia"
-      },
-      {
-        "id": "coverage-1se0wrm",
-        "publisherId": "mongabay-india",
-        "publisher": "Mongabay India",
-        "title": "Crime content on social media threatens wildlife safety",
-        "url": "https://india.mongabay.com/2026/08/crime-content-on-social-media-threatens-wildlife-safety/",
-        "sourceKind": "reputable_reporting",
-        "publishedAt": "2026-08-27T17:58:48.000Z",
-        "accessedAt": "2026-08-31T18:38:23.900Z",
-        "evidenceText": "",
-        "linkAllowed": true,
-        "modelInputAllowed": false,
-        "mediaReuseAllowed": false,
-        "rightsBasis": "link_only",
-        "policyUrl": "https://india.mongabay.com/",
-        "reviewedAt": "2026-08-31T00:00:00.000Z",
-        "creditLine": "Mongabay India"
-      },
-      {
-        "id": "coverage-g03gf4",
-        "publisherId": "the-hindu",
-        "publisher": "The Hindu",
-        "title": "Honda Motorcycle & Scooter India eyes sustainable growth as 2W market expands",
-        "url": "https://www.thehindu.com/business/honda-motorcycle-scooter-india-eyes-sustainable-growth-as-2w-market-expands/article71411903.ece",
-        "sourceKind": "reputable_reporting",
-        "publishedAt": "2026-08-31T16:23:14.000Z",
-        "accessedAt": "2026-08-31T18:38:23.900Z",
-        "evidenceText": "",
-        "linkAllowed": true,
-        "modelInputAllowed": false,
-        "mediaReuseAllowed": false,
-        "rightsBasis": "link_only",
-        "policyUrl": "https://www.thehindu.com/",
-        "reviewedAt": "2026-08-31T00:00:00.000Z",
-        "creditLine": "The Hindu"
-      }
-    ]
   }
 ]

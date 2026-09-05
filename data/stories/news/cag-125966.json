@@ -1,0 +1,368 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-cag-125966",
+  "slug": "cag-125966",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "private_preview",
+  "publicationAllowed": false,
+  "disclosure": "AI-assisted private preview",
+  "format": "news_brief",
+  "title": "FAME-I portal lacked validation controls, audit finds",
+  "dek": "An audit of India's electric vehicle subsidy scheme found the demand incentive portal had no end-to-end online processing and missing contractual safeguards, raising questions about how claims were verified.",
+  "theme": "Electric vehicle subsidy scheme audit",
+  "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "cag-125966"
+    ]
+  },
+  "collectedAt": "2026-09-05T00:23:33.090Z",
+  "generatedAt": "2026-09-05T00:43:03.610Z",
+  "updatedAt": "2026-09-05T00:43:03.610Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1",
+      "kind": "paragraph",
+      "text": "The Demand Incentive Delivery Mechanism portal for the first phase of the Faster Adoption and Manufacturing of Electric Vehicles scheme did not have the ability to process claims entirely online. The audit record states that the portal lacked validation controls and did not allow the ministry to handle claims from start to finish through the system. This gap meant that key steps in verifying subsidy claims were not automated or contractually defined.",
+      "section": {
+        "id": "portal-gaps",
+        "title": "Portal gaps in FAME-I"
+      },
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    },
+    {
+      "id": "para-2",
+      "kind": "paragraph",
+      "text": "The audit also found that a Detailed Project Report was not prepared and a Service Level Agreement was not signed for the portal's development. As a result, important aspects such as timelines, testing protocols, data integrity requirements, and procedures for managing defects and changes were not written into any contract. The record does not say whether these missing documents led to any specific error in subsidy payments.",
+      "claimIds": [
+        "claim-2"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    },
+    {
+      "id": "para-3",
+      "kind": "paragraph",
+      "text": "Starting in April 2015, the scheme had an initial budget of ₹795 crore for two years. It was then prolonged until March 2019, with the budget increased to ₹895 crore. The second phase, from April 2019 to March 2024, began with ₹10,000 crore and later rose to ₹11,500 crore. The audit looked at the timeframe from March 2015 to March 2024.",
+      "section": {
+        "id": "scheme-scope",
+        "title": "Scheme scope and audit period"
+      },
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    },
+    {
+      "id": "para-4",
+      "kind": "paragraph",
+      "text": "Five parts made up the scheme: incentives for demand, charging points, a tech platform for R&D, pilot efforts, and awareness activities. The audit reviewed the Ministry of Heavy Industries, testing bodies, the Bureau of Energy Efficiency, certain state transport companies, and agencies running projects. The report doesn't specify which states or agencies were chosen.",
+      "claimIds": [
+        "claim-4"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    },
+    {
+      "id": "para-5",
+      "kind": "paragraph",
+      "text": "The audit record identifies discrepancies in the portal but does not provide evidence of any specific claim that was incorrectly paid or rejected. It also does not include independent measurements of the scheme's impact on electric vehicle adoption. The record's findings are based on the ministry's own files and the portal's data dump, not on external verification.",
+      "section": {
+        "id": "evidence-limits",
+        "title": "What the record does not show"
+      },
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    },
+    {
+      "id": "para-6",
+      "kind": "paragraph",
+      "text": "The audit states that there were discrepancies between the physical and electronic files and the portal's data dump for the first phase. However, the record does not explain the nature or extent of those discrepancies. A reader would need access to the underlying files or an independent review to understand what the differences were and whether they affected subsidy amounts.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The FAME-I portal for demand incentives didn't have proper validation checks and couldn't handle the entire claim process online for the ministry.",
+      "sourceIds": [
+        "cag-125966"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's section on demand incentives, based on the ministry's files and portal data dump.",
+      "type": "documented",
+      "limits": "The record does not specify which validation controls were missing or how this affected any particular claim."
+    },
+    {
+      "id": "claim-2",
+      "text": "A Detailed Project Report was not prepared and a Service Level Agreement was not signed for the portal's development, leaving key deliverables and procedures undefined.",
+      "sourceIds": [
+        "cag-125966"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's findings on the portal's development and contractual arrangements.",
+      "type": "documented",
+      "limits": "The record does not state whether the missing documents led to any specific error or delay in the scheme."
+    },
+    {
+      "id": "claim-3",
+      "text": "The scheme was launched in April 2015 with an outlay of 795 crore rupees, later extended to March 2019 with the outlay raised to 895 crore rupees.",
+      "sourceIds": [
+        "cag-125966"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The executive summary of the audit report describing the scheme's launch and extension.",
+      "type": "documented",
+      "limits": "The record does not provide a breakdown of how the enhanced outlay was allocated across components."
+    },
+    {
+      "id": "claim-4",
+      "text": "The scheme had five components: demand incentive, charging infrastructure, technology platform, pilot projects, and information, education and communication.",
+      "sourceIds": [
+        "cag-125966"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The executive summary of the audit report listing the scheme's components.",
+      "type": "documented",
+      "limits": "The record does not describe the specific activities or budgets for each component."
+    },
+    {
+      "id": "claim-5",
+      "text": "The audit's findings are based on the ministry's own records and the portal's data dump, not on independent measurement of the scheme's outcomes.",
+      "sourceIds": [
+        "cag-125966"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The audit report's methodology section, which names the sources reviewed.",
+      "type": "interpreted",
+      "limits": "The record does not include any independent data on electric vehicle adoption or subsidy impact."
+    },
+    {
+      "id": "claim-6",
+      "text": "There were discrepancies between the physical and electronic files and the portal's data dump for the first phase of the scheme.",
+      "sourceIds": [
+        "cag-125966"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The audit report's section on demand incentives, noting discrepancies in information and data.",
+      "type": "documented",
+      "limits": "The record does not detail the nature or extent of these discrepancies."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The audit's scope spans from March 2015 to March 2024, but the exact date when the portal issues occurred isn't given.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Audit perspective",
+      "rationale": "The audit is the only source in the dossier and provides the documented findings.",
+      "sees": "The audit sees the portal's lack of validation controls and missing contractual documents as discrepancies.",
+      "values": "It values clear contractual definitions and end-to-end online processing for accountability.",
+      "uses": "It uses the ministry's files and portal data dump to identify gaps.",
+      "mayMiss": "It may miss the actual impact of these gaps on subsidy recipients or the environment.",
+      "sourceIds": [
+        "cag-125966"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "ministry-heavy-industries",
+      "kind": "institution",
+      "label": "Ministry of Heavy Industries",
+      "association": "The ministry implemented the FAME scheme and is the subject of the audit.",
+      "sourceIds": [
+        "cag-125966"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What specific validation controls were missing from the portal, and did any claim get paid incorrectly as a result?",
+      "whatWouldHelp": "Access to the portal's design documents and a sample of claim records would help answer this.",
+      "sourceIds": [
+        "cag-125966"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "evidence-threshold",
+    "question": "What can an audit record establish about a public programme when the underlying data has gaps?",
+    "connection": "This audit shows how a government scheme's own records can reveal missing safeguards, but it also leaves open questions about the real-world effects on people who applied for subsidies."
+  },
+  "sources": [
+    {
+      "id": "cag-125966",
+      "publisher": "Comptroller and Auditor General of India",
+      "title": "Report of the Comptroller and Auditor General of India on Scheme for Faster Adoption and Manufacturing of (Hybrid &) Electric Vehicles in India Union Government Ministry of Heavy Industries Report No. 10 of 2026 (Performance Audit - Civil) · Sector: Environment and Sustainable Development,Power & Energy,Transport & Inf",
+      "url": "https://cag.gov.in/en/audit-report/details/125966",
+      "sourceKind": "primary_document",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "accessedAt": "2026-09-05T00:23:33.090Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6.",
+      "scope": "The audit report's section on demand incentives, based on the ministry's files and portal data dump.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-cag-125966-timeline",
+      "kind": "chart",
+      "label": "FAME scheme timeline and audit coverage",
+      "alt": "FAME scheme timeline and audit coverage. A timeline showing the launch of FAME-I in April 2015, its extension to March 2019, the start of FAME-II in April 2019, and the audit period ending March 2024, with the portal discrepancies noted as an unresolved point.",
+      "caption": "A timeline showing the launch of FAME-I in April 2015, its extension to March 2019, the start of FAME-II in April 2019, and the audit period ending March 2024, with the portal discrepancies noted as an unresolved point.",
+      "creator": "Syāt visual desk",
+      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125966-timeline",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T00:43:03.604Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-cag-125966-timeline",
+        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The timeline is based only on the audit report's dates; the specific timing of the portal issues is not established.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "cag-125966"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-cag-125966-timeline",
+    "kind": "timeline",
+    "title": "FAME scheme timeline and audit coverage",
+    "description": "A timeline showing the launch of FAME-I in April 2015, its extension to March 2019, the start of FAME-II in April 2019, and the audit period ending March 2024, with the portal discrepancies noted as an unresolved point.",
+    "limitation": "The timeline is based only on the audit report's dates; the specific timing of the portal issues is not established.",
+    "claimIds": [
+      "claim-3"
+    ],
+    "sourceIds": [
+      "cag-125966"
+    ]
+  },
+  "relatedCoverage": [
+    {
+      "id": "coverage-g03gf4",
+      "publisher": "The Hindu",
+      "title": "Honda Motorcycle & Scooter India eyes sustainable growth as 2W market expands",
+      "url": "https://www.thehindu.com/business/honda-motorcycle-scooter-india-eyes-sustainable-growth-as-2w-market-expands/article71411903.ece",
+      "publishedAt": "2026-08-31T16:23:14.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-dodedl",
+      "publisher": "The Indian Express",
+      "title": "Haryana to oppose private parallel power distribution licence in Gurgaon, Nuh: Power Minister",
+      "url": "https://indianexpress.com/article/cities/chandigarh/haryana-opposes-parallel-power-distribution-licence-gurgaon-nuh-herc-10857639/",
+      "publishedAt": "2026-08-31T16:37:09.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-upyni4",
+      "publisher": "Mongabay India",
+      "title": "Groundwater study flags localised heavy metal concerns in a coastal district",
+      "url": "https://india.mongabay.com/2026/08/groundwater-study-flags-localised-heavy-metal-concerns-in-a-coastal-district/",
+      "publishedAt": "2026-08-31T16:37:12.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    },
+    {
+      "id": "coverage-18z0h1a",
+      "publisher": "The Times of India",
+      "title": "Scientists find eggshells make clay bricks reduce energy consumption by blocking heat",
+      "url": "https://timesofindia.indiatimes.com/technology/tech-news/in-2025-researchers-used-fired-clay-bricks-and-eggshell-waste-reducing-energy-consumption-for-heating-and-cooling-by-50-turning-food-waste-into-useful-building-material/articleshow/133658882.cms",
+      "publishedAt": "2026-08-31T16:58:04.000Z",
+      "use": "Provides attributed link-only context and was not used as model evidence.",
+      "linkAllowed": true,
+      "modelInputAllowed": false,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "reframe": {
+    "kind": "claim",
+    "value": "The audit record shows the portal for FAME-I claims lacked validation controls, but it does not establish whether any specific claim was wrongly paid."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.27",
+    "inputHash": "b4ad04ea7c3e837ec56faeb03d2c015ffe4bb2d1c8c099fac5e23b6733996b6d",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T00:43:03.610Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 5,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

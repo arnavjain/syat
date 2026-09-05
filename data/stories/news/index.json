@@ -1,6 +1,6 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-09-04T20:32:17.961Z",
+  "generatedAt": "2026-09-05T01:01:10.735Z",
   "items": [
     {
       "slug": "cag-126269",
@@ -71,6 +71,118 @@
       "updatedAt": "2026-09-04T20:32:17.953Z",
       "readingMinutes": 2,
       "featured": true
+    },
+    {
+      "slug": "cag-125969",
+      "format": "timeline",
+      "title": "Central government's stake in state-run firms grows, but losses erode net worth of many",
+      "dek": "An audit of central public sector enterprises for the year ending March 2024 shows rising government investment and dividends, alongside mounting accumulated losses that have wiped out the net worth of 91 companies.",
+      "theme": "Public sector finances and accountability",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T00:25:28.953Z",
+      "readingMinutes": 3,
+      "featured": true
+    },
+    {
+      "slug": "cag-126219",
+      "format": "news_brief",
+      "title": "Haryana audit finds suspected embezzlement and incomplete works in state departments",
+      "dek": "The CAG's composite audit for the year ended March 2024 records suspected embezzlement of ₹40.51 lakh and payment of ₹6.37 crore for incomplete work, among other findings.",
+      "theme": "Public audit and accountability",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T00:33:28.463Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-125968",
+      "format": "public_impact",
+      "title": "Audit flags ₹13,678 crore in defective planning across central public sector firms",
+      "dek": "The CAG's compliance audit for 2024-25 identifies ₹20,539.40 crore in financial implications, with the largest share attributed to planning failures, while the managements' replies remain partly unincorporated.",
+      "theme": "Defective planning in central public sector enterprises",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T00:42:28.296Z",
+      "readingMinutes": 3,
+      "featured": true
+    },
+    {
+      "slug": "cag-125966",
+      "format": "news_brief",
+      "title": "FAME-I portal lacked validation controls, audit finds",
+      "dek": "An audit of India's electric vehicle subsidy scheme found the demand incentive portal had no end-to-end online processing and missing contractual safeguards, raising questions about how claims were verified.",
+      "theme": "Electric vehicle subsidy scheme audit",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T00:43:03.610Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-125984",
+      "format": "explainer",
+      "title": "Railways' coal freight share and asset renewal backlog stand out in CAG's 2023-24 finances audit",
+      "dek": "The audit of Indian Railways' finances for 2023-24 shows coal's dominant share in freight earnings, a thin operating surplus, and a large backlog of renewal works for over-aged assets.",
+      "theme": "Railway finances and asset renewal",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T00:47:55.234Z",
+      "readingMinutes": 3,
+      "featured": true
+    },
+    {
+      "slug": "cag-125942",
+      "format": "explainer",
+      "title": "SC/ST apprenticeship funds diverted to general trainees in Mumbai board",
+      "dek": "An audit of the Board of Apprenticeship Training in Mumbai finds that grants meant for Scheduled Caste and Scheduled Tribe apprentices were used for general category trainees, leaving the intended beneficiaries without the promised support.",
+      "theme": "Misuse of reserved category funds in apprenticeship training",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T00:52:38.736Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-126077",
+      "format": "explainer",
+      "title": "Rajasthan's rural job scheme lacked baseline surveys and district plans, audit finds",
+      "dek": "An audit of the Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan says planning was not grounded in local demand, and it points to staff shortages and missing technical support.",
+      "theme": "Planning gaps in Rajasthan's rural employment scheme",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T01:00:48.207Z",
+      "readingMinutes": 2,
+      "featured": true
+    },
+    {
+      "slug": "cag-126055",
+      "format": "timeline",
+      "title": "Tata Memorial Centre's IT systems lack policy and security controls, audit finds",
+      "dek": "An audit of Tata Memorial Centre's computer systems found no approved IT policy, weak password controls, and missing data backup plans, leaving patient data vulnerable.",
+      "theme": "IT security gaps in a public cancer hospital",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T01:01:10.726Z",
+      "readingMinutes": 2,
+      "featured": false
     }
   ]
 }

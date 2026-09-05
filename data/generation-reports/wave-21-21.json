@@ -1,23 +1,23 @@
 {
   "contractVersion": "syat.generation-wave-report.v1",
-  "waveId": "wave-1-1",
-  "generatedAt": "2026-09-05T00:25:28.963Z",
+  "waveId": "wave-21-21",
+  "generatedAt": "2026-09-05T01:01:10.736Z",
   "status": "passed",
-  "start": 1,
+  "start": 21,
   "count": 1,
   "model": "deepseek/deepseek-v4-flash-0731",
-  "promptVersion": "syat.story-draft.v4.24",
-  "spentPaise": 12,
-  "actualPaise": 12,
+  "promptVersion": "syat.story-draft.v4.31",
+  "spentPaise": 10,
+  "actualPaise": 10,
   "conservativeFailedPaise": 0,
   "reservedPaise": 0,
   "inrPerUsd": 100,
   "items": [
     {
-      "sourcePackId": "cag-125969",
-      "slug": "cag-125969",
-      "inputHash": "f3f81ddfc0a01ce62ec445732af4abc17d91c05ec052a1c6317033ccbaa29b9d",
-      "outputHash": "9df22faaeec73a7ae36fb0aa7726513106386ee9d576c6b1b8575ad254350b02",
+      "sourcePackId": "cag-126055",
+      "slug": "cag-126055",
+      "inputHash": "ee75deedc877c71a34dc4b89c09b9c46843987ee90abf953ddd8948c57c269ea",
+      "outputHash": "c5463d984171153536cc3dfb2c7b82fc190f1da24d6585d9fcf10bb2982424d4",
       "reused": false,
       "warnings": [
         "single-publisher-evidence"
