@@ -9,7 +9,34 @@ export type SearchEntry = {
   lens: string;
   /** Lowercased haystack: title, theme, lens and every standpoint label. */
   haystack: string;
+  /** Which library the entry belongs to, so one search can cover both. */
+  kind?: "timeless" | "news";
+  /** Where the entry actually lives. Timeless entries fall back to their topic route. */
+  href?: string;
+  /** Shown under the title in results. */
+  summary?: string;
 };
+
+/**
+ * One index across both libraries.
+ *
+ * A reader looking for "water" does not know or care whether the answer is a News preview or an
+ * enduring question, so searching only one of them is a worse answer than no search at all.
+ */
+export function buildCombinedSearchIndex(news: readonly { slug: string; title: string; dek: string; theme: string }[]): SearchEntry[] {
+  const newsEntries: SearchEntry[] = news.map((story) => ({
+    slug: story.slug,
+    title: story.title,
+    theme: story.theme,
+    themeSlug: story.theme.toLocaleLowerCase("en-IN").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+    lens: "news",
+    kind: "news",
+    href: `/en/news/${story.slug}`,
+    summary: story.dek,
+    haystack: `${story.title} ${story.dek} ${story.theme}`.toLocaleLowerCase("en-IN")
+  }));
+  return [...buildSearchIndex().map((entry) => ({ ...entry, kind: "timeless" as const, href: `/en/timeless/topic/${entry.slug}` })), ...newsEntries];
+}
 
 /** Built once at module load and shipped to the client as data, so search needs no backend. */
 export function buildSearchIndex(): SearchEntry[] {

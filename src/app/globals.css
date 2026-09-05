@@ -1057,3 +1057,8 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
   .how-contribute { padding: 26px 22px; box-shadow: 6px 6px 0 var(--marigold); }
   .how-contribute .primary-action { justify-self: start; }
 }
+
+/* Global search: one index over both libraries, searched on the reader's own device. */
+.search-page { display: grid; gap: clamp(22px, 4vw, 38px); max-width: 74ch; }
+.search-page h1 { max-width: 20ch; margin: 6px 0 12px; font-size: clamp(1.9rem, 4.4vw, 3.2rem); line-height: 1.0; }
+.topic-search-results li small { display: block; margin-top: 4px; max-width: 62ch; color: var(--soft-ink); font-size: .84rem; }

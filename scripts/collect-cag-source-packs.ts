@@ -14,7 +14,7 @@ const MINIMUM_START_GAP_MS = 700;
 const DEFAULT_OUTPUT = "data/source-packs/cag-candidates.json";
 // The listing runs to roughly 282 pages. This bounds one collection run without
 // pretending the archive is smaller than it is.
-const MAXIMUM_LISTING_PAGES = 90;
+const MAXIMUM_LISTING_PAGES = 300;
 
 // One request at a time with a gap between starts. This is a small research queue, not a crawl.
 class PoliteHtmlClient {
@@ -45,7 +45,7 @@ function parseCount(argv: readonly string[], flag: string, fallback: number): nu
   const index = argv.indexOf(flag);
   if (index < 0) return fallback;
   const value = Number(argv[index + 1]);
-  if (!Number.isSafeInteger(value) || value < 1 || value > 60) throw new Error(`${flag} needs a whole number between 1 and 60.`);
+  if (!Number.isSafeInteger(value) || value < 1 || value > 400) throw new Error(`${flag} needs a whole number between 1 and 400.`);
   return value;
 }
 

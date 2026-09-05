@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Section = "home" | "explore" | "reframe" | "saved" | "you" | "about" | "studio";
+type Section = "home" | "explore" | "search" | "reframe" | "saved" | "you" | "about" | "studio";
 
 const links: Array<{ section: Exclude<Section, "about" | "studio">; href: string; label: string }> = [
   { section: "home", href: "/", label: "Home" },
   { section: "explore", href: "/en/explore", label: "Explore" },
+  { section: "search", href: "/en/search", label: "Search" },
   { section: "reframe", href: "/en/reframe", label: "Bring" },
   { section: "saved", href: "/en/saved", label: "Saved" },
   { section: "you", href: "/en/you", label: "You" }

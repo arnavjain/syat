@@ -12,9 +12,13 @@ import { LocalGenerationLedger, type LedgerReceipt } from "../src/lib/local-gene
 import { createStoryDraft, estimateMaximumStoryDraftCostInrPaise, OPENROUTER_STORY_MODEL, requestCloseCopyRepair, STORY_DRAFT_TEMPERATURE, type GenerationReservationRequest, type RepairCloseCopy, type ReserveStoryAttempt, type StoryDraftResult } from "../src/lib/openrouter-story-client";
 import { assertSourcePackPromotionCompatible, promoteGeneratedStory } from "../src/lib/promote-generated-story";
 import { readerStoryIndexItemSchema, readerStorySchema, type ReaderStory } from "../src/lib/reader-story-schema";
+import { fitTopicToRecord } from "../src/lib/timeless-source-fit";
 import { sourcePackSchema, validatePreviewSourcePack, type SourcePack } from "../src/lib/source-pack";
 
-const PILOT_CAP_PAISE = 10_000;
+// Raised from Rs 100 to Rs 1,000 on 5 September 2026 on the owner's explicit instruction.
+// AGENTS.md warns at Rs 1,000 a month and hard stops before Rs 1,400, so this sits exactly on
+// the warning line and the monthly guard in generation-budget.ts still applies above it.
+const PILOT_CAP_PAISE = 100_000;
 const INR_PER_USD = 100;
 const DEFAULT_LEDGER_PATH = ".syat-private/generation-ledger.json";
 const DEFAULT_SOURCE_PACK_PATH = "data/source-packs/approved-preview.json";
@@ -136,6 +140,7 @@ const batchArgumentsSchema = z.object({
   dryRun: z.boolean(),
   start: z.number().int().nonnegative(),
   count: z.number().int().positive().max(10),
+  mode: z.enum(["news", "timeless"]),
   sourcePackPath: z.string().min(1),
   ledgerPath: z.string().min(1)
 }).strict();
@@ -149,7 +154,7 @@ function readArgumentValue(args: string[], index: number, label: string) {
 }
 
 export function parseBatchArguments(args: string[]): BatchArguments {
-  const parsed: BatchArguments = { pilot: false, dryRun: false, start: 0, count: 10, sourcePackPath: DEFAULT_SOURCE_PACK_PATH, ledgerPath: DEFAULT_LEDGER_PATH };
+  const parsed: BatchArguments = { pilot: false, dryRun: false, start: 0, count: 10, mode: "news", sourcePackPath: DEFAULT_SOURCE_PACK_PATH, ledgerPath: DEFAULT_LEDGER_PATH };
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
     if (argument === "--pilot") parsed.pilot = true;
@@ -158,6 +163,7 @@ export function parseBatchArguments(args: string[]): BatchArguments {
     else if (argument === "--count") parsed.count = Number(readArgumentValue(args, index++, "--count"));
     else if (argument === "--source-packs") parsed.sourcePackPath = readArgumentValue(args, index++, "--source-packs");
     else if (argument === "--ledger") parsed.ledgerPath = readArgumentValue(args, index++, "--ledger");
+    else if (argument === "--mode") parsed.mode = readArgumentValue(args, index++, "--mode") === "timeless" ? "timeless" : "news";
     else throw new Error(`Unknown preview batch argument: ${argument}`);
   }
   const checked = batchArgumentsSchema.parse(parsed);
@@ -251,15 +257,18 @@ const leadAngles: readonly string[] = [
   "Open on the institution's own words about itself, then set the audited or documented position beside them."
 ];
 
-function draftInputFor(pack: SourcePack, position: number): StoryDraftV2PromptInput {
+function draftInputFor(pack: SourcePack, position: number, mode: "news" | "timeless" = "news", topicSlug?: string): StoryDraftV2PromptInput {
   const formats: StoryDraftV2PromptInput["format"][] = ["explainer", "timeline", "public_impact", "source_map", "news_brief"];
   const angle = leadAngles[position % leadAngles.length];
   return {
     sourcePackId: pack.id,
     language: "en-IN",
-    mode: "news",
+    mode,
+    ...(topicSlug ? { topicSlug } : {}),
     format: formats[position % formats.length],
-    editorialBrief: `Write an India-first private-preview story about this subject: ${pack.title.slice(0, 200)}. Aim for 420 to 520 words of body text across three or four titled sections, each with two paragraphs. Anything under 350 words is rejected, so do not write a summary, but do not exceed 560 words either. ${angle} Do not begin with the document's own framing, the institution's name, or the words "this report". Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.`,
+    editorialBrief: mode === "timeless"
+      ? `Write an India-first Timeless story. The enduring question is the subject; this record is one grounded Indian instance of it, and the story must still make sense to someone who never reads the record. Aim for 450 to 700 words of body text across three or four titled sections. Map at least three standpoints that genuinely disagree, saying for each what it sees and what it is placed to miss. Leave the question open. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.`
+      : `Write an India-first private-preview story about this subject: ${pack.title.slice(0, 200)}. Aim for 420 to 520 words of body text across three or four titled sections, each with two paragraphs. Anything under 350 words is rejected, so do not write a summary, but do not exceed 560 words either. ${angle} Do not begin with the document's own framing, the institution's name, or the words "this report". Explain the concrete change, what the supplied record supports, who is associated, the timeline, and what evidence is missing. Keep mediaPlan empty; the only visual is the required Syāt-authored visual.`,
     indiaConnection: pack.indiaConnection,
     sourceRoles: pack.sources.map((source) => ({ sourceId: source.id, role: sourceRoleFor(source.sourceKind) })),
     missingVoices: ["Independent reporting or measurement", "People directly affected by the change", "Evidence that tests the issuing institution's account"],
@@ -425,11 +434,24 @@ export async function runPreviewBatch(
     let waveSpentPaise = 0;
     let reportNext: string | undefined;
     let indexNext: string | undefined;
+    // Seeded from what is already staged, so a resumed run does not write a second story onto a
+    // question that already has one. One topic, one story.
+    const claimedTopicSlugs = new Set<string>();
+    for (const name of await readdir(storyDirectory)) {
+      if (!name.endsWith(".json") || name === "index.json") continue;
+      const staged = readerStorySchema.safeParse(await readJson(join(storyDirectory, name)));
+      if (staged.success && staged.data.contextBridge?.topicSlug) claimedTopicSlugs.add(staged.data.contextBridge.topicSlug);
+    }
 
     try {
       for (const [offset, pack] of selected.entries()) {
        try {
-        const input = draftInputFor(pack, options.start + offset);
+        const topicMatch = options.mode === "timeless"
+          ? fitTopicToRecord(`${pack.title} ${pack.sources.map((source) => source.evidenceText ?? "").join(" ")}`, claimedTopicSlugs)
+          : undefined;
+        if (options.mode === "timeless" && !topicMatch) throw new Error(`No Timeless topic is genuinely supported by ${pack.id}; forcing one would file a record under a question it cannot illustrate.`);
+        if (topicMatch) claimedTopicSlugs.add(topicMatch.slug);
+        const input = draftInputFor(pack, options.start + offset, options.mode, topicMatch?.slug);
         const inputHash = stableInputHash(input);
         const cachePath = join(cacheDirectory, `${inputHash}.json`);
         const prior = await ledger.getByInputHash(inputHash);
