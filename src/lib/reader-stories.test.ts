@@ -21,9 +21,9 @@ function makeValidReaderStory() {
     slug: "nadi-nagar-bazaar-road-trial",
     mode: "news",
     locale: "en-IN",
-    status: "private_preview",
-    publicationAllowed: false,
-    disclosure: "AI-assisted private preview",
+    status: "published",
+    publicationAllowed: true,
+    disclosure: "Written by Syāt from public audit records",
     format: "news_brief",
     title: "Nadi Nagar prepares a Bazaar Road street trial",
     dek: "The municipal note describes a trial that readers can inspect through its sources.",
@@ -111,7 +111,7 @@ describe("static news story loader", () => {
 
     expect(Array.isArray(committed)).toBe(true);
     expect(getNewsStoryStaticParams().map((param) => param.slug)).toEqual(committed.map((item) => item.slug));
-    for (const item of committed) expect(getNewsStory(item.slug)?.publicationAllowed).toBe(false);
+    for (const item of committed) expect(getNewsStory(item.slug)?.publicationAllowed).toBe(true);
   });
 
   it("returns undefined when a requested story file is absent", () => {

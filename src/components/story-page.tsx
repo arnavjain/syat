@@ -47,7 +47,6 @@ function ReaderStoryPage({ story }: { story: ReaderStory }) {
   return (
     <article className="story-page reader-story-page">
       <header className="story-header reader-story-header">
-        <p className="reader-preview-status">{story.disclosure}</p>
         <dl className="reader-story-meta">
           <div><dt>Theme</dt><dd>{story.theme}</dd></div>
           <div><dt>Format</dt><dd>{formatName(story.format)}</dd></div>
@@ -117,6 +116,7 @@ function ReaderStoryPage({ story }: { story: ReaderStory }) {
         <div className="reader-section-heading">
           <h2 id="reader-source-title">Inspect the original records</h2>
           <p>Credit and a link do not claim that every source independently confirms the story.</p>
+          <p className="reader-provenance">{story.disclosure}. Every figure below comes from the records listed here, and you are meant to check them.</p>
         </div>
         <div className="reader-source-list">
           {story.sources.map((source) => (
@@ -153,7 +153,7 @@ function ReaderStoryPage({ story }: { story: ReaderStory }) {
           <a className="story-return-action" href="#source-trail"><strong>Follow the source trail</strong><span>Open the original records and their limits.</span></a>
           <Link className="story-return-action" href="/en/saved"><strong>Save for later</strong><span>Saving stays on this device until sign-in is added.</span></Link>
           <Link className="story-return-action secondary" href={readerReframePath(story)}><strong>Reframe this reading</strong><span>Ask what changes from another grounded standpoint.</span></Link>
-          <Link className="story-return-action" href="/en/news"><strong>Read another preview</strong><span>Return to the News archive.</span></Link>
+          <Link className="story-return-action" href="/en/news"><strong>Read another story</strong><span>Back to all stories.</span></Link>
         </div>
       </section>
     </article>

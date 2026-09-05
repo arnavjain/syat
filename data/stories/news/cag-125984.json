@@ -4,9 +4,9 @@
   "slug": "cag-125984",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "explainer",
   "title": "Railways' coal freight share and asset renewal backlog stand out in CAG's 2023-24 finances audit",
   "dek": "The audit of Indian Railways' finances for 2023-24 shows coal's dominant share in freight earnings, a thin operating surplus, and a large backlog of renewal works for over-aged assets.",
@@ -294,7 +294,7 @@
     {
       "id": "cag-125984",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Ministry of Railways Report No. 3 of 2026 (Railway Finances) · Sector: Finance · Government: Union",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Ministry of Railways Report No. 3 of 2026 (Railway Finances) \u00b7 Sector: Finance \u00b7 Government: Union",
       "url": "https://cag.gov.in/en/audit-report/details/125984",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-12T00:00:00.000Z",
@@ -315,8 +315,8 @@
       "label": "Coal's share vs other freight earnings",
       "alt": "Coal's share vs other freight earnings. A bar chart comparing the percentage of freight earnings from coal (51.32%) with the remaining percentage from other commodities (48.68%) for the year 2023-24.",
       "caption": "A bar chart comparing the percentage of freight earnings from coal (51.32%) with the remaining percentage from other commodities (48.68%) for the year 2023-24.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125984-comparison",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -324,7 +324,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-125984-comparison",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The chart only shows the share of coal and does not break down the other commodities.",
       "claimIds": [

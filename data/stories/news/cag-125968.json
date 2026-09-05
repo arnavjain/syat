@@ -4,12 +4,12 @@
   "slug": "cag-125968",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "public_impact",
-  "title": "Audit flags ₹13,678 crore in defective planning across central public sector firms",
-  "dek": "The CAG's compliance audit for 2024-25 identifies ₹20,539.40 crore in financial implications, with the largest share attributed to planning failures, while the managements' replies remain partly unincorporated.",
+  "title": "Audit flags \u20b913,678 crore in defective planning across central public sector firms",
+  "dek": "The CAG's compliance audit for 2024-25 identifies \u20b920,539.40 crore in financial implications, with the largest share attributed to planning failures, while the managements' replies remain partly unincorporated.",
   "theme": "Defective planning in central public sector enterprises",
   "indiaConnection": "This audit examines how a public programme in India was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
   "eventTime": {
@@ -32,7 +32,7 @@
     {
       "id": "para-1-1",
       "kind": "paragraph",
-      "text": "For the fiscal year ending 31 March 2025, the Comptroller and Auditor General of India's compliance audit found total financial effects of ₹20,539.40 crore across 15 observations. The biggest share, ₹13,678.68 crore, stems from flawed or insufficient planning as detailed in eight paragraphs. Additionally, the audit highlighted ₹609.70 crore in seven paragraphs for failing to protect organisational financial interests, ₹5,900.81 crore in four paragraphs for weak or insufficient oversight, and ₹350.21 crore in four paragraphs for breaching rules and contract terms.",
+      "text": "For the fiscal year ending 31 March 2025, the Comptroller and Auditor General of India's compliance audit found total financial effects of \u20b920,539.40 crore across 15 observations. The biggest share, \u20b913,678.68 crore, stems from flawed or insufficient planning as detailed in eight paragraphs. Additionally, the audit highlighted \u20b9609.70 crore in seven paragraphs for failing to protect organisational financial interests, \u20b95,900.81 crore in four paragraphs for weak or insufficient oversight, and \u20b9350.21 crore in four paragraphs for breaching rules and contract terms.",
       "section": {
         "id": "section-1",
         "title": "The audit's central finding"
@@ -88,7 +88,7 @@
     {
       "id": "para-3-1",
       "kind": "paragraph",
-      "text": "The audit report includes a chapter on recoveries and corrections made by the CPSEs at the instance of audit. It states that managements of 11 CPSEs recovered an amount of ₹60.02 crore during 2024-25, and that three CPSEs carried out corrections or rectifications in five cases. These actions are presented as a positive outcome of the audit process, but the report does not provide details on the nature of the corrections or the specific cases.",
+      "text": "The audit report includes a chapter on recoveries and corrections made by the CPSEs at the instance of audit. It states that managements of 11 CPSEs recovered an amount of \u20b960.02 crore during 2024-25, and that three CPSEs carried out corrections or rectifications in five cases. These actions are presented as a positive outcome of the audit process, but the report does not provide details on the nature of the corrections or the specific cases.",
       "section": {
         "id": "section-3",
         "title": "Recoveries and corrections at the instance of audit"
@@ -142,7 +142,7 @@
   "statements": [
     {
       "id": "claim-1",
-      "text": "The audit report states a total financial implication of ₹20,539.40 crore across 15 audit observations.",
+      "text": "The audit report states a total financial implication of \u20b920,539.40 crore across 15 audit observations.",
       "sourceIds": [
         "cag-125968"
       ],
@@ -153,7 +153,7 @@
     },
     {
       "id": "claim-2",
-      "text": "The audit categorises ₹13,678.68 crore as defective or deficient planning in eight paragraphs.",
+      "text": "The audit categorises \u20b913,678.68 crore as defective or deficient planning in eight paragraphs.",
       "sourceIds": [
         "cag-125968"
       ],
@@ -208,7 +208,7 @@
     },
     {
       "id": "claim-7",
-      "text": "According to the audit, 11 CPSEs recouped ₹60.02 crore as a result of audit intervention during 2024-25, and three CPSEs implemented corrections across five instances.",
+      "text": "According to the audit, 11 CPSEs recouped \u20b960.02 crore as a result of audit intervention during 2024-25, and three CPSEs implemented corrections across five instances.",
       "sourceIds": [
         "cag-125968"
       ],
@@ -340,7 +340,7 @@
     {
       "id": "cag-125968",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 Union Government (Commercial) No. 22 of 2026 (Compliance Audit Observations) · Sector: - · Government: Union",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended 31 March 2025 Union Government (Commercial) No. 22 of 2026 (Compliance Audit Observations) \u00b7 Sector: - \u00b7 Government: Union",
       "url": "https://cag.gov.in/en/audit-report/details/125968",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-12T00:00:00.000Z",
@@ -359,10 +359,10 @@
       "id": "authored-cag-125968-number-stack",
       "kind": "chart",
       "label": "Financial implications by audit category",
-      "alt": "Financial implications by audit category. A stacked bar chart showing the total financial implication of ₹20,539.40 crore, broken down by category: defective planning (₹13,678.68 crore), inadequate monitoring (₹5,900.81 crore), non-safeguarding of financial interest (₹609.70 crore), and non-compliance (₹350.21 crore).",
-      "caption": "A stacked bar chart showing the total financial implication of ₹20,539.40 crore, broken down by category: defective planning (₹13,678.68 crore), inadequate monitoring (₹5,900.81 crore), non-safeguarding of financial interest (₹609.70 crore), and non-compliance (₹350.21 crore).",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "alt": "Financial implications by audit category. A stacked bar chart showing the total financial implication of \u20b920,539.40 crore, broken down by category: defective planning (\u20b913,678.68 crore), inadequate monitoring (\u20b95,900.81 crore), non-safeguarding of financial interest (\u20b9609.70 crore), and non-compliance (\u20b9350.21 crore).",
+      "caption": "A stacked bar chart showing the total financial implication of \u20b920,539.40 crore, broken down by category: defective planning (\u20b913,678.68 crore), inadequate monitoring (\u20b95,900.81 crore), non-safeguarding of financial interest (\u20b9609.70 crore), and non-compliance (\u20b9350.21 crore).",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125968-number-stack",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -370,7 +370,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-125968-number-stack",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The categories may overlap, so the sum of the parts may exceed the total.",
       "claimIds": [
@@ -386,7 +386,7 @@
     "mediaId": "authored-cag-125968-number-stack",
     "kind": "number_stack",
     "title": "Financial implications by audit category",
-    "description": "A stacked bar chart showing the total financial implication of ₹20,539.40 crore, broken down by category: defective planning (₹13,678.68 crore), inadequate monitoring (₹5,900.81 crore), non-safeguarding of financial interest (₹609.70 crore), and non-compliance (₹350.21 crore).",
+    "description": "A stacked bar chart showing the total financial implication of \u20b920,539.40 crore, broken down by category: defective planning (\u20b913,678.68 crore), inadequate monitoring (\u20b95,900.81 crore), non-safeguarding of financial interest (\u20b9609.70 crore), and non-compliance (\u20b9350.21 crore).",
     "limitation": "The categories may overlap, so the sum of the parts may exceed the total.",
     "claimIds": [
       "claim-1",
@@ -399,7 +399,7 @@
   "relatedCoverage": [],
   "reframe": {
     "kind": "claim",
-    "value": "The audit's finding of ₹13,678.68 crore in defective planning is a claim from the CAG's review, not a proven outcome, and it appears alongside the managements' replies that the report says were incorporated."
+    "value": "The audit's finding of \u20b913,678.68 crore in defective planning is a claim from the CAG's review, not a proven outcome, and it appears alongside the managements' replies that the report says were incorporated."
   },
   "generation": {
     "model": "deepseek/deepseek-v4-flash-0731",

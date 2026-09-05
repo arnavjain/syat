@@ -20,11 +20,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const story = getNewsStory(slug) ?? getPreviewStory(slug);
-  if (!story || story.mode !== "news") return { title: "News preview not found", robots: { index: false, follow: false } };
+  if (!story || story.mode !== "news") return { title: "Story not found" };
   return {
     title: `${story.title} · Syāt`,
     description: story.dek,
-    robots: { index: false, follow: false }
   };
 }
 

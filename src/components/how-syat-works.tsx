@@ -58,8 +58,8 @@ export function HowSyatWorks({ newsCount, topicCount, publisherCount }: { newsCo
           <h3>Said plainly, because the alternative is asking you to trust a source trail while hiding this one.</h3>
         </div>
         <dl>
-          <div><dt>Timeless questions</dt><dd>{topicCount}</dd><dd className="how-state-note">Written and published.</dd></div>
-          <div><dt>News previews</dt><dd>{newsCount}</dd><dd className="how-state-note">In private review. Every page is labelled and carries no search indexing.</dd></div>
+          <div><dt>Timeless questions</dt><dd>{topicCount}</dd><dd className="how-state-note">Each mapped to the standpoints that genuinely disagree.</dd></div>
+          <div><dt>News stories</dt><dd>{newsCount}</dd><dd className="how-state-note">Each written from public records, with the source trail on the page.</dd></div>
           <div><dt>Accounts</dt><dd>Not yet</dd><dd className="how-state-note">Saving works on your device alone. Nothing about you is collected or sent anywhere.</dd></div>
           <div><dt>Recommendations</dt><dd>Off</dd><dd className="how-state-note">Suggesting reading would mean profiling you. That needs a policy before it needs code.</dd></div>
         </dl>

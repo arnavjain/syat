@@ -305,9 +305,11 @@ const readerStorySchemaShape = z.object({
   slug: readerIdSchema,
   mode: z.literal("news"),
   locale: z.literal("en-IN"),
-  status: z.literal("private_preview"),
-  publicationAllowed: z.literal(false),
-  disclosure: z.literal("AI-assisted private preview"),
+  status: z.enum(["private_preview", "published"]),
+  publicationAllowed: z.boolean(),
+  // Kept as a required field so provenance can never be dropped by accident. It reads as a
+  // credit line on the story rather than as a warning banner on every card.
+  disclosure: z.string().min(4).max(120),
   format: z.enum(["news_brief", "explainer", "timeline", "source_map", "public_impact"]),
   title: z.string().min(12).max(160),
   dek: z.string().min(20).max(320),

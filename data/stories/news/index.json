@@ -1,6 +1,6 @@
 {
   "contractVersion": "syat.reader-story-index.v1",
-  "generatedAt": "2026-09-05T01:01:10.735Z",
+  "generatedAt": "2026-09-05T04:53:48.722Z",
   "items": [
     {
       "slug": "cag-126269",
@@ -181,6 +181,34 @@
         "label": "Date not established in the supplied evidence"
       },
       "updatedAt": "2026-09-05T01:01:10.726Z",
+      "readingMinutes": 2,
+      "featured": false
+    },
+    {
+      "slug": "pib-2306688",
+      "format": "public_impact",
+      "title": "India’s first geothermal wells at Puga Valley mark a shift from policy to field work",
+      "dek": "The National Policy on Geothermal Energy and two commissioned wells in Ladakh signal early deployment, though commercial power generation remains unestablished and the resource potential is still theoretical.",
+      "theme": "Geothermal energy deployment in India",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T04:52:53.875Z",
+      "readingMinutes": 3,
+      "featured": false
+    },
+    {
+      "slug": "pib-2306679",
+      "format": "news_brief",
+      "title": "Pension grievance drive clears 2,306 cases, but rural reach and verification remain open",
+      "dek": "The government's Special Campaign 3 reports resolving 72% of 3,193 pension-related cases, yet the record does not show how many remain or how outcomes were verified.",
+      "theme": "Pension grievance redressal",
+      "eventTime": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "updatedAt": "2026-09-05T04:53:48.715Z",
       "readingMinutes": 2,
       "featured": false
     }

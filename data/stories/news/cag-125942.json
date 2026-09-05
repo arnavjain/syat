@@ -4,9 +4,9 @@
   "slug": "cag-125942",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "explainer",
   "title": "SC/ST apprenticeship funds diverted to general trainees in Mumbai board",
   "dek": "An audit of the Board of Apprenticeship Training in Mumbai finds that grants meant for Scheduled Caste and Scheduled Tribe apprentices were used for general category trainees, leaving the intended beneficiaries without the promised support.",
@@ -278,7 +278,7 @@
     {
       "id": "cag-125942",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2023 -Union Government – Central Autonomous Bodies - Report No. 9 of 2026 (Compliance Audit - Civil) · Sector: General Sector Ministries and Constitutional Bodies · Government: Union",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2023 -Union Government \u2013 Central Autonomous Bodies - Report No. 9 of 2026 (Compliance Audit - Civil) \u00b7 Sector: General Sector Ministries and Constitutional Bodies \u00b7 Government: Union",
       "url": "https://cag.gov.in/en/audit-report/details/125942",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-12T00:00:00.000Z",
@@ -299,8 +299,8 @@
       "label": "Rs 17.34 crore diverted from SC/ST apprentices",
       "alt": "Rs 17.34 crore diverted from SC/ST apprentices. A visual showing the amount of Rs 17.34 crore as a stack of currency notes, with a label indicating it was meant for SC/ST apprentices but used for General category apprentices.",
       "caption": "A visual showing the amount of Rs 17.34 crore as a stack of currency notes, with a label indicating it was meant for SC/ST apprentices but used for General category apprentices.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125942-number-stack",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -308,7 +308,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-125942-number-stack",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The visual is based solely on the audit record and does not show the number of apprentices affected or the timeline of the diversion.",
       "claimIds": [

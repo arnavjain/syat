@@ -4,12 +4,12 @@
   "slug": "cag-126219",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "news_brief",
   "title": "Haryana audit finds suspected embezzlement and incomplete works in state departments",
-  "dek": "The CAG's composite audit for the year ended March 2024 records suspected embezzlement of ₹40.51 lakh and payment of ₹6.37 crore for incomplete work, among other findings.",
+  "dek": "The CAG's composite audit for the year ended March 2024 records suspected embezzlement of \u20b940.51 lakh and payment of \u20b96.37 crore for incomplete work, among other findings.",
   "theme": "Public audit and accountability",
   "indiaConnection": "This audit examines how a public programme in Haryana was carried out and recorded, and it states what the audited record can and cannot establish for the people in India who depend on it.",
   "eventTime": {
@@ -32,7 +32,7 @@
     {
       "id": "para-1-1",
       "kind": "paragraph",
-      "text": "The audit record for the year ended March 2024 reports suspected embezzlement of ₹40.51 lakh in the Information, Public Relations and Languages Department. It also reports that the Directorate of Secondary Education used the same vouchers twice, leading to suspected embezzlement of ₹3.95 lakh. These figures appear in the audit's compliance observations, but the record does not state who is alleged to have committed the embezzlement or how the amounts were detected.",
+      "text": "The audit record for the year ended March 2024 reports suspected embezzlement of \u20b940.51 lakh in the Information, Public Relations and Languages Department. It also reports that the Directorate of Secondary Education used the same vouchers twice, leading to suspected embezzlement of \u20b93.95 lakh. These figures appear in the audit's compliance observations, but the record does not state who is alleged to have committed the embezzlement or how the amounts were detected.",
       "section": {
         "id": "section-1",
         "title": "Suspected embezzlement in two departments"
@@ -60,7 +60,7 @@
     {
       "id": "para-2-1",
       "kind": "paragraph",
-      "text": "At Chaudhary Charan Singh Haryana Agricultural University in Hisar, the audit notes a ₹6.37 crore payment for work that was not completed. It also mentions that a bank guarantee's terms were relaxed, causing the bio-gas plant's goal to be missed. These two items are listed together in the audit, yet no causal link is drawn between them.",
+      "text": "At Chaudhary Charan Singh Haryana Agricultural University in Hisar, the audit notes a \u20b96.37 crore payment for work that was not completed. It also mentions that a bank guarantee's terms were relaxed, causing the bio-gas plant's goal to be missed. These two items are listed together in the audit, yet no causal link is drawn between them.",
       "section": {
         "id": "section-2",
         "title": "Payments for incomplete work and other lapses"
@@ -115,7 +115,7 @@
   "statements": [
     {
       "id": "claim-1",
-      "text": "The audit records suspected embezzlement of ₹40.51 lakh in the Information, Public Relations and Languages Department.",
+      "text": "The audit records suspected embezzlement of \u20b940.51 lakh in the Information, Public Relations and Languages Department.",
       "sourceIds": [
         "cag-126219"
       ],
@@ -126,7 +126,7 @@
     },
     {
       "id": "claim-2",
-      "text": "The audit records that the Directorate of Secondary Education used the same vouchers twice, leading to suspected embezzlement of ₹3.95 lakh.",
+      "text": "The audit records that the Directorate of Secondary Education used the same vouchers twice, leading to suspected embezzlement of \u20b93.95 lakh.",
       "sourceIds": [
         "cag-126219"
       ],
@@ -137,7 +137,7 @@
     },
     {
       "id": "claim-3",
-      "text": "The audit records a payment of ₹6.37 crore for incomplete work at Chaudhary Charan Singh Haryana Agricultural University, Hisar.",
+      "text": "The audit records a payment of \u20b96.37 crore for incomplete work at Chaudhary Charan Singh Haryana Agricultural University, Hisar.",
       "sourceIds": [
         "cag-126219"
       ],
@@ -279,7 +279,7 @@
     {
       "id": "cag-126219",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India on Composite Audit Report--Civil for the year ended March 2024 (Government of Haryana Report No. 4 of 2026) · Sector: Social Welfare · Government: State",
+      "title": "Report of the Comptroller and Auditor General of India on Composite Audit Report--Civil for the year ended March 2024 (Government of Haryana Report No. 4 of 2026) \u00b7 Sector: Social Welfare \u00b7 Government: State",
       "url": "https://cag.gov.in/en/audit-report/details/126219",
       "sourceKind": "primary_document",
       "publishedAt": "2026-09-01T00:00:00.000Z",
@@ -300,8 +300,8 @@
       "label": "Financial irregularities recorded in the audit",
       "alt": "Financial irregularities recorded in the audit. A stacked bar chart showing the amounts of suspected embezzlement and payment for incomplete work, with labels for each department.",
       "caption": "A stacked bar chart showing the amounts of suspected embezzlement and payment for incomplete work, with labels for each department.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126219-number-stack",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -309,7 +309,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-126219-number-stack",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The chart only reflects amounts explicitly stated in the audit; it does not include unquantified wasteful expenditure.",
       "claimIds": [

@@ -98,7 +98,7 @@ describe("Syāt home frame", () => {
 });
 
 describe("primary navigation", () => {
-  it("calls the permanent action Bring while preserving the Reframe route and active state", () => {
+  it("calls the permanent action Reframe, matching the page it opens", () => {
     const chromeProps = {
       active: "reframe" as const,
       children: createElement("p", null, "Workbench"),
@@ -108,8 +108,7 @@ describe("primary navigation", () => {
     );
 
     expect(html).toContain('href="/en/reframe"');
-    expect(html).not.toContain(">Reframe<");
-    expect(html.match(/>Bring</gu)).toHaveLength(2);
+    expect(html.match(/>Reframe</gu)).toHaveLength(2);
     expect(html.match(/aria-current="page"/gu)).toHaveLength(2);
     expect(html).toContain('<main id="main-content"');
   });

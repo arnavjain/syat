@@ -4,9 +4,9 @@
   "slug": "cag-125712",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "source_map",
   "title": "Veterinary care in West Bengal faces shortages that the state's own audit record now documents",
   "dek": "An audit of 12 West Bengal departments finds animal health centres without essential equipment, medicines, and waste disposal, leaving farmers and livestock owners without assured treatment.",
@@ -301,7 +301,7 @@
     {
       "id": "cag-125712",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report No. 01 of 2026- Compliance Audit Report of Government of West Bengal for the year ended on 31 March 2024. · Sector: Environment and Sustainable Development,Finance,Agriculture and Rural Development,Social Welfare,Transport & Infrastructure · Government: State",
+      "title": "Report No. 01 of 2026- Compliance Audit Report of Government of West Bengal for the year ended on 31 March 2024. \u00b7 Sector: Environment and Sustainable Development,Finance,Agriculture and Rural Development,Social Welfare,Transport & Infrastructure \u00b7 Government: State",
       "url": "https://cag.gov.in/en/audit-report/details/125712",
       "sourceKind": "primary_document",
       "publishedAt": "2026-07-25T00:00:00.000Z",
@@ -322,8 +322,8 @@
       "label": "What the audit record covers and what it leaves out",
       "alt": "What the audit record covers and what it leaves out. A diagram showing the audit's scope: the departments covered, the facilities checked, and the key findings on equipment, medicines, and waste disposal. It also highlights the missing voices of farmers and the lack of independent verification.",
       "caption": "A diagram showing the audit's scope: the departments covered, the facilities checked, and the key findings on equipment, medicines, and waste disposal. It also highlights the missing voices of farmers and the lack of independent verification.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125712-source-role-map",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -331,7 +331,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-125712-source-role-map",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The visual is based only on the audit report and cannot show the actual condition of facilities beyond what was inspected.",
       "claimIds": [

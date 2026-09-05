@@ -35,13 +35,12 @@ afterEach(() => {
 });
 
 describe("News archive", () => {
-  it("offers the labelled teaching story while no generated preview has passed its gate", () => {
+  it("offers the worked example while nothing has been written yet", () => {
     const html = render();
 
-    expect(html).toContain("The News pilot, kept in one clear index.");
-    expect(html).toContain("The first pilot story is still being checked.");
+    expect(html).toContain("What changed, and what the record can actually show.");
+    expect(html).toContain("The first story is on its way.");
     expect(html).toContain('href="/en/news/street-plan-daily-realities"');
-    expect(html).not.toContain("One hundred News previews");
   });
 
   it("reads as a flat list while every story has a theme of its own", () => {
@@ -67,25 +66,26 @@ describe("News archive", () => {
 
     expect(html).toContain('id="theme-public-services"');
     expect(html).toContain('id="theme-regulation"');
-    expect(html).toContain("2 previews");
+    expect(html).toContain("2 stories");
     expect(html).not.toContain('class="news-flat-list"');
   });
 
-  it("claims a complete preview set only at exactly one hundred accepted pages", () => {
-    projection.items = Array.from({ length: 99 }, (_, index) => card({ slug: `story-${index}` }));
-    expect(render()).not.toContain("One hundred News previews");
+  it("counts what is actually there rather than progress towards a target", () => {
+    // The archive used to report a pilot's progress, which is a fact about the project rather
+    // than about anything the reader came for.
+    projection.items = Array.from({ length: 7 }, (_, index) => card({ slug: `story-${index}` }));
+    const html = render();
 
-    projection.items = Array.from({ length: 100 }, (_, index) => card({ slug: `story-${index}` }));
-    const complete = render();
-    expect(complete).toContain("One hundred News previews");
-    expect(complete).toContain("Preview set complete");
+    expect(html).toContain("Stories");
+    expect(html).not.toMatch(/Target|Pilot in review|preview set/i);
   });
 
-  it("labels every accepted preview as AI-assisted and never publishes a score or confidence figure", () => {
+  it("never publishes a score, a confidence figure or a disagreement level", () => {
+    // These are the fake precision the project exists to avoid. Removing the preview labelling
+    // must not quietly let them in.
     projection.items = [card()];
     const html = render();
 
-    expect(html).toContain("AI-assisted private preview");
     expect(html).not.toMatch(/credibility|confidence score|disagreement level|% (?:verified|accurate)/i);
   });
 });

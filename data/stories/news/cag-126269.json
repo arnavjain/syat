@@ -4,9 +4,9 @@
   "slug": "cag-126269",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "news_brief",
   "title": "Haryana e-procurement audit finds bid rigging signs and missing system controls",
   "dek": "An audit of Haryana's e-procurement system records that multiple bids came from the same computers and that key financial rules were bypassed, while the system's own records do not explain why.",
@@ -335,7 +335,7 @@
     {
       "id": "cag-126269",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India Information System Audits (Government of Haryana Report No. 3 of 2026) · Sector: IT Audit · Government: State",
+      "title": "Report of the Comptroller and Auditor General of India Information System Audits (Government of Haryana Report No. 3 of 2026) \u00b7 Sector: IT Audit \u00b7 Government: State",
       "url": "https://cag.gov.in/en/audit-report/details/126269",
       "sourceKind": "primary_document",
       "publishedAt": "2026-09-01T00:00:00.000Z",
@@ -356,8 +356,8 @@
       "label": "Sequence of e-procurement system issues in Haryana",
       "alt": "Sequence of e-procurement system issues in Haryana. A timeline showing the order of events as recorded in the audit: implementation gaps, tendering problems, signs of collusion, and financial irregularities. Each step is linked to the audit's findings.",
       "caption": "A timeline showing the order of events as recorded in the audit: implementation gaps, tendering problems, signs of collusion, and financial irregularities. Each step is linked to the audit's findings.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126269-timeline",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -365,7 +365,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-126269-timeline",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The timeline is based only on the audit report and does not include dates or external verification.",
       "claimIds": [

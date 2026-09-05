@@ -4,9 +4,9 @@
   "slug": "cag-126325",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "public_impact",
   "title": "Nagaland's fiscal deficit exceeded legal targets for the third straight year, audit finds",
   "dek": "The state's own revenue grew, but grants from the Centre fell, and spending on committed costs left little room for capital investment, according to the latest audit of state finances.",
@@ -331,7 +331,7 @@
     {
       "id": "cag-126325",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report No. 2 of 2026 - Report of the Comptroller and Auditor General of India on State Finances for the Year 2024-25 - Government of Nagaland · Sector: Finance · Government: State",
+      "title": "Report No. 2 of 2026 - Report of the Comptroller and Auditor General of India on State Finances for the Year 2024-25 - Government of Nagaland \u00b7 Sector: Finance \u00b7 Government: State",
       "url": "https://cag.gov.in/en/audit-report/details/126325",
       "sourceKind": "primary_document",
       "publishedAt": "2026-09-03T00:00:00.000Z",
@@ -352,8 +352,8 @@
       "label": "Key fiscal indicators for Nagaland, 2024-25",
       "alt": "Key fiscal indicators for Nagaland, 2024-25. A stacked bar chart showing GSDP growth, revenue receipt contraction, non-tax revenue growth, and the share of committed costs in revenue expenditure, based on the audit's figures.",
       "caption": "A stacked bar chart showing GSDP growth, revenue receipt contraction, non-tax revenue growth, and the share of committed costs in revenue expenditure, based on the audit's figures.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126325-number-stack",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -361,7 +361,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-126325-number-stack",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The chart only reflects the audit's reported numbers and does not include independent data.",
       "claimIds": [

@@ -16,7 +16,7 @@ export default function TermsPage() {
         <header>
           <p className="micro-copy">Terms of use</p>
           <h1>What this is, and what it does not claim to be.</h1>
-          <p className="page-lede">Plain terms for a site in private preview. If something here reads as though it were written to protect us rather than to inform you, that is a fault and worth telling us about.</p>
+          <p className="page-lede">Plain terms, in plain words. If something here reads as though it were written to protect us rather than to inform you, that is a fault and worth telling us about.</p>
           <p className="policy-updated">Last updated {UPDATED}.</p>
         </header>
 
@@ -26,8 +26,8 @@ export default function TermsPage() {
         </section>
 
         <section aria-labelledby="preview-title">
-          <h2 id="preview-title">It is a preview, and says so</h2>
-          <p>News pages are drafts under editorial review. Each is labelled <em>AI-assisted private preview</em>, carries no search indexing, and has not been approved for publication. Treat them as work in progress, not as finished reporting. The Timeless questions are written by hand and are published.</p>
+          <h2 id="preview-title">How the writing is made</h2>
+          <p>News stories are written by Syāt from public records that carry a reproduction policy, with machine assistance in the drafting and a source trail on every page so the working is visible. The Timeless questions are written by hand. Either way the records are named, and checking them is the point.</p>
         </section>
 
         <section aria-labelledby="accuracy-title">

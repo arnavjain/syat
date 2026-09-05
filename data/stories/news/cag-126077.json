@@ -4,9 +4,9 @@
   "slug": "cag-126077",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "explainer",
   "title": "Rajasthan's rural job scheme lacked baseline surveys and district plans, audit finds",
   "dek": "An audit of the Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan says planning was not grounded in local demand, and it points to staff shortages and missing technical support.",
@@ -278,7 +278,7 @@
     {
       "id": "cag-126077",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India on Implementation of Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan (Report No.2 of the year 2026) · Sector: Agriculture and Rural Development · Government: State",
+      "title": "Report of the Comptroller and Auditor General of India on Implementation of Mahatma Gandhi National Rural Employment Guarantee Act in Rajasthan (Report No.2 of the year 2026) \u00b7 Sector: Agriculture and Rural Development \u00b7 Government: State",
       "url": "https://cag.gov.in/en/audit-report/details/126077",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-21T00:00:00.000Z",
@@ -299,8 +299,8 @@
       "label": "Audit period and key planning gaps",
       "alt": "Audit period and key planning gaps. A timeline from 2019-20 to 2023-24 marks the audit period. It highlights the absence of baseline surveys, district plans, and Block Resource Centres, as noted in the audit.",
       "caption": "A timeline from 2019-20 to 2023-24 marks the audit period. It highlights the absence of baseline surveys, district plans, and Block Resource Centres, as noted in the audit.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126077-timeline",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -308,7 +308,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-126077-timeline",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The timeline cannot show exact dates for the gaps because the audit does not provide them.",
       "claimIds": [
@@ -342,7 +342,7 @@
     {
       "id": "coverage-13ptuzf",
       "publisher": "OpIndia",
-      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays ‘victim card’, publisher sets the record straight",
+      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays \u2018victim card\u2019, publisher sets the record straight",
       "url": "https://www.opindia.com/2026/08/what-is-the-sonia-gandhi-memoir-controversy-congress-vs-bjp-penguin-random-house-clarification-explained/",
       "publishedAt": "2026-08-29T14:24:45.000Z",
       "use": "Provides attributed link-only context and was not used as model evidence.",

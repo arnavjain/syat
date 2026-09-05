@@ -1,0 +1,421 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-pib-2306679",
+  "slug": "pib-2306679",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
+  "format": "news_brief",
+  "title": "Pension grievance drive clears 2,306 cases, but rural reach and verification remain open",
+  "dek": "The government's Special Campaign 3 reports resolving 72% of 3,193 pension-related cases, yet the record does not show how many remain or how outcomes were verified.",
+  "theme": "Pension grievance redressal",
+  "indiaConnection": "This release is an official Government of India public record.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "pib-2306679"
+    ]
+  },
+  "collectedAt": "2026-09-05T02:51:07.330Z",
+  "generatedAt": "2026-09-05T04:53:48.715Z",
+  "updatedAt": "2026-09-05T04:53:48.715Z",
+  "readingMinutes": 2,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "A reader might expect this record to prove that pension grievances are being resolved effectively. Instead, the supplied document is a government statement that reports a specific number: 2,306 cases redressed out of 3,193 taken up, a 72% redressal rate. The record does not provide independent verification of these figures, nor does it explain how the remaining 887 cases are being handled beyond saying active follow-up is ongoing.",
+      "section": {
+        "id": "section-1",
+        "title": "What the record shows"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "According to the release, Special Campaign 3 lasted from 7 July 2026 through 31 August 2026, split into preparation and execution stages. In the preparation stage, ministries and departments flagged 1,062 cases as targets, and 2,131 more grievances that had been on the CPENGRAMS portal for over a month were added. The release does not break down how many from each group were resolved; it only reports the combined total of 2,306.",
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "This campaign was run by the Department of Pension and Pensioners\u2019 Welfare (DoPPW). According to the record, 40 ministries and departments worked together to handle the cases. Two review meetings took place in the middle of the campaign, and officials regularly asked for updates on pending cases. The release does not identify the ministries or who attended the meetings, nor does it include any independent comments from those involved.",
+      "section": {
+        "id": "section-2",
+        "title": "Who is associated and what changed"
+      },
+      "claimIds": [
+        "claim-5",
+        "claim-6"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "The record also lists ten specific payments, ranging from Rs. 6.27 lakh to Rs. 37.40 lakh, to individuals described as pensioners or their family members. These are presented as success cases. For example, one payment of Rs. 16.70 lakh is said to be family pension arrears to a disabled dependent daughter, with effect from June 2013. Another is Rs. 30 lakh in disability pension arrears to a Defence pensioner, with effect from September 2016. The record does not provide any documentation for these payments beyond the statement itself.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The release claims that most resolved cases pertain to pensioners in rural areas, calling it a healthy trend that bridges the digital divide. However, it provides no data on the rural-urban split, no definition of 'rural', and no evidence that online grievance filing is actually reaching rural residents. The record does not connect the redressal numbers to any measurement of digital access or user experience.",
+      "section": {
+        "id": "section-3",
+        "title": "What the record does not say"
+      },
+      "claimIds": [
+        "claim-9"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "The document also does not specify how many of the 2,306 cases were from the preparatory phase versus the execution phase, nor does it list the remaining 887 cases by type or ministry. It says active follow-up is being done, but gives no timeline for resolution. A reader cannot tell from this record whether the remaining cases are similar to the resolved ones or whether any are time-sensitive.",
+      "claimIds": [
+        "claim-10"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The record states that 2,306 cases were redressed out of 3,193 taken up, a 72% redressal rate.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record is an official press release from the Press Information Bureau, dated 4 September 2026, describing the campaign's reported outcomes.",
+      "type": "documented",
+      "limits": "The record does not provide independent verification of the numbers or a breakdown of how the 2,306 cases were counted."
+    },
+    {
+      "id": "claim-2",
+      "text": "The record mentions that follow-up work is ongoing for the remaining grievances, but it does not say how many are left or what that follow-up involves.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record's final paragraph mentions active follow-up without further detail.",
+      "type": "documented",
+      "limits": "The record does not state the number of remaining cases or the expected timeline for their resolution."
+    },
+    {
+      "id": "claim-3",
+      "text": "Special Campaign 3 started on 7 July 2026 and concluded on 31 August 2026, with a preparatory and execution phase.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record provides these dates in its opening paragraph.",
+      "type": "documented",
+      "limits": "The record does not explain why these specific dates were chosen or whether the campaign will be repeated."
+    },
+    {
+      "id": "claim-4",
+      "text": "During the preparatory phase, 1,062 target cases were identified, and 2,131 cases pending on CPENGRAMS for over a month were also taken up.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record describes the preparatory phase in its second paragraph.",
+      "type": "documented",
+      "limits": "The record does not state how many of these 3,193 cases were resolved separately or whether any were duplicates."
+    },
+    {
+      "id": "claim-5",
+      "text": "The record indicates that 40 ministries and departments joined forces to address the cases, and two review meetings were conducted during the campaign.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record mentions these coordination details in the execution phase description.",
+      "type": "documented",
+      "limits": "The record does not name the ministries or the meeting participants, nor does it provide minutes or outcomes of those meetings."
+    },
+    {
+      "id": "claim-6",
+      "text": "The record attributes the campaign to the Department of Pension and Pensioners\u2019 Welfare (DoPPW).",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record's first sentence identifies DoPPW as the organising department.",
+      "type": "documented",
+      "limits": "The record does not provide any independent account from DoPPW or other stakeholders about the campaign's effectiveness."
+    },
+    {
+      "id": "claim-7",
+      "text": "The record lists ten specific payments, including Rs. 16.70 lakh to a disabled dependent daughter and Rs. 30 lakh to a Defence pensioner, as success cases.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record's list of major success cases provides these examples.",
+      "type": "documented",
+      "limits": "The record does not provide any documentation or verification for these payments beyond the statement itself."
+    },
+    {
+      "id": "claim-8",
+      "text": "The record states that most resolved cases pertain to pensioners in rural areas, calling it a healthy trend.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record's demographic distribution paragraph makes this claim.",
+      "type": "documented",
+      "limits": "The record does not provide data on the rural-urban split or define 'rural'."
+    },
+    {
+      "id": "claim-9",
+      "text": "The record's claim about bridging the digital divide is not supported by any measurement of digital access or user experience.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "interpretation",
+      "sourceScope": "The record's statement about rural areas is the basis for this interpretation.",
+      "type": "interpreted",
+      "limits": "The record does not include any data on internet penetration, grievance filing methods, or user feedback."
+    },
+    {
+      "id": "claim-10",
+      "text": "The record does not specify how many of the 2,306 cases were from the preparatory phase versus the execution phase, nor does it list the remaining cases by type or ministry.",
+      "sourceIds": [
+        "pib-2306679"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The record's overall description of the campaign lacks this breakdown.",
+      "type": "documented",
+      "limits": "The record does not provide a detailed breakdown of the remaining 887 cases, which would be needed to assess their urgency."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "Special Campaign 3 is reported to have run from 7 July 2026 to 31 August 2026, with a preparatory and execution phase.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The record reports that 2,306 cases were resolved out of 3,193 taken up, but it does not provide a date for when this count was finalised.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Government as implementer",
+      "rationale": "The record is an official statement from the government, so this perspective reflects the institution's own account.",
+      "sees": "The campaign as a coordinated effort across 40 ministries, with a reported 72% redressal rate.",
+      "values": "Efficiency, coordination, and timely redressal of grievances.",
+      "uses": "The record to communicate progress and highlight success cases.",
+      "mayMiss": "Independent verification of outcomes and the experiences of pensioners.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "institution",
+      "label": "Department of Pension and Pensioners\u2019 Welfare (DoPPW)",
+      "association": "The record identifies DoPPW as the organising department for Special Campaign 3.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Press Information Bureau",
+      "association": "The record is published by the PIB, which is the government's public communication arm.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "person-3",
+      "kind": "community",
+      "label": "Central government pensioners and family pensioners",
+      "association": "The record describes these individuals as the beneficiaries of the grievance redressal.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "How many of the 2,306 resolved cases were from the preparatory phase versus the execution phase?",
+      "whatWouldHelp": "A breakdown of the resolved cases by phase and ministry would clarify the campaign's effectiveness.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "What is the status of the remaining 887 cases, and what is the timeline for their resolution?",
+      "whatWouldHelp": "A list of pending cases by type and expected resolution date would provide a fuller picture.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    },
+    {
+      "id": "unresolved-3",
+      "question": "How were the reported payments verified, and what documentation exists for each?",
+      "whatWouldHelp": "Independent audit or payment records would confirm the success cases.",
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "data-gap",
+    "question": "What does a government record's reported success reveal about the limits of official data?",
+    "connection": "This record reports a high redressal rate but lacks independent verification, illustrating how official data can be incomplete without external checks."
+  },
+  "sources": [
+    {
+      "id": "pib-2306679",
+      "publisher": "Press Information Bureau",
+      "title": "2,306 long pending pension grievances redressed during Special Campaign 3",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2306679",
+      "sourceKind": "official_statement",
+      "publishedAt": "2026-09-04T00:00:00.000Z",
+      "accessedAt": "2026-09-05T02:51:07.330Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9, claim-10.",
+      "scope": "The record is an official press release from the Press Information Bureau, dated 4 September 2026, describing the campaign's reported outcomes.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-pib-2306679-number-stack",
+      "kind": "chart",
+      "label": "Reported pension grievance redressal: 2,306 out of 3,193",
+      "alt": "Reported pension grievance redressal: 2,306 out of 3,193. A stacked bar chart showing the reported number of cases taken up (3,193) and resolved (2,306), with the remaining 887 cases as a separate segment. The visual would highlight the gap between the total and the resolved count.",
+      "caption": "A stacked bar chart showing the reported number of cases taken up (3,193) and resolved (2,306), with the remaining 887 cases as a separate segment. The visual would highlight the gap between the total and the resolved count.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-pib-2306679-number-stack",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T04:53:48.705Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-pib-2306679-number-stack",
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The visual relies solely on the record's reported figures and does not include any independent verification.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "pib-2306679"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-pib-2306679-number-stack",
+    "kind": "number_stack",
+    "title": "Reported pension grievance redressal: 2,306 out of 3,193",
+    "description": "A stacked bar chart showing the reported number of cases taken up (3,193) and resolved (2,306), with the remaining 887 cases as a separate segment. The visual would highlight the gap between the total and the resolved count.",
+    "limitation": "The visual relies solely on the record's reported figures and does not include any independent verification.",
+    "claimIds": [
+      "claim-1"
+    ],
+    "sourceIds": [
+      "pib-2306679"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "The record shows a government campaign that reports resolving 2,306 pension grievances, but it does not independently verify the outcomes or explain the remaining 887 cases."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.35",
+    "inputHash": "daeff5925743520257304cbd67ec9e9d27abddc971a88f00d4994e32c21893d1",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T04:53:48.715Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "Three or more sentences begin with the same four words."
+    ],
+    "scores": {
+      "clarity": 4,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

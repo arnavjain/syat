@@ -4,9 +4,9 @@
   "slug": "cag-126028",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "timeline",
   "title": "Jharkhand wage delays and incomplete works shadow MGNREGS record",
   "dek": "An audit of MGNREGS in Jharkhand shows wage arrears of over 321 crore rupees and a quarter of planned works never started, while the official record cannot confirm what workers actually received.",
@@ -304,7 +304,7 @@
     {
       "id": "cag-126028",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report No. 5 of 2026 : Report of the CAG on Implementation of Mahatma Gandhi National Rural Employment Guarantee Scheme in Jharkhand and Implementation of Jal Jeevan Mission in Jharkhand · Sector: - · Government: State",
+      "title": "Report No. 5 of 2026 : Report of the CAG on Implementation of Mahatma Gandhi National Rural Employment Guarantee Scheme in Jharkhand and Implementation of Jal Jeevan Mission in Jharkhand \u00b7 Sector: - \u00b7 Government: State",
       "url": "https://cag.gov.in/en/audit-report/details/126028",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-11T00:00:00.000Z",
@@ -325,8 +325,8 @@
       "label": "MGNREGS in Jharkhand: Key audit findings over time",
       "alt": "MGNREGS in Jharkhand: Key audit findings over time. A timeline showing the audit's findings on wage arrears, incomplete works, and monitoring gaps, with markers for the period 2019-24 and the as-of dates March 2024 and January 2025.",
       "caption": "A timeline showing the audit's findings on wage arrears, incomplete works, and monitoring gaps, with markers for the period 2019-24 and the as-of dates March 2024 and January 2025.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126028-timeline",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -334,7 +334,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-126028-timeline",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The timeline cannot show exact dates for the audit's findings, as the record does not provide them.",
       "claimIds": [
@@ -372,7 +372,7 @@
     {
       "id": "coverage-13ptuzf",
       "publisher": "OpIndia",
-      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays ‘victim card’, publisher sets the record straight",
+      "title": "What is the Sonia Gandhi memoir controversy? As Congress plays \u2018victim card\u2019, publisher sets the record straight",
       "url": "https://www.opindia.com/2026/08/what-is-the-sonia-gandhi-memoir-controversy-congress-vs-bjp-penguin-random-house-clarification-explained/",
       "publishedAt": "2026-08-29T14:24:45.000Z",
       "use": "Provides attributed link-only context and was not used as model evidence.",
@@ -383,7 +383,7 @@
     {
       "id": "coverage-1tau956",
       "publisher": "The Hindu",
-      "title": "Gaganyaan Episode 1: Why India’s Human Spaceflight Mission Matters | The Scope",
+      "title": "Gaganyaan Episode 1: Why India\u2019s Human Spaceflight Mission Matters | The Scope",
       "url": "https://www.thehindu.com/videos/gaganyaan-episode-1-why-indias-human-spaceflight-mission-matters-the-scope/article71318202.ece",
       "publishedAt": "2026-08-31T11:43:44.000Z",
       "use": "Provides attributed link-only context and was not used as model evidence.",

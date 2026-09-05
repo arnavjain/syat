@@ -4,9 +4,9 @@
   "slug": "cag-126055",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "timeline",
   "title": "Tata Memorial Centre's IT systems lack policy and security controls, audit finds",
   "dek": "An audit of Tata Memorial Centre's computer systems found no approved IT policy, weak password controls, and missing data backup plans, leaving patient data vulnerable.",
@@ -385,7 +385,7 @@
     {
       "id": "cag-126055",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Scientific and Environmental Ministries/Departments Report No. 17 of 2026 (Compliance Audit) · Sector: Science and Technology · Government: Union",
+      "title": "Report of the Comptroller and Auditor General of India for the year ended March 2024 Union Government Scientific and Environmental Ministries/Departments Report No. 17 of 2026 (Compliance Audit) \u00b7 Sector: Science and Technology \u00b7 Government: Union",
       "url": "https://cag.gov.in/en/audit-report/details/126055",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-12T00:00:00.000Z",
@@ -406,8 +406,8 @@
       "label": "Key IT deficiencies at Tata Memorial Centre as per audit",
       "alt": "Key IT deficiencies at Tata Memorial Centre as per audit. A timeline showing the sequence of documented IT policy and security gaps at Tata Memorial Centre, based on the audit findings. Each entry highlights a specific deficiency, from missing policies to system implementation delays.",
       "caption": "A timeline showing the sequence of documented IT policy and security gaps at Tata Memorial Centre, based on the audit findings. Each entry highlights a specific deficiency, from missing policies to system implementation delays.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-126055-timeline",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -415,7 +415,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-126055-timeline",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The timeline does not indicate dates because the audit record does not provide them. It only shows the order in which the findings were reported.",
       "claimIds": [

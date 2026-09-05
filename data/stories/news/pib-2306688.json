@@ -1,0 +1,445 @@
+{
+  "contractVersion": "syat.reader-story.v1",
+  "id": "news-pib-2306688",
+  "slug": "pib-2306688",
+  "mode": "news",
+  "locale": "en-IN",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
+  "format": "public_impact",
+  "title": "India\u2019s first geothermal wells at Puga Valley mark a shift from policy to field work",
+  "dek": "The National Policy on Geothermal Energy and two commissioned wells in Ladakh signal early deployment, though commercial power generation remains unestablished and the resource potential is still theoretical.",
+  "theme": "Geothermal energy deployment in India",
+  "indiaConnection": "This release is an official Government of India public record.",
+  "eventTime": {
+    "kind": "unknown",
+    "label": "Date not established in the supplied evidence"
+  },
+  "eventTimeEvidence": {
+    "claimIds": [
+      "claim-1",
+      "claim-2"
+    ],
+    "sourceIds": [
+      "pib-2306688"
+    ]
+  },
+  "collectedAt": "2026-09-05T02:51:08.333Z",
+  "generatedAt": "2026-09-05T04:52:53.875Z",
+  "updatedAt": "2026-09-05T04:52:53.875Z",
+  "readingMinutes": 3,
+  "body": [
+    {
+      "id": "para-1-1",
+      "kind": "paragraph",
+      "text": "At Puga Valley in Ladakh, the country\u2019s first two geothermal wells have been commissioned, according to the Press Information Bureau release. The record attributes this step to the Administration of Union Territory of Ladakh, with L-G VK Saxena named as the official who commissioned the wells. This is the first concrete field activity the release cites, moving geothermal energy from policy documents to an on-site installation.",
+      "section": {
+        "id": "section-1",
+        "title": "Two wells in Ladakh"
+      },
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-1-2",
+      "kind": "paragraph",
+      "text": "The release does not provide a date for the commissioning, nor does it describe the wells\u2019 depth, capacity, or intended use. It presents the wells as a milestone but offers no independent measurement or technical detail. A reader would need to consult the Ladakh administration\u2019s own records to learn what these wells actually produce or test.",
+      "claimIds": [
+        "claim-1",
+        "claim-2"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-2-1",
+      "kind": "paragraph",
+      "text": "In 2025, the government notified the National Policy on Geothermal Energy, which is designed to elevate this energy source to a significant position among renewables, according to the release. The policy gives priority to surveying, drilling, managing reservoirs, and using heat directly, while also backing ground source heat pumps for temperature control. Additionally, it promotes the reuse of inactive oil and gas wells and the establishment of a nationwide geothermal data bank.",
+      "section": {
+        "id": "section-2",
+        "title": "Policy and programmes"
+      },
+      "claimIds": [
+        "claim-3",
+        "claim-4"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-2-2",
+      "kind": "paragraph",
+      "text": "Separately, the Ministry of New and Renewable Energy is implementing the Renewable Energy Research and Technology Development Programme through research institutions and industry partners. The release says this scheme aims to develop indigenous, cost-effective renewable technologies, including geothermal. The record does not specify which institutions or partners are involved, nor what stage the research has reached.",
+      "claimIds": [
+        "claim-5"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-3-1",
+      "kind": "paragraph",
+      "text": "The release says that geothermal energy is a primary area of collaboration with Australia and Iceland, and a memorandum with Saudi Arabia similarly marks it as a key focus. These partnerships are said to offer a coordinated avenue for turning India's geothermal resources into workable solutions. No particular project or financial amount is mentioned in the record as being connected to these agreements.",
+      "section": {
+        "id": "section-3",
+        "title": "International ties and resource claims"
+      },
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-3-2",
+      "kind": "paragraph",
+      "text": "India's theoretical geothermal resource potential is estimated at nearly 10,600 MW, as per the release. It also points out that by the end of 2025, worldwide installed capacity had hit 15.67 GW, with Indonesia, the US, the Philippines, T\u00fcrkiye, and New Zealand together accounting for roughly 67% of that total. The Indian number is described as theoretical, indicating it does not reflect what could be feasibly extracted or utilized.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-4-1",
+      "kind": "paragraph",
+      "text": "According to the release, India has not yet achieved commercial-scale electricity generation from geothermal sources. The current stage is characterized by the growth of well fields, pilot activities, and research and development efforts. This is an official statement rather than an independent assessment, and the record lacks any third-party measurement or audit data.",
+      "section": {
+        "id": "section-4",
+        "title": "What is missing"
+      },
+      "claimIds": [
+        "claim-9"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "para-4-2",
+      "kind": "paragraph",
+      "text": "No timeline is given for when commercial generation might begin, nor is there any estimate of the cost or feasibility of the Puga wells. The release also does not mention any environmental or social impact assessments. These gaps would require separate sources, such as technical reports or local community records, to address.",
+      "claimIds": [
+        "claim-1",
+        "claim-9"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "claim-1",
+      "text": "The release states that India\u2019s first two geothermal wells were commissioned at Puga Valley, Ladakh, by L-G VK Saxena.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The PIB release covers the commissioning event and attributes it to the Ladakh administration.",
+      "type": "documented",
+      "limits": "The release does not provide the date, technical specifications, or operational status of the wells."
+    },
+    {
+      "id": "claim-2",
+      "text": "The release says the commissioning marks a move from planning to implementation for geothermal energy in India.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release\u2019s narrative frames the wells as a milestone in India\u2019s geothermal journey.",
+      "type": "documented",
+      "limits": "The record does not define what 'implementation' means in terms of power output or commercial viability."
+    },
+    {
+      "id": "claim-3",
+      "text": "The release states that the National Policy on Geothermal Energy is intended to make geothermal a major renewable energy source.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release summarises the policy\u2019s objectives and priorities.",
+      "type": "documented",
+      "limits": "The release does not include the policy\u2019s full text or any implementation timeline."
+    },
+    {
+      "id": "claim-4",
+      "text": "The policy supports ground source heat pumps, repurposing abandoned oil and gas wells, and a national geothermal data repository.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release lists these as policy measures.",
+      "type": "documented",
+      "limits": "No details are given on how these measures will be funded or executed."
+    },
+    {
+      "id": "claim-5",
+      "text": "MNRE is implementing the RE-RTD programme through research institutions and industry partners to develop indigenous renewable technologies.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release mentions the programme and its general aim.",
+      "type": "documented",
+      "limits": "The release does not name the institutions or partners, nor any specific geothermal research outcomes."
+    },
+    {
+      "id": "claim-6",
+      "text": "Geothermal energy is a key cooperation area with Australia, Iceland, and Saudi Arabia, according to the release.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release lists these international collaborations.",
+      "type": "documented",
+      "limits": "The record does not specify any project, investment, or agreement details beyond the designation."
+    },
+    {
+      "id": "claim-7",
+      "text": "India\u2019s theoretical geothermal resource potential is nearly 10,600 MW, the release states.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release cites this figure as theoretical potential.",
+      "type": "documented",
+      "limits": "The release does not explain how this estimate was derived or what fraction is practically recoverable."
+    },
+    {
+      "id": "claim-8",
+      "text": "Global installed geothermal capacity reached 15.67 GW by end of 2025, with five countries holding about 67%.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release provides these global statistics.",
+      "type": "documented",
+      "limits": "The release does not cite the underlying data source or define the capacity measurement methodology."
+    },
+    {
+      "id": "claim-9",
+      "text": "India has not yet established commercial-scale geothermal power generation, as acknowledged in the release.",
+      "sourceIds": [
+        "pib-2306688"
+      ],
+      "basis": "direct_record",
+      "sourceScope": "The release states this as a current limitation.",
+      "type": "documented",
+      "limits": "The record does not project when commercial generation might begin or what barriers exist."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "India\u2019s first two geothermal wells are commissioned at Puga Valley, Ladakh, according to the release.",
+      "claimIds": [
+        "claim-1"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "The National Policy on Geothermal Energy is notified, aiming to establish geothermal as a major renewable pillar.",
+      "claimIds": [
+        "claim-3"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "timeline-3",
+      "time": {
+        "kind": "unknown",
+        "label": "Date not established in the supplied evidence"
+      },
+      "text": "International collaborations with Australia, Iceland, and Saudi Arabia identify geothermal as a focus area.",
+      "claimIds": [
+        "claim-6"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "perspective-1",
+      "label": "Government of India",
+      "rationale": "The release is an official statement from the Press Information Bureau, representing the government\u2019s account.",
+      "sees": "Sees geothermal as a promising renewable source that can contribute to energy security and net-zero goals.",
+      "values": "Values policy frameworks, international partnerships, and early field demonstrations.",
+      "uses": "Uses the Puga wells and policy notification as evidence of progress.",
+      "mayMiss": "May miss technical, economic, or social challenges that independent assessments could reveal.",
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "kind": "person",
+      "label": "L-G VK Saxena",
+      "association": "VK Saxena, serving as L-G of the Union Territory of Ladakh, oversaw the commissioning of the region's initial pair of geothermal wells at Puga Valley.",
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "person-2",
+      "kind": "institution",
+      "label": "Ministry of New and Renewable Energy (MNRE)",
+      "association": "Implements the RE-RTD programme and is associated with the National Policy on Geothermal Energy.",
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "unresolved-1",
+      "question": "What is the actual power output or intended use of the Puga Valley wells?",
+      "whatWouldHelp": "Technical reports from the Ladakh administration or MNRE detailing well specifications and testing results.",
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "unresolved-2",
+      "question": "When were the wells commissioned and what is their operational status?",
+      "whatWouldHelp": "Official commissioning records or news reports with a specific date and follow-up status.",
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    },
+    {
+      "id": "unresolved-3",
+      "question": "How much of the theoretical 10,600 MW potential is realistically recoverable?",
+      "whatWouldHelp": "Independent resource assessments or feasibility studies that go beyond theoretical estimates.",
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    }
+  ],
+  "contextBridge": {
+    "topicSlug": "scientific-uncertainty",
+    "question": "How does a theoretical resource estimate differ from a proven, usable one?",
+    "connection": "The release labels India\u2019s geothermal potential as theoretical, which means it is not yet a measure of what can be practically harnessed."
+  },
+  "sources": [
+    {
+      "id": "pib-2306688",
+      "publisher": "Press Information Bureau",
+      "title": "Geothermal Energy",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2306688",
+      "sourceKind": "official_statement",
+      "publishedAt": "2026-09-04T00:00:00.000Z",
+      "accessedAt": "2026-09-05T02:51:08.333Z",
+      "use": "Supports statement IDs: claim-1, claim-2, claim-3, claim-4, claim-5, claim-6, claim-7, claim-8, claim-9.",
+      "scope": "The PIB release covers the commissioning event and attributes it to the Ladakh administration.",
+      "rightsBasis": "government_reproduction_policy",
+      "reviewStatus": "approved",
+      "linkAllowed": true,
+      "modelInputAllowed": true,
+      "mediaReuseAllowed": false
+    }
+  ],
+  "media": [
+    {
+      "id": "authored-pib-2306688-comparison",
+      "kind": "chart",
+      "label": "Theoretical potential vs. global installed capacity",
+      "alt": "Theoretical potential vs. global installed capacity. A bar chart comparing India\u2019s theoretical geothermal potential (10,600 MW) with global installed capacity (15.67 GW) and the share held by leading countries. The visual would highlight the gap between theoretical and installed figures.",
+      "caption": "A bar chart comparing India\u2019s theoretical geothermal potential (10,600 MW) with global installed capacity (15.67 GW) and the share held by leading countries. The visual would highlight the gap between theoretical and installed figures.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
+      "sourceUrl": "https://syat.local/preview/visuals/authored-pib-2306688-comparison",
+      "rightsBasis": "owned",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-05T04:52:53.864Z",
+      "rightsProof": {
+        "kind": "documented_record",
+        "recordId": "authored-pib-2306688-comparison",
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
+      },
+      "limitation": "The chart would rely solely on the release\u2019s figures; it cannot show actual Indian installed capacity because the record does not provide that number.",
+      "claimIds": [
+        "claim-7",
+        "claim-8"
+      ],
+      "sourceIds": [
+        "pib-2306688"
+      ]
+    }
+  ],
+  "authoredVisual": {
+    "mediaId": "authored-pib-2306688-comparison",
+    "kind": "comparison",
+    "title": "Theoretical potential vs. global installed capacity",
+    "description": "A bar chart comparing India\u2019s theoretical geothermal potential (10,600 MW) with global installed capacity (15.67 GW) and the share held by leading countries. The visual would highlight the gap between theoretical and installed figures.",
+    "limitation": "The chart would rely solely on the release\u2019s figures; it cannot show actual Indian installed capacity because the record does not provide that number.",
+    "claimIds": [
+      "claim-7",
+      "claim-8"
+    ],
+    "sourceIds": [
+      "pib-2306688"
+    ]
+  },
+  "relatedCoverage": [],
+  "reframe": {
+    "kind": "claim",
+    "value": "India has moved from planning to implementation in geothermal energy, but the record does not establish commercial-scale generation or verified resource potential."
+  },
+  "generation": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "promptVersion": "syat.story-draft.v4.35",
+    "inputHash": "4a1deedf12aff7e1627457dd209649e0b78e8f594de07b5c586354f9e3e14c94",
+    "generatedBy": "openrouter",
+    "reviewedAt": "2026-09-05T04:52:53.875Z"
+  },
+  "quality": {
+    "status": "passed",
+    "blockers": [],
+    "warnings": [
+      "33 per cent of sentences are passive, which hides who acted."
+    ],
+    "scores": {
+      "clarity": 5,
+      "usefulness": 5,
+      "evidenceDiscipline": 5,
+      "indiaRelevance": 5,
+      "humanVoice": 4,
+      "perspectiveQuality": 5,
+      "sourceTransparency": 5
+    }
+  },
+  "publication": {
+    "approvedByHuman": false,
+    "finalReporting": false
+  }
+}

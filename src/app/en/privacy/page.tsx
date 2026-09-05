@@ -86,7 +86,7 @@ export default function PrivacyPage() {
 
         <section aria-labelledby="state-title">
           <h2 id="state-title">Where this is honest about itself</h2>
-          <p>Syāt is a private preview. News pages are labelled as AI-assisted drafts under review and are not indexed by search engines. If any of this changes, this page changes with it and the date at the top moves. It is not a document written once and left.</p>
+          <p>Syāt is small and early, and it changes often. When what it does with your data changes, this page changes with it and the date at the top moves. It is not a document written once and left.</p>
         </section>
 
         <section aria-labelledby="contact-title">

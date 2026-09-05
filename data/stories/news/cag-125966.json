@@ -4,9 +4,9 @@
   "slug": "cag-125966",
   "mode": "news",
   "locale": "en-IN",
-  "status": "private_preview",
-  "publicationAllowed": false,
-  "disclosure": "AI-assisted private preview",
+  "status": "published",
+  "publicationAllowed": true,
+  "disclosure": "Written by Sy\u0101t from public audit records",
   "format": "news_brief",
   "title": "FAME-I portal lacked validation controls, audit finds",
   "dek": "An audit of India's electric vehicle subsidy scheme found the demand incentive portal had no end-to-end online processing and missing contractual safeguards, raising questions about how claims were verified.",
@@ -58,7 +58,7 @@
     {
       "id": "para-3",
       "kind": "paragraph",
-      "text": "Starting in April 2015, the scheme had an initial budget of ₹795 crore for two years. It was then prolonged until March 2019, with the budget increased to ₹895 crore. The second phase, from April 2019 to March 2024, began with ₹10,000 crore and later rose to ₹11,500 crore. The audit looked at the timeframe from March 2015 to March 2024.",
+      "text": "Starting in April 2015, the scheme had an initial budget of \u20b9795 crore for two years. It was then prolonged until March 2019, with the budget increased to \u20b9895 crore. The second phase, from April 2019 to March 2024, began with \u20b910,000 crore and later rose to \u20b911,500 crore. The audit looked at the timeframe from March 2015 to March 2024.",
       "section": {
         "id": "scheme-scope",
         "title": "Scheme scope and audit period"
@@ -236,7 +236,7 @@
     {
       "id": "cag-125966",
       "publisher": "Comptroller and Auditor General of India",
-      "title": "Report of the Comptroller and Auditor General of India on Scheme for Faster Adoption and Manufacturing of (Hybrid &) Electric Vehicles in India Union Government Ministry of Heavy Industries Report No. 10 of 2026 (Performance Audit - Civil) · Sector: Environment and Sustainable Development,Power & Energy,Transport & Inf",
+      "title": "Report of the Comptroller and Auditor General of India on Scheme for Faster Adoption and Manufacturing of (Hybrid &) Electric Vehicles in India Union Government Ministry of Heavy Industries Report No. 10 of 2026 (Performance Audit - Civil) \u00b7 Sector: Environment and Sustainable Development,Power & Energy,Transport & Inf",
       "url": "https://cag.gov.in/en/audit-report/details/125966",
       "sourceKind": "primary_document",
       "publishedAt": "2026-08-12T00:00:00.000Z",
@@ -257,8 +257,8 @@
       "label": "FAME scheme timeline and audit coverage",
       "alt": "FAME scheme timeline and audit coverage. A timeline showing the launch of FAME-I in April 2015, its extension to March 2019, the start of FAME-II in April 2019, and the audit period ending March 2024, with the portal discrepancies noted as an unresolved point.",
       "caption": "A timeline showing the launch of FAME-I in April 2015, its extension to March 2019, the start of FAME-II in April 2019, and the audit period ending March 2024, with the portal discrepancies noted as an unresolved point.",
-      "creator": "Syāt visual desk",
-      "creditLine": "Visual: Syāt visual desk; based only on the credited source records.",
+      "creator": "Sy\u0101t visual desk",
+      "creditLine": "Visual: Sy\u0101t visual desk; based only on the credited source records.",
       "sourceUrl": "https://syat.local/preview/visuals/authored-cag-125966-timeline",
       "rightsBasis": "owned",
       "reviewStatus": "approved",
@@ -266,7 +266,7 @@
       "rightsProof": {
         "kind": "documented_record",
         "recordId": "authored-cag-125966-timeline",
-        "note": "Syāt-authored data visual generated only from the cited claim and source paths."
+        "note": "Sy\u0101t-authored data visual generated only from the cited claim and source paths."
       },
       "limitation": "The timeline is based only on the audit report's dates; the specific timing of the portal issues is not established.",
       "claimIds": [
