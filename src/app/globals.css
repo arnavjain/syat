@@ -1096,7 +1096,7 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 
 /* Standpoint deck: one position at a time, moved through by swipe, scroll or arrow. */
 .standpoint-deck { margin-top: clamp(18px, 3vw, 26px); }
-.standpoint-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, min(430px, 82vw)); align-items: stretch; gap: clamp(14px, 2.4vw, 22px); margin: 0; padding: 4px 4px 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 4px; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; list-style: none; scrollbar-width: thin; }
+.standpoint-track { display: grid; grid-auto-flow: column; grid-auto-columns: min(430px, 82vw); align-items: stretch; gap: clamp(14px, 2.4vw, 22px); margin: 0; padding: 4px 4px 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 4px; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; list-style: none; scrollbar-width: thin; }
 .standpoint-track:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 3px; border-radius: var(--radius-reading); }
 .standpoint-card { display: grid; align-content: start; scroll-snap-align: start; padding: clamp(20px, 3vw, 28px); background: var(--clay); border-radius: var(--radius-reading); border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent); }
 .standpoint-count { margin: 0 0 10px; color: var(--marigold); font: 700 .68rem/1 var(--font-source); letter-spacing: .12em; }
@@ -1125,7 +1125,7 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 }
 @media (max-width: 720px) {
   /* Full-bleed to the page gutter so a card edge signals there is another one beside it. */
-  .standpoint-track { grid-auto-columns: minmax(0, calc(100vw - 58px)); margin: 0 -16px; padding: 4px 16px 16px; scroll-padding-left: 16px; }
+  .standpoint-track { grid-auto-columns: calc(100vw - 58px); margin: 0 -16px; padding: 4px 16px 16px; scroll-padding-left: 16px; }
   .standpoint-card { padding: 19px 18px; }
   .standpoint-card h3 { max-width: 100%; font-size: 1.16rem; }
   .deck-controls { justify-content: center; }
@@ -1133,7 +1133,7 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 }
 /* Small phones: the hint wraps to two lines and the dots need to stay inside the viewport. */
 @media (max-width: 380px) {
-  .standpoint-track { grid-auto-columns: minmax(0, calc(100vw - 46px)); }
+  .standpoint-track { grid-auto-columns: calc(100vw - 46px); }
   .standpoint-card { padding: 17px 16px; }
   .deck-dot { width: 22px; }
   .deck-buttons { gap: 6px; }
