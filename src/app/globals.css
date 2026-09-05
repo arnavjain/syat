@@ -997,3 +997,27 @@ h1 { max-width: 680px; font-size: clamp(3.25rem, 8vw, 7rem); line-height: .88; }
 /* The disclosure belongs on every row but should not shout five times over. */
 .news-index-meta span.news-index-disclosure { padding: 0; color: var(--soft-ink); background: none; border-radius: 0; text-transform: uppercase; letter-spacing: .05em; }
 .news-index-meta span.news-index-disclosure::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; background: var(--marigold); border-radius: 50%; vertical-align: 1px; }
+
+/* News motifs: Syat's own mark for a story, because no newsroom image may sit beside one. */
+.news-index-row { grid-template-columns: clamp(84px, 13vw, 132px) minmax(0, 1fr); gap: clamp(16px, 3vw, 30px); align-items: start; }
+.news-index-body { display: grid; gap: 9px; min-width: 0; }
+.story-motif { margin: 0; padding: 10px 8px; background: var(--ink); border-radius: var(--radius-control); }
+.story-motif svg { display: block; width: 100%; height: auto; }
+@media (max-width: 720px) {
+  .news-index-row { grid-template-columns: 66px minmax(0, 1fr); gap: 14px; }
+  .story-motif { padding: 7px 5px; }
+}
+
+/* Lead strip placement made explicit, so adding the story mark cannot shuffle the other cells. */
+.feed-lead-strip > .micro-copy { grid-column: 1; grid-row: 1; }
+.feed-lead-strip > .story-motif { grid-column: 1; grid-row: 2; align-self: start; width: 100%; max-width: 250px; margin-top: 14px; }
+.feed-lead-strip > div { grid-column: 2; grid-row: 1 / span 2; }
+.feed-lead-strip > p:not(.micro-copy) { grid-column: 3; grid-row: 1; }
+.feed-lead-strip > .feed-action { grid-column: 3; grid-row: 2; align-self: end; }
+@media (max-width: 720px) {
+  .feed-lead-strip > .micro-copy { grid-column: 1; grid-row: 1; }
+  .feed-lead-strip > .story-motif { grid-column: 1; grid-row: 2; max-width: none; margin-top: 0; }
+  .feed-lead-strip > div { grid-column: 1; grid-row: 3; }
+  .feed-lead-strip > p:not(.micro-copy) { grid-column: 1; grid-row: 4; }
+  .feed-lead-strip > .feed-action { grid-column: 1; grid-row: 5; align-self: start; }
+}

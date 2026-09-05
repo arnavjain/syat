@@ -5,14 +5,30 @@ function digits(text: string): string[] {
     .replace(/\b(\d{2})(\d{2})\s*[-–/]\s*(\d{2})\b/g, (_match, century: string, year: string, next: string) => `${century}${year}-${century}${next}`)
     .replace(/\bFY\s*(\d{2})\b/gi, (_match, year: string) => `20${year}`);
 
-  return (withFullYears.match(/\d[\d,.]*(?:\s*-\s*\d[\d,.]*)?/g) ?? [])
+  const raw = (withFullYears.match(/\d[\d,.]*(?:\s*-\s*\d[\d,.]*)?/g) ?? [])
     .map((value) => value.replace(/\s+/g, ""))
     .map((value) => value.replace(/[,.]+$/, ""))
     .map((value) => value.replace(/,/g, ""))
-    // A bare two-digit year and its four-digit form are the same fact.
-    .map((value) => (/^\d{2}$/.test(value) && Number(value) <= 99 ? `20${value}` : value))
     .flatMap((value) => (value.includes("-") ? value.split("-") : [value]))
     .filter((value) => value.length > 0);
+
+  // A bare two-digit year and its four-digit form are the same fact, but only where the text is
+  // actually talking about that year. Expanding every two-digit number would quietly make "24
+  // districts" and "2024" the same figure, which is how an invented number gets through.
+  const fullYears = new Set(raw.filter((value) => /^(?:19|20)\d{2}$/.test(value)));
+  return raw.map((value) => (/^\d{2}$/.test(value) && fullYears.has(`20${value}`) ? `20${value}` : value));
+}
+
+/** Values in `left` that `right` does not cover, counting repeats, so a doubled figure still shows. */
+function countExcess(left: readonly string[], right: readonly string[]): string[] {
+  const remaining = [...right];
+  const excess: string[] = [];
+  for (const value of left) {
+    const at = remaining.indexOf(value);
+    if (at === -1) excess.push(value);
+    else remaining.splice(at, 1);
+  }
+  return excess;
 }
 
 export type RepairTarget = { fieldId: string; sourceId: string; currentText: string; avoidWording: string; sourceText: string; figures: readonly string[] };
@@ -185,13 +201,17 @@ export function applyRepairPatch(draft: GeneratedStoryV2, patch: unknown, target
     const text = value.trim();
     if (text.length === 0) throw new Error(`Repair response emptied ${fieldId}.`);
 
-    const before = digits(target.currentText).sort();
-    const after = digits(text).sort();
-    if (before.length !== after.length || before.some((value, index) => value !== after[index])) {
-      const dropped = before.filter((value) => !after.includes(value));
-      const added = after.filter((value) => !before.includes(value));
-      const detail = [dropped.length > 0 ? `dropped ${dropped.join(", ")}` : "", added.length > 0 ? `added ${added.join(", ")}` : ""].filter(Boolean).join("; ");
-      throw new Error(`Repair response changed the numbers in ${fieldId} (${detail || "reordered"}); a rewrite may not alter or invent a figure.`);
+    // A rewrite may never drop a figure the reader was given, and may never invent one. It may
+    // restate a figure that the cited evidence itself carries: de-copying a sentence often means
+    // naming the year or unit the borrowed run had left implicit, and that is grounded, not new.
+    const before = digits(target.currentText);
+    const after = digits(text);
+    const grounded = new Set(digits(target.sourceText));
+    const dropped = countExcess(before, after);
+    const added = countExcess(after, before).filter((value) => !grounded.has(value));
+    if (dropped.length > 0 || added.length > 0) {
+      const detail = [dropped.length > 0 ? `dropped ${dropped.join(", ")}` : "", added.length > 0 ? `added ungrounded ${added.join(", ")}` : ""].filter(Boolean).join("; ");
+      throw new Error(`Repair response changed the numbers in ${fieldId} (${detail}); a rewrite may not drop a figure or invent one the source does not carry.`);
     }
     const withoutDashes = text
       .replace(/(\d)\s*[–—]\s*(\d)/g, "$1 to $2")

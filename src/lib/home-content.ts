@@ -1,4 +1,5 @@
 import { getPreviewStory } from "./preview-content";
+import type { ReaderStoryIndexItem } from "./reader-story-schema";
 import { getNewsStory, getNewsStoryIndexProjection } from "./reader-stories";
 
 export type HomeMode = "news" | "timeless";
@@ -26,6 +27,8 @@ export type HomeContent = {
     dek: string;
     perspectives: string[];
     cta: { label: string; href: string };
+    /** Set only when a real accepted story leads, so the teaching fixture never draws a story mark. */
+    motif?: { slug: string; format: ReaderStoryIndexItem["format"] };
   };
   sections: Array<{ title: string; intro: string; items: StoryTeaser[] }>;
   contextBridge?: { targetSlug?: string; topicSlug?: string; question: string; connection: string };
@@ -90,7 +93,8 @@ function newsContent(): HomeContent {
       title: lead.title,
       dek: lead.dek,
       perspectives: [],
-      cta: { label: "Start reading", href: `/en/news/${lead.slug}` }
+      cta: { label: "Start reading", href: `/en/news/${lead.slug}` },
+      motif: { slug: lead.slug, format: lead.format }
     },
     sections: [
       {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { SiteChrome } from "@/components/site-chrome";
+import { StoryMotif } from "@/components/story-motif";
 import type { ReaderStoryIndexItem } from "@/lib/reader-story-schema";
 import { getNewsStoryIndexProjection } from "@/lib/reader-stories";
 
@@ -22,6 +23,8 @@ function themeGroupingHelps(items: readonly ReaderStoryIndexItem[]) {
 function StoryIndexRow({ story, showTheme = false }: { story: ReaderStoryIndexItem; showTheme?: boolean }) {
   return (
     <article className="news-index-row">
+      <StoryMotif story={story} />
+      <div className="news-index-body">
       <div className="news-index-meta">
         {showTheme ? <span className="news-index-theme">{story.theme}</span> : null}
         <span>{story.format.replaceAll("_", " ")}</span>
@@ -32,6 +35,7 @@ function StoryIndexRow({ story, showTheme = false }: { story: ReaderStoryIndexIt
       <h3><Link href={`/en/news/${story.slug}`}>{story.title}</Link></h3>
       <p>{story.dek}</p>
       <Link className="news-index-read" href={`/en/news/${story.slug}`}>Read with its source trail <span aria-hidden="true">↗</span></Link>
+      </div>
     </article>
   );
 }

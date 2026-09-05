@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { HomeContent, StoryTeaser } from "@/lib/home-content";
 
 import { ContextBridge } from "./context-bridge";
+import { StoryMotif } from "./story-motif";
 
 function TeaserLink({ item, className }: { item: StoryTeaser; className?: string }) {
   if (item.type === "internet") return <a className={className} href={item.href} rel="noreferrer" target="_blank">{item.title} <span aria-hidden="true">↗</span></a>;
@@ -17,6 +18,7 @@ export function EditorialFeed({ content }: { content: HomeContent }) {
   return <div className="editorial-feed" aria-label={`${content.modeLabel} editorial feed`}>
     <section className="feed-lead-strip" aria-labelledby="feed-lead-title">
       <p className="micro-copy">Lead · what changed</p>
+      {content.feature.motif ? <StoryMotif story={{ ...content.feature.motif, title: content.feature.title }} /> : null}
       <div><p>{content.feature.kicker}</p><h2 id="feed-lead-title"><Link href={leadHref}>{content.feature.title}</Link></h2></div>
       <p>{content.feature.dek}</p>
       <Link className="feed-action" href={leadHref}>{content.feature.cta.label} <span aria-hidden="true">↗</span></Link>

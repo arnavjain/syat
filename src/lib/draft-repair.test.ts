@@ -91,6 +91,25 @@ describe("repair patch refusals", () => {
     expect(() => applyRepairPatch(withNumber, { "paragraph:para-1": "The report says record sheets fell short of the required method in the blocks it checked." }, numberTargets)).toThrow(/changed the numbers/);
   });
 
+  it("allows a rewrite to name a figure the cited evidence itself carries", () => {
+    // De-copying a sentence often means stating the date the borrowed run left implicit. That is
+    // grounded in the source, so refusing it would throw away good repairs for no factual gain.
+    const withDate = makeCopyingDraft();
+    withDate.bodySections[0].paragraphs[0].text = "The audit found that muster rolls were not maintained in the prescribed manner during the period under review.";
+    const dateTargets = targetsFor(withDate);
+
+    const repaired = applyRepairPatch(withDate, { "paragraph:para-1": "Auditors reported that attendance records fell short of the required method, in findings placed before the legislature on 11 August 2026." }, dateTargets);
+    expect(repaired.bodySections[0].paragraphs[0].text).toContain("11 August 2026");
+  });
+
+  it("still refuses a figure the cited evidence does not carry", () => {
+    const withDate = makeCopyingDraft();
+    withDate.bodySections[0].paragraphs[0].text = "The audit found that muster rolls were not maintained in the prescribed manner during the period under review.";
+    const dateTargets = targetsFor(withDate);
+
+    expect(() => applyRepairPatch(withDate, { "paragraph:para-1": "Auditors reported that 63 per cent of attendance records fell short of the required method." }, dateTargets)).toThrow(/added ungrounded 63/);
+  });
+
   it("refuses an empty, non-string or dash-bearing rewrite", () => {
     expect(() => applyRepairPatch(draft, { "paragraph:para-1": "   " }, targets)).toThrow(/emptied/);
     expect(() => applyRepairPatch(draft, { "paragraph:para-1": 42 }, targets)).toThrow(/non-string/);
@@ -200,9 +219,17 @@ describe("fiscal year forms", () => {
   it("treats a two-digit year and its four-digit form as the same fact", () => {
     // Indian fiscal years are written 2023-24, and splitting that on the hyphen made a rewrite
     // spelling the year out look like it had changed a figure.
-    const { draft, targets } = withText("The report states that muster rolls were not maintained in the prescribed manner during 24 across the district.");
+    const { draft, targets } = withText("The report states that muster rolls were not maintained in the prescribed manner during 2023-24 across the district.");
 
-    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method during 2024 across the district." }, targets)).not.toThrow();
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method between 2023 and 2024 across the district." }, targets)).not.toThrow();
+  });
+
+  it("refuses to read a bare two-digit number as a year when nothing says it is one", () => {
+    // "24 districts" and "2024" are not the same fact. Expanding every two-digit number to a year
+    // would let a rewrite quietly swap a count for a date and still pass the figure check.
+    const { draft, targets } = withText("The report states that muster rolls were not maintained in the prescribed manner across 24 blocks.");
+
+    expect(() => applyRepairPatch(draft, { "paragraph:para-1": "Registers fell short of the required method during 2024 in the blocks checked." }, targets)).toThrow(/dropped 24/);
   });
 
   it("accepts a range written as its endpoints", () => {
