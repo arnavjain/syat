@@ -7,6 +7,7 @@ import { timelessTopicPath } from "@/lib/timeless-topics";
 import { AssociatedPeople } from "./associated-people";
 import { ContextBridge } from "./context-bridge";
 import { PostTimeline } from "./post-timeline";
+import { StandpointDeck } from "./standpoint-deck";
 import { StatementBasisSheet } from "./statement-basis-sheet";
 import { StoryBody } from "./story-body";
 import { StoryVisual } from "./story-visual";
@@ -95,21 +96,18 @@ function ReaderStoryPage({ story }: { story: ReaderStory }) {
           <div className="reader-section-heading">
             <h2 id="reader-perspectives-title">Different starting points, kept within their evidence</h2>
           </div>
-          <div className="reader-perspective-list">
-            {story.perspectives.map((perspective) => (
-              <article key={perspective.id}>
-                <h3>{perspective.label}</h3>
-                <p className="perspective-rationale">{perspective.rationale}</p>
-                <dl>
-                  <div><dt>Brings into view</dt><dd>{perspective.sees}</dd></div>
-                  <div><dt>Values</dt><dd>{perspective.values}</dd></div>
-                  <div><dt>Uses</dt><dd>{perspective.uses}</dd></div>
-                  <div><dt>May miss</dt><dd>{perspective.mayMiss}</dd></div>
-                </dl>
-                <p className="reader-inline-sources">{perspective.sourceIds.map((sourceId) => <a href={`#${sourceId}`} key={sourceId}>Source {sourceId}</a>)}</p>
-              </article>
-            ))}
-          </div>
+          <StandpointDeck
+            idPrefix={`perspective-${story.slug}`}
+            standpoints={story.perspectives.map((perspective) => ({
+              label: perspective.label,
+              rationale: perspective.rationale,
+              sees: perspective.sees,
+              values: perspective.values,
+              uses: perspective.uses,
+              mayMiss: perspective.mayMiss,
+              sources: <p className="reader-inline-sources">{perspective.sourceIds.map((sourceId) => <a href={`#${sourceId}`} key={sourceId}>Source {sourceId}</a>)}</p>
+            }))}
+          />
         </section>
       ) : null}
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { SaveButton } from "@/components/save-button";
+import { StandpointDeck } from "@/components/standpoint-deck";
 import { SiteChrome } from "@/components/site-chrome";
 import { TopicVisual } from "@/components/topic-visual";
 import { storiesIllustrating } from "@/lib/reader-stories";
@@ -52,18 +53,7 @@ export default async function TimelessTopicPage({ params }: { params: Promise<{ 
             <h2 id="standpoints-title">Who is looking, and what that shows</h2>
             <p>Each standpoint is a position someone genuinely holds. None of them is the answer, and the disagreement between them is the point.</p>
           </div>
-          <div className="standpoint-list">
-            {content.standpoints.map((standpoint) => (
-              <article className="standpoint" key={standpoint.label}>
-                <h3>{standpoint.label}</h3>
-                <dl>
-                  <div><dt>Brings into view</dt><dd>{standpoint.sees}</dd></div>
-                  <div><dt>Treats as important</dt><dd>{standpoint.values}</dd></div>
-                  <div><dt>May miss</dt><dd>{standpoint.mayMiss}</dd></div>
-                </dl>
-              </article>
-            ))}
-          </div>
+          <StandpointDeck idPrefix={`standpoint-${topic.slug}`} standpoints={content.standpoints} />
         </section>
 
         <section className="topic-contested" aria-labelledby="contested-title">
