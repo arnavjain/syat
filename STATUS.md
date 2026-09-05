@@ -6,11 +6,15 @@ Updated as work lands. Newest at the top.
 
 ## Landed since you last looked
 
+- **48 contested questions across six more fields**, live: science where it is
+  genuinely open, philosophy unresolved, environmental trade-offs, economics argued,
+  Indian polity, and India in the world. Contested means informed people still
+  disagree — not manufactured doubt about settled findings.
+
 - **26 specific Indian history questions**, live. The freedom struggle argued rather
   than narrated (1857 to the INA trials), Partition and its arithmetic (Cabinet
   Mission, the Radcliffe line, the recovery programmes), and the writing of the
-  Constitution. Each has three or four standpoints that genuinely disagree. Catalogue
-  is now **126 questions**, up from 100.
+  Constitution. Each has three or four standpoints that genuinely disagree. Catalogue is now **174 questions across 19 themes**, up from 100.
 - **A search bar**, in the top navigation, covering both libraries at once. Built at
   compile time, searched on your device, nothing typed is sent anywhere.
 - **A landing explainer** that says what Syāt is, where material comes from, and what
@@ -24,7 +28,7 @@ Updated as work lands. Newest at the top.
 
 - https://syat-seven.vercel.app
 - https://syat-jdso.vercel.app
-- 126 Timeless questions · 13 News previews · 179 static pages
+- 174 Timeless questions across 19 themes · 13 News previews · 233 static pages
 
 ## Open decisions and blocks
 
