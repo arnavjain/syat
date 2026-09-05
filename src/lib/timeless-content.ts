@@ -1044,7 +1044,299 @@ export const timelessContent: Readonly<Record<string, TopicContent>> = {
     ],
     contested: "Whether every disagreement deserves engagement or some are better refused.",
     changeYourMind: "Find someone you disagree with and state their position until they agree it is fair."
-  }
+  },
+
+  // The freedom struggle, argued
+  "revolt-1857": {
+    opening: "The same eighteen months are taught as a sepoy mutiny, as a feudal reaction, and as a first war of independence. The disagreement is not really about what happened. It is about what counts as a nation acting, and whether people who never used the word were nonetheless doing the thing.",
+    standpoints: [
+      { label: "The company's account", sees: "A military breakdown that began in the ranks, spread through grievance and rumour, and was put down.", values: "Explaining a collapse in terms an administration can act on, which means discipline and command.", mayMiss: "That framing it as indiscipline made the political demands of those involved unreadable by design." },
+      { label: "The nationalist reading", sees: "A coordinated refusal across regions, castes and faiths, with rulers, peasants and soldiers acting together against one power.", values: "Recognising ordinary people as political actors rather than as a mob.", mayMiss: "How local and dynastic many of the aims were, and how many Indians fought on the other side." },
+      { label: "The dispossessed ruler", sees: "A chance to reverse annexations and a doctrine that had swallowed states without a war.", values: "Restoration of a specific sovereignty, not the creation of a new one.", mayMiss: "That a restored order would have returned most participants to where they started." },
+      { label: "The peasant who joined", sees: "Revenue demands, dispossession and the courts that enforced both.", values: "Relief that arrives in the village, whoever delivers it.", mayMiss: "That the leadership he was fighting under had no plan for his land question either." }
+    ],
+    contested: "Whether an uprising has to imagine a nation in order to be one. One side argues that intention is what makes a national movement; the other that the effect on the imperial state, and on what Indians later believed possible, is what matters.",
+    changeYourMind: "Read the proclamations issued in Delhi and Awadh in 1857 alongside the annexation records of the preceding decade. If the language reaches past dynasty toward a shared grievance, the nationalist reading gains ground. If it does not, the restorationist reading does."
+  },
+  "moderates-and-extremists": {
+    opening: "The Moderates are remembered for petitions that were ignored and the Extremists for a militancy that was suppressed. Both judgements are made from the far end, knowing how it finished. At the time, neither knew whether the other was the wasted decade.",
+    standpoints: [
+      { label: "The constitutional petitioner", sees: "That an empire justifying itself by law can be held to its own law, and that the record of refusal is itself evidence.", values: "Building a case that survives, and an educated public that can read it.", mayMiss: "That a case can be unanswerable and still be ignored for forty years." },
+      { label: "The advocate of pressure", sees: "That nothing moved until something cost the administration money, order or confidence.", values: "Making refusal expensive rather than merely embarrassing.", mayMiss: "That pressure without an organised base invites repression the base cannot absorb." },
+      { label: "The provincial organiser", sees: "That both wings were arguing in English about a country that mostly was not listening yet.", values: "Reaching people in their own language before deciding what to ask for.", mayMiss: "That the constitutional work created the vocabulary the mass phase later used." },
+      { label: "The colonial administrator", sees: "One wing to negotiate with and another to police, and an advantage in keeping them apart.", values: "A managed opposition over an unmanageable one.", mayMiss: "That the split he encouraged made the eventual synthesis stronger." }
+    ],
+    contested: "Whether the economic critique the Moderates built, of drain and deindustrialisation, did more lasting damage to imperial legitimacy than any agitation, or whether it merely made the case that agitation later enforced.",
+    changeYourMind: "Trace one specific demand from a Congress resolution of the 1890s to its appearance in law. If the path runs through the argument itself, the constitutional case is stronger. If it runs only through a later moment of disorder, the case for pressure is."
+  },
+  "swadeshi-1905": {
+    opening: "A partition of Bengal produced the first mass boycott, a wave of indigenous enterprise and schooling, and a set of exclusions that were not incidental to it. Both are the same movement and neither cancels the other.",
+    standpoints: [
+      { label: "The boycotting student", sees: "That refusal can be organised, sustained and felt in another country's ledgers.", values: "Discovering that ordinary participation has leverage.", mayMiss: "How much of the burden fell on traders and weavers who had no choice about the goods they handled." },
+      { label: "The Muslim cultivator in east Bengal", sees: "A campaign led largely by the landholding class he already owed rent to, and a new province that had promised him attention.", values: "Not being asked to sacrifice for a settlement that leaves his position unchanged.", mayMiss: "That the administrative promise was partly a device to divide the opposition." },
+      { label: "The builder of national institutions", sees: "Schools, banks and mills founded in a few years, and proof that substitution was possible.", values: "Capacity that outlasts a campaign.", mayMiss: "That most of those enterprises did not survive the decade." },
+      { label: "The official in Calcutta", sees: "Administrative logic in dividing an unmanageable province, and agitation as the response of a narrow elite.", values: "Governability.", mayMiss: "That the reversal in 1911 conceded the political point entirely." }
+    ],
+    contested: "Whether the exclusions were a failure of a good movement or a feature of how it was built, and therefore whether the later communal settlement was an accident or an inheritance.",
+    changeYourMind: "Compare participation in the boycott across districts against landholding and religious composition. If refusal held where the leadership had no economic hold, the movement was broader than its critics allow."
+  },
+  "champaran-method": {
+    opening: "A dispute about indigo cultivation in one district became the model for everything that followed. What made it a template was not the grievance, which was old, but the method: arrive, record, refuse to leave, and make the recording itself the confrontation.",
+    standpoints: [
+      { label: "The cultivator under tinkathia", sees: "An obligation to grow a crop he cannot eat on land he needs for food, enforced by people who live nearby.", values: "Ending a specific, daily compulsion.", mayMiss: "That the settlement reached still left the planters' wider position intact." },
+      { label: "The organiser taking statements", sees: "That thousands of individual depositions are harder to dismiss than one representative's claim.", values: "Evidence gathered from those affected, in their own words.", mayMiss: "That the method depends on an administration that can still be embarrassed by a record." },
+      { label: "The planter", sees: "Contracts, investment and a system that had operated lawfully for decades.", values: "Certainty of supply.", mayMiss: "That legality had been built around a compulsion nobody had consented to." },
+      { label: "The district officer", sees: "An outsider raising a settled matter, and a queue outside his office that will not disperse.", values: "Order restored at the least cost.", mayMiss: "That conceding the inquiry conceded the principle that peasants could summon the state." }
+    ],
+    contested: "Whether the method generalises. It worked where the grievance was specific, local and documentable. Whether the same approach can carry a demand as broad as self-rule is the question the next thirty years tested.",
+    changeYourMind: "Look at how many of the depositions taken in 1917 were used in the commission's findings. If the record shaped the outcome, the method was doing the work. If the outcome turned on political pressure elsewhere, the record was a device rather than the cause."
+  },
+  "khilafat-alliance": {
+    opening: "For two years the largest mobilisation India had seen joined a demand about an Ottoman office to a demand about Indian self-rule. It ended when the office was abolished by Turkey itself. What that alliance bought, and what it cost afterwards, is still argued.",
+    standpoints: [
+      { label: "The organiser of unity", sees: "The one moment when a single campaign moved both major communities together, at scale, in the same direction.", values: "A political fact that had never existed before and did not last.", mayMiss: "That the shared cause was external, and could not survive its own resolution." },
+      { label: "The sceptic of religious mobilisation", sees: "A national movement borrowing energy from a theological grievance it could not itself define or defend.", values: "Politics grounded in claims all citizens can weigh.", mayMiss: "That the mobilisation reached people no secular appeal had reached." },
+      { label: "The Khilafat committee member", sees: "A genuine and widely felt obligation, not a tactic to be assessed for its Indian yield.", values: "Being taken seriously on his own terms rather than as a recruit.", mayMiss: "How exposed the cause was to a decision taken in Ankara." },
+      { label: "The later historian of communal politics", sees: "Organisational habits and vocabularies formed in these years that outlived the alliance and were available afterwards to divide.", values: "Tracing consequences past the moment of intent.", mayMiss: "That the same years produced the strongest evidence that a shared politics was possible." }
+    ],
+    contested: "Whether the alliance created the conditions for later separation, or whether it was the last thing holding it off. The same evidence supports both, depending on where the account is allowed to stop.",
+    changeYourMind: "Follow the individual leaders of the Khilafat committees through the next fifteen years. Where they end up, and how quickly, tells you whether the alliance built something or borrowed it."
+  },
+  "chauri-chaura": {
+    opening: "A police post was burned and twenty-two policemen died, and the largest movement in the country was called off within days, over the objections of most of its leadership. It is either the moment the movement proved its seriousness, or the moment it lost its opening.",
+    standpoints: [
+      { label: "The leader who withdrew", sees: "That a movement which cannot hold to non-violence under provocation will become the thing it opposes, and lose the only advantage it has.", values: "Means that can survive success.", mayMiss: "The cost to those already imprisoned, and to a mobilisation that would take a decade to rebuild." },
+      { label: "The imprisoned organiser", sees: "Momentum surrendered at the point of maximum pressure, on the strength of one incident among many.", values: "Seeing through what people had already sacrificed for.", mayMiss: "That a movement excusing this incident would be asked to excuse the next." },
+      { label: "The crowd at Chauri Chaura", sees: "Provocation, firing, and a police post that had been a source of everyday coercion long before that day.", values: "Not being written out of their own action as a lapse in someone else's discipline.", mayMiss: "That the leadership's authority rested on a claim that could not admit exceptions." },
+      { label: "The revolutionary watching", sees: "Confirmation that mass non-violence would always stop short, and that another method was needed.", values: "Consistency between the scale of the wrong and the scale of the response.", mayMiss: "That the movement's restraint was what made its moral claim legible abroad." }
+    ],
+    contested: "Whether non-violence was a strategy, to be judged on results, or a commitment, which cannot be suspended when it becomes expensive without ceasing to be one.",
+    changeYourMind: "Compare the recruitment and the repression that followed the withdrawal with what followed the movements that did not withdraw. If the pause preserved the base, the decision looks strategic as well as principled."
+  },
+  "salt-as-symbol": {
+    opening: "Of every grievance available in 1930, the one chosen was a tax on salt. Sophisticated observers on all sides thought it trivial. It turned out to be the most legible demand of the entire struggle, and the reason is worth understanding rather than admiring.",
+    standpoints: [
+      { label: "The organiser choosing the issue", sees: "A law everyone breaks against, that costs the poorest most, that anyone can defy publicly with their hands, and that the state must either enforce visibly or abandon.", values: "A demand that needs no explaining and no literacy.", mayMiss: "That symbolic clarity can substitute for a programme once the campaign ends." },
+      { label: "The Congress economist", sees: "A minor revenue head standing in for a whole fiscal relationship, and the risk of winning the symbol and losing the substance.", values: "Structural change over a demonstration.", mayMiss: "That structural demands had produced forty years of nothing." },
+      { label: "The woman joining a public procession", sees: "The first political act available to her that required no property, no office and no permission from a party.", values: "Entry into public life through the least guarded door.", mayMiss: "That the space opened would be narrowed again once the campaign closed." },
+      { label: "The viceroy's office", sees: "An unenforceable law and a choice between looking brutal and looking irrelevant.", values: "Authority preserved at acceptable cost.", mayMiss: "That both options conceded that the law governed only by consent." }
+    ],
+    contested: "Whether the campaign's success came from the moral force of the act or from the administrative trap it set, and whether a movement can repeat the trick once the other side has seen it.",
+    changeYourMind: "Look at what the salt laws actually did to household budgets at the bottom of the income distribution. If the burden was real and heavy, the symbol was also a substantive grievance, and the distinction the critics drew collapses."
+  },
+  "revolutionary-path": {
+    opening: "A small number of people chose armed action while a mass movement was running, and were executed for it. They are commemorated everywhere and their argument is rarely examined, which is a strange way to honour people who wrote a great deal about why they did what they did.",
+    standpoints: [
+      { label: "The revolutionary", sees: "That an empire holds by force, that petition and even mass refusal leave that force untested, and that a public trial is a platform nothing else provides.", values: "Proportion between the violence of the order and the response to it.", mayMiss: "That the platform depends on a state willing to hold a public trial at all." },
+      { label: "The mass organiser", sees: "Actions that cannot be repeated at scale, cannot be defended in public, and hand the administration its justification.", values: "Methods ordinary people can join without dying.", mayMiss: "That the executions moved more people than most of his own campaigns." },
+      { label: "The socialist within the movement", sees: "In the later writing, a programme about class and property that the commemorations quietly drop.", values: "Taking the stated politics seriously rather than only the sacrifice.", mayMiss: "That the writing was done young, under sentence, and was still changing." },
+      { label: "The family of a policeman killed", sees: "A person, not a symbol, and a death that no account of the movement lists by name.", values: "Being counted.", mayMiss: "The scale of the violence being answered." }
+    ],
+    contested: "Whether the revolutionaries are best understood as a moral supplement to the mass movement, supplying urgency it lacked, or as a rival politics with a different analysis that was defeated rather than absorbed.",
+    changeYourMind: "Read the court statements and the later prison writing rather than the commemorations. If a worked-out political programme is there, the rival-politics reading holds. If the writing is mostly about method and sacrifice, the supplement reading does."
+  },
+  "quit-india-1942": {
+    opening: "The leadership was arrested within hours of the resolution. What followed for three months was therefore not led by them, and that is the most interesting fact about it. A movement without its command structure revealed who else had been organising all along.",
+    standpoints: [
+      { label: "The student and local organiser", sees: "That the absence of instruction was an opening, and that parallel administration in a district was actually achievable.", values: "Initiative that does not wait for permission.", mayMiss: "That what could be seized in a district could not be held against a state that had decided to reconquer it." },
+      { label: "The imprisoned leadership", sees: "A movement it had called and could not shape, taking forms it had spent twenty years arguing against.", values: "Coherence between the demand and the method.", mayMiss: "That its own resolution had invited exactly this by naming no next step." },
+      { label: "The wartime administration", sees: "An insurrection during a war on two fronts, and a free hand to end it.", values: "Holding the country as a base.", mayMiss: "That the scale of force required demonstrated how little consent remained." },
+      { label: "The communist and the Muslim League, standing aside", sees: "A war against fascism that ought not to be sabotaged, or a movement that had not settled the constitutional question they cared about.", values: "Their own priority, held openly.", mayMiss: "That absence in 1942 became a charge against them for decades." }
+    ],
+    contested: "Whether 1942 hastened the departure by proving the country ungovernable, or delayed a negotiated settlement by removing every leader capable of negotiating one for three years.",
+    changeYourMind: "Look at where parallel governments actually functioned and for how long. If they held in more than a handful of places, the ungovernability argument gains real weight."
+  },
+  "ina-trials": {
+    opening: "An army that lost its campaign changed Indian politics more in three months of courtroom proceedings than in its years in the field. The decision to try the officers publicly, at the Red Fort, is one of the most consequential administrative misjudgements of the period.",
+    standpoints: [
+      { label: "The defence lawyer", sees: "A charge of treason that requires the court to assert allegiance to a crown the defendants deny, in front of the country.", values: "Turning a prosecution into an examination of the state's own claim.", mayMiss: "That the strategy worked because of the moment, not because of its legal strength." },
+      { label: "The serving Indian soldier", sees: "Men from the same regiments and villages, tried for a choice he might have faced, by officers who had recently needed him.", values: "Not being asked to enforce a distinction he does not accept.", mayMiss: "That the loyalty being tested was what had held the whole arrangement together." },
+      { label: "The Congress leadership", sees: "A cause capable of uniting opinion across communities at a moment when little else could.", values: "Consolidation at the point of transfer.", mayMiss: "That defending the soldiers meant honouring a wartime alliance it had opposed." },
+      { label: "The official reviewing the decision", sees: "That the trials had to happen for discipline, and that holding them in public was the error rather than holding them at all.", values: "An army that remains an army.", mayMiss: "That there was no venue where this could have been done quietly by then." }
+    ],
+    contested: "Whether the transfer of power was decided by the mass movement, by the war's exhaustion of British capacity, or by the moment the administration could no longer be certain of the loyalty of Indian troops and police.",
+    changeYourMind: "Read the internal assessments of the reliability of Indian forces written in 1945 and 1946. If they changed sharply around the trials and the naval mutiny, the loyalty argument is doing more work than the others."
+  },
+
+  // Partition and its arithmetic
+  "two-nation-claim": {
+    opening: "The claim that Hindus and Muslims formed two nations was made for decades before it became a border. Treating it as either an ancient truth or a sudden invention both avoid the harder question: what changed between it being one argument among many and it being the basis of a state.",
+    standpoints: [
+      { label: "The League's constitutional case", sees: "A permanent minority in a majoritarian democracy, with no reserved share of power that the majority cannot amend away.", values: "Guarantees written into the structure rather than promised by goodwill.", mayMiss: "That the remedy chosen stranded the very populations it invoked, in provinces that were never going to move." },
+      { label: "The Congress reply", sees: "A composite society where religious identity is one affiliation among several, and a claim that hardens into permanence only if institutions are built on it.", values: "Citizenship that does not require declaring a community first.", mayMiss: "That its own assurances were not backed by any mechanism a minority could enforce." },
+      { label: "The nationalist Muslim", sees: "His position erased by both sides: refused as unrepresentative by one and treated as an exception by the other.", values: "A politics where he is not the residue of someone else's argument.", mayMiss: "How thin his organisational base was once the question became a plebiscite." },
+      { label: "The provincial politician", sees: "Coalitions in Punjab and Bengal that had worked across the line for years, being pulled apart by an argument conducted elsewhere.", values: "Local arrangements that had actually held.", mayMiss: "That those arrangements depended on a centre nobody was going to leave intact." }
+    ],
+    contested: "Whether separation followed from a claim about what a nation is, or from the mechanics of representation under the 1935 Act and the 1946 elections, which made communal blocs the currency of politics before anyone had settled the theory.",
+    changeYourMind: "Read the 1946 provincial election results next to the franchise rules that produced them. If the mandate looks like a product of a restricted separate-electorate franchise, the mechanical explanation carries more weight than the ideological one."
+  },
+  "cabinet-mission": {
+    opening: "In 1946 a plan was put forward that would have kept India together with a weak centre and grouped provinces. Both major parties accepted it and then read it differently, and it collapsed. It remains the last documented alternative to partition.",
+    standpoints: [
+      { label: "The advocate of grouping", sees: "A structure giving Muslim-majority provinces collective weight without a separate state, and a ten-year exit if it failed.", values: "A settlement short of amputation.", mayMiss: "That grouping compulsory at the start and optional later was a contradiction, not a compromise." },
+      { label: "The centralist", sees: "A union so weak it could not tax, plan or hold itself together, guaranteeing a slower partition rather than none.", values: "A state capable of acting.", mayMiss: "That a strong centre was precisely the thing the other side could not accept." },
+      { label: "The provincial minority inside a group", sees: "That grouping protects one minority by creating another, in Assam and in East Punjab, with no protection at all.", values: "Not being someone else's arithmetic.", mayMiss: "That the alternative on offer would place him across a border instead." },
+      { label: "The departing administration", sees: "A last chance to leave one successor state rather than two, and a timetable already fixed.", values: "An orderly transfer.", mayMiss: "That the timetable itself removed the time the plan needed to be tested." }
+    ],
+    contested: "Whether the plan failed because its text was genuinely ambiguous on whether grouping was compulsory, or because neither party wanted it to succeed on the other's reading and the ambiguity was a convenience.",
+    changeYourMind: "Read the plan's own wording on grouping alongside the two parties' immediate public statements. If the text will not bear one reading, the ambiguity was real and the collapse was drafting. If it will, the collapse was political."
+  },
+  "direct-action-day": {
+    opening: "A single day in Calcutta in August 1946 killed thousands and changed what participants on all sides believed was coming. Whether it was intended as a demonstration or as what it became is disputed. Its effect is not.",
+    standpoints: [
+      { label: "The organiser who called it", sees: "A show of political strength after constitutional routes had closed, of a kind other parties had used for decades.", values: "Being taken seriously after being outvoted.", mayMiss: "That calling a general strike in a divided city with a partisan administration is not a controllable act." },
+      { label: "The resident of a mixed neighbourhood", sees: "Neighbours becoming a threat within hours, and no police response for a day and a night.", values: "Survival, and afterwards, distance.", mayMiss: "Nothing. This standpoint is the one the political accounts most often skip." },
+      { label: "The provincial administration", sees: "A holiday declared, a force it did not trust to be impartial, and a decision to wait.", values: "Not making it worse by intervening badly.", mayMiss: "That waiting was itself a decision with a body count." },
+      { label: "The negotiator afterwards", sees: "That the argument had moved from what should happen to what could be prevented.", values: "Speed, above the terms.", mayMiss: "That speed produced boundaries drawn without survey and transfers without protection." }
+    ],
+    contested: "Whether the violence made partition inevitable or merely made it faster, and whether treating it as a turning point flatters the political actors by removing their choices after it.",
+    changeYourMind: "Compare the negotiating positions of each party in July 1946 with those in October. If the terms shift more than the timetable, the event changed the substance and not only the pace."
+  },
+  "radcliffe-line": {
+    opening: "A lawyer who had never been to India was given about five weeks to divide two provinces, using outdated census material, and was gone before the line was published. The result governs the daily lives of hundreds of millions and is still being litigated in water, in fields and in memory.",
+    standpoints: [
+      { label: "The boundary commissioner", sees: "An impossible instruction, contradictory criteria, and a deadline he did not set.", values: "Finishing a job nobody else would take.", mayMiss: "That accepting the timetable made the outcome his as well." },
+      { label: "The farmer whose land the line crossed", sees: "A field on one side and a well on the other, and a canal head now in another country.", values: "Continuity of the thing he actually farms.", mayMiss: "That no line drawn anywhere would have left every system whole." },
+      { label: "The demographer", sees: "Criteria that could not all be satisfied at once: contiguity, majority, and other factors deliberately left undefined.", values: "Saying plainly that the brief was incoherent.", mayMiss: "That an incoherent brief still had to produce a line by a date." },
+      { label: "The official defending the timetable", sees: "That delay would have meant governing a collapsing situation with no authority to do it.", values: "Leaving before the state failed entirely.", mayMiss: "That the haste transferred the whole cost of the failure onto people who had no say in the date." }
+    ],
+    contested: "Whether a boundary can be assessed as a technical exercise at all, or whether the choice to draw one on that timetable, with those criteria, was the decision and the cartography merely its execution.",
+    changeYourMind: "Look at the award's treatment of the canal systems in Punjab. If irrigation was considered and overridden, the exercise was political. If it was never assessed, the incoherence of the brief is the better explanation."
+  },
+  "punjab-and-bengal": {
+    opening: "Both provinces were divided, both saw enormous violence and movement, and the two are remembered very differently. Punjab is a rupture with a date; Bengal is a longer displacement that never quite resolved into an event.",
+    standpoints: [
+      { label: "The Punjabi refugee", sees: "A near-total exchange over months, columns on the roads, and arrival in a country that at least expected him.", values: "Recognition of a catastrophe with a beginning and an end.", mayMiss: "That the completeness of the exchange is what made resettlement politically possible." },
+      { label: "The Bengali who stayed, then left", sees: "Departure in waves over decades, arriving where no rehabilitation scheme was waiting and the crisis had been declared over.", values: "Being counted at all.", mayMiss: "That the slower pace also meant more people kept property, family and a route back for longer." },
+      { label: "The rehabilitation official", sees: "Two problems with different shapes: one a surge to be absorbed, the other a flow with no end date to plan against.", values: "Matching the response to the form of the movement.", mayMiss: "That the open-ended problem got the smaller share precisely because it had no deadline." },
+      { label: "The historian of memory", sees: "That a bounded event produces literature, commemoration and a settled national story, while a continuing one produces silence.", values: "Asking why some suffering becomes canonical.", mayMiss: "That the canonical account also flattens the Punjab experience into a single week." }
+    ],
+    contested: "Whether the difference is in the events or in the recording, and whether the national story required one partition to be the partition.",
+    changeYourMind: "Compare rehabilitation spending per displaced person in the two regions across the 1950s. A large gap suggests the difference in memory follows a difference in treatment, rather than the other way round."
+  },
+  "migration-1947": {
+    opening: "The movement of people in 1947 is usually given as a number. The number is contested, the direction was not always one way, and a great deal of what moved was not people at all: skills, tenancies, credit relationships and the assumption that where you live is where you stay.",
+    standpoints: [
+      { label: "The person who left", sees: "A decision made in days, on rumour and on what the neighbours did, expected to be temporary.", values: "Getting the family out.", mayMiss: "That the temporary framing is what left property claims unsettled for generations." },
+      { label: "The person who stayed", sees: "A country that changed around him without his moving, and a new requirement to demonstrate belonging.", values: "The right not to have to prove it.", mayMiss: "That those who left often had no such option." },
+      { label: "The receiving city", sees: "Population arriving faster than housing, water or work, and a politics reshaped for decades by where they settled.", values: "Absorption without collapse.", mayMiss: "That the settlements treated as temporary became permanent and underserved." },
+      { label: "The statistician", sees: "Counts assembled from incompatible sources, with strong incentives on all sides to overstate or understate.", values: "Honest uncertainty over a confident figure.", mayMiss: "That refusing a number leaves the field to the least careful estimate." }
+    ],
+    contested: "Whether 1947 is best understood as an exchange of populations, which implies symmetry and completion, or as a displacement, which implies loss without a counterpart.",
+    changeYourMind: "Follow property compensation claims filed in the 1950s on both sides. If the claims were largely settled, the exchange framing holds. If they were written off, displacement is the better word."
+  },
+  "princely-choice": {
+    opening: "Over five hundred princely states were told that paramountcy would lapse and that they should accede to one dominion or the other. The formal position was that they had a choice. What that choice consisted of, in practice, varied enormously and is often described as though it did not.",
+    standpoints: [
+      { label: "The ruler", sees: "A treaty relationship being dissolved by one party, and an instrument of accession offered on a deadline.", values: "The terms of the arrangement he signed.", mayMiss: "That the arrangement had always rested on a power that was leaving." },
+      { label: "The states department", sees: "A map that will not function with hundreds of enclaves, and a narrow window before positions harden.", values: "A viable country.", mayMiss: "That efficiency at that speed meant pressure that the formal choice was supposed to exclude." },
+      { label: "The subject of a princely state", sees: "That nobody asked him, and that the popular movements inside several states were the actual force deciding the outcome.", values: "Being a party rather than an asset.", mayMiss: "That his movement's success often depended on the dominion's backing." },
+      { label: "The lawyer of accession", sees: "Instruments limited to three subjects, later extended well beyond what was signed.", values: "Holding the document to its text.", mayMiss: "That every federal settlement of the period was renegotiated the same way." }
+    ],
+    contested: "Whether integration is best described as a negotiated accession, a popular movement inside the states, or an annexation conducted with paperwork. Different states support different answers, which is why single accounts of the process are usually arguing about the outliers.",
+    changeYourMind: "Take three states with different outcomes and read the sequence of internal agitation, standstill agreement and accession in each. If popular pressure precedes the instrument, the movement account holds."
+  },
+  "partition-women": {
+    opening: "After 1947 both new states ran programmes to recover women who had been abducted, and returned them across the border, in many cases against their stated wishes and years after they had built new lives. The programmes were widely supported at the time.",
+    standpoints: [
+      { label: "The recovering state", sees: "An obligation to citizens taken by force, and a national dishonour to be corrected.", values: "Restoration of what was taken.", mayMiss: "That it was defining the woman's belonging by the community she was born into, and overriding her own account." },
+      { label: "The woman being recovered", sees: "A second removal, sometimes from children she cannot bring, into a family that may not accept her.", values: "Deciding for herself which life is hers.", mayMiss: "How little the framework of the time could hear that as a legitimate answer." },
+      { label: "The receiving family", sees: "Honour, and a return that is also an accusation neighbours will remember.", values: "The family restored as it was.", mayMiss: "That the restoration is being performed on someone rather than for her." },
+      { label: "The social worker administering it", sees: "Real cases of coercion alongside cases that were not, and no procedure that distinguishes them.", values: "Rescuing those genuinely held.", mayMiss: "That a programme without consent at its centre cannot tell the two apart, and did not try." }
+    ],
+    contested: "Whether the state may override an individual's stated choice in the name of correcting a wrong done to her, and who decides when the wrong has been corrected.",
+    changeYourMind: "Read the recovery legislation's own provisions on consent. If consent is absent from the text rather than merely overridden in practice, the programme was designed to work this way and cannot be defended as implementation failure."
+  },
+
+  // Writing the Constitution
+  "constituent-assembly": {
+    opening: "The Assembly that wrote the Constitution was elected on a franchise covering a small fraction of adults, by provincial legislators, under rules written by the departing power. It then wrote universal adult suffrage into the document. Both facts are true and the tension between them is the interesting part.",
+    standpoints: [
+      { label: "The member defending its authority", sees: "The most representative body the country had ever assembled, working in public, with dissent recorded verbatim.", values: "Legitimacy earned through deliberation rather than through the ballot that selected it.", mayMiss: "That deliberative quality is not the same as a mandate." },
+      { label: "The critic of its composition", sees: "A body dominated by one party, thin on peasants, workers and women, deciding for a population that had not chosen it.", values: "Who is actually in the room.", mayMiss: "That its first act was to make itself the last such body." },
+      { label: "The member from a marginalised community", sees: "Space to argue for safeguards, and the limits of arguing from a small number of seats.", values: "Getting the guarantee into the text while the text is open.", mayMiss: "That a guarantee in the text still depends on later majorities to work." },
+      { label: "The drafting lawyer", sees: "A technical problem of stitching borrowed provisions into something that will function under stress.", values: "A document that survives contact with actual government.", mayMiss: "That technical choices about emergency and centre-state power were political choices in other clothes." }
+    ],
+    contested: "Whether a body can legitimately write a constitution for people who did not elect it, if what it writes hands them the power to change it.",
+    changeYourMind: "Compare the Assembly's composition with the first general election result. If the same forces win, the mandate objection weakens considerably."
+  },
+  "fundamental-rights-limits": {
+    opening: "Almost every fundamental right in the Indian Constitution arrives with its restrictions in the same article. This was deliberate and heavily argued. It is either the reason the rights survived, or the reason they can be narrowed.",
+    standpoints: [
+      { label: "The drafter", sees: "That a right stated absolutely will be suspended entirely at the first emergency, and that writing the limits down keeps them reviewable.", values: "Restrictions that a court can measure.", mayMiss: "That a listed ground can be stretched further than an unlisted one could have been." },
+      { label: "The civil libertarian", sees: "Qualifications broad enough that the exception can swallow the right, especially around public order.", values: "A right that means something when it is inconvenient.", mayMiss: "That absolute rights elsewhere have been suspended wholesale rather than trimmed." },
+      { label: "The administrator", sees: "A country where a public order provision is used constantly and cannot simply be removed.", values: "Instruments that work in the conditions that exist.", mayMiss: "That routine use is what turns an exception into the norm." },
+      { label: "The judge applying it", sees: "A test of reasonableness that gives the court a role it would not have if the right were absolute.", values: "Judicial supervision of the limit.", mayMiss: "That the same test lets restriction be validated case by case until little is left." }
+    ],
+    contested: "Whether writing limits into rights strengthens them by making restriction justiciable, or weakens them by pre-authorising it.",
+    changeYourMind: "Track how often the reasonableness test has struck down a restriction rather than upheld it. A high strike rate supports the drafters; a low one supports the libertarian."
+  },
+  "directive-principles": {
+    opening: "One part of the Constitution lists obligations of the state that no court may enforce. Calling them unenforceable promises is accurate and also misses what they have done to how laws are read.",
+    standpoints: [
+      { label: "The drafter", sees: "Goals a poor state cannot yet deliver, written down so that failure to pursue them is visible and arguable.", values: "Direction without pretending to capacity.", mayMiss: "That unenforceable text invites the charge of decoration." },
+      { label: "The critic", sees: "A section that lets a state announce commitments it never has to meet, with the word not in the operative clause.", values: "Obligations with consequences.", mayMiss: "That several principles have since been legislated into enforceable rights." },
+      { label: "The judge", sees: "An interpretive resource: where a right is ambiguous, the principles say which reading the Constitution prefers.", values: "Coherence between the two parts.", mayMiss: "That using unenforceable text to expand enforceable rights is doing indirectly what was expressly excluded." },
+      { label: "The claimant", sees: "That whether her claim succeeds depends on which side of the line her subject happened to be placed in 1950.", values: "Getting the entitlement, whatever it is filed under.", mayMiss: "That the line is what allowed the promise to be made at all." }
+    ],
+    contested: "Whether unenforceable constitutional obligations are a serious legal instrument or an honest admission of inability, and whether the judicial migration of principles into rights respects the design or quietly overrides it.",
+    changeYourMind: "List the directive principles that have become enforceable through legislation or judicial reading. If most have, the section worked as a queue rather than a graveyard."
+  },
+  "reservation-debate": {
+    opening: "The Assembly argued about reservation not mainly as a question of fairness between individuals but as a question about what representation is for, and whether a guarantee that is meant to end should be written as though it will.",
+    standpoints: [
+      { label: "The advocate of safeguards", sees: "Exclusion so structural that formal equality preserves it, and a remedy that must be in the text because no majority would legislate it later.", values: "Presence in institutions as a precondition for everything else.", mayMiss: "That a remedy fixed in the text is hard to adjust as conditions change." },
+      { label: "The opponent on principle", sees: "A constitution built on individual equality carving out group entitlements, and a category that political incentives will expand.", values: "Citizenship that does not require declaring a group.", mayMiss: "That the neutral rule operates on a distribution produced by centuries of the opposite." },
+      { label: "The member arguing about duration", sees: "A safeguard with a sunset for legislatures and none for services, and no agreed measure of when it has worked.", values: "Knowing what success would look like.", mayMiss: "That defining the endpoint in 1949 would have fixed a standard nobody could then measure." },
+      { label: "The excluded claimant", sees: "Categories drawn to include some historically excluded groups and not others equally placed.", values: "The remedy tracking the harm rather than the classification.", mayMiss: "That an unbounded category makes the remedy unadministrable." }
+    ],
+    contested: "Whether reservation was conceived as compensation for past exclusion, as a mechanism for present representation, or as a route to future irrelevance of the categories themselves. The three imply different endpoints and the text does not settle between them.",
+    changeYourMind: "Read the Assembly debates on the duration clause. If members expected review against evidence rather than a fixed date, the compensation framing was not the dominant one."
+  },
+  "language-question": {
+    opening: "India did not adopt a national language. It adopted an official language, with a fifteen-year transition that was then not enforced, after debates that came closer to breaking the Assembly than almost anything else.",
+    standpoints: [
+      { label: "The advocate of Hindi", sees: "A country that cannot administer itself in the language of a departed power, and the largest single language available.", values: "Self-government including in its vocabulary.", mayMiss: "That largest is not majority, and that imposition would create the resistance it feared." },
+      { label: "The southern member", sees: "A proposal that makes his constituents foreigners in their own administration and disadvantages them in every examination.", values: "Not paying a permanent tax to belong.", mayMiss: "That English carried its own class barrier, favouring those already educated." },
+      { label: "The speaker of a language on no list", sees: "An argument between two large claims, conducted entirely above his own.", values: "Recognition of the language actually spoken at home.", mayMiss: "That the number of languages makes any complete answer unworkable." },
+      { label: "The drafter of the compromise", sees: "That deciding the question would fracture the country, and that not deciding it might not.", values: "A settlement that survives by remaining unfinished.", mayMiss: "That leaving it open meant fighting it again every generation." }
+    ],
+    contested: "Whether the language settlement is a model of pluralism or an unresolved dispute that has simply been deferred by successive governments unwilling to test it.",
+    changeYourMind: "Look at what happened when the fifteen-year transition actually arrived in 1965. The response tells you whether the compromise had settled anything or only postponed it."
+  },
+  "federal-balance": {
+    opening: "The Constitution distributes power between centre and states and then equips the centre to override that distribution in defined circumstances. Whether this is federalism with safeguards or a unitary state with federal features is the oldest live argument about the document.",
+    standpoints: [
+      { label: "The centralist drafter", sees: "A country just partitioned, with hundreds of states newly integrated and no assurance it holds.", values: "A centre that can act when the alternative is disintegration.", mayMiss: "That instruments built for emergencies are used for ordinary politics." },
+      { label: "The state government", sees: "Its legislature dismissable, its governor appointed elsewhere, and its revenue determined by a formula it does not set.", values: "Autonomy in the subjects it was given.", mayMiss: "That several of the powers it objects to have been narrowed by courts and convention since." },
+      { label: "The fiscal analyst", sees: "That the real federal balance is settled by where the money is raised and how it is shared, not by the legislative lists.", values: "Following the revenue rather than the text.", mayMiss: "That the legislative lists determine what a state can do with money once it has it." },
+      { label: "The citizen in a small state", sees: "That a strong centre is sometimes the only thing that will act against his own state government.", values: "A remedy beyond the local majority.", mayMiss: "That the same reach is available against a state government he supports." }
+    ],
+    contested: "Whether the centralising provisions are emergency instruments that have been misused, or the actual design, with the federal language as the exception.",
+    changeYourMind: "Count the uses of the provision for central rule in states before and after the judicial limits placed on it. A sharp fall suggests misuse of a sound design rather than the design itself."
+  },
+  "emergency-provisions": {
+    opening: "The Constitution contains detailed instructions for its own suspension. The Assembly debated this at length and adopted it anyway, and one member warned on the record that it could turn the country into a police state. Twenty-five years later a great deal of that warning was tested.",
+    standpoints: [
+      { label: "The drafter", sees: "That emergencies happen, and that a state without lawful means will use unlawful ones with no limit at all.", values: "Suspension that is bounded, recorded and reversible.", mayMiss: "That writing the procedure lowers the threshold for using it." },
+      { label: "The dissenting member", sees: "Provisions inherited from a colonial statute designed to govern a subject population, now pointed at citizens.", values: "Refusing the instrument regardless of who holds it.", mayMiss: "That the alternative was not the absence of emergency power but its exercise without rules." },
+      { label: "The citizen during an emergency", sees: "That the safeguards which mattered were the ones the text allowed to be suspended.", values: "Rights that hold precisely when they are inconvenient to the government.", mayMiss: "That the constitutional route also made the ending of it constitutional." },
+      { label: "The reformer afterwards", sees: "Amendments raising the threshold, narrowing the grounds and restoring rights that may not be suspended.", values: "Learning written back into the text.", mayMiss: "That amendments can be amended by the same majorities." }
+    ],
+    contested: "Whether constitutionalising emergency power constrains it or legitimises it. The Indian experience is cited by both sides, which suggests the answer depends on what else is holding.",
+    changeYourMind: "Read the post-1977 amendments against the original provisions. If the changes made a repeat materially harder rather than merely more embarrassing, the constraint argument is doing real work."
+  },
+  "ambedkar-dissent": {
+    opening: "On the last day of the debates, the person most associated with the document spent much of his closing speech warning about what it could not do. That speech is quoted constantly for its phrases and read rarely for its argument.",
+    standpoints: [
+      { label: "The drafter closing the debate", sees: "A political democracy laid on top of a social order built on graded inequality, and a contradiction that will have to be resolved one way or the other.", values: "Naming the gap while the credit is being handed out.", mayMiss: "Nothing much; the speech states its own limits explicitly." },
+      { label: "The celebrant", sees: "The world's longest written constitution, adopted peacefully by a country that had just been through partition.", values: "Recognising an achievement.", mayMiss: "That the achievement is what the warning was about: a good document is not a good society." },
+      { label: "The constitutional lawyer", sees: "Specific warnings about hero worship, about the methods of grievance politics, and about placing faith in the text.", values: "Treating it as an argument to be assessed, not a benediction.", mayMiss: "That the warnings were addressed to a moment as well as to the future." },
+      { label: "The reader today", sees: "Which of the warnings turned out to be right, and which the country has quietly stopped discussing.", values: "Using a text to check a record.", mayMiss: "That hindsight makes prediction look easier than it was." }
+    ],
+    contested: "Whether the Constitution is best understood as a completed settlement or as a warning about a task barely begun, and whether treating it as the former is what the speech was cautioning against.",
+    changeYourMind: "Read the closing speech in full rather than in quotation. If most of it is about social and economic conditions rather than institutions, the warning reading is the correct one and the celebratory use is a misreading."
+  },
 };
 
 export function getTopicContent(slug: string): TopicContent | undefined {

@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 
+import { timelessTopics } from "./timeless-topics";
 import { buildSearchIndex, searchTopics } from "./topic-search";
 
 const entries = buildSearchIndex();
 
 describe("topic search", () => {
   it("indexes every question with its theme and standpoints", () => {
-    expect(entries).toHaveLength(100);
+    expect(entries).toHaveLength(timelessTopics.length);
     expect(entries.every((entry) => entry.haystack.length > 40)).toBe(true);
   });
 
